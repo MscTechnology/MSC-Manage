@@ -1,9 +1,11 @@
-import Dashboard from './pages/Dashboard/Dashboard';
-import './styles.css'
+import Dashboard from "./pages/Dashboard/Dashboard";
+import "./styles.css";
+import AdminLogin from "./pages/Login/Admin/AdminLogin";
 function App() {
   return (
     <div className="App">
-        <Dashboard/>
+        
+      <AdminLogin />
     </div>
   );
 }
