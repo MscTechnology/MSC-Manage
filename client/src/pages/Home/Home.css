@@ -1,11 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:wght@100&display=swap");
 
-body {
-  height: 100%;
-  width: 100%;
+.home{
+ 
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../assets/images/bg1.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+ 
+
 }
 
 .msc-title {
@@ -13,7 +17,6 @@ body {
   font-weight: bold;
   color: ;
   text-align: center;
-  margin-top: 5%;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -27,11 +30,6 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
   .msc-title {
     font-size: 3em;
