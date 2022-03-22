@@ -18,7 +18,9 @@ const Home = () => {
     <>
       <div className="home">
         <div>
-          <h1 className="msc-title">MSC Teknoloji</h1>
+         <div className="msc-title">
+            MSC Teknoloji
+         </div>
 
           <div className="login-button">
             <div className="personal-button">
