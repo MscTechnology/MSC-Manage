@@ -1,0 +1,15 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 500px 15px 500px ;
+    padding: 20px;
+}
+body{
+    background-image: url("https://www.mscteknoloji.com/img/bg/bg1.jpg"); 
+    font-size:20px
+}
+.title{
+    font-size:30px;
+    margin: 100px 500px 0px 500px ;
+}
