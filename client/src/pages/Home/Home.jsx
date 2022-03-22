@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton.jsx";
 import "./Home.css";
 
@@ -5,7 +6,6 @@ const Home = () => {
 
   const handlePersonelButton = (e) => {
     e.preventDefault();
-    console.log("Personel Button Clicked");
   }
   const handleAdminButton = (e) => {
     e.preventDefault();
@@ -19,15 +19,16 @@ const Home = () => {
       <div className="home">
         <div>
           <h1 className="msc-title">MSC Teknoloji</h1>
-  
-            <div className="login-button">
-                <div className="personal-button">
-                    <CustomButton color={"primary"} onClick={handlePersonelButton} title={"Personel Girişi"}/>
-                </div>
-                <div className="admin-button">
-                    <CustomButton color={"success"} onClick={handleAdminButton} title={"Yonetici Girisi"}/>
-                </div>
+
+          <div className="login-button">
+            <div className="personal-button">
+
+              <CustomButton color={"primary"} onClick={handlePersonelButton} title={<Link to="/personelLogin">Personel Girişi</Link>} href="/personelLogin" />
             </div>
+            <div className="admin-button">
+              <CustomButton color={"success"} onClick={handleAdminButton} title={<Link to="/adminLogin">Yönetici Girişi</Link>} />
+            </div>
+          </div>
         </div>
       </div>
     </>
