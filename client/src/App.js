@@ -1,9 +1,9 @@
-import Button from '@mui/material/Button';
-
+import Dashboard from './pages/Dashboard/Dashboard';
+import './styles.css'
 function App() {
   return (
     <div className="App">
-        <Button variant="contained">Hello World</Button>;
+        <Dashboard/>
     </div>
   );
 }
