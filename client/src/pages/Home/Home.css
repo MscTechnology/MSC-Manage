@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:wght@100&display=swap");
+
+body {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../assets/images/bg1.jpg");
+}
+
+.msc-title {
+  font-size: 4em;
+  font-weight: bold;
+  color: ;
+  text-align: center;
+  margin-top: 5%;
+  font-family: "Open Sans", sans-serif;
+}
+
+.login-button {
+  margin-top: 5%;
+}
+
+.personal-button {
+  margin-bottom: 5%;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .msc-title {
+    font-size: 3em;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    background-size: auto;
+    justify-content: center;
+  }
+  .home {
+    margin-top: 55%;
+  }
+  /* .login-button{
+    
+    margin-top: 50%;
+  
+  
+  
+  }
+  .personal-button{
+    margin-bottom: 30%;
+    font-size: 1.5em;
+  } */
+}
+
+@media screen and (max-width: 1024px) {
+  .msc-title {
+    font-size: 4em;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    background-size: auto;
+    justify-content: center;
+  }
+  .home {
+    justify-content: center;
+    align-items: center;
+    margin-top: 35%;
+  }
+}
