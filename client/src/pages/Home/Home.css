@@ -47,18 +47,7 @@
     text-align: center;
 
   
-  }
-  /* .login-button{
-    
-    margin-top: 50%;
   
-  
-  
-  }
-  .personal-button{
-    margin-bottom: 30%;
-    font-size: 1.5em;
-  } */
 }
 
 @media screen and (max-width: 1024px) {
@@ -71,7 +60,14 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    
   }
 }
+.personal-button{
+  margin-bottom: pm;
+  font-size: 1.5em;
+  padding:10px
+}
+}
+.login-button{
+ margin-top: 20pm;
+} 
