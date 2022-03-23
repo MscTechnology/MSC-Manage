@@ -4,31 +4,28 @@ import "./Home.css";
 
 const Home = () => {
 
-  const handlePersonelButton = (e) => {
-    e.preventDefault();
+  const handlePersonelButton = () => {
   }
   const handleAdminButton = (e) => {
     e.preventDefault();
     console.log("Admin Button Clicked");
   }
 
-
-
   return (
     <>
       <div className="home">
         <div>
-         <div className="msc-title">
+          <div className="msc-title">
             MSC Teknoloji
-         </div>
+          </div>
 
           <div className="login-button">
             <div className="personal-button">
 
-              <CustomButton color={"primary"} onClick={handlePersonelButton} title={<Link to="/personelLogin">Personel Girişi</Link>} href="/personelLogin" />
+              <CustomButton color={"primary"} components={Link} to="personelLogin"  onClick={handlePersonelButton} title={"Personel Girişi"} />
             </div>
             <div className="admin-button">
-              <CustomButton color={"success"} onClick={handleAdminButton} title={<Link to="/adminLogin">Yönetici Girişi</Link>} />
+              <CustomButton color={"success"} components={Link} to="adminLogin" onClick={handleAdminButton} title={<Link to="/adminLogin">Yönetici Girişi</Link>} />
             </div>
           </div>
         </div>

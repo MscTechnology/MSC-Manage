@@ -8,7 +8,6 @@ import Admin from '../Layouts/Admin';
 const Dashboard = () => {
   return (
     <div>
-      <Home/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="personelLogin" element={<PersonelLogin />} />
