@@ -1,13 +1,28 @@
 import Dashboard from "./pages/Dashboard/Dashboard";
 import "./styles.css";
-import AdminLogin from "./pages/Login/Admin/AdminLogin";
-import PersonelLogin from "./pages/Login/Personel/PersonelLogin";
-import Admin from "./pages/Layouts/admin/Admin";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useState, useEffect } from "react";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
+import { setLoading } from "./store/SplashSlice/SplashSlice.js";
 function App() {
+  const splashLoading = useSelector((state) => state.splash.isLoading);
+  const dispatch = useDispatch();
+
+  setTimeout(() => {
+    dispatch(setLoading(true));
+  }, 1000);
+
   return (
-    <div className="App">
-      <Dashboard/>
-    </div>
+    <>
+      {splashLoading ? (
+        <div className="App">
+          <Dashboard />
+        </div>
+      ) : (
+        <SplashScreen />
+      )}
+    </>
   );
 }
 

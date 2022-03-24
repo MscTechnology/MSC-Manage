@@ -5,13 +5,19 @@ import { BrowserRouter } from "react-router-dom";
 import apolloClient from "./apolloClient.tsx";
 import { ApolloProvider } from "@apollo/client";
 import 'antd/dist/antd.css';
+import { Provider } from 'react-redux'
+import {store} from './store/store.js'
+
+
 ReactDOM.render(
+  <Provider store={store}>
   <ApolloProvider client={apolloClient}>
     <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </BrowserRouter>
-  </ApolloProvider>,
+  </ApolloProvider>
+  </Provider>,
   document.getElementById("root")
 );
