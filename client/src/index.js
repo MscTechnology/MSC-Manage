@@ -4,8 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import apolloClient from "./apolloClient.tsx";
 import { ApolloProvider } from "@apollo/client";
-
-
+import 'antd/dist/antd.css';
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <BrowserRouter>

@@ -1,28 +1,37 @@
-
-*{
-    margin:0;
-    padding:0;
-    font-family: 'Roboto', sans-serif;
-    
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-.App{
-    text-align: center;
-    justify-content: center;
-
+.App {
+  text-align: center;
+  justify-content: center;
 }
 
-.drawer{
-    
-  
-   
-    
-    display: flex;
-    position: fixed;
-    height: 100%;
-
-
-      
-
-
+.drawer {
+  display: flex;
+  position: fixed;
+  height: 100%;
 }
+
+.adminPage {
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #142d4c;
+}
+
+.btn1 {
+  cursor: pointer;
+margin-top:3%;
+}
+
+.admin-title {
+  color: white;
+  font-size: 4em;
+}
+
