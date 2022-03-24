@@ -1,60 +1,58 @@
-.box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
-.container{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("../../assets/images/bg1.jpg");
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-
+.container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../assets/images/bg1.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
-body{
-    font-size:20px;
-}
-
-.title{
-    font-size:30px;
-}
-#outlined-basic{
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    background-color: white;
-}
-#outlined-basic:hover{
-    border: 2px solid black;
-    background-color: white;
+body {
+  font-size: 20px;
 }
 
+.title {
+  font-size: 30px;
+}
+#outlined-basic {
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  background-color: white;
+}
+#outlined-basic:hover {
+  border: 2px solid black;
+  background-color: white;
+}
 
 @media screen and (max-width: 600px) {
-    .box{
-        margin: 5px 0px 15px 0px ;
-    }
-    .title{
-        margin: 100px 0px 0px 0px ;
-    }
+  .box {
+    margin: 5px 0px 15px 0px;
+  }
+  .title {
+    margin: 100px 0px 0px 0px;
+  }
 }
 
-.btns{
-    display:flex;
-    flex-direction:row;
-    justify-content: space-between
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.btn{
-    margin:10px
+.btn {
+  margin: 10px;
 }
 
-.btn-1{
-    margin-right: 30px;
+.btn-1 {
+  margin-right: 30px;
 }

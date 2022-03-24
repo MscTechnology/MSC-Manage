@@ -6,18 +6,16 @@ import {
   UserSwitchOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
-import { Routes, Route, Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 const buttonState = {
   size: "large",
-  color: {
-    primary: "#03a9f4",
-    secondary: "secondary",
-    disabled: "disabled",
-    text: "text",
-  },
+  variant: {
+    contained: "contained",
+    outlined: "outlined",
+  }
 };
 
 const Admin = () => {
@@ -34,7 +32,7 @@ const Admin = () => {
                   startIcon={<UserAddOutlined />}
                   size={buttonState.size}
                   icon={<UserAddOutlined />}
-                  variant="outlined"
+                  variant={buttonState.variant.outlined}
                   as={NavLink}
                   to="personelekle"
                 >

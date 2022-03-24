@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function DosyaEkle() {
-  return (
-    <div>DosyaEkle</div>
-  )
+  return <div>DosyaEkle</div>;
 }
 
-export default DosyaEkle
+export default DosyaEkle;

@@ -2,7 +2,6 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import "./styles.css";
 import { useSelector, useDispatch } from "react-redux";
 
-import { useState, useEffect } from "react";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import { setLoading } from "./store/SplashSlice/SplashSlice.js";
 function App() {
