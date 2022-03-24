@@ -44,7 +44,9 @@ const Drawer = () => {
         </SidebarHeader>
         <SidebarContent>
           <Menu iconShape="circle">
-              
+          <MenuItem  icon={<FaTachometerAlt />}>
+                <NavLink to="/personeller">Personeller</NavLink>
+            </MenuItem>
             <MenuItem  icon={<FaTachometerAlt />}>
                 <NavLink to="/deneme1">Personel Ekle</NavLink>
             </MenuItem>
@@ -56,7 +58,7 @@ const Drawer = () => {
             </MenuItem>
           </Menu>
           <SidebarFooter style={{textAlign:"center"}} >
-              <button onClick={() => setCollapse(!collapse)}>Küçült</button>
+              <Button onClick={() => setCollapse(!collapse)}>Küçült</Button>
           </SidebarFooter>
         </SidebarContent>
       </ProSidebar>
