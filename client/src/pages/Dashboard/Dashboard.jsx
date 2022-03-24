@@ -2,7 +2,7 @@ import React from 'react'
 import Home from '../Home/Home'
 import AdminLogin from '../Login/Admin/AdminLogin'
 import PersonelLogin from '../Login/Personel/PersonelLogin'
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Admin from '../Layouts/admin/Admin';
 import PersonelEkle from '../Layouts/Personel/PersonelEkle';
 import PersonelSil from '../Layouts/Personel/PersonelSil';

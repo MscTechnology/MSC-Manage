@@ -5,14 +5,9 @@ import CustomButton from '../../../components/Button/CustomButton';
 import { Link } from "react-router-dom";
 
 const PersonelLogin = () => {
-  const [login, setLogin] = useState(false)
 
-  const handleLogin =(e)=>{
-    if(e.target.value==="kubra"){
-    setLogin(true)
-    }
+  const handleLogin =()=>{
     
-   { login ? alert("Giriş Başarılı") : alert("kullanıcı adı veya şifre hatalı")}
   }
 
   return (
@@ -29,7 +24,7 @@ const PersonelLogin = () => {
       <CustomButton color={"primary"} components={Link} to="" onClick={()=>{}} title={"Go Back"}/>
           </div>
           <div>
-        <CustomButton color={"primary"} className="btn" title={"Log In"} onClick={handleLogin}></CustomButton>
+        <CustomButton color={"primary"} components={Link} to="personel" className="btn" title={"Log In"} onClick={handleLogin}></CustomButton>
           </div>
       </div>
     </div>
