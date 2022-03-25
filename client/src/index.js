@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import apolloClient from "./apolloClient.tsx";
+import apolloClient from "./ApolloClient.ts";
 import { ApolloProvider } from "@apollo/client";
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux'

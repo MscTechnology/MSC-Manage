@@ -1,2 +1,0 @@
-schema: "https://localhost:44345/graphql/"
-documents: "src/**/*.{graphql,js,ts,jsx,tsx}"
