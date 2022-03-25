@@ -71,14 +71,14 @@ export type Usertype = {
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, name?: string | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null } | null> | null };
 
 
 export const GetUserDocument = gql`
     query GetUser {
   users {
-    id
-    name
+    username
+    password
   }
 }
     `;
