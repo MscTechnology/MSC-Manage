@@ -7,10 +7,13 @@ import { Link } from "react-router-dom";
 
 import { AutoForm } from 'uniforms-antd';
 import {bridge as schema } from "./AdminSchema";
+import { useGetUserQuery } from "generated/graphql";
 
 const AdminLogin = () => {
 
   const [rowData, setRowData] = useState({})
+  const { data, loading, error } = useGetUserQuery();
+  console.log(data)
 
 
   return (
