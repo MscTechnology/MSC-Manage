@@ -50,6 +50,19 @@ function Personel() {
             Dosya Ekle
           </Button>
         </div>
+        <div>
+          <Button
+            disableElevation
+            size="large"
+            color={"primary"}
+            variant="outlined"
+            as={NavLink}
+            to="/personelLogin"
+          >
+            Geri Dön
+          </Button>
+        </div>
+
       </div>
     </div>
   );
