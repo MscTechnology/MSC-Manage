@@ -18,14 +18,14 @@ const TumPersonel = () => {
 
 
 
-  return <div className="adminPage admin-title">
-    <div >
+  return <div className="adminPage">
+    <div className="admin-title">
       Tüm Personel
     </div>
     {data?.users?.map((p) => (
       <div className="allpersonel">
         <Button  key={p?.id} disableElevation
-    size="medium"
+    size="large"
     color={"primary"}
     variant="outlined"
     as={NavLink}

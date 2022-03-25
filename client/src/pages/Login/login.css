@@ -7,7 +7,7 @@
 .container {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../assets/images/bg1.jpg");
+  background: #92AED4;
   background-position: center;
   background-attachment: fixed;
   height: 100vh;
@@ -55,5 +55,10 @@ body {
 
 .btn-1 {
   margin-right: 30px;
+  margin-top: 20px;
+}
+.btn-2 {
+  
+  margin-top: 20px;
 }
 

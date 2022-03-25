@@ -15,9 +15,6 @@ const GET_USER = gql`
 const Home = () => {
   const { loading, error, data } = useQuery(GET_USER);
 
-  const handlePersonelButton = () => {};
-  const handleAdminButton = () => {};
-
   if (loading) {
     <div>loading..</div>;
   }
@@ -25,15 +22,11 @@ const Home = () => {
   if (error) {
     <div>error</div>;
   }
-  console.log(data);
 
   return (
     <>
       <div className="home">
         <div>
-          {data?.usertypes?.map((p) => (
-            <div key={p?.id}>{p?.typename}</div>
-          ))}
           <div className="msc-title">MSC Teknoloji</div>
 
           <div className="login-button">
@@ -44,7 +37,7 @@ const Home = () => {
                 color={"primary"}
                 components={Link}
                 to="personelLogin"
-                onClick={handlePersonelButton}
+                onClick={()=>{}}
                 title={"Personel Girişi"}
               />
             </div>
@@ -53,7 +46,7 @@ const Home = () => {
                 color={"success"}
                 components={Link}
                 to="adminLogin"
-                onClick={handleAdminButton}
+                onClick={()=>{}}
                 title={"Yönetici Girişi"}
               />
             </div>
