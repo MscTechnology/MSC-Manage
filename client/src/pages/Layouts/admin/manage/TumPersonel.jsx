@@ -2,7 +2,7 @@ import "../../../../styles.css";
 import { gql, useQuery } from "@apollo/client";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
-
+import { useEffect } from "react";
 const GET_USER = gql`
   query GetUser {
     users {
@@ -28,7 +28,7 @@ const TumPersonel = () => {
     color={"primary"}
     variant="outlined"
     as={NavLink}
-    to="detail">
+    to={`${p?.id}`}>
       {p?.id}-{p?.name} {p?.surname}
     </Button>
       </div>

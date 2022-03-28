@@ -19,6 +19,51 @@ export type Scalars = {
   Long: any;
 };
 
+export type ComparableInt64OperationFilterInput = {
+  eq?: InputMaybe<Scalars['Long']>;
+  gt?: InputMaybe<Scalars['Long']>;
+  gte?: InputMaybe<Scalars['Long']>;
+  in?: InputMaybe<Array<Scalars['Long']>>;
+  lt?: InputMaybe<Scalars['Long']>;
+  lte?: InputMaybe<Scalars['Long']>;
+  neq?: InputMaybe<Scalars['Long']>;
+  ngt?: InputMaybe<Scalars['Long']>;
+  ngte?: InputMaybe<Scalars['Long']>;
+  nin?: InputMaybe<Array<Scalars['Long']>>;
+  nlt?: InputMaybe<Scalars['Long']>;
+  nlte?: InputMaybe<Scalars['Long']>;
+};
+
+export type ComparableNullableOfDateTimeOperationFilterInput = {
+  eq?: InputMaybe<Scalars['DateTime']>;
+  gt?: InputMaybe<Scalars['DateTime']>;
+  gte?: InputMaybe<Scalars['DateTime']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  lt?: InputMaybe<Scalars['DateTime']>;
+  lte?: InputMaybe<Scalars['DateTime']>;
+  neq?: InputMaybe<Scalars['DateTime']>;
+  ngt?: InputMaybe<Scalars['DateTime']>;
+  ngte?: InputMaybe<Scalars['DateTime']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  nlt?: InputMaybe<Scalars['DateTime']>;
+  nlte?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ComparableNullableOfInt64OperationFilterInput = {
+  eq?: InputMaybe<Scalars['Long']>;
+  gt?: InputMaybe<Scalars['Long']>;
+  gte?: InputMaybe<Scalars['Long']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  lt?: InputMaybe<Scalars['Long']>;
+  lte?: InputMaybe<Scalars['Long']>;
+  neq?: InputMaybe<Scalars['Long']>;
+  ngt?: InputMaybe<Scalars['Long']>;
+  ngte?: InputMaybe<Scalars['Long']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  nlt?: InputMaybe<Scalars['Long']>;
+  nlte?: InputMaybe<Scalars['Long']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addUser?: Maybe<User>;
@@ -32,7 +77,28 @@ export type MutationAddUserArgs = {
 export type Query = {
   __typename?: 'Query';
   users?: Maybe<Array<Maybe<User>>>;
+  usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
+};
+
+
+export type QueryUsersByIdArgs = {
+  where?: InputMaybe<UserFilterInput>;
+};
+
+export type StringOperationFilterInput = {
+  and?: InputMaybe<Array<StringOperationFilterInput>>;
+  contains?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  ncontains?: InputMaybe<Scalars['String']>;
+  nendsWith?: InputMaybe<Scalars['String']>;
+  neq?: InputMaybe<Scalars['String']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  nstartsWith?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<StringOperationFilterInput>>;
+  startsWith?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
@@ -47,6 +113,21 @@ export type User = {
   surname?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
   usertypesid?: Maybe<Scalars['Long']>;
+};
+
+export type UserFilterInput = {
+  and?: InputMaybe<Array<UserFilterInput>>;
+  changetime?: InputMaybe<ComparableNullableOfDateTimeOperationFilterInput>;
+  changeuser?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  createtime?: InputMaybe<ComparableNullableOfDateTimeOperationFilterInput>;
+  createuser?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  name?: InputMaybe<StringOperationFilterInput>;
+  or?: InputMaybe<Array<UserFilterInput>>;
+  password?: InputMaybe<StringOperationFilterInput>;
+  surname?: InputMaybe<StringOperationFilterInput>;
+  username?: InputMaybe<StringOperationFilterInput>;
+  usertypesid?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
 };
 
 export type UserInput = {
@@ -68,12 +149,55 @@ export type Usertype = {
   typename?: Maybe<Scalars['String']>;
 };
 
+export type GetUserDetailQueryVariables = Exact<{
+  prmId: Scalars['Long'];
+}>;
+
+
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', id: any, name?: string | null } | null> | null };
+
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null } | null> | null };
 
 
+export const GetUserDetailDocument = gql`
+    query GetUserDetail($prmId: Long!) {
+  usersById(where: {id: {eq: $prmId}}) {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetUserDetailQuery__
+ *
+ * To run a query within a React component, call `useGetUserDetailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserDetailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserDetailQuery({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *   },
+ * });
+ */
+export function useGetUserDetailQuery(baseOptions: Apollo.QueryHookOptions<GetUserDetailQuery, GetUserDetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserDetailQuery, GetUserDetailQueryVariables>(GetUserDetailDocument, options);
+      }
+export function useGetUserDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserDetailQuery, GetUserDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserDetailQuery, GetUserDetailQueryVariables>(GetUserDetailDocument, options);
+        }
+export type GetUserDetailQueryHookResult = ReturnType<typeof useGetUserDetailQuery>;
+export type GetUserDetailLazyQueryHookResult = ReturnType<typeof useGetUserDetailLazyQuery>;
+export type GetUserDetailQueryResult = Apollo.QueryResult<GetUserDetailQuery, GetUserDetailQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser {
   users {

@@ -29,7 +29,7 @@ const Dashboard = () => {
         <Route path="/admin/personelsil" element={<PersonelSil />} />
         <Route path="/admin/personelguncelle" element={<PersonelGuncelle />} />
         <Route path="/admin/tumpersonel" element={<TumPersonel />} />
-        <Route path="/admin/tumpersonel/detail" element={<PersonelDetail />} />
+        <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} />
         <Route path="*"element={<NoMatch />} />
     
       </Routes>
