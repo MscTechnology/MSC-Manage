@@ -154,7 +154,7 @@ export type GetUserDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', id: any, name?: string | null } | null> | null };
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null } | null> | null };
 
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -165,8 +165,9 @@ export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 
 export const GetUserDetailDocument = gql`
     query GetUserDetail($prmId: Long!) {
   usersById(where: {id: {eq: $prmId}}) {
-    id
     name
+    surname
+    username
   }
 }
     `;

@@ -42,13 +42,18 @@ const AdminLogin = () => {
             >Go Back</Button>
           </div>
           <div  className="btn-2">
-            <button color={"primary"}
+            {/* <button color={"primary"}
               variant="outlined"  onClick={(model) => {
               setRowData(model);
               alert(JSON.stringify(model));
               
-            }} >Log In</button>
-            
+            }} >Log In</button> */}
+            <Button
+              color={"primary"}
+              variant="outlined"
+              as={NavLink}
+              to="/admin"
+            >Log In</Button>
           </div>
         
         </div>

@@ -37,12 +37,17 @@ const PersonelLogin = () => {
             >Go Back</Button>
           </div>
           <div className="btn-2">
-            <button components={Link}
+            {/* <button components={Link}
               to="" onClick={(model) => {
               setRowData(model);
               alert(JSON.stringify(model));
-            }} >Log In</button>
-            
+            }} >Log In</button> */}
+            <Button
+              color={"primary"}
+              variant="outlined"
+              as={NavLink}
+              to="/personel"
+            >Log In</Button>
           </div>
         
         </div>

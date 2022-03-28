@@ -22,6 +22,7 @@
   flex-direction: column;
   height: 100vh;
   background: #142d4c;
+  align-items: center;
 }
 
 .btn1 {
@@ -97,4 +98,37 @@ margin-top:3%;
 
 .title-404{
   color: white;
+}
+
+.detailPage{
+  display: flex;
+  flex-direction: column;
+  background-color: #142d4c;
+  height: 100vh;
+  align-items: center;
+}
+.detail-title{
+  color: white;
+  font-size: 4em;
+  margin-top: 0.75em;
+  margin-bottom:0.5em
+}
+@media (max-width: 768px) {
+  .detail-title{
+    font-size: 4em;
+  }
+
+  
+}
+
+@media screen and (max-width: 600px) {
+  .detail-title{
+    font-size: 2em;
+    margin: 10px;
+  }
+
+  
+}
+.buttons1{
+  justify-content: space-between;
 }
