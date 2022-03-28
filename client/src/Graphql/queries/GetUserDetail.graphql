@@ -1,6 +1,7 @@
 query GetUserDetail($prmId: Long!){
   usersById(where: {id:{eq:$prmId}}) {
-    id
+    
     name
+    
   }
 }
