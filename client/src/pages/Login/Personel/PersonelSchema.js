@@ -26,6 +26,8 @@ const schemaExtras = {
 
 
 const schemaValidator = (model) => {
+  console.log("---- model")
+  console.log(model)
     const details = [];
 
     return details.length ? { details } : null;

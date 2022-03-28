@@ -4,6 +4,6 @@ import userReducer from "./User/UserSlice";
 export const store = configureStore({
   reducer: {
     splash: splashReducer,
-    user: userReducer,
+    users: userReducer,
   },
 });

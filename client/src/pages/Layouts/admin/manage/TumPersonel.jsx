@@ -22,8 +22,8 @@ const TumPersonel = () => {
       Tüm Personel
     </div>
     {data?.users?.map((p) => (
-      <div className="allpersonel">
-        <Button key={p?.id} disableElevation
+      <div key={p?.id}  className="allpersonel">
+        <Button  disableElevation
     size="large"
     color={"primary"}
     variant="outlined"

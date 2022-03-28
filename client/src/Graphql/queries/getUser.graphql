@@ -2,5 +2,6 @@ query GetUser {
   users {
     username
     password
+    usertypesid
   }
 }

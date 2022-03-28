@@ -9,6 +9,7 @@ function PersonelDetail() {
   const [rowData, setRowData] = useState({});
   const { id } = useParams()
 
+    console.log(id)
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id)

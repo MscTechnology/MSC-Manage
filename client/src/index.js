@@ -7,6 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux'
 import {store} from './store/store.js'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 ReactDOM.render(
