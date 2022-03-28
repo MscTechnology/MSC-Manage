@@ -1,4 +1,4 @@
-import "../../../../styles.css";
+import "../../../../../styles.css";
 import { gql, useQuery } from "@apollo/client";
 import { Button } from "@mui/material";
 import { NavLink,useParams } from "react-router-dom";
@@ -16,7 +16,7 @@ function PersonelDetail() {
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
-       prmId: parseInt(id)// value for 'prmId'
+       prmId: parseInt(id)
     },
   });
  

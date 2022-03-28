@@ -4,14 +4,14 @@ import AdminLogin from "../Login/Admin/AdminLogin";
 import PersonelLogin from "../Login/Personel/PersonelLogin";
 import { Routes, Route } from "react-router-dom";
 import Admin from "../Layouts/admin/Admin";
-import PersonelEkle from "../Layouts/admin/manage/PersonelEkle";
-import PersonelSil from "../Layouts/admin/manage/PersonelSil";
-import PersonelGuncelle from "../Layouts/admin/manage/PersonelGuncelle";
+import PersonelEkle from "../Layouts/admin/manage/Ekle/PersonelEkle";
+import PersonelSil from "../Layouts/admin/manage/Sil/PersonelSil";
+import PersonelGuncelle from "../Layouts/admin/manage/Guncelle/PersonelGuncelle";
 import TumPersonel from "../Layouts/admin/manage/TumPersonel";
 import Personel from "../Layouts/personel/Personel"
 import BilgileriGuncelle from "../Layouts/personel/BilgileriGuncelle"
 import DosyaEkle from "../Layouts/personel/DosyaEkle"
-import PersonelDetail from "../Layouts/admin/manage/PersonelDetail";
+import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";
 import NoMatch from "pages/404/NoMatch";
 
 const Dashboard = () => {

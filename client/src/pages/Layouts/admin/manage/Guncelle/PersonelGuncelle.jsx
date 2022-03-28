@@ -1,4 +1,4 @@
-import "../../../../styles.css";
+import "../../../../../styles.css";
 
 const PersonelGuncelle = () => {
   return (

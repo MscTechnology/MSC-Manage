@@ -1,16 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { gql, useQuery } from "@apollo/client";
-
-
-const GET_USER = gql`
-  query GetUser {
-    usertypes {
-      id
-      typename
-    }
-  }
-`;
-
 
 
 
