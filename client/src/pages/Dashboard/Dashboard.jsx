@@ -12,6 +12,7 @@ import Personel from "../Layouts/personel/Personel"
 import BilgileriGuncelle from "../Layouts/personel/BilgileriGuncelle"
 import DosyaEkle from "../Layouts/personel/DosyaEkle"
 import PersonelDetail from "../Layouts/admin/manage/PersonelDetail";
+import NoMatch from "pages/404/NoMatch";
 
 const Dashboard = () => {
   return (
@@ -29,6 +30,8 @@ const Dashboard = () => {
         <Route path="/admin/personelguncelle" element={<PersonelGuncelle />} />
         <Route path="/admin/tumpersonel" element={<TumPersonel />} />
         <Route path="/admin/tumpersonel/detail" element={<PersonelDetail />} />
+        <Route path="*"element={<NoMatch />} />
+    
       </Routes>
     </div>
   );

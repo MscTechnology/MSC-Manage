@@ -83,3 +83,18 @@ margin-top:3%;
 .allpersonel{
   margin:2em
 }
+
+
+
+.NoMatch{
+  background-color: #142d4c;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-404{
+  color: white;
+}
