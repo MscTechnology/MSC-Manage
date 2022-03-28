@@ -17,7 +17,6 @@ const TumPersonel = () => {
   const { loading, error, data } = useQuery(GET_USER);
 
 
-
   return <div className="adminPage">
     <div className="admin-title">
       Tüm Personel

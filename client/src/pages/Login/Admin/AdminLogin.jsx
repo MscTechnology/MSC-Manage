@@ -28,9 +28,9 @@ const AdminLogin = () => {
           alert(JSON.stringify(model));
         }}
       >
-        <HiddenField name={"username"} />
+        
         <AutoField name={"username"} />
-        <HiddenField name={"password"} />
+        
         <AutoField name={"password"} />
         <div className="btns">
           <div className="btn-1">
@@ -41,11 +41,12 @@ const AdminLogin = () => {
               to="/"
             >Go Back</Button>
           </div>
-          <div className="btn-2">
-            <button components={Link}
-              to="" onClick={(model) => {
+          <div  className="btn-2">
+            <button color={"primary"}
+              variant="outlined"  onClick={(model) => {
               setRowData(model);
               alert(JSON.stringify(model));
+              
             }} >Log In</button>
             
           </div>
