@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.8.1",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript-react-query": "^3.5.9",
+    "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.2",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.16.2",
