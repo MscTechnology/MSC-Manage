@@ -206,6 +206,8 @@ export const GetUserDocument = gql`
     password
     usertypesid
     name
+    surname
+    id
   }
 }
     `;

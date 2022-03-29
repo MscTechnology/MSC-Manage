@@ -1,5 +1,5 @@
 import { Button, IconButton, styled } from "@mui/material";
-import {PhotoCamera} from "@mui/icons-material";
+import { PhotoCamera,DeleteForeverIcon } from "@mui/icons-material";
 import React from "react";
 import "../personel.css"
 import { useSelector } from "react-redux";
@@ -25,19 +25,41 @@ function BilgileriGuncelle() {
       <AutoField name={"surname"} />
       <AutoField name={"username"} />
       <AutoField name={"password"} />
-      <div className="btns-1"> 
+      <div className="btns-1">
         <div className="btns-2">
-      <span>add or update your image</span>
+          <span>add or update your image</span>
           <label htmlFor="icon-button-file">
             <Input accept="image/*" id="icon-button-file" type="file" />
             <IconButton color="primary" aria-label="upload picture" component="span">
               <PhotoCamera />
-             </IconButton>
+            </IconButton>
           </label>
         </div>
-        <div></div>
       </div>
 
+      <div className="btns-1">
+        <div className="btns-2">
+          <span>add or update your student certificate</span>
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" />
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+        </div>
+      </div>
+
+      <div className="btns-1">
+        <div className="btns-2">
+          <span>add or update your certificate of graduation</span>
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" />
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+        </div>
+      </div>
 
       <div className="btns">
         <div className="btn-1">

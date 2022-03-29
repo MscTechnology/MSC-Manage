@@ -28,7 +28,11 @@ const Admin = () => {
       <div>
         <Box sx={{ flexGrow: 1 }}>
           <Grid  item xs={8}>
-            <h1 className="admin-title">Yönetim Paneli</h1>
+            <h1 className="admin-title">
+<IconButton size="large" color="primary"  component="span" as={NavLink}
+        to="/adminLogin">
+        <ArrowBackIcon />
+      </IconButton>Yönetim Paneli</h1>
             <h2 className="admin-subtitle">{user.name}</h2>
             <div className="admin-button-group">
               <div className="btn1">

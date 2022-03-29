@@ -88,7 +88,10 @@ margin-top:3%;
 }
 
 .allpersonel{
-  margin:2em
+  margin-top:2em;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -118,6 +121,14 @@ margin-top:3%;
   font-size: 4em;
   margin-top: 0.75em;
   margin-bottom:0.5em
+}
+
+.iconbutton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
 }
 @media (max-width: 768px) {
   .detail-title{
