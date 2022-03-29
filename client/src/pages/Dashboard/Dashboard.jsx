@@ -9,7 +9,7 @@ import PersonelSil from "../Layouts/admin/manage/Sil/PersonelSil";
 import PersonelGuncelle from "../Layouts/admin/manage/Guncelle/PersonelGuncelle";
 import TumPersonel from "../Layouts/admin/manage/TumPersonel";
 import Personel from "../Layouts/personel/Personel"
-import BilgileriGuncelle from "../Layouts/personel/BilgileriGuncelle"
+import BilgileriGuncelle from "../Layouts/personel/guncelle/BilgileriGuncelle"
 import DosyaEkle from "../Layouts/personel/DosyaEkle"
 import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";
 import NoMatch from "pages/404/NoMatch";

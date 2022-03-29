@@ -1,5 +1,5 @@
 import "../../../styles.css";
-import { Button } from "@mui/material";
+import { Button,IconButton } from "@mui/material";
 import {
   UserDeleteOutlined,
   UserAddOutlined,
@@ -7,6 +7,7 @@ import {
   UnorderedListOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
@@ -27,8 +28,12 @@ const Admin = () => {
       <div>
         <Box sx={{ flexGrow: 1 }}>
           <Grid  item xs={8}>
-            <h1 className="admin-title">Yönetim Paneli</h1>
-            <h2 className="admin-subtitle">{user.name} {user.surname}</h2>
+            <h1 className="admin-title">
+<IconButton size="large" color="primary"  component="span" as={NavLink}
+        to="/adminLogin">
+        <ArrowBackIcon />
+      </IconButton>Yönetim Paneli</h1>
+            <h2 className="admin-subtitle">{user.name}</h2>
             <div className="admin-button-group">
               <div className="btn1">
                 <Button

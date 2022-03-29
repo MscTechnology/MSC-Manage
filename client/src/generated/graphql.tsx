@@ -313,6 +313,7 @@ export const GetUserDocument = gql`
     usertypesid
     name
     surname
+    id
   }
 }
     `;
