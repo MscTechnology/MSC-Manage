@@ -13,18 +13,13 @@ import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
 
 const PersonelLogin = () => {
-  const [rowData, setRowData] = useState({});
+  const [title, setTitle] = useState("Personel Log In");
   const { data, loading, error } = useGetUserQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   console.log(data);
-  const users = data?.users.filter(
-    (user) =>
-      user.username === rowData.username &&
-      user.password === rowData.password &&
-      user.usertypesid === 2
-  );
+  
 
   if(loading){
     return <Loading/>
@@ -34,13 +29,35 @@ const PersonelLogin = () => {
     return <Error/>
   }
 
-  console.log(users);
-  const handleLogin = (model) => {
-    setRowData(model);
-    if (users?.length > 0) {
-      alert("giriş yapıldı");
+  const loginedPersonel = (users) => {
+    setTitle("Giriş Yapıldı");
       dispatch(setUser(users[0]));
-      navigate("/personel/");
+      setTimeout(() => {
+        navigate("/personel/");
+      } , 1000);
+  }
+
+  const unloginedPersonel = () => {
+    setTitle("Giriş Yapılamadı");
+    setTimeout(() => {
+      setTitle("Personel Log In");
+    }, 1000);
+  }
+
+
+
+  const handleLogin = (model) => {
+    const users = data?.users?.filter(
+      (user) =>
+        user.username === model.username &&
+        user.password === model.password &&
+        user.usertypesid === 2
+    );
+    if (users?.length > 0) {
+      loginedPersonel(users)
+     
+    }else if (users?.length === 0) {
+      unloginedPersonel()
     }
   };
 
@@ -48,7 +65,7 @@ const PersonelLogin = () => {
 
   return (
     <div className="container">
-      <div className="title">Personel Log In</div>
+      <div className="title">{title}</div>
       <AutoForm
         schema={schema}
         onSubmit={handleLogin}
