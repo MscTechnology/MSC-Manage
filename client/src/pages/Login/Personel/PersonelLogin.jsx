@@ -4,22 +4,24 @@ import { Button } from "@mui/material";
 import CustomButton from "../../../components/Button/CustomButton";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import { AutoForm, HiddenField, AutoField } from "uniforms-material";
+import { AutoForm, HiddenField, AutoField, SubmitField ,ErrorsField} from "uniforms-material";
 import { bridge as schema } from "./PersonelSchema";
 import { useGetUserQuery } from "generated/graphql";
 import {useDispatch, useSelector} from 'react-redux'
-import {setUser} from 'store/User/UserSlice'
+import {setUser, setLoginDate,setOutDate} from 'store/User/UserSlice'
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
   const { data, loading, error } = useGetUserQuery();
+  const userLoginDate = useSelector((state) => state.users.userLoginDate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   console.log(data);
   
+  let login_out_date = new Date();
 
   if(loading){
     return <Loading/>
@@ -32,6 +34,7 @@ const PersonelLogin = () => {
   const loginedPersonel = (users) => {
     setTitle("Giriş Yapıldı");
       dispatch(setUser(users[0]));
+      dispatch(setLoginDate(login_out_date));
       setTimeout(() => {
         navigate("/personel/");
       } , 1000);
@@ -55,13 +58,12 @@ const PersonelLogin = () => {
     );
     if (users?.length > 0) {
       loginedPersonel(users)
+
      
     }else if (users?.length === 0) {
       unloginedPersonel()
     }
   };
-
-
 
   return (
     <div className="container">
@@ -70,6 +72,7 @@ const PersonelLogin = () => {
         schema={schema}
         onSubmit={handleLogin}
       >
+        <ErrorsField/>
         <AutoField name={"username"} />
         <AutoField name={"password"} />
         <div className="btns">
@@ -79,12 +82,7 @@ const PersonelLogin = () => {
             </Button>
           </div>
           <div className="btn-2">
-            <button
-              color={"primary"}
-              variant="outlined"
-            >
-              Log In
-            </button>
+            <SubmitField className="hidden" value="Log In" />
           </div>
         </div>
       </AutoForm>

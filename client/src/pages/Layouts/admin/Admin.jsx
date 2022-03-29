@@ -28,7 +28,7 @@ const Admin = () => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid  item xs={8}>
             <h1 className="admin-title">Yönetim Paneli</h1>
-            <h2 className="admin-subtitle">{user.name}</h2>
+            <h2 className="admin-subtitle">{user.name} {user.surname}</h2>
             <div className="admin-button-group">
               <div className="btn1">
                 <Button

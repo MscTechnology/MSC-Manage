@@ -1,0 +1,6 @@
+query GetUserTypes{
+  usertypes {
+    id
+    typename
+  }
+}

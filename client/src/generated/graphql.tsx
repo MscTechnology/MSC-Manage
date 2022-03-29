@@ -13,10 +13,23 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255. */
+  Byte: any;
   /** The `DateTime` scalar represents an ISO-8601 compliant date time type. */
   DateTime: any;
+  /** The built-in `Decimal` scalar type. */
+  Decimal: any;
   /** The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
   Long: any;
+};
+
+export type City = {
+  __typename?: 'City';
+  cityname?: Maybe<Scalars['String']>;
+  districts?: Maybe<Array<Maybe<District>>>;
+  id: Scalars['Long'];
+  personels?: Maybe<Array<Maybe<Personel>>>;
+  plateno: Scalars['Int'];
 };
 
 export type ComparableInt64OperationFilterInput = {
@@ -64,6 +77,22 @@ export type ComparableNullableOfInt64OperationFilterInput = {
   nlte?: InputMaybe<Scalars['Long']>;
 };
 
+export type District = {
+  __typename?: 'District';
+  citys?: Maybe<City>;
+  citysid: Scalars['Long'];
+  districtname?: Maybe<Scalars['String']>;
+  id: Scalars['Long'];
+  personels?: Maybe<Array<Maybe<Personel>>>;
+};
+
+export type Filetype = {
+  __typename?: 'Filetype';
+  id: Scalars['Long'];
+  personelfiles?: Maybe<Array<Maybe<Personelfile>>>;
+  typename?: Maybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addUser?: Maybe<User>;
@@ -74,8 +103,45 @@ export type MutationAddUserArgs = {
   prmUser?: InputMaybe<UserInput>;
 };
 
+export type Personel = {
+  __typename?: 'Personel';
+  adress?: Maybe<Scalars['String']>;
+  changetime?: Maybe<Scalars['DateTime']>;
+  changeuser?: Maybe<Scalars['Long']>;
+  city?: Maybe<City>;
+  cityid?: Maybe<Scalars['Long']>;
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  districts?: Maybe<District>;
+  districtsid?: Maybe<Scalars['Long']>;
+  email?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id: Scalars['Long'];
+  identificationnumber?: Maybe<Scalars['Decimal']>;
+  personelfiles?: Maybe<Array<Maybe<Personelfile>>>;
+  phonenumber?: Maybe<Scalars['Decimal']>;
+  schoolname?: Maybe<Scalars['String']>;
+  usersid: Scalars['Long'];
+};
+
+export type Personelfile = {
+  __typename?: 'Personelfile';
+  changetime?: Maybe<Scalars['DateTime']>;
+  changeuser?: Maybe<Scalars['Long']>;
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  data?: Maybe<Array<Scalars['Byte']>>;
+  extensitions?: Maybe<Scalars['String']>;
+  filetypes?: Maybe<Filetype>;
+  filetypesid: Scalars['Long'];
+  id: Scalars['Long'];
+  personel?: Maybe<Personel>;
+  personelid: Scalars['Long'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  personels?: Maybe<Array<Maybe<Personel>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
@@ -156,10 +222,15 @@ export type GetUserDetailQueryVariables = Exact<{
 
 export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null } | null> | null };
 
+export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __typename?: 'Usertype', id: any, typename?: string | null } | null> | null };
+
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null, surname?: string | null } | null> | null };
 
 
 export const GetUserDetailDocument = gql`
@@ -199,6 +270,41 @@ export function useGetUserDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetUserDetailQueryHookResult = ReturnType<typeof useGetUserDetailQuery>;
 export type GetUserDetailLazyQueryHookResult = ReturnType<typeof useGetUserDetailLazyQuery>;
 export type GetUserDetailQueryResult = Apollo.QueryResult<GetUserDetailQuery, GetUserDetailQueryVariables>;
+export const GetUserTypesDocument = gql`
+    query GetUserTypes {
+  usertypes {
+    id
+    typename
+  }
+}
+    `;
+
+/**
+ * __useGetUserTypesQuery__
+ *
+ * To run a query within a React component, call `useGetUserTypesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserTypesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserTypesQuery(baseOptions?: Apollo.QueryHookOptions<GetUserTypesQuery, GetUserTypesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserTypesQuery, GetUserTypesQueryVariables>(GetUserTypesDocument, options);
+      }
+export function useGetUserTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserTypesQuery, GetUserTypesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserTypesQuery, GetUserTypesQueryVariables>(GetUserTypesDocument, options);
+        }
+export type GetUserTypesQueryHookResult = ReturnType<typeof useGetUserTypesQuery>;
+export type GetUserTypesLazyQueryHookResult = ReturnType<typeof useGetUserTypesLazyQuery>;
+export type GetUserTypesQueryResult = Apollo.QueryResult<GetUserTypesQuery, GetUserTypesQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser {
   users {
@@ -206,6 +312,7 @@ export const GetUserDocument = gql`
     password
     usertypesid
     name
+    surname
   }
 }
     `;

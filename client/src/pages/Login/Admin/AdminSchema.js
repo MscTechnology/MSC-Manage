@@ -33,7 +33,26 @@ const schemaValidator = (model) => {
         
     ];
 
-
+    if (!model.username) {
+        details.push({
+          name:"username",
+            message: 'Name is required',
+            path: ['username'],
+            type: 'required',
+            value: model.username,
+        });
+    }
+    if (!model.password) {
+        details.push({
+          name:"password",
+            message: 'Password is required',
+            path: ['password'],
+            type: 'required',
+            value: model.password,
+        });
+    }
+      
+  
     
     return details.length ? { details } : null;
 
