@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { gql, useQuery } from "@apollo/client";
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
-
+import {useSelector} from 'react-redux'
 const GET_USER = gql`
   query GetUser {
     users {
@@ -20,6 +20,9 @@ function Personel() {
   const { loading, error, data } = useQuery(GET_USER);
   console.log(data);
 
+  const user = useSelector(state => state.users.user)
+  console.log(user)
+
   if(loading){  
     return <Loading/>
   }
@@ -30,7 +33,7 @@ function Personel() {
 
   return (
     <div className="container1">
-      <div className="title1">Welcome</div>
+      <div className="title1">{`Hoşgeldin ${user.name}`}</div>
       
       <div className="btn1">
         <div className="btn2">

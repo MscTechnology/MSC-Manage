@@ -3,5 +3,6 @@ query GetUser {
     username
     password
     usertypesid
+    name
   }
 }
