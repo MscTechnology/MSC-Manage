@@ -1,5 +1,4 @@
 import "../../../../../styles.css";
-import { gql, useQuery } from "@apollo/client";
 import { Button, Typography, CardMedia, CardContent, CardActions, Card } from "@mui/material";
 import { NavLink, useParams } from "react-router-dom";
 import { useGetUserDetailQuery } from "generated/graphql";

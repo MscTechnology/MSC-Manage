@@ -9,7 +9,7 @@ import {
 import { NavLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-
+import { useSelector } from "react-redux";
 const buttonState = {
   size: "large",
   variant: {
@@ -19,12 +19,16 @@ const buttonState = {
 };
 
 const Admin = () => {
+  const user = useSelector((state) => state.users.user);
+  console.log(user)
+  
   return (
     <div className="adminPage">
       <div>
         <Box sx={{ flexGrow: 1 }}>
           <Grid  item xs={8}>
             <h1 className="admin-title">Yönetim Paneli</h1>
+            <h2 className="admin-subtitle">{user.name}</h2>
             <div className="admin-button-group">
               <div className="btn1">
                 <Button
@@ -39,29 +43,7 @@ const Admin = () => {
                   Personel EKLE
                 </Button>
               </div>
-              {/* <div className="btn1">
-                <Button
-                  className="btn1"
-                  size={buttonState.size}
-                  variant="outlined"
-                  startIcon={<UserDeleteOutlined />}
-                  as={NavLink}
-                  to="personelsil"
-                >
-                  Personel SİL
-                </Button>
-              </div> */}
-              {/* <div className="btn1">
-                <Button
-                  size={buttonState.size}
-                  variant="outlined"
-                  startIcon={<UserSwitchOutlined />}
-                  as={NavLink}
-                  to="personelguncelle"
-                >
-                  Personel Güncelle
-                </Button>
-              </div> */}
+              
               <div className="btn1">
                 <Button
                   size={buttonState.size}

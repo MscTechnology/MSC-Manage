@@ -16,7 +16,8 @@ import NoMatch from "pages/404/NoMatch";
 import {useSelector} from "react-redux"
 const Dashboard = () => {
   const isAdmin = useSelector(state => state.users.isAdmin)
-  console.log(isAdmin);
+  const isPersonel = useSelector(state => state.users.isPersonel)
+  console.log(isPersonel);
   return (
     <div>
       <Routes>
@@ -24,21 +25,38 @@ const Dashboard = () => {
         <Route path="personelLogin" element={<PersonelLogin />} />
         <Route path="adminLogin" element={<AdminLogin />} />
         
-        <Route path="personel" element={<Personel />} />
-        <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />
-        <Route path="personel/dosyaekle" element={<DosyaEkle />} />
+        {
+          isPersonel ? <Route path="personel" element={<Personel />} /> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isPersonel ? <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isPersonel ?  <Route path="personel/dosyaekle" element={<DosyaEkle />} /> : <Route path="*" element={<NoMatch />} />
+        }
+    
+       
 
         
         {
-          isAdmin ? <Route index path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
+          isAdmin ? <Route  path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
         }
-        <Route path="/admin/personelekle" element={<PersonelEkle />} />
-        <Route path="/admin/personelsil" element={<PersonelSil />} />
-        <Route path="/admin/personelguncelle" element={<PersonelGuncelle />} />
-        <Route path="/admin/tumpersonel" element={<TumPersonel />} />
-        <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} />
-
-        
+        {
+          isAdmin ?  <Route path="/admin/personelekle" element={<PersonelEkle />} /> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ? <Route path="/admin/personelsil" element={<PersonelSil />} />
+          : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ? <Route path="/admin/personelguncelle" element={<PersonelGuncelle />} />: <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ?   <Route path="/admin/tumpersonel" element={<TumPersonel />} /> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
+        }
         <Route path="*"element={<NoMatch />} />
     
       </Routes>

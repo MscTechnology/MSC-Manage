@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  padding: 0;
+
   font-family: "Roboto", sans-serif;
 }
 
@@ -34,7 +34,13 @@ margin-top:3%;
   color: white;
   font-size: 4em;
   margin-top: 2em;
-  margin-bottom:1em
+  
+}
+
+.admin-subtitle {
+  color: white;
+  font-size: 1.5em;
+  
 }
 
 
