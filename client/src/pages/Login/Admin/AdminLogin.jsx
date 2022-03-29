@@ -12,6 +12,8 @@ import { useGetUserQuery } from "generated/graphql";
 import { useSelector, useDispatch } from "react-redux";
 import { setAdmin } from "store/User/UserSlice";
 import { Alert } from "antd";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 import { ToastContainer, toast } from "react-toastify";
 
@@ -31,14 +33,14 @@ const AdminLogin = () => {
       user.usertypesid === 1
   );
 
-  console.log(isAdmin);
+  console.log(users);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   if (error) {
-    return <div>Error!</div>;
+    return <Error/>
   }
 
   const handleLogin = (model) => {

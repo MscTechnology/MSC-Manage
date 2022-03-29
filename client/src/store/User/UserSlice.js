@@ -8,7 +8,7 @@ export const UserSlice = createSlice({
         user: [],
         isLogin: false,
         isPersonel: false,
-        isAdmin: false,
+        isAdmin: false
     },  
     reducers: {
         setUser: (state, action) => {

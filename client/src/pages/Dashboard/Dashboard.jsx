@@ -30,7 +30,7 @@ const Dashboard = () => {
 
         
         {
-          isAdmin ? <Route index path="/admin" element={<Admin />} /> : <Route path="*" element={<NoMatch />} />
+          isAdmin ? <Route index path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
         }
         <Route path="/admin/personelekle" element={<PersonelEkle />} />
         <Route path="/admin/personelsil" element={<PersonelSil />} />

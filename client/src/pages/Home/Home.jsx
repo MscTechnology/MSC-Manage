@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton.jsx";
 import "./Home.css";
 import { gql, useQuery } from "@apollo/client";
+import Loading from "components/Loading/Loading.js";
+import Error from "components/Error/Error.js";
 
 const GET_USER = gql`
   query GetUser {
@@ -16,11 +18,11 @@ const Home = () => {
   const { loading, error, data } = useQuery(GET_USER);
 
   if (loading) {
-    <div>loading..</div>;
+    <Loading/>
   }
 
   if (error) {
-    <div>error</div>;
+    <Error/>
   }
 
   return (

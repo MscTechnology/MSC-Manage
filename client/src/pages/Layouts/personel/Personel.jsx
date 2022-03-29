@@ -3,6 +3,8 @@ import "./personel.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
 import { gql, useQuery } from "@apollo/client";
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const GET_USER = gql`
   query GetUser {
@@ -17,14 +19,19 @@ const GET_USER = gql`
 function Personel() {
   const { loading, error, data } = useQuery(GET_USER);
   console.log(data);
+
+  if(loading){  
+    return <Loading/>
+  }
+
+  if(error){
+    return <Error/>
+  }
+
   return (
     <div className="container1">
-      <div className="title1">Welcome Personel1</div>
-      {data?.users?.map((p) => (
-        <div className="users" key={p?.id}>
-          {p?.id}-{p?.name} {p?.surname}
-        </div>
-      ))}
+      <div className="title1">Welcome</div>
+      
       <div className="btn1">
         <div className="btn2">
           <Button
@@ -35,7 +42,7 @@ function Personel() {
             as={NavLink}
             to="bilgileriguncelle"
           >
-            Bilgileri Güncelle
+            Bilgilerini Güncelle
           </Button>
         </div>
         <div className="btn3">

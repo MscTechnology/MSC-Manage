@@ -39,7 +39,7 @@ const Admin = () => {
                   Personel EKLE
                 </Button>
               </div>
-              <div className="btn1">
+              {/* <div className="btn1">
                 <Button
                   className="btn1"
                   size={buttonState.size}
@@ -50,8 +50,8 @@ const Admin = () => {
                 >
                   Personel SİL
                 </Button>
-              </div>
-              <div className="btn1">
+              </div> */}
+              {/* <div className="btn1">
                 <Button
                   size={buttonState.size}
                   variant="outlined"
@@ -61,7 +61,7 @@ const Admin = () => {
                 >
                   Personel Güncelle
                 </Button>
-              </div>
+              </div> */}
               <div className="btn1">
                 <Button
                   size={buttonState.size}

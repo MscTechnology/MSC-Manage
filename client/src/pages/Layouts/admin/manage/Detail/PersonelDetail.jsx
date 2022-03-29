@@ -4,17 +4,20 @@ import { Button, Typography, CardMedia, CardContent, CardActions, Card } from "@
 import { NavLink, useParams } from "react-router-dom";
 import { useGetUserDetailQuery } from "generated/graphql";
 import { useEffect, useState } from "react";
+import Loading from "../../../../../components/Loading/Loading";
+import Error from "../../../../../components/Error/Error";
 
 function PersonelDetail() {
   const [rowData, setRowData] = useState({});
   const { id } = useParams()
 
-    console.log(id)
+  console.log(id)
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id)
     },
   });
+
 
   useEffect(() => {
     if (data) {
@@ -25,7 +28,17 @@ function PersonelDetail() {
     }
 
   }, [data])
+
   console.log(data)
+  
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
 
   return (
     <div className="detailPage">
@@ -53,11 +66,11 @@ function PersonelDetail() {
           </CardContent>
           <CardActions className="buttons1">
             <div>
-            <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
+              <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
             </div>
             <div>
-            <Button size="small">Active</Button>
-            <Button size="small">Deactive</Button>
+              <Button size="small">Active</Button>
+              <Button size="small">Deactive</Button>
             </div>
           </CardActions>
         </Card>

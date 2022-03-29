@@ -9,6 +9,8 @@ import { bridge as schema } from "./PersonelSchema";
 import { useGetUserQuery } from "generated/graphql";
 import {useDispatch, useSelector} from 'react-redux'
 import {setUser} from 'store/User/UserSlice'
+import Loading from "../../../components/Loading/Loading";
+import Error from "../../../components/Error/Error";
 
 const PersonelLogin = () => {
   const [rowData, setRowData] = useState({});
@@ -23,6 +25,14 @@ const PersonelLogin = () => {
       user.password === rowData.password &&
       user.usertypesid === 2
   );
+
+  if(loading){
+    return <Loading/>
+  }
+
+  if(error){
+    return <Error/>
+  }
 
   console.log(users);
   const handleLogin = (model) => {
