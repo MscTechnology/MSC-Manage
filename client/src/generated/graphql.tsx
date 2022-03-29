@@ -159,7 +159,7 @@ export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __t
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null } | null> | null };
 
 
 export const GetUserDetailDocument = gql`
@@ -205,6 +205,7 @@ export const GetUserDocument = gql`
     username
     password
     usertypesid
+    name
   }
 }
     `;
