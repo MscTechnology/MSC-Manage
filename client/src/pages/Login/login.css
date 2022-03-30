@@ -43,22 +43,11 @@ body {
   }
 }
 
-.btns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.personel-login-btn{
+  margin-top: 15px;
 }
 
-.btn {
-  margin: 10px;
-}
-
-.btn-1 {
-  margin-right: 30px;
-  margin-top: 20px;
-}
-.btn-2 {
-  
-  margin-top: 20px;
+.admin-login-submit{
+  margin-top: 15px;
 }
 

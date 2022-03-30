@@ -4,8 +4,10 @@ import React from "react";
 import "../personel.css"
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { AutoForm, HiddenField, AutoField } from "uniforms-material";
+import { AutoForm, HiddenField, AutoField,SubmitField } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 function BilgileriGuncelle() {
 
@@ -15,7 +17,10 @@ function BilgileriGuncelle() {
     display: 'none',
   });
   return <div className="bilgileriguncelle">
-    <div className="title">Update Your Informations</div>
+    <div className="title"><IconButton size="large" color="primary" component="span" as={NavLink}
+        to="/personel">
+        <ArrowBackIcon />
+      </IconButton>Update Your Informations</div>
     <AutoForm schema={schema} onSubmit={() => alert('informations updated')}>
       <div className="info">
         <span className="info">{user.name}</span>
@@ -61,18 +66,11 @@ function BilgileriGuncelle() {
         </div>
       </div>
 
-      <div className="btns">
-        <div className="btn-1">
-          <Button color={"primary"} variant="outlined" as={NavLink} to="/personel">
-            Go Back
-          </Button>
-        </div>
+      
         <div className="btn-2">
-          <button color={"primary"} variant="outlined">
-            Update Informations
-          </button>
+          <SubmitField  value="Update Informations" />
         </div>
-      </div>
+    
     </AutoForm>
   </div>;
 }

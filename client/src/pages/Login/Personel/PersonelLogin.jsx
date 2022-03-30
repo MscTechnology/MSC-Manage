@@ -1,64 +1,66 @@
 import React, { useState } from "react";
 import "../login.css";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import CustomButton from "../../../components/Button/CustomButton";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import { AutoForm, HiddenField, AutoField, SubmitField ,ErrorsField} from "uniforms-material";
+import { AutoForm, HiddenField, AutoField, SubmitField, ErrorsField } from "uniforms-material";
 import { bridge as schema } from "./PersonelSchema";
 import { useAddMovementMutation, useGetPersonelsQuery, useGetUserQuery } from "generated/graphql";
-import {useDispatch, useSelector} from 'react-redux'
-import {setUser, setLoginDate,setOutDate} from 'store/User/UserSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser, setLoginDate, setOutDate } from 'store/User/UserSlice'
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
-  const [addMovementMutation, { data:dataMovement, loading:loadingMovement, error:errorMovement }] = useAddMovementMutation();
+  const [addMovementMutation, { data: dataMovement, loading: loadingMovement, error: errorMovement }] = useAddMovementMutation();
   useGetPersonelsQuery();
 
   const { data, loading, error } = useGetUserQuery();
-  const { data:personelData, loading:personelLoading, error:personelError } = useGetPersonelsQuery();
+  const { data: personelData, loading: personelLoading, error: personelError } = useGetPersonelsQuery();
   const userLoginDate = useSelector((state) => state.users.userLoginDate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
   console.log(data);
-  
+
   let login_out_date = new Date();
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />
   }
 
-  if(error){
-    return <Error/>
+  if (error) {
+    return <Error />
   }
 
   if (errorMovement) {
-    console.log("error"+errorMovement);
+    console.log("error" + errorMovement);
   }
 
   const loginedPersonel = (users) => {
     setTitle("Giriş Yapıldı");
-      dispatch(setUser(users[0]));
-      dispatch(setLoginDate(login_out_date));
-      addMovementMutation({
-        variables: {
-          prmPersonelMovement: {
-            id: 0,
-            personelid: users[0].id,
-            entrytime: new Date(),
-            exittime: null,
-            transactiondate: new Date(),
-            createuserid: users[0].createuser,
-          }
+    dispatch(setUser(users[0]));
+    dispatch(setLoginDate(login_out_date));
+    addMovementMutation({
+      variables: {
+        prmPersonelMovement: {
+          id: 0,
+          personelid: users[0].id,
+          entrytime: new Date(),
+          exittime: null,
+          transactiondate: new Date(),
+          createuserid: users[0].createuser,
         }
-      })
-      setTimeout(() => {
-        navigate("/personel/");
-      } , 1000);
+      }
+    })
+    setTimeout(() => {
+      navigate("/personel/");
+    }, 1000);
   }
 
   const unloginedPersonel = () => {
@@ -81,32 +83,30 @@ const PersonelLogin = () => {
       loginedPersonel(users)
 
 
-     
-    }else if (users?.length === 0) {
+
+    } else if (users?.length === 0) {
       unloginedPersonel()
     }
   };
 
   return (
     <div className="container">
-      <div className="title">{title}</div>
+      <div className="title"><IconButton size="large" color="primary" component="span" as={NavLink}
+        to="/">
+        <ArrowBackIcon />
+      </IconButton>{title}</div>
       <AutoForm
         schema={schema}
         onSubmit={handleLogin}
       >
-        <ErrorsField/>
+        <ErrorsField />
         <AutoField name={"username"} />
         <AutoField name={"password"} />
-        <div className="btns">
-          <div className="btn-1">
-            <Button color={"primary"} variant="outlined" as={NavLink} to="/">
-              Go Back
-            </Button>
-          </div>
-          <div className="btn-2">
-            <SubmitField className="hidden" value="Log In" />
-          </div>
+
+        <div className="btn-2">
+          <SubmitField className="hidden" value="Log In" />
         </div>
+
       </AutoForm>
     </div>
   );

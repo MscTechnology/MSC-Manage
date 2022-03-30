@@ -12,6 +12,10 @@ import {
 import { bridge as schema } from "./Schema";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import "../../../../../styles.css"
+import { NavLink } from "react-router-dom";
+import { Button, IconButton } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
@@ -45,7 +49,10 @@ const PersonelEkle = () => {
 
   return (
     <div className="container">
-      <h1 className="admin-title">Personel Ekleme Sayfası </h1>
+      <h1 className="personel-ekle-title"><IconButton size="large" color="primary" component="span" as={NavLink}
+        to="/admin">
+        <ArrowBackIcon />
+      </IconButton>Personel Ekle </h1>
       <div>
         <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
           <ErrorsField />
@@ -64,7 +71,11 @@ const PersonelEkle = () => {
           <HiddenField name="changeuser" />
           <HiddenField name="changetime" value={changeDate} />
 
-          <SubmitField value="Submit" />
+          <div className="personel-ekle-buttons">
+           
+              <SubmitField value="Submit" />
+           
+          </div>
         </AutoForm>
 
         <ToastContainer />

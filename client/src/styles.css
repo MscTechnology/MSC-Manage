@@ -27,68 +27,68 @@
 
 .btn1 {
   cursor: pointer;
-margin-top:3%;
+  margin-top: 3%;
 }
 
 .admin-title {
   color: white;
   font-size: 4em;
   margin-top: 2em;
-  
+
 }
 
 .admin-subtitle {
   color: white;
   font-size: 1.5em;
-  
+
 }
 
 
-.splash{
-    background-color: #142d4c;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.splash {
+  background-color: #142d4c;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 
-.splash-title{
-    color: white;
-    font-size: 4em;
+.splash-title {
+  color: white;
+  font-size: 4em;
 }
 
-.form-label{
+.form-label {
   font-size: 1.5em;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
-.form{
+.form {
   justify-content: center;
   align-items: left;
   flex-direction: row;
   background: #F2C6A2;
-  padding:15px
+  padding: 15px
 }
 
-.formArea{
+.formArea {
   align-items: center;
-  padding:10px 50px;
+  padding: 10px 50px;
   justify-content: center;
   display: grid;
 
 }
 
-.formik{
+.formik {
   display: flex;
   justify-content: center;
-  align-items:center;
-  margin-bottom:20px
+  align-items: center;
+  margin-bottom: 20px
 }
 
-.allpersonel{
-  margin-top:2em;
+.allpersonel {
+  margin-top: 2em;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -96,7 +96,7 @@ margin-top:3%;
 
 
 
-.NoMatch{
+.NoMatch {
   background-color: #142d4c;
   height: 100vh;
   display: flex;
@@ -105,51 +105,72 @@ margin-top:3%;
   flex-direction: column;
 }
 
-.title-404{
+.title-404 {
   color: white;
 }
 
-.detailPage{
+.detailPage {
   display: flex;
   flex-direction: column;
   background-color: #142d4c;
   height: 100vh;
   align-items: center;
 }
-.detail-title{
+
+.detail-title {
   color: white;
   font-size: 4em;
   margin-top: 0.75em;
-  margin-bottom:0.5em
+  margin-bottom: 0.5em
 }
 
-.iconbutton{
+.iconbutton {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
 }
+
 @media (max-width: 768px) {
-  .detail-title{
+  .detail-title {
     font-size: 4em;
   }
 
-  
+
 }
 
 @media screen and (max-width: 600px) {
-  .detail-title{
+  .detail-title {
     font-size: 2em;
     margin: 10px;
   }
 
-  
+
 }
-.buttons1{
+
+.buttons1 {
   justify-content: space-between;
 }
 
-.back-btn{
+.back-btn {
   margin-left: -50em;
+}
+
+.personel-ekle-buttons{
+  align-items: center;
+  margin-top: 15px;
+}
+
+.personel-ekle-title{
+  color: white;
+  font-size: 2.5em;
+}
+
+.personel-ekle-submit{
+  margin-top: 15px;
+}
+
+.personel-ekle-bck-btn{
+  margin-left: -12px;
 }
