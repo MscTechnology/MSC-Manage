@@ -21,6 +21,8 @@ export type Scalars = {
   Decimal: any;
   /** The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
   Long: any;
+  /** The `TimeSpan` scalar represents an ISO-8601 compliant duration type. */
+  TimeSpan: any;
 };
 
 export type City = {
@@ -95,7 +97,13 @@ export type Filetype = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addMovement?: Maybe<Personelmovement>;
   addUser?: Maybe<User>;
+};
+
+
+export type MutationAddMovementArgs = {
+  personelmovement?: InputMaybe<PersonelmovementInput>;
 };
 
 
@@ -139,8 +147,30 @@ export type Personelfile = {
   personelid: Scalars['Long'];
 };
 
+export type Personelmovement = {
+  __typename?: 'Personelmovement';
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  entrytime?: Maybe<Scalars['TimeSpan']>;
+  exittime?: Maybe<Scalars['TimeSpan']>;
+  id: Scalars['Long'];
+  personelid: Scalars['Long'];
+  transactiondate?: Maybe<Scalars['DateTime']>;
+};
+
+export type PersonelmovementInput = {
+  createtime?: InputMaybe<Scalars['DateTime']>;
+  createuser?: InputMaybe<Scalars['Long']>;
+  entrytime?: InputMaybe<Scalars['TimeSpan']>;
+  exittime?: InputMaybe<Scalars['TimeSpan']>;
+  id: Scalars['Long'];
+  personelid: Scalars['Long'];
+  transactiondate?: InputMaybe<Scalars['DateTime']>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  cities?: Maybe<Array<Maybe<City>>>;
   personels?: Maybe<Array<Maybe<Personel>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
@@ -215,6 +245,25 @@ export type Usertype = {
   typename?: Maybe<Scalars['String']>;
 };
 
+export type AddMovementMutationVariables = Exact<{
+  prmPersonelMovement?: InputMaybe<PersonelmovementInput>;
+}>;
+
+
+export type AddMovementMutation = { __typename?: 'Mutation', addMovement?: { __typename?: 'Personelmovement', id: any, personelid: any } | null };
+
+export type AddUserMutationVariables = Exact<{
+  prmUser?: InputMaybe<UserInput>;
+}>;
+
+
+export type AddUserMutation = { __typename?: 'Mutation', addUser?: { __typename?: 'User', id: any } | null };
+
+export type GetPersonelsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPersonelsQuery = { __typename?: 'Query', personels?: Array<{ __typename?: 'Personel', usersid: any, createuser?: any | null } | null> | null };
+
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
 }>;
@@ -230,9 +279,111 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null, surname?: string | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null, surname?: string | null, createuser?: any | null } | null> | null };
 
 
+export const AddMovementDocument = gql`
+    mutation AddMovement($prmPersonelMovement: PersonelmovementInput) {
+  addMovement(personelmovement: $prmPersonelMovement) {
+    id
+    personelid
+  }
+}
+    `;
+export type AddMovementMutationFn = Apollo.MutationFunction<AddMovementMutation, AddMovementMutationVariables>;
+
+/**
+ * __useAddMovementMutation__
+ *
+ * To run a mutation, you first call `useAddMovementMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddMovementMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addMovementMutation, { data, loading, error }] = useAddMovementMutation({
+ *   variables: {
+ *      prmPersonelMovement: // value for 'prmPersonelMovement'
+ *   },
+ * });
+ */
+export function useAddMovementMutation(baseOptions?: Apollo.MutationHookOptions<AddMovementMutation, AddMovementMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddMovementMutation, AddMovementMutationVariables>(AddMovementDocument, options);
+      }
+export type AddMovementMutationHookResult = ReturnType<typeof useAddMovementMutation>;
+export type AddMovementMutationResult = Apollo.MutationResult<AddMovementMutation>;
+export type AddMovementMutationOptions = Apollo.BaseMutationOptions<AddMovementMutation, AddMovementMutationVariables>;
+export const AddUserDocument = gql`
+    mutation AddUser($prmUser: UserInput) {
+  addUser(prmUser: $prmUser) {
+    id
+  }
+}
+    `;
+export type AddUserMutationFn = Apollo.MutationFunction<AddUserMutation, AddUserMutationVariables>;
+
+/**
+ * __useAddUserMutation__
+ *
+ * To run a mutation, you first call `useAddUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addUserMutation, { data, loading, error }] = useAddUserMutation({
+ *   variables: {
+ *      prmUser: // value for 'prmUser'
+ *   },
+ * });
+ */
+export function useAddUserMutation(baseOptions?: Apollo.MutationHookOptions<AddUserMutation, AddUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddUserMutation, AddUserMutationVariables>(AddUserDocument, options);
+      }
+export type AddUserMutationHookResult = ReturnType<typeof useAddUserMutation>;
+export type AddUserMutationResult = Apollo.MutationResult<AddUserMutation>;
+export type AddUserMutationOptions = Apollo.BaseMutationOptions<AddUserMutation, AddUserMutationVariables>;
+export const GetPersonelsDocument = gql`
+    query GetPersonels {
+  personels {
+    usersid
+    createuser
+  }
+}
+    `;
+
+/**
+ * __useGetPersonelsQuery__
+ *
+ * To run a query within a React component, call `useGetPersonelsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPersonelsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPersonelsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPersonelsQuery(baseOptions?: Apollo.QueryHookOptions<GetPersonelsQuery, GetPersonelsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPersonelsQuery, GetPersonelsQueryVariables>(GetPersonelsDocument, options);
+      }
+export function useGetPersonelsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPersonelsQuery, GetPersonelsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPersonelsQuery, GetPersonelsQueryVariables>(GetPersonelsDocument, options);
+        }
+export type GetPersonelsQueryHookResult = ReturnType<typeof useGetPersonelsQuery>;
+export type GetPersonelsLazyQueryHookResult = ReturnType<typeof useGetPersonelsLazyQuery>;
+export type GetPersonelsQueryResult = Apollo.QueryResult<GetPersonelsQuery, GetPersonelsQueryVariables>;
 export const GetUserDetailDocument = gql`
     query GetUserDetail($prmId: Long!) {
   usersById(where: {id: {eq: $prmId}}) {
@@ -313,7 +464,7 @@ export const GetUserDocument = gql`
     usertypesid
     name
     surname
-    id
+    createuser
   }
 }
     `;

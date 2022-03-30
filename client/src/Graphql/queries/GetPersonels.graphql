@@ -1,0 +1,8 @@
+query GetPersonels{
+personels {
+  usersid
+  createuser
+  
+}
+
+}

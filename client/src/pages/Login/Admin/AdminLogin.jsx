@@ -6,7 +6,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { AutoForm, HiddenField, AutoField, ErrorsField , SubmitField } from "uniforms-material";
 import { bridge as schema } from "./AdminSchema";
-import { useGetUserQuery } from "generated/graphql";
+import { useGetUserQuery, useAddMovementMutation } from "generated/graphql";
 import { useSelector, useDispatch } from "react-redux";
 import { setAdmin } from "store/User/UserSlice";
 import { Alert } from "antd";
@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const AdminLogin = () => {
   const { data, loading, error } = useGetUserQuery();
+  const [addMovementMutation, { data:dataMovement, loading:loadingMovement, error:errorMovement }] = useAddMovementMutation();
   const [title, setTitle] = useState("Admin Log In");
   const user = useSelector((state) => state.users.user);
   const isAdmin = useSelector((state) => state.users.isAdmin);
@@ -48,6 +49,7 @@ const AdminLogin = () => {
       
       dispatch(setAdmin(users[0]));
       setTitle("Başarıyla Giriş Yapıldı");
+
       navigateAdmin();
     } else if (users?.length === 0) {
 
@@ -56,6 +58,7 @@ const AdminLogin = () => {
   };
 
   const handleLogin = (model) => {
+
     const users = data?.users?.filter(
       (user) =>
         user.username === model.username &&
@@ -69,7 +72,7 @@ const AdminLogin = () => {
   return (
     <div className="container">
       <div className="title">{title}</div>
-      <AutoForm schema={schema} onSubmit={handleLogin}>
+      <AutoForm schema={schema} onSubmit={handleLogin} onChangeModel={(model)=> console.log(model)}>
         <ErrorsField />
         <AutoField name={"username"} />
         

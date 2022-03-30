@@ -1,4 +1,4 @@
-import { useGetUserTypesQuery } from "generated/graphql";
+import { useGetUserTypesQuery , useAddUserMutation, } from "generated/graphql";
 import React from "react";
 import {
   AutoForm,
@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
+  const [addUserMutation, {data:dataMutation,loading:loadingMutation}] = useAddUserMutation();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,20 +31,25 @@ const PersonelEkle = () => {
     };
   });
   const handleSubmit = (model) => {
+    addUserMutation({
+      variables: {
+        prmUser: model
+      }
+    });
     toast.success("Personel Eklendi");
     console.log(model);
   };
 
-  let createDate = new Date().toUTCString();
-  let changeDate = new Date().toUTCString();
+  const createDate = new Date().toUTCString();
+  const changeDate = new Date().toUTCString();
 
   return (
     <div className="container">
       <h1 className="admin-title">Personel Ekleme Sayfası </h1>
       <div>
-        <AutoForm schema={schema} onSubmit={handleSubmit}>
+        <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
           <ErrorsField />
-          <HiddenField name="id" />
+          <HiddenField name="id" value={0} />
           <AutoField name="name" label="* Name" />
           <AutoField name={"surname"} />
           <AutoField name={"username"} />

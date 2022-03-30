@@ -6,7 +6,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { AutoForm, HiddenField, AutoField, SubmitField ,ErrorsField} from "uniforms-material";
 import { bridge as schema } from "./PersonelSchema";
-import { useGetUserQuery } from "generated/graphql";
+import { useAddMovementMutation, useGetPersonelsQuery, useGetUserQuery } from "generated/graphql";
 import {useDispatch, useSelector} from 'react-redux'
 import {setUser, setLoginDate,setOutDate} from 'store/User/UserSlice'
 import Loading from "../../../components/Loading/Loading";
@@ -14,10 +14,15 @@ import Error from "../../../components/Error/Error";
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
+  const [addMovementMutation, { data:dataMovement, loading:loadingMovement, error:errorMovement }] = useAddMovementMutation();
+  useGetPersonelsQuery();
+
   const { data, loading, error } = useGetUserQuery();
+  const { data:personelData, loading:personelLoading, error:personelError } = useGetPersonelsQuery();
   const userLoginDate = useSelector((state) => state.users.userLoginDate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   console.log(data);
   
@@ -31,10 +36,26 @@ const PersonelLogin = () => {
     return <Error/>
   }
 
+  if (errorMovement) {
+    console.log("error"+errorMovement);
+  }
+
   const loginedPersonel = (users) => {
     setTitle("Giriş Yapıldı");
       dispatch(setUser(users[0]));
       dispatch(setLoginDate(login_out_date));
+      addMovementMutation({
+        variables: {
+          prmPersonelMovement: {
+            id: 0,
+            personelid: users[0].id,
+            entrytime: new Date(),
+            exittime: null,
+            transactiondate: new Date(),
+            createuserid: users[0].createuser,
+          }
+        }
+      })
       setTimeout(() => {
         navigate("/personel/");
       } , 1000);
@@ -58,6 +79,7 @@ const PersonelLogin = () => {
     );
     if (users?.length > 0) {
       loginedPersonel(users)
+
 
      
     }else if (users?.length === 0) {

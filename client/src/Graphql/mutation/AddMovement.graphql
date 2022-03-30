@@ -1,0 +1,7 @@
+mutation AddMovement($prmPersonelMovement: PersonelmovementInput){
+  addMovement (personelmovement: $prmPersonelMovement){
+    id
+    personelid
+
+  }
+}

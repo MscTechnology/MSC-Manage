@@ -1,0 +1,5 @@
+mutation AddUser($prmUser:UserInput){
+  addUser (prmUser: $prmUser) {
+          id
+  }
+}
