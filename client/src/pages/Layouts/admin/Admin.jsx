@@ -1,5 +1,5 @@
 import "../../../styles.css";
-import { Button,IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import {
   UserDeleteOutlined,
   UserAddOutlined,
@@ -11,6 +11,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
+
 const buttonState = {
   size: "large",
   variant: {
@@ -22,22 +23,22 @@ const buttonState = {
 const Admin = () => {
   const user = useSelector((state) => state.users.user);
   console.log(user)
-  
+
   return (
     <div className="adminPage">
       <div>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid  item xs={8}>
+          <Grid item xs={8}>
             <h1 className="admin-title">
-<IconButton size="large" color="primary"  component="span" as={NavLink}
-        to="/adminLogin">
-        <ArrowBackIcon />
-      </IconButton>Yönetim Paneli</h1>
+              <IconButton size="large" color="primary" component="span" as={NavLink}
+                to="/adminLogin">
+                <ArrowBackIcon />
+              </IconButton>Management Panel</h1>
             <h2 className="admin-subtitle">{user.name}</h2>
             <div className="admin-button-group">
               <div className="btn1">
                 <Button
-                  onClick={() => {}}
+                  onClick={() => { }}
                   startIcon={<UserAddOutlined />}
                   size={buttonState.size}
                   icon={<UserAddOutlined />}
@@ -45,10 +46,10 @@ const Admin = () => {
                   as={NavLink}
                   to="personelekle"
                 >
-                  Personel EKLE
+                  Add personel
                 </Button>
               </div>
-              
+
               <div className="btn1">
                 <Button
                   size={buttonState.size}
@@ -57,7 +58,7 @@ const Admin = () => {
                   as={NavLink}
                   to="tumpersonel"
                 >
-                  Tüm Personelleri Listele
+                  LIst All personels
                 </Button>
               </div>
             </div>

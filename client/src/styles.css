@@ -9,6 +9,7 @@
   justify-content: center;
 }
 
+
 .drawer {
   display: flex;
   position: fixed;
@@ -32,7 +33,7 @@
 
 .admin-title {
   color: white;
-  font-size: 4em;
+  font-size: 3.5em;
   margin-top: 2em;
 
 }

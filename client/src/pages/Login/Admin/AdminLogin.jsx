@@ -38,7 +38,7 @@ const AdminLogin = () => {
   };
 
   const changeTitle = () => {
-    setTitle("Hatalı Kullanıcı Adı veya Şifre");
+    setTitle("wrong username or password");
     setTimeout(() => {
       setTitle("Admin Log In");
     }, 1000);
@@ -48,7 +48,7 @@ const AdminLogin = () => {
     if (users?.length > 0) {
 
       dispatch(setAdmin(users[0]));
-      setTitle("Başarıyla Giriş Yapıldı");
+      setTitle("Signed In");
 
       navigateAdmin();
     } else if (users?.length === 0) {

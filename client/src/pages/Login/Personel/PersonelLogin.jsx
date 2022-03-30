@@ -37,7 +37,7 @@ const PersonelLogin = () => {
 
 
   const loginedPersonel = (users) => {
-    setTitle("Giriş Yapıldı");
+    setTitle("Signed In");
     dispatch(setUser(users[0]));
     dispatch(setLoginDate(login_out_date));
    
@@ -47,7 +47,7 @@ const PersonelLogin = () => {
   }
 
   const unloginedPersonel = () => {
-    setTitle("Giriş Yapılamadı");
+    setTitle("Wrong username or password");
     setTimeout(() => {
       setTitle("Personel Log In");
     }, 1000);

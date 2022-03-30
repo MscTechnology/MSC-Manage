@@ -1,7 +1,7 @@
 import "../../../../../styles.css";
 import { Button, Typography, CardMedia, CardContent, CardActions, Card } from "@mui/material";
 import { NavLink, useParams } from "react-router-dom";
-import { useGetUserDetailQuery, useGetUserQuery } from "generated/graphql";
+import { useDeleteUserMutation, useGetUserDetailQuery, useGetUserQuery } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import Error from "../../../../../components/Error/Error";
@@ -10,7 +10,12 @@ function PersonelDetail() {
   const [rowData, setRowData] = useState({});
   const { id } = useParams()
 
-  console.log(id)
+  const { data:allData } = useGetUserQuery({});
+
+  const [deleteUserMutation, { data:delData }] = useDeleteUserMutation();
+
+  const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
+  console.log(userFilter)
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
@@ -34,7 +39,7 @@ function PersonelDetail() {
   console.log(data)
   console.log(rowData)
   console.log(data?.usersById)
-  
+
   if (loading) {
     return <Loading />
   }
@@ -43,15 +48,21 @@ function PersonelDetail() {
     return <Error />
   }
 
-  const handleClick = () => {
-    
+  const handleClick = (e) => {
+    deleteUserMutation({
+      variables: {
+        prmUser: e.target.value
+     },
+    })
+      console.log(e.target.value)
+      alert("Personel Silindi");
   }
 
 
   return (
     <div className="detailPage">
       <div className="detail-title">
-        {`${id} id' li kullanıcının bilgileri`}
+        Informations
 
       </div>
       <div className="name">
@@ -62,11 +73,17 @@ function PersonelDetail() {
             image="https://semantic-ui.com/images/avatar2/large/kristy.png"
             alt="green iguana"
           />
-          <CardContent>
+          <CardContent >
             <Typography gutterBottom variant="h5" component="div">
-              {`${rowData.name} ${rowData.surname}`}
+              {`ID : ${id}`}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography gutterBottom variant="h5" component="div">
+              {`Name : ${rowData.name}`}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+              {`Surname : ${rowData.surname}`}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
               {
                 `Username : ${rowData.username}`
               }
@@ -77,7 +94,7 @@ function PersonelDetail() {
               <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
             </div>
             <div>
-              <Button size="small" onClick={handleClick}>Delete</Button>
+              <Button size="small" value={id} onClick={handleClick}>Delete</Button>
             </div>
           </CardActions>
         </Card>

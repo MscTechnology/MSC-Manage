@@ -4,18 +4,11 @@ import "./Home.css";
 import { gql, useQuery } from "@apollo/client";
 import Loading from "components/Loading/Loading.js";
 import Error from "components/Error/Error.js";
-
-const GET_USER = gql`
-  query GetUser {
-    usertypes {
-      id
-      typename
-    }
-  }
-`;
+import { useGetUserQuery } from "generated/graphql.tsx";
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_USER);
+
+  const { data, loading, error } = useGetUserQuery({}); 
 
   if (loading) {
     <Loading/>
@@ -35,12 +28,11 @@ const Home = () => {
             <div className="personal-button">
               <CustomButton
                 mt={1}
-                className="btn-btn"
                 color={"primary"}
                 components={Link}
                 to="personelLogin"
                 onClick={()=>{}}
-                title={"Personel Girişi"}
+                title={"Personel Log In"}
               />
             </div>
             <div className="admin-button">
@@ -49,7 +41,7 @@ const Home = () => {
                 components={Link}
                 to="adminLogin"
                 onClick={()=>{}}
-                title={"Yönetici Girişi"}
+                title={"Admin Log In"}
               />
             </div>
           </div>

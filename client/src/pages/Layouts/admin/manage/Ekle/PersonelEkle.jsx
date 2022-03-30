@@ -53,7 +53,7 @@ const PersonelEkle = () => {
       <h1 className="personel-ekle-title"><IconButton size="large" color="primary" component="span" as={NavLink}
         to="/admin">
         <ArrowBackIcon />
-      </IconButton>Personel Ekle </h1>
+      </IconButton>Add Personel </h1>
       <div>
         <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
           <ErrorsField />

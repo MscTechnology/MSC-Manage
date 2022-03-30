@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useGetUserQuery,useAddMovementMutation } from "generated/graphql";
 import moment from "moment";
+import Admin from "../admin/Admin";
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
 
 function Personel() {
   const { loading, error } = useGetUserQuery({});
@@ -34,7 +37,7 @@ function Personel() {
         prmUserMovement: {
           id: 0,
           usersid: user.id,
-          entrytime: moment(),
+          entrytime: null,
           exittime: null,
           transactiondate: moment(),
           createuser: user.createuser,
@@ -46,7 +49,7 @@ function Personel() {
         prmUserMovement: {
           id: 0,
           usersid: user.id,
-          entrytime: null,
+          entrytime:null,
           exittime: null,
           transactiondate: moment(),
           createuser: user.createuser,
@@ -70,7 +73,7 @@ function Personel() {
         >
           <ArrowBackIcon />
         </IconButton>
-        {`Hoşgeldin ${user.name}`}
+        {`Welcome ${user.name}`}
       </div>
 
       <div className="btn1">
@@ -81,7 +84,7 @@ function Personel() {
             color={"primary"}
             variant="text"
           >
-            İşe Giriş Yaptım
+            I loged In 
           </Button>
         </div>
         <div className="btn2">
@@ -93,7 +96,7 @@ function Personel() {
             as={NavLink}
             to="bilgileriguncelle"
           >
-            Bilgilerini Güncelle
+            Update Informations
           </Button>
         </div>
         <div className="btn2">
@@ -103,7 +106,7 @@ function Personel() {
             color={"primary"}
             variant="text"
           >
-            İŞTEN ÇIKIŞ YAPTIM
+            I signed out
           </Button>
         </div>
       </div>

@@ -44,7 +44,7 @@ const TumPersonel = () => {
       <IconButton  size="large" color="primary" component="span" as={NavLink}
         to="/admin">
         <ArrowBackIcon />
-      </IconButton> Tüm Personel
+      </IconButton> All Personels
     </div>
 
     {userFilter?.map((p) => (

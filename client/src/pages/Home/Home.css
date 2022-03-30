@@ -45,24 +45,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-
-
-
   }
-
-  @media screen and (max-width: 1024px) {
-    .msc-title {
-      font-size: 3em;
-
-    }
-
-    .home {
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
   .personal-button {
     margin-bottom: pm;
     font-size: 1.5em;
@@ -70,6 +53,15 @@
   }
 }
 
-.login-button {
-  margin-top: 20pm;
+@media screen and (max-width: 1024px) {
+  .msc-title {
+    font-size: 3em;
+
+  }
+
+  .home {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 }
