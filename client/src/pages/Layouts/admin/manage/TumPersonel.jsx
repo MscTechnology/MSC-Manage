@@ -8,11 +8,14 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Loading from "../../../../components/Loading/Loading";
 import Error from "../../../../components/Error/Error";
 import { styled } from '@mui/material/styles';
-import { useGetUserQuery } from "generated/graphql";
+import { useDeleteUserMutation, useGetUserQuery } from "generated/graphql";
 
 const TumPersonel = () => {
 
+
   const { data, loading, error } = useGetUserQuery({});
+  const [deleteUserMutation, { data: deleteData, loading: deleteLoading, error: deleteError }] = useDeleteUserMutation();
+  console.log(deleteData)
 
   if (loading) {
     return <div>Loading...</div>
@@ -22,17 +25,23 @@ const TumPersonel = () => {
     return <Error />
   }
 
-  const handleDelete =()=>{
-    alert("personel deleted")
+  const handleDelete = (e) => {
+    console.log(e.target.value)
+
+    deleteUserMutation({
+      variables: {
+        prmUser: data?.users?.id
+      },
+    })
   }
-  
+
 
   const userFilter = data?.users.filter((user) => user.usertypesid !== 1);
-
+  console.log(userFilter)
   return <div className="adminPage">
 
     <div className="admin-title">
-      <IconButton size="large" color="primary" component="span" as={NavLink}
+      <IconButton  size="large" color="primary" component="span" as={NavLink}
         to="/admin">
         <ArrowBackIcon />
       </IconButton> Tüm Personel
