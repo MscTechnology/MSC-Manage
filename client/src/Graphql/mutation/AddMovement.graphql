@@ -1,7 +1,7 @@
-mutation AddMovement($prmPersonelMovement: PersonelmovementInput){
-  addMovement (personelmovement: $prmPersonelMovement){
+mutation AddMovement($prmUserMovement: UsersmovementInput){
+  addMovement (usersmovement: $prmUserMovement){
     id
-    personelid
+    usersid
 
   }
 }

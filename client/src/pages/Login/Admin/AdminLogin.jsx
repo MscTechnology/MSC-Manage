@@ -12,13 +12,11 @@ import { setAdmin } from "store/User/UserSlice";
 import { Alert } from "antd";
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
-import { ToastContainer, toast } from 'react-toastify';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const AdminLogin = () => {
   const { data, loading, error } = useGetUserQuery();
-  const [addMovementMutation, { data: dataMovement, loading: loadingMovement, error: errorMovement }] = useAddMovementMutation();
   const [title, setTitle] = useState("Admin Log In");
   const user = useSelector((state) => state.users.user);
   const isAdmin = useSelector((state) => state.users.isAdmin);

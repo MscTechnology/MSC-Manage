@@ -16,11 +16,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
-  const [addMovementMutation, { data: dataMovement, loading: loadingMovement, error: errorMovement }] = useAddMovementMutation();
-  useGetPersonelsQuery();
-
+ 
   const { data, loading, error } = useGetUserQuery();
-  const { data: personelData, loading: personelLoading, error: personelError } = useGetPersonelsQuery();
   const userLoginDate = useSelector((state) => state.users.userLoginDate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,26 +35,12 @@ const PersonelLogin = () => {
     return <Error />
   }
 
-  if (errorMovement) {
-    console.log("error" + errorMovement);
-  }
 
   const loginedPersonel = (users) => {
     setTitle("Giriş Yapıldı");
     dispatch(setUser(users[0]));
     dispatch(setLoginDate(login_out_date));
-    addMovementMutation({
-      variables: {
-        prmPersonelMovement: {
-          id: 0,
-          personelid: users[0].id,
-          entrytime: new Date(),
-          exittime: null,
-          transactiondate: new Date(),
-          createuserid: users[0].createuser,
-        }
-      }
-    })
+   
     setTimeout(() => {
       navigate("/personel/");
     }, 1000);

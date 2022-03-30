@@ -16,11 +16,12 @@ import "../../../../../styles.css"
 import { NavLink } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import {useSelector,useDispatch} from "react-redux";
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
   const [addUserMutation, {data:dataMutation,loading:loadingMutation}] = useAddUserMutation();
-
+  const user = useSelector((state) => state.users.user);
+  console.log(user);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -66,9 +67,9 @@ const PersonelEkle = () => {
             label="Select User Type"
             options={userTypeData}
           />
-          <HiddenField name="createuser" />
+          <HiddenField name="createuser" value={user.id} />
           <HiddenField name="createtime" value={createDate} />
-          <HiddenField name="changeuser" />
+          <HiddenField name="changeuser"  value={user.id}/>
           <HiddenField name="changetime" value={changeDate} />
 
           <div className="personel-ekle-buttons">

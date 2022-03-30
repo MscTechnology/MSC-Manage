@@ -30,8 +30,8 @@ export type City = {
   cityname?: Maybe<Scalars['String']>;
   districts?: Maybe<Array<Maybe<District>>>;
   id: Scalars['Long'];
-  personels?: Maybe<Array<Maybe<Personel>>>;
   plateno: Scalars['Int'];
+  userinfos?: Maybe<Array<Maybe<Userinfo>>>;
 };
 
 export type ComparableInt64OperationFilterInput = {
@@ -85,25 +85,26 @@ export type District = {
   citysid: Scalars['Long'];
   districtname?: Maybe<Scalars['String']>;
   id: Scalars['Long'];
-  personels?: Maybe<Array<Maybe<Personel>>>;
+  userinfos?: Maybe<Array<Maybe<Userinfo>>>;
 };
 
 export type Filetype = {
   __typename?: 'Filetype';
   id: Scalars['Long'];
-  personelfiles?: Maybe<Array<Maybe<Personelfile>>>;
   typename?: Maybe<Scalars['String']>;
+  userfiles?: Maybe<Array<Maybe<Userfile>>>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addMovement?: Maybe<Personelmovement>;
+  addMovement?: Maybe<Usersmovement>;
   addUser?: Maybe<User>;
+  deleteUser?: Maybe<User>;
 };
 
 
 export type MutationAddMovementArgs = {
-  personelmovement?: InputMaybe<PersonelmovementInput>;
+  usersmovement?: InputMaybe<UsersmovementInput>;
 };
 
 
@@ -111,67 +112,15 @@ export type MutationAddUserArgs = {
   prmUser?: InputMaybe<UserInput>;
 };
 
-export type Personel = {
-  __typename?: 'Personel';
-  adress?: Maybe<Scalars['String']>;
-  changetime?: Maybe<Scalars['DateTime']>;
-  changeuser?: Maybe<Scalars['Long']>;
-  city?: Maybe<City>;
-  cityid?: Maybe<Scalars['Long']>;
-  createtime?: Maybe<Scalars['DateTime']>;
-  createuser?: Maybe<Scalars['Long']>;
-  districts?: Maybe<District>;
-  districtsid?: Maybe<Scalars['Long']>;
-  email?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['String']>;
-  id: Scalars['Long'];
-  identificationnumber?: Maybe<Scalars['Decimal']>;
-  personelfiles?: Maybe<Array<Maybe<Personelfile>>>;
-  phonenumber?: Maybe<Scalars['Decimal']>;
-  schoolname?: Maybe<Scalars['String']>;
-  usersid: Scalars['Long'];
-};
 
-export type Personelfile = {
-  __typename?: 'Personelfile';
-  changetime?: Maybe<Scalars['DateTime']>;
-  changeuser?: Maybe<Scalars['Long']>;
-  createtime?: Maybe<Scalars['DateTime']>;
-  createuser?: Maybe<Scalars['Long']>;
-  data?: Maybe<Array<Scalars['Byte']>>;
-  extensitions?: Maybe<Scalars['String']>;
-  filetypes?: Maybe<Filetype>;
-  filetypesid: Scalars['Long'];
-  id: Scalars['Long'];
-  personel?: Maybe<Personel>;
-  personelid: Scalars['Long'];
-};
-
-export type Personelmovement = {
-  __typename?: 'Personelmovement';
-  createtime?: Maybe<Scalars['DateTime']>;
-  createuser?: Maybe<Scalars['Long']>;
-  entrytime?: Maybe<Scalars['TimeSpan']>;
-  exittime?: Maybe<Scalars['TimeSpan']>;
-  id: Scalars['Long'];
-  personelid: Scalars['Long'];
-  transactiondate?: Maybe<Scalars['DateTime']>;
-};
-
-export type PersonelmovementInput = {
-  createtime?: InputMaybe<Scalars['DateTime']>;
-  createuser?: InputMaybe<Scalars['Long']>;
-  entrytime?: InputMaybe<Scalars['TimeSpan']>;
-  exittime?: InputMaybe<Scalars['TimeSpan']>;
-  id: Scalars['Long'];
-  personelid: Scalars['Long'];
-  transactiondate?: InputMaybe<Scalars['DateTime']>;
+export type MutationDeleteUserArgs = {
+  prmUser?: InputMaybe<UserInput>;
 };
 
 export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
-  personels?: Maybe<Array<Maybe<Personel>>>;
+  personels?: Maybe<Array<Maybe<Userinfo>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
@@ -239,6 +188,63 @@ export type UserInput = {
   usertypesid?: InputMaybe<Scalars['Long']>;
 };
 
+export type Userfile = {
+  __typename?: 'Userfile';
+  changetime?: Maybe<Scalars['DateTime']>;
+  changeuser?: Maybe<Scalars['Long']>;
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  data?: Maybe<Array<Scalars['Byte']>>;
+  extensitions?: Maybe<Scalars['String']>;
+  filetypes?: Maybe<Filetype>;
+  filetypesid: Scalars['Long'];
+  id: Scalars['Long'];
+  users?: Maybe<Userinfo>;
+  usersid: Scalars['Long'];
+};
+
+export type Userinfo = {
+  __typename?: 'Userinfo';
+  adress?: Maybe<Scalars['String']>;
+  changetime?: Maybe<Scalars['DateTime']>;
+  changeuser?: Maybe<Scalars['Long']>;
+  city?: Maybe<City>;
+  cityid?: Maybe<Scalars['Long']>;
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  districts?: Maybe<District>;
+  districtsid?: Maybe<Scalars['Long']>;
+  email?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id: Scalars['Long'];
+  identificationnumber?: Maybe<Scalars['Decimal']>;
+  phonenumber?: Maybe<Scalars['Decimal']>;
+  schoolname?: Maybe<Scalars['String']>;
+  userfiles?: Maybe<Array<Maybe<Userfile>>>;
+  usersid: Scalars['Long'];
+};
+
+export type Usersmovement = {
+  __typename?: 'Usersmovement';
+  createtime?: Maybe<Scalars['DateTime']>;
+  createuser?: Maybe<Scalars['Long']>;
+  entrytime?: Maybe<Scalars['TimeSpan']>;
+  exittime?: Maybe<Scalars['TimeSpan']>;
+  id: Scalars['Long'];
+  transactiondate?: Maybe<Scalars['DateTime']>;
+  usersid: Scalars['Long'];
+};
+
+export type UsersmovementInput = {
+  createtime?: InputMaybe<Scalars['DateTime']>;
+  createuser?: InputMaybe<Scalars['Long']>;
+  entrytime?: InputMaybe<Scalars['TimeSpan']>;
+  exittime?: InputMaybe<Scalars['TimeSpan']>;
+  id: Scalars['Long'];
+  transactiondate?: InputMaybe<Scalars['DateTime']>;
+  usersid: Scalars['Long'];
+};
+
 export type Usertype = {
   __typename?: 'Usertype';
   id: Scalars['Long'];
@@ -246,11 +252,11 @@ export type Usertype = {
 };
 
 export type AddMovementMutationVariables = Exact<{
-  prmPersonelMovement?: InputMaybe<PersonelmovementInput>;
+  prmUserMovement?: InputMaybe<UsersmovementInput>;
 }>;
 
 
-export type AddMovementMutation = { __typename?: 'Mutation', addMovement?: { __typename?: 'Personelmovement', id: any, personelid: any } | null };
+export type AddMovementMutation = { __typename?: 'Mutation', addMovement?: { __typename?: 'Usersmovement', id: any, usersid: any } | null };
 
 export type AddUserMutationVariables = Exact<{
   prmUser?: InputMaybe<UserInput>;
@@ -262,7 +268,7 @@ export type AddUserMutation = { __typename?: 'Mutation', addUser?: { __typename?
 export type GetPersonelsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPersonelsQuery = { __typename?: 'Query', personels?: Array<{ __typename?: 'Personel', usersid: any, createuser?: any | null } | null> | null };
+export type GetPersonelsQuery = { __typename?: 'Query', personels?: Array<{ __typename?: 'Userinfo', usersid: any, createuser?: any | null } | null> | null };
 
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
@@ -279,14 +285,14 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null, surname?: string | null, createuser?: any | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, username?: string | null, password?: string | null, usertypesid?: any | null, name?: string | null, surname?: string | null, createuser?: any | null } | null> | null };
 
 
 export const AddMovementDocument = gql`
-    mutation AddMovement($prmPersonelMovement: PersonelmovementInput) {
-  addMovement(personelmovement: $prmPersonelMovement) {
+    mutation AddMovement($prmUserMovement: UsersmovementInput) {
+  addMovement(usersmovement: $prmUserMovement) {
     id
-    personelid
+    usersid
   }
 }
     `;
@@ -305,7 +311,7 @@ export type AddMovementMutationFn = Apollo.MutationFunction<AddMovementMutation,
  * @example
  * const [addMovementMutation, { data, loading, error }] = useAddMovementMutation({
  *   variables: {
- *      prmPersonelMovement: // value for 'prmPersonelMovement'
+ *      prmUserMovement: // value for 'prmUserMovement'
  *   },
  * });
  */
@@ -459,6 +465,7 @@ export type GetUserTypesQueryResult = Apollo.QueryResult<GetUserTypesQuery, GetU
 export const GetUserDocument = gql`
     query GetUser {
   users {
+    id
     username
     password
     usertypesid
