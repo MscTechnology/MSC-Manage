@@ -13,7 +13,10 @@ import BilgileriGuncelle from "../Layouts/personel/guncelle/BilgileriGuncelle"
 import DosyaEkle from "../Layouts/personel/DosyaEkle"
 import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";
 import NoMatch from "pages/404/NoMatch";
-import {useSelector} from "react-redux"
+import {useSelector} from "react-redux";
+import Documents from "pages/Layouts/personel/Documents";
+
+
 const Dashboard = () => {
   const isAdmin = useSelector(state => state.users.isAdmin)
   const isPersonel = useSelector(state => state.users.isPersonel)
@@ -36,7 +39,7 @@ const Dashboard = () => {
         }
     
        
-    <Route path="/admin/personelekle" element={<PersonelEkle />} />
+          <Route path="/admin/personelekle" element={<PersonelEkle />} />
         
         {
           isAdmin ? <Route  path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
@@ -57,7 +60,9 @@ const Dashboard = () => {
         {
           isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
         }
+        <Route path="/personel/documents" element={<Documents/>}/>
         <Route path="*"element={<NoMatch />} />
+
     
       </Routes>
     </div>

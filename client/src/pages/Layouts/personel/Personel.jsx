@@ -2,16 +2,12 @@ import React from "react";
 import "./personel.css";
 import { NavLink } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
-import { gql, useQuery } from "@apollo/client";
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useGetUserQuery,useAddMovementMutation } from "generated/graphql";
+import { useGetUserQuery, useAddMovementMutation } from "generated/graphql";
 import moment from "moment";
-import Admin from "../admin/Admin";
-import Datetime from 'react-datetime';
-import "react-datetime/css/react-datetime.css";
 
 function Personel() {
   const { loading, error } = useGetUserQuery({});
@@ -41,7 +37,7 @@ function Personel() {
           exittime: null,
           transactiondate: moment(),
           createuser: user.createuser,
-         }
+        }
       }
     })
     addMovementMutation({
@@ -49,7 +45,7 @@ function Personel() {
         prmUserMovement: {
           id: 0,
           usersid: user.id,
-          entrytime:null,
+          entrytime: null,
           exittime: null,
           transactiondate: moment(),
           createuser: user.createuser,
@@ -84,7 +80,7 @@ function Personel() {
             color={"primary"}
             variant="text"
           >
-            I loged In 
+            log In / Log Out 
           </Button>
         </div>
         <div className="btn2">
@@ -101,12 +97,14 @@ function Personel() {
         </div>
         <div className="btn2">
           <Button
-            onClick={handleOutWork}
+            disableElevation
             size="large"
             color={"primary"}
-            variant="text"
+            variant="outlined"
+            as={NavLink}
+            to="documents"
           >
-            I signed out
+            Documents
           </Button>
         </div>
       </div>
