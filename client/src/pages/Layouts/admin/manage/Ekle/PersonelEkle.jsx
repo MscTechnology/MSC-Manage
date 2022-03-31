@@ -40,8 +40,16 @@ const PersonelEkle = () => {
       variables: {
         prmUser: model
       }
+    }).then((res)=>{
+      if(res.data.addUser.resultType==="SUC"){
+        toast.success("Personel Eklendi");
+
+      }else{
+        toast.error(res.data.addUser.messageText);
+      }
+    }).catch((err)=>{
+      toast.error(err);
     });
-    toast.success("Personel Eklendi");
     console.log(model);
   };
 

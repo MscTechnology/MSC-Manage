@@ -1,78 +1,79 @@
 import { Button, IconButton, styled } from "@mui/material";
-import { PhotoCamera,DeleteForeverIcon } from "@mui/icons-material";
 import React from "react";
-import "../personel.css"
+import "../personel.css";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { AutoForm, HiddenField, AutoField,SubmitField } from "uniforms-material";
+import {
+  AutoForm,
+  HiddenField,
+  AutoField,
+  SubmitField,
+} from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useUpdateUserMutation } from "generated/graphql";
+import {toast, ToastContainer} from 'react-toastify'
 function BilgileriGuncelle() {
+  const user = useSelector((state) => state.users.user);
+  console.log(user);
+  const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({});
 
-  const user = useSelector(state => state.users.user)
-  console.log(user)
-  const Input = styled('input')({
-    display: 'none',
+  const handleSubmit = (model) => {
+    updateUserMutation({
+      variables: {
+        prmUser: model,
+      },
+    }).then((res) => {
+      console.log(res)
+      if (res.data.updateUser.resultType === "SUC") {
+        toast.success("Bilgiler Güncellendi");
+      } else {
+        toast.error(res.data.updateUser.messageText);
+      }
+    }).catch((err) => {
+      toast.error(err);
+    });
+  }
+
+
+  const Input = styled("input")({
+    display: "none",
   });
-  return <div className="bilgileriguncelle">
-    <div className="title"><IconButton size="large" color="primary" component="span" as={NavLink}
-        to="/personel">
-        <ArrowBackIcon />
-      </IconButton>Update Your Informations</div>
-    <AutoForm schema={schema} onSubmit={() => alert('informations updated')}>
-      <div className="info">
-        <span className="info">{user.name}</span>
-
+  return (
+    <div className="bilgileriguncelle">
+      <div className="title">
+        <IconButton
+          size="large"
+          color="primary"
+          component="span"
+          as={NavLink}
+          to="/personel"
+        >
+          <ArrowBackIcon />
+        </IconButton>
+        Update Your Informations
       </div>
-      <AutoField name={"name"} />
-      <AutoField name={"surname"} />
-      <AutoField name={"username"} />
-      <AutoField name={"password"} />
-      <div className="btns-1">
-        <div className="btns-2">
-          <span>add or update your image</span>
-          <label htmlFor="icon-button-file">
-            <Input accept="image/*" id="icon-button-file" type="file" />
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label>
+      <AutoForm
+        schema={schema}
+        onSubmit={handleSubmit}
+        model={user}
+        onChangeModel={(model) => console.log(model)}
+      >
+        <div className="info">
+          <span className="info">{user.name}</span>
         </div>
-      </div>
+        <AutoField name={"name"} />
+        <AutoField name={"surname"} />
+        <AutoField name={"username"} />
+        <AutoField name={"password"} />
 
-      <div className="btns-1">
-        <div className="btns-2">
-          <span>add or update your student certificate</span>
-          <label htmlFor="icon-button-file">
-            <Input accept="image/*" id="icon-button-file" type="file" />
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label>
-        </div>
-      </div>
-
-      <div className="btns-1">
-        <div className="btns-2">
-          <span>add or update your certificate of graduation</span>
-          <label htmlFor="icon-button-file">
-            <Input accept="image/*" id="icon-button-file" type="file" />
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label>
-        </div>
-      </div>
-
-      
         <div className="btn-2">
-          <SubmitField  value="Update Informations" />
+          <SubmitField value="Update Informations" />
         </div>
-    
-    </AutoForm>
-  </div>;
+      </AutoForm>
+      <ToastContainer />
+    </div>
+  );
 }
 
 export default BilgileriGuncelle;

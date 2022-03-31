@@ -53,9 +53,7 @@ function Personel() {
       }
     })
   };
-  const handleOutWork = () => {
-    console.log("Çıkış yapıldı");
-  };
+ 
 
   return (
     <div className="container1">

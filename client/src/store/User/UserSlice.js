@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 
 
@@ -6,7 +6,6 @@ export const UserSlice = createSlice({
     name: "user",
     initialState: {
         user: [],
-        userLoginDate: Date.now(),
         userOutDate: [],
         isPersonel: false,
         isAdmin: false
@@ -19,16 +18,10 @@ export const UserSlice = createSlice({
         },
         setAdmin: (state, action) => {
             state.user = action.payload;
-
             state.isAdmin = true;
             state.isPersonel = false;
         },
-        setLoginDate: (state, action) => {
-            state.userLoginDate = action.payload;
-        },
-        setOutDate: (state, action) => {
-            state.userOutDate = action.payload;
-        }
+      
     }
 });
 

@@ -16,16 +16,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
- 
   const { data, loading, error } = useGetUserQuery();
-  const userLoginDate = useSelector((state) => state.users.userLoginDate);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   console.log(data);
 
-  let login_out_date = new Date();
 
   if (loading) {
     return <Loading />
@@ -39,8 +35,6 @@ const PersonelLogin = () => {
   const loginedPersonel = (users) => {
     setTitle("Signed In");
     dispatch(setUser(users[0]));
-    dispatch(setLoginDate(login_out_date));
-   
     setTimeout(() => {
       navigate("/personel/");
     }, 1000);

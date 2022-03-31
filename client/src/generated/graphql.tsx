@@ -98,8 +98,9 @@ export type Filetype = {
 export type Mutation = {
   __typename?: 'Mutation';
   addMovement?: Maybe<Usersmovement>;
-  addUser?: Maybe<User>;
+  addUser?: Maybe<ResultModelOfUser>;
   deleteUser?: Maybe<User>;
+  updateUser?: Maybe<ResultModelOfUser>;
 };
 
 
@@ -117,6 +118,11 @@ export type MutationDeleteUserArgs = {
   prmUser?: InputMaybe<UserInput>;
 };
 
+
+export type MutationUpdateUserArgs = {
+  prmUser?: InputMaybe<UserInput>;
+};
+
 export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
@@ -129,6 +135,18 @@ export type Query = {
 
 export type QueryUsersByIdArgs = {
   where?: InputMaybe<UserFilterInput>;
+};
+
+export enum ResultEnum {
+  Err = 'ERR',
+  Suc = 'SUC'
+}
+
+export type ResultModelOfUser = {
+  __typename?: 'ResultModelOfUser';
+  data?: Maybe<User>;
+  messageText?: Maybe<Scalars['String']>;
+  resultType: ResultEnum;
 };
 
 export type StringOperationFilterInput = {
@@ -263,7 +281,7 @@ export type AddUserMutationVariables = Exact<{
 }>;
 
 
-export type AddUserMutation = { __typename?: 'Mutation', addUser?: { __typename?: 'User', id: any } | null };
+export type AddUserMutation = { __typename?: 'Mutation', addUser?: { __typename?: 'ResultModelOfUser', resultType: ResultEnum, messageText?: string | null } | null };
 
 export type DeleteUserMutationVariables = Exact<{
   prmUser?: InputMaybe<UserInput>;
@@ -271,6 +289,13 @@ export type DeleteUserMutationVariables = Exact<{
 
 
 export type DeleteUserMutation = { __typename?: 'Mutation', deleteUser?: { __typename?: 'User', id: any } | null };
+
+export type UpdateUserMutationVariables = Exact<{
+  prmUser?: InputMaybe<UserInput>;
+}>;
+
+
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typename?: 'ResultModelOfUser', resultType: ResultEnum, messageText?: string | null } | null };
 
 export type GetPersonelsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -332,7 +357,8 @@ export type AddMovementMutationOptions = Apollo.BaseMutationOptions<AddMovementM
 export const AddUserDocument = gql`
     mutation AddUser($prmUser: UserInput) {
   addUser(prmUser: $prmUser) {
-    id
+    resultType
+    messageText
   }
 }
     `;
@@ -395,6 +421,40 @@ export function useDeleteUserMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>;
 export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>;
 export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>;
+export const UpdateUserDocument = gql`
+    mutation UpdateUser($prmUser: UserInput) {
+  updateUser(prmUser: $prmUser) {
+    resultType
+    messageText
+  }
+}
+    `;
+export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+
+/**
+ * __useUpdateUserMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({
+ *   variables: {
+ *      prmUser: // value for 'prmUser'
+ *   },
+ * });
+ */
+export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, options);
+      }
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
 export const GetPersonelsDocument = gql`
     query GetPersonels {
   personels {

@@ -33,5 +33,5 @@ const schemaValidator = (model) => {
     return details.length ? { details } : null;
 };
 
-console.table("GraphQLBridge", new GraphQLBridge(schemaType, schemaValidator, schemaExtras))
+// console.table("GraphQLBridge", new GraphQLBridge(schemaType, schemaValidator, schemaExtras))
 export const bridge = new GraphQLBridge(schemaType, schemaValidator, schemaExtras);
