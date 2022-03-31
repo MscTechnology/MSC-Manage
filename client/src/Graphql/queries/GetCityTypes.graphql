@@ -1,0 +1,6 @@
+query GetCities{
+ cities {
+   id
+   cityname
+ }
+}

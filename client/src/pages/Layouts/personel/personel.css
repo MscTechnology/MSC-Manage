@@ -38,12 +38,10 @@
 }
 
 .bilgileriguncelle{
-  background-repeat: no-repeat;
-  background-size: cover;
+
   background: #92AED4;
   background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
+  height: 120vh;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -92,3 +90,6 @@ body {
   margin-top: 2em;
   margin-bottom: 0.5em
 }
+
+
+

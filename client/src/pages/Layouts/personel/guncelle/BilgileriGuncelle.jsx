@@ -1,6 +1,6 @@
 import { Button, IconButton, styled } from "@mui/material";
 import React from "react";
-import "../personel.css";
+
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
@@ -8,33 +8,51 @@ import {
   HiddenField,
   AutoField,
   SubmitField,
+  ListItemField,
 } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useUpdateUserMutation } from "generated/graphql";
-import {toast, ToastContainer} from 'react-toastify'
+import { useGetCitiesQuery, useUpdateUserMutation } from "generated/graphql";
+import { toast, ToastContainer } from "react-toastify";
+import MSCTableField from "components/UniformComponents/MSCTableField";
+import MSCTableRowField from "components/UniformComponents/MSCTableRowField";
+import { MSCTableCell } from "components/UniformComponents/MSCTableCell";
 function BilgileriGuncelle() {
   const user = useSelector((state) => state.users.user);
   console.log(user);
-  const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({});
+  const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation(
+    {}
+  );
+  const {
+    data: cityData,
+    loading: cityLoading,
+    error: cityError,
+  } = useGetCitiesQuery({});
+
+  const cities = cityData?.cities.map((city) => ({
+    label: city.cityname,
+    value: city.id,
+  }));
+  console.log(cities);
 
   const handleSubmit = (model) => {
     updateUserMutation({
       variables: {
         prmUser: model,
       },
-    }).then((res) => {
-      console.log(res)
-      if (res.data.updateUser.resultType === "SUC") {
-        toast.success("Bilgiler Güncellendi");
-      } else {
-        toast.error(res.data.updateUser.messageText);
-      }
-    }).catch((err) => {
-      toast.error(err);
-    });
-  }
-
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.updateUser.resultType === "SUC") {
+          toast.success("Bilgiler Güncellendi");
+        } else {
+          toast.error(res.data.updateUser.messageText);
+        }
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
 
   const Input = styled("input")({
     display: "none",
@@ -64,9 +82,30 @@ function BilgileriGuncelle() {
         </div>
         <AutoField name={"name"} />
         <AutoField name={"surname"} />
-        <AutoField name={"username"} />
+        <AutoField name={"username"}  />
         <AutoField name={"password"} />
+{/*         
+        <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
+            <MSCTableRowField name="$">
+              <MSCTableCell name="phonenumber" />
+              <MSCTableCell name="identificationnumber" />
+              <MSCTableCell name="adress" />
+              <MSCTableCell name="email" />
+              <MSCTableCell name="gender" />
+              <MSCTableCell name="schoolname" />
+              </MSCTableRowField>
+          </MSCTableField> */}
 
+
+
+        {/* <ListField name={"userinfos"} label={"Daha Fazla Ekle"} >
+          <ListItemField name="$">
+            <AutoField name="phonenumber"  />
+            <AutoField name="identificationnumber"  />
+            <AutoField name="adress"  />
+            <AutoField name="email"  />
+          </ListItemField>
+        </ListField> */}
         <div className="btn-2">
           <SubmitField value="Update Informations" />
         </div>

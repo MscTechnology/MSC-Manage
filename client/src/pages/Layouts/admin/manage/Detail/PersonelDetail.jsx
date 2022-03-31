@@ -88,6 +88,7 @@ function PersonelDetail() {
                 `Username : ${rowData.username}`
               }
             </Typography>
+          
           </CardContent>
           <CardActions className="buttons1">
             <div>

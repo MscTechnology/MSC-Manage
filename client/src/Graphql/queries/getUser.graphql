@@ -4,8 +4,25 @@ query GetUser {
     username
     password
     usertypesid
+
     name
     surname
     createuser
+    userinfos {
+      phonenumber
+      identificationnumber
+      adress
+      email
+      gender
+      schoolname
+
+      city {
+        cityname
+        plateno
+      }
+      districts {
+        districtname
+      }
+    }
   }
 }

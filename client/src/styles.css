@@ -18,10 +18,10 @@
 
 .adminPage {
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background: #142d4c;
   align-items: center;
 }
