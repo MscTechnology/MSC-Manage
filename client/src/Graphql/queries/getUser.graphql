@@ -3,6 +3,16 @@ query GetUser {
    id
    schoolname
    usertypesid
+     cityid
+  districtsid
+  status
+
+     createuser
+   createtime
+   changeuser
+   changetime
+
+
    usertypes {
      typename
    }
