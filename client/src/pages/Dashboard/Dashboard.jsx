@@ -5,8 +5,6 @@ import PersonelLogin from "../Login/Personel/PersonelLogin";
 import { Routes, Route } from "react-router-dom";
 import Admin from "../Layouts/admin/Admin";
 import PersonelEkle from "../Layouts/admin/manage/Ekle/PersonelEkle";
-import PersonelSil from "../Layouts/admin/manage/Sil/PersonelSil";
-import PersonelGuncelle from "../Layouts/admin/manage/Guncelle/PersonelGuncelle";
 import TumPersonel from "../Layouts/admin/manage/TumPersonel";
 import Personel from "../Layouts/personel/Personel"
 import BilgileriGuncelle from "../Layouts/personel/guncelle/BilgileriGuncelle"
@@ -48,13 +46,8 @@ const Dashboard = () => {
         {
           isAdmin ?  <Route path="/admin/personelekle" element={<PersonelEkle />} /> : <Route path="*" element={<NoMatch />} />
         }
-        {
-          isAdmin ? <Route path="/admin/personelsil" element={<PersonelSil />} />
-          : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ? <Route path="/admin/personelguncelle" element={<PersonelGuncelle />} />: <Route path="*" element={<NoMatch />} />
-        }
+       
+        
         {
           isAdmin ?   <Route path="/admin/tumpersonel" element={<TumPersonel />} /> : <Route path="*" element={<NoMatch />} />
         }

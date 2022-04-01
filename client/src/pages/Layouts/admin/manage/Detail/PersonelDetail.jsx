@@ -1,20 +1,27 @@
 import "../../../../../styles.css";
-import { Button, Typography, CardMedia, CardContent, CardActions, Card } from "@mui/material";
+import { Button, Typography, CardMedia, CardContent, CardActions, Card, Switch } from "@mui/material";
 import { NavLink, useParams } from "react-router-dom";
-import {  useGetUserDetailQuery, useGetUserQuery } from "generated/graphql";
+import { useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import Error from "../../../../../components/Error/Error";
+import { useSelector, useDispatch } from "react-redux";
+import { setActive } from "../../../../../../src/store/User/UserSlice"
+const label = { inputProps: { 'aria-label': 'Switch demo' } }
 
 function PersonelDetail() {
+  const [checked, setChecked] = useState(true);
   const [rowData, setRowData] = useState({});
   const { id } = useParams()
+  const isActive = useSelector((state) => state.users.isActive);
+  const dispatch = useDispatch();
 
-  const { data:allData } = useGetUserQuery({});
+  const [updateUserMutation, { data: updateData, loading: updateLoading, error: UpdateError }] = useUpdateUserMutation({});
+
+  const { data: allData } = useGetUserQuery({});
 
 
   const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
-  console.log(userFilter)
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
@@ -22,18 +29,20 @@ function PersonelDetail() {
     },
   })
 
-  console.log(data)
+  const status = data?.usersById[0].status
 
 
   useEffect(() => {
     if (data) {
       if (data?.usersById?.length > 0) {
         setRowData(data?.usersById[0]);
+        setChecked(data?.usersById[0].status);
       }
 
     }
 
-  }, [data])
+  }, [data,status])
+  console.log()
 
   console.log(data)
   console.log(rowData)
@@ -47,16 +56,27 @@ function PersonelDetail() {
     return <Error />
   }
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
+    if(data){
+      updateUserMutation({
+      variables: {
+        prmUser: {
+          ...data?.usersById[0],
+          status: checked ? 0 : 1
+        }
+      },
+    })
+    setChecked(e.target.checked);
+    dispatch(setActive(!checked));
+    }
     
-      console.log(e.target.value)
-      alert("Personel Silindi");
+    
   }
 
 
   return (
     <div className="detailPage">
-      <div className="detail-title">
+      <div className={isActive ? "detail-title" : "detail-title-active"}>
         Informations
 
       </div>
@@ -83,14 +103,16 @@ function PersonelDetail() {
                 `Username : ${rowData.username}`
               }
             </Typography>
-          
+
           </CardContent>
           <CardActions className="buttons1">
             <div>
               <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
             </div>
-            <div>
-              <Button size="small" value={id} onClick={handleClick}>Delete</Button>
+            <div className="active-deactive">
+              <div>deactive</div>
+              <Switch {...label} defaultChecked onChange={handleChange} checked={checked}/>
+              <div>Active</div>
             </div>
           </CardActions>
         </Card>
