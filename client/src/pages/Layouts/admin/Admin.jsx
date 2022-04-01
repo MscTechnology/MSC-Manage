@@ -61,6 +61,17 @@ const Admin = () => {
                   LIst All personels
                 </Button>
               </div>
+              <div className="btn1">
+                <Button
+                  size={buttonState.size}
+                  variant="outlined"
+                  startIcon={<UnorderedListOutlined />}
+                  as={NavLink}
+                  to="personelfiles"
+                >
+                  LIst All personels Files
+                </Button>
+              </div>
             </div>
           </Grid>
         </Box>

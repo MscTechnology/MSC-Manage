@@ -30,7 +30,7 @@ const TumPersonel = () => {
   }
 
 
-  const userFilter = data?.users.filter((user) => user.usertypesid !== 1);
+  const userFilter = data?.users.filter((user) => user.usertypesid !== 1 );
   console.log(userFilter)
   return <div className="adminPage">
 
@@ -54,11 +54,7 @@ const TumPersonel = () => {
           </Button>
         </div>
 
-        <div className="iconbutton">
-          <IconButton size="large" color="error" onClick={handleDelete}>
-            <DeleteForeverIcon />
-          </IconButton>
-        </div>
+       
       </div>
 
     ))}

@@ -1,0 +1,8 @@
+query GetFiles{
+    files{
+        id
+        usersid
+        data
+        filetypesid
+    }
+}
