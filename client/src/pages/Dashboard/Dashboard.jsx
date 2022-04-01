@@ -62,7 +62,7 @@ const Dashboard = () => {
         }
         <Route path="/personel/documents" element={<Documents/>}/>
         <Route path="*"element={<NoMatch />} />
-
+        <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />
     
       </Routes>
     </div>

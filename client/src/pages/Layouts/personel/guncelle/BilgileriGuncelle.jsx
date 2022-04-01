@@ -9,6 +9,7 @@ import {
   AutoField,
   SubmitField,
   ListItemField,
+  ListField
 } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -84,8 +85,8 @@ function BilgileriGuncelle() {
         <AutoField name={"surname"} />
         <AutoField name={"username"}  />
         <AutoField name={"password"} />
-{/*         
-        <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
+        
+        {/* <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
             <MSCTableRowField name="$">
               <MSCTableCell name="phonenumber" />
               <MSCTableCell name="identificationnumber" />
@@ -98,14 +99,6 @@ function BilgileriGuncelle() {
 
 
 
-        {/* <ListField name={"userinfos"} label={"Daha Fazla Ekle"} >
-          <ListItemField name="$">
-            <AutoField name="phonenumber"  />
-            <AutoField name="identificationnumber"  />
-            <AutoField name="adress"  />
-            <AutoField name="email"  />
-          </ListItemField>
-        </ListField> */}
         <div className="btn-2">
           <SubmitField value="Update Informations" />
         </div>
