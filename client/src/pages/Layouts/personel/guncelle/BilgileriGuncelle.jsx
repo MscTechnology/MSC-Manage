@@ -1,6 +1,5 @@
 import { Button, IconButton, styled } from "@mui/material";
-import React from "react";
-
+import {useState} from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
@@ -8,34 +7,57 @@ import {
   HiddenField,
   AutoField,
   SubmitField,
+  SelectField,
   ListItemField,
-  ListField
+  ListField,
 } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useGetCitiesQuery, useUpdateUserMutation } from "generated/graphql";
+import {  useGetDistrictsQuery, useUpdateUserMutation ,useGetCitiesQuery} from "generated/graphql";
 import { toast, ToastContainer } from "react-toastify";
-import MSCTableField from "components/UniformComponents/MSCTableField";
-import MSCTableRowField from "components/UniformComponents/MSCTableRowField";
-import { MSCTableCell } from "components/UniformComponents/MSCTableCell";
+import Grid from "@mui/material/Grid";
+
 function BilgileriGuncelle() {
+  const [city, setCity] = useState(0);
+
   const user = useSelector((state) => state.users.user);
   console.log(user);
   const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation(
     {}
   );
-  const {
-    data: cityData,
-    loading: cityLoading,
-    error: cityError,
-  } = useGetCitiesQuery({});
 
-  const cities = cityData?.cities.map((city) => ({
-    label: city.cityname,
-    value: city.id,
-  }));
-  console.log(cities);
+  const { data: CitiesData } = useGetCitiesQuery({});
+  
+  const cities = CitiesData?.cities?.map((city) => {
+    return {
+      label: city.cityname,
+      value: city.id,
+    };
+  })
 
+  const CityDistrictFilter = (cityId) => {
+    const { data: CitiesData } = useGetCitiesQuery({});
+    const cities = CitiesData?.cities?.map((city) => {
+      return {
+        label: city.cityname,
+        value: city.id,
+        districts: city.districts?.map((district) => {
+          return {
+            label: district.districtname,
+            value: district.id,
+          };
+        }),
+      };
+    });
+    const city = cities.filter((city) => city.value === cityId);
+    
+    return city[0].districts;
+  }
+
+  console.log(CityDistrictFilter(16));
+
+
+  
   const handleSubmit = (model) => {
     updateUserMutation({
       variables: {
@@ -60,6 +82,7 @@ function BilgileriGuncelle() {
   });
   return (
     <div className="bilgileriguncelle">
+
       <div className="title">
         <IconButton
           size="large"
@@ -81,11 +104,47 @@ function BilgileriGuncelle() {
         <div className="info">
           <span className="info">{user.name}</span>
         </div>
-        <AutoField name={"name"} />
-        <AutoField name={"surname"} />
-        <AutoField name={"username"}  />
-        <AutoField name={"password"} />
-        
+
+        <Grid 
+         container
+         direction="column"
+         justifyContent="space-between"
+         alignItems="stretch"
+        spacing={2}>
+          <Grid item xs={12} md={12}>
+            <AutoField name={"name"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"surname"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"username"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"password"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"email"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"phonenumber"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"identificationnumber"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"adress"} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SelectField name={"cityid"}  label={"City"}  options={cities}/>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SelectField name={"districtsid"} label={"Districts"}  options={CityDistrictFilter(cities.value)}/>
+          </Grid>
+        </Grid>
+
+       
+
         {/* <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
             <MSCTableRowField name="$">
               <MSCTableCell name="phonenumber" />
@@ -96,8 +155,6 @@ function BilgileriGuncelle() {
               <MSCTableCell name="schoolname" />
               </MSCTableRowField>
           </MSCTableField> */}
-
-
 
         <div className="btn-2">
           <SubmitField value="Update Informations" />

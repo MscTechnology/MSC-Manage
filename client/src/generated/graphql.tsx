@@ -31,6 +31,15 @@ export type City = {
   plateno: Scalars['Int'];
 };
 
+export type CityFilterInput = {
+  and?: InputMaybe<Array<CityFilterInput>>;
+  cityname?: InputMaybe<StringOperationFilterInput>;
+  districts?: InputMaybe<ListFilterInputTypeOfDistrictFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<CityFilterInput>>;
+  plateno?: InputMaybe<ComparableInt32OperationFilterInput>;
+};
+
 export type ComparableInt32OperationFilterInput = {
   eq?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
@@ -129,6 +138,22 @@ export type District = {
   id: Scalars['Long'];
 };
 
+export type DistrictFilterInput = {
+  and?: InputMaybe<Array<DistrictFilterInput>>;
+  citys?: InputMaybe<CityFilterInput>;
+  citysid?: InputMaybe<ComparableInt64OperationFilterInput>;
+  districtname?: InputMaybe<StringOperationFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<DistrictFilterInput>>;
+};
+
+export type ListFilterInputTypeOfDistrictFilterInput = {
+  all?: InputMaybe<DistrictFilterInput>;
+  any?: InputMaybe<Scalars['Boolean']>;
+  none?: InputMaybe<DistrictFilterInput>;
+  some?: InputMaybe<DistrictFilterInput>;
+};
+
 export type ListFilterInputTypeOfUserFilterInput = {
   all?: InputMaybe<UserFilterInput>;
   any?: InputMaybe<Scalars['Boolean']>;
@@ -174,9 +199,15 @@ export type MutationUpdateUserArgs = {
 export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
+  districts?: Maybe<Array<Maybe<District>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
+};
+
+
+export type QueryCitiesArgs = {
+  where?: InputMaybe<CityFilterInput>;
 };
 
 
@@ -372,7 +403,12 @@ export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typ
 export type GetCitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null } | null> | null };
+export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null, districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null } | null> | null };
+
+export type GetDistrictsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetDistrictsQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null };
 
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
@@ -499,6 +535,11 @@ export const GetCitiesDocument = gql`
   cities {
     id
     cityname
+    districts {
+      id
+      citysid
+      districtname
+    }
   }
 }
     `;
@@ -529,6 +570,42 @@ export function useGetCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>;
 export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>;
 export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
+export const GetDistrictsDocument = gql`
+    query GetDistricts {
+  districts {
+    id
+    citysid
+    districtname
+  }
+}
+    `;
+
+/**
+ * __useGetDistrictsQuery__
+ *
+ * To run a query within a React component, call `useGetDistrictsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDistrictsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDistrictsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetDistrictsQuery(baseOptions?: Apollo.QueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
+      }
+export function useGetDistrictsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
+        }
+export type GetDistrictsQueryHookResult = ReturnType<typeof useGetDistrictsQuery>;
+export type GetDistrictsLazyQueryHookResult = ReturnType<typeof useGetDistrictsLazyQuery>;
+export type GetDistrictsQueryResult = Apollo.QueryResult<GetDistrictsQuery, GetDistrictsQueryVariables>;
 export const GetUserDetailDocument = gql`
     query GetUserDetail($prmId: Long!) {
   usersById(where: {id: {eq: $prmId}}) {

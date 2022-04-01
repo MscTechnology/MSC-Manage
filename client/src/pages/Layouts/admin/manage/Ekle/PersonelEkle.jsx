@@ -79,6 +79,7 @@ const PersonelEkle = () => {
           <HiddenField name="createtime" value={createDate} />
           <HiddenField name="changeuser"  value={user.id}/>
           <HiddenField name="changetime" value={changeDate} />
+          <HiddenField name="status" value={1} />
 
           <div className="personel-ekle-buttons">
            
