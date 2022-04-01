@@ -1,6 +1,11 @@
 query GetCities{
- cities {
-   id
-   cityname
- }
+  cities {
+    id
+    cityname
+    districts {
+      id
+      citysid
+      districtname
+    }
+  }
 }

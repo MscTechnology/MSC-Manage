@@ -33,6 +33,15 @@ export type City = {
   plateno: Scalars['Int'];
 };
 
+export type CityFilterInput = {
+  and?: InputMaybe<Array<CityFilterInput>>;
+  cityname?: InputMaybe<StringOperationFilterInput>;
+  districts?: InputMaybe<ListFilterInputTypeOfDistrictFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<CityFilterInput>>;
+  plateno?: InputMaybe<ComparableInt32OperationFilterInput>;
+};
+
 export type ComparableInt32OperationFilterInput = {
   eq?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
@@ -131,11 +140,20 @@ export type District = {
   id: Scalars['Long'];
 };
 
-export type Filetype = {
-  __typename?: 'Filetype';
-  id: Scalars['Long'];
-  typename?: Maybe<Scalars['String']>;
-  userfiles?: Maybe<Array<Maybe<Userfile>>>;
+export type DistrictFilterInput = {
+  and?: InputMaybe<Array<DistrictFilterInput>>;
+  citys?: InputMaybe<CityFilterInput>;
+  citysid?: InputMaybe<ComparableInt64OperationFilterInput>;
+  districtname?: InputMaybe<StringOperationFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<DistrictFilterInput>>;
+};
+
+export type ListFilterInputTypeOfDistrictFilterInput = {
+  all?: InputMaybe<DistrictFilterInput>;
+  any?: InputMaybe<Scalars['Boolean']>;
+  none?: InputMaybe<DistrictFilterInput>;
+  some?: InputMaybe<DistrictFilterInput>;
 };
 
 export type ListFilterInputTypeOfUserFilterInput = {
@@ -177,10 +195,15 @@ export type MutationUpdateUserArgs = {
 export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
-  files?: Maybe<Array<Maybe<Userfile>>>;
+  districts?: Maybe<Array<Maybe<District>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
+};
+
+
+export type QueryCitiesArgs = {
+  where?: InputMaybe<CityFilterInput>;
 };
 
 
@@ -303,7 +326,6 @@ export type Userfile = {
   createuser?: Maybe<Scalars['Long']>;
   data?: Maybe<Array<Scalars['Byte']>>;
   extensitions?: Maybe<Scalars['String']>;
-  filetypes?: Maybe<Filetype>;
   filetypesid: Scalars['Long'];
   id: Scalars['Long'];
   usersid: Scalars['Long'];
@@ -390,7 +412,12 @@ export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typ
 export type GetCitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null } | null> | null };
+export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null, districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null } | null> | null };
+
+export type GetDistrictsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetDistrictsQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null };
 
 export type GetFilesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -522,6 +549,11 @@ export const GetCitiesDocument = gql`
   cities {
     id
     cityname
+    districts {
+      id
+      citysid
+      districtname
+    }
   }
 }
     `;
@@ -552,43 +584,42 @@ export function useGetCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>;
 export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>;
 export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
-export const GetFilesDocument = gql`
-    query GetFiles {
-  files {
+export const GetDistrictsDocument = gql`
+    query GetDistricts {
+  districts {
     id
-    usersid
-    data
-    filetypesid
+    citysid
+    districtname
   }
 }
     `;
 
 /**
- * __useGetFilesQuery__
+ * __useGetDistrictsQuery__
  *
- * To run a query within a React component, call `useGetFilesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetFilesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetDistrictsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDistrictsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetFilesQuery({
+ * const { data, loading, error } = useGetDistrictsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetFilesQuery(baseOptions?: Apollo.QueryHookOptions<GetFilesQuery, GetFilesQueryVariables>) {
+export function useGetDistrictsQuery(baseOptions?: Apollo.QueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFilesQuery, GetFilesQueryVariables>(GetFilesDocument, options);
+        return Apollo.useQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
       }
-export function useGetFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFilesQuery, GetFilesQueryVariables>) {
+export function useGetDistrictsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFilesQuery, GetFilesQueryVariables>(GetFilesDocument, options);
+          return Apollo.useLazyQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
         }
-export type GetFilesQueryHookResult = ReturnType<typeof useGetFilesQuery>;
-export type GetFilesLazyQueryHookResult = ReturnType<typeof useGetFilesLazyQuery>;
-export type GetFilesQueryResult = Apollo.QueryResult<GetFilesQuery, GetFilesQueryVariables>;
+export type GetDistrictsQueryHookResult = ReturnType<typeof useGetDistrictsQuery>;
+export type GetDistrictsLazyQueryHookResult = ReturnType<typeof useGetDistrictsLazyQuery>;
+export type GetDistrictsQueryResult = Apollo.QueryResult<GetDistrictsQuery, GetDistrictsQueryVariables>;
 export const GetUserDetailDocument = gql`
     query GetUserDetail($prmId: Long!) {
   usersById(where: {id: {eq: $prmId}}) {

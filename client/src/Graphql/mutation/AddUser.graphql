@@ -1,6 +1,6 @@
 mutation AddUser($prmUser:UserInput){
   addUser (prmUser: $prmUser) {
-        resultType
+   resultType
      messageText
   }
 }
