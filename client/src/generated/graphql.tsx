@@ -451,7 +451,7 @@ export type GetUserDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null } | null> | null };
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number } | null> | null };
 
 export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -461,7 +461,7 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, status: number, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null } | null> | null };
 
 
 export const AddMovementDocument = gql`
@@ -684,6 +684,9 @@ export const GetUserDetailDocument = gql`
     name
     surname
     username
+    password
+    id
+    status
   }
 }
     `;
@@ -756,6 +759,7 @@ export const GetUserDocument = gql`
     id
     schoolname
     usertypesid
+    status
     usertypes {
       typename
     }

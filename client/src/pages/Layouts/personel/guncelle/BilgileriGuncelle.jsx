@@ -41,12 +41,6 @@ function BilgileriGuncelle() {
   console.log(cities);
 
 
-
-
-
-
-
-
   // const CityDistrictFilter = (cityId) => {
   //   const { data: CitiesData } = useGetCitiesQuery({});
   //   const cities = CitiesData?.cities?.map((city) => {

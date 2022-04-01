@@ -3,5 +3,8 @@ query GetUserDetail($prmId: Long!){
     name
     surname
     username
+    password
+    id
+    status
   }
 }

@@ -6,6 +6,12 @@
 .personels{
   color:white;
 }
+.active-deactive{
+  align-items:center;
+  justify-content:center;
+  display: flex;
+  flex-direction: row
+}
 
 .App {
   text-align: center;
@@ -112,11 +118,12 @@
   margin-bottom: 20px
 }
 
-.allpersonel {
+.allpersonel{
   margin-top: 2em;
   align-items: center;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 
@@ -149,6 +156,24 @@
   margin-top: 0.75em;
   margin-bottom: 0.5em
 }
+.detail-title-active {
+  color:red;
+  font-size: 4em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em
+
+}
+
+.status{
+  margin-left: 50px;
+  color:white;
+}
+
+.status-deactive{
+  margin-left: 50px;
+  color:red;
+}
+
 
 .iconbutton {
   display: flex;
@@ -172,6 +197,13 @@
     margin: 10px;
   }
 
+
+}
+.btn{
+
+}
+.btn-deactive{
+  text-decoration: line-through;
 
 }
 
