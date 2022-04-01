@@ -24,8 +24,13 @@ input UserInput {
   changeuser: Int
   changetime: String
   status: Int!
+  usertypes: UsertypeInput
 }
-
+input UsertypeInput {
+  id: Int!
+  typename: String
+  users: [UserInput]
+}
   
 `
 const schemaType = buildASTSchema(parse(schema)).getType('UserInput');
@@ -36,8 +41,7 @@ const schemaExtras = {
 
 
 const schemaValidator = (model) => {
-  console.log("---- model")
-  console.log(model)
+ 
     const details = [];
 
 
