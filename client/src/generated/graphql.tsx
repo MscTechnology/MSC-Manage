@@ -461,7 +461,7 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, status: number, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null } | null> | null };
 
 
 export const AddMovementDocument = gql`
@@ -759,7 +759,13 @@ export const GetUserDocument = gql`
     id
     schoolname
     usertypesid
+    cityid
+    districtsid
     status
+    createuser
+    createtime
+    changeuser
+    changetime
     usertypes {
       typename
     }

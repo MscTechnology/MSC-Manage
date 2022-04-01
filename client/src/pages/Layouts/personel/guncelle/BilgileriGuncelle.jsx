@@ -24,8 +24,8 @@ import Grid from "@mui/material/Grid";
 import {setUser} from '../../../../store/User/UserSlice'
 function BilgileriGuncelle() {
   const [modelState, setModelState] = useState({});
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.users.user);
+  console.log(user)
   const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation(
     {}
   );
@@ -169,7 +169,7 @@ function BilgileriGuncelle() {
         <HiddenField name="id" value={user.id} />
         <HiddenField name="status"  value={1}/>
         <HiddenField name="createuser" value={user.createuser} />
-        <HiddenField name="createtime" value={createDate} />
+        <HiddenField name="createtime" value={user.createtime} />
       <HiddenField name="changeuser"  value={user.createuser}/>
         <HiddenField name="changetime" value={changeDate} />
 

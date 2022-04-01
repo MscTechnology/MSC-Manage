@@ -7,6 +7,12 @@ query GetUser {
   districtsid
   status
 
+     createuser
+   createtime
+   changeuser
+   changetime
+
+
    usertypes {
      typename
    }
