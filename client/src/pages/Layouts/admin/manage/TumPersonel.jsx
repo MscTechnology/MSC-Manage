@@ -8,14 +8,12 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Loading from "../../../../components/Loading/Loading";
 import Error from "../../../../components/Error/Error";
 import { styled } from '@mui/material/styles';
-import { useDeleteUserMutation, useGetUserQuery } from "generated/graphql";
+import { useGetUserQuery } from "generated/graphql";
 
 const TumPersonel = () => {
 
 
   const { data, loading, error } = useGetUserQuery({});
-  const [deleteUserMutation, { data: deleteData, loading: deleteLoading, error: deleteError }] = useDeleteUserMutation();
-  console.log(deleteData)
 
   if (loading) {
     return <div>Loading...</div>
@@ -28,11 +26,7 @@ const TumPersonel = () => {
   const handleDelete = (e) => {
     console.log(e.target.value)
 
-    deleteUserMutation({
-      variables: {
-        prmUser: data?.users?.id
-      },
-    })
+   
   }
 
 

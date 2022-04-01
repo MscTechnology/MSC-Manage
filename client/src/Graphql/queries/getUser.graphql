@@ -1,28 +1,14 @@
 query GetUser {
   users {
-    id
-    username
-    password
-    usertypesid
-
+   id
+   schoolname
+   usertypesid
+   usertypes {
+     typename
+   }
     name
-    surname
-    createuser
-    userinfos {
-      phonenumber
-      identificationnumber
-      adress
-      email
-      gender
-      schoolname
-
-      city {
-        cityname
-        plateno
-      }
-      districts {
-        districtname
-      }
-    }
+     username
+     surname
+     password
   }
 }

@@ -1,6 +1,0 @@
-mutation DeleteUser($prmUser: UserInput) {
-  deleteUser(prmUser: $prmUser) {
-    id
-
-  }
-}

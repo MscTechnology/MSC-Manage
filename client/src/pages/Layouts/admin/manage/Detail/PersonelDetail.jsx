@@ -1,7 +1,7 @@
 import "../../../../../styles.css";
 import { Button, Typography, CardMedia, CardContent, CardActions, Card } from "@mui/material";
 import { NavLink, useParams } from "react-router-dom";
-import { useDeleteUserMutation, useGetUserDetailQuery, useGetUserQuery } from "generated/graphql";
+import {  useGetUserDetailQuery, useGetUserQuery } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import Error from "../../../../../components/Error/Error";
@@ -12,7 +12,6 @@ function PersonelDetail() {
 
   const { data:allData } = useGetUserQuery({});
 
-  const [deleteUserMutation, { data:delData }] = useDeleteUserMutation();
 
   const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
   console.log(userFilter)
@@ -49,11 +48,7 @@ function PersonelDetail() {
   }
 
   const handleClick = (e) => {
-    deleteUserMutation({
-      variables: {
-        prmUser: e.target.value
-     },
-    })
+    
       console.log(e.target.value)
       alert("Personel Silindi");
   }
