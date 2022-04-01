@@ -209,7 +209,7 @@ export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
   districts?: Maybe<Array<Maybe<District>>>;
-  files?: Maybe<Array<Maybe<Userfile>>>;
+  userFiles?: Maybe<Array<Maybe<Userfile>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
@@ -218,6 +218,11 @@ export type Query = {
 
 export type QueryCitiesArgs = {
   where?: InputMaybe<CityFilterInput>;
+};
+
+
+export type QueryDistrictsArgs = {
+  where?: InputMaybe<DistrictFilterInput>;
 };
 
 
@@ -429,15 +434,17 @@ export type GetCitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null, districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null } | null> | null };
 
-export type GetDistrictsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetDistrictsByCityidQueryVariables = Exact<{
+  prmCityid: Scalars['Long'];
+}>;
 
 
-export type GetDistrictsQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null };
+export type GetDistrictsByCityidQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, districtname?: string | null } | null> | null };
 
 export type GetFilesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFilesQuery = { __typename?: 'Query', files?: Array<{ __typename?: 'Userfile', id: any, usersid: any, data?: Array<any> | null, filetypesid: any } | null> | null };
+export type GetFilesQuery = { __typename?: 'Query', userFiles?: Array<{ __typename?: 'Userfile', id: any, usersid: any, data?: Array<any> | null } | null> | null };
 
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
@@ -599,49 +606,48 @@ export function useGetCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>;
 export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>;
 export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
-export const GetDistrictsDocument = gql`
-    query GetDistricts {
-  districts {
+export const GetDistrictsByCityidDocument = gql`
+    query GetDistrictsByCityid($prmCityid: Long!) {
+  districts(where: {citysid: {eq: $prmCityid}}) {
     id
-    citysid
     districtname
   }
 }
     `;
 
 /**
- * __useGetDistrictsQuery__
+ * __useGetDistrictsByCityidQuery__
  *
- * To run a query within a React component, call `useGetDistrictsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetDistrictsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetDistrictsByCityidQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDistrictsByCityidQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetDistrictsQuery({
+ * const { data, loading, error } = useGetDistrictsByCityidQuery({
  *   variables: {
+ *      prmCityid: // value for 'prmCityid'
  *   },
  * });
  */
-export function useGetDistrictsQuery(baseOptions?: Apollo.QueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
+export function useGetDistrictsByCityidQuery(baseOptions: Apollo.QueryHookOptions<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
+        return Apollo.useQuery<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>(GetDistrictsByCityidDocument, options);
       }
-export function useGetDistrictsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDistrictsQuery, GetDistrictsQueryVariables>) {
+export function useGetDistrictsByCityidLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetDistrictsQuery, GetDistrictsQueryVariables>(GetDistrictsDocument, options);
+          return Apollo.useLazyQuery<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>(GetDistrictsByCityidDocument, options);
         }
-export type GetDistrictsQueryHookResult = ReturnType<typeof useGetDistrictsQuery>;
-export type GetDistrictsLazyQueryHookResult = ReturnType<typeof useGetDistrictsLazyQuery>;
-export type GetDistrictsQueryResult = Apollo.QueryResult<GetDistrictsQuery, GetDistrictsQueryVariables>;
+export type GetDistrictsByCityidQueryHookResult = ReturnType<typeof useGetDistrictsByCityidQuery>;
+export type GetDistrictsByCityidLazyQueryHookResult = ReturnType<typeof useGetDistrictsByCityidLazyQuery>;
+export type GetDistrictsByCityidQueryResult = Apollo.QueryResult<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>;
 export const GetFilesDocument = gql`
     query GetFiles {
-  files {
+  userFiles {
     id
     usersid
     data
-    filetypesid
   }
 }
     `;

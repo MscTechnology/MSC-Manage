@@ -1,8 +1,7 @@
 query GetFiles{
-    files{
+    userFiles{
         id
         usersid
         data
-        filetypesid
     }
 }

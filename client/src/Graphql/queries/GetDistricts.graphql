@@ -1,7 +1,11 @@
-query GetDistricts{
- districts {
-   id
-   citysid
-   districtname
- }
+query GetDistrictsByCityid($prmCityid: Long!){
+  districts(where: {
+    citysid:{eq:$prmCityid}
+  }) {
+    id
+    districtname
+  }
 }
+
+
+

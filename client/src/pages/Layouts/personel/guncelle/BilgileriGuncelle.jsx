@@ -1,5 +1,5 @@
 import { Button, IconButton, styled } from "@mui/material";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
@@ -13,12 +13,12 @@ import {
 } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {  useGetDistrictsQuery, useUpdateUserMutation ,useGetCitiesQuery} from "generated/graphql";
+import {  useGetDistrictsQuery, useUpdateUserMutation ,useGetCitiesQuery, useGetDistrictsByCityidLazyQuery} from "generated/graphql";
 import { toast, ToastContainer } from "react-toastify";
 import Grid from "@mui/material/Grid";
 
 function BilgileriGuncelle() {
-  const [city, setCity] = useState(0);
+  const [modelState, setModelState] = useState({})
 
   const user = useSelector((state) => state.users.user);
   console.log(user);
@@ -27,34 +27,45 @@ function BilgileriGuncelle() {
   );
 
   const { data: CitiesData } = useGetCitiesQuery({});
-  
+
+  const [GetDistrictById, {data: districtsByData}] = useGetDistrictsByCityidLazyQuery()
+
+
   const cities = CitiesData?.cities?.map((city) => {
     return {
       label: city.cityname,
       value: city.id,
     };
   })
+  
+  console.log(cities);
 
-  const CityDistrictFilter = (cityId) => {
-    const { data: CitiesData } = useGetCitiesQuery({});
-    const cities = CitiesData?.cities?.map((city) => {
-      return {
-        label: city.cityname,
-        value: city.id,
-        districts: city.districts?.map((district) => {
-          return {
-            label: district.districtname,
-            value: district.id,
-          };
-        }),
-      };
-    });
-    const city = cities.filter((city) => city.value === cityId);
+
+
+
+
+
+
+
+  // const CityDistrictFilter = (cityId) => {
+  //   const { data: CitiesData } = useGetCitiesQuery({});
+  //   const cities = CitiesData?.cities?.map((city) => {
+  //     return {
+  //       label: city.cityname,
+  //       value: city.id,
+  //       districts: city.districts?.map((district) => {
+  //         return {
+  //           label: district.districtname,
+  //           value: district.id,
+  //         };
+  //       }),
+  //     };
+  //   });
+  //   const city = cities.filter((city) => city.value === cityId);
     
-    return city[0].districts;
-  }
+  //   return city[0].districts;
+  // }
 
-  console.log(CityDistrictFilter(16));
 
 
   
@@ -76,7 +87,15 @@ function BilgileriGuncelle() {
         toast.error(err);
       });
   };
+  useEffect(() => {
+    GetDistrictById({
+      variables: {
+        prmCityid:modelState.cityid,
+      },
+    })
+  }, [modelState.cityid])
 
+  console.log(districtsByData);
   const Input = styled("input")({
     display: "none",
   });
@@ -99,7 +118,7 @@ function BilgileriGuncelle() {
         schema={schema}
         onSubmit={handleSubmit}
         model={user}
-        onChangeModel={(model) => console.log(model)}
+        onChangeModel={(model) => setModelState(model)}
       >
         <div className="info">
           <span className="info">{user.name}</span>
@@ -136,10 +155,10 @@ function BilgileriGuncelle() {
             <AutoField name={"adress"} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <SelectField name={"cityid"}  label={"City"}  options={cities}/>
+            <SelectField name={"cityid"}  label={"City"}  options={cities ? cities : []} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <SelectField name={"districtsid"} label={"Districts"}  options={CityDistrictFilter(cities.value)}/>
+            {/* <SelectField name={"districtsid"} label={"Districts"}  /> */}
           </Grid>
         </Grid>
 
