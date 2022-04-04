@@ -14,6 +14,7 @@ import NoMatch from "pages/404/NoMatch";
 import {useSelector} from "react-redux";
 import Documents from "pages/Layouts/personel/Documents";
 import PersonelFiles from "pages/Layouts/admin/manage/files/PersonelFiles";
+import UserMovements from "pages/Layouts/admin/manage/Movements/UserMovements";
 
 
 const Dashboard = () => {
@@ -58,7 +59,7 @@ const Dashboard = () => {
         <Route path="*"element={<NoMatch />} />
         <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />
         <Route path="admin/personelfiles" element={<PersonelFiles />} />
-        
+        <Route path="admin/usermovement" element={<UserMovements />} />
       </Routes>
     </div>
   );

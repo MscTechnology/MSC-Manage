@@ -26,8 +26,8 @@ function Personel() {
     return <Error />;
   }
 
+  console.log(user);
   const handleInWork = () => {
-    console.log(user.id);
     console.log({
       variables: {
         prmUserMovement: {

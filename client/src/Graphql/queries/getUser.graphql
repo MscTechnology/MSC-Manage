@@ -1,24 +1,29 @@
 query GetUser {
   users {
-   id
-   schoolname
-   usertypesid
-     cityid
-  districtsid
-  status
+    id
+    schoolname
+    usertypesid
+    cityid
+    districtsid
+    status
 
-     createuser
-   createtime
-   changeuser
-   changetime
+    createuser
+    createtime
+    changeuser
+    changetime
 
-
-   usertypes {
-     typename
-   }
+    usertypes {
+      typename
+    }
     name
-     username
-     surname
-     password
+    username
+    surname
+    password
+
+    usersmovements {
+      transactiondate
+      exittime
+      entrytime
+    }
   }
 }

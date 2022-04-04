@@ -42,6 +42,21 @@ export type CityFilterInput = {
   plateno?: InputMaybe<ComparableInt32OperationFilterInput>;
 };
 
+export type ComparableByteOperationFilterInput = {
+  eq?: InputMaybe<Scalars['Byte']>;
+  gt?: InputMaybe<Scalars['Byte']>;
+  gte?: InputMaybe<Scalars['Byte']>;
+  in?: InputMaybe<Array<Scalars['Byte']>>;
+  lt?: InputMaybe<Scalars['Byte']>;
+  lte?: InputMaybe<Scalars['Byte']>;
+  neq?: InputMaybe<Scalars['Byte']>;
+  ngt?: InputMaybe<Scalars['Byte']>;
+  ngte?: InputMaybe<Scalars['Byte']>;
+  nin?: InputMaybe<Array<Scalars['Byte']>>;
+  nlt?: InputMaybe<Scalars['Byte']>;
+  nlte?: InputMaybe<Scalars['Byte']>;
+};
+
 export type ComparableInt32OperationFilterInput = {
   eq?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
@@ -156,6 +171,21 @@ export type Filetype = {
   userfiles?: Maybe<Array<Maybe<Userfile>>>;
 };
 
+export type FiletypeFilterInput = {
+  and?: InputMaybe<Array<FiletypeFilterInput>>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<FiletypeFilterInput>>;
+  typename?: InputMaybe<StringOperationFilterInput>;
+  userfiles?: InputMaybe<ListFilterInputTypeOfUserfileFilterInput>;
+};
+
+export type ListComparableByteOperationFilterInput = {
+  all?: InputMaybe<ComparableByteOperationFilterInput>;
+  any?: InputMaybe<Scalars['Boolean']>;
+  none?: InputMaybe<ComparableByteOperationFilterInput>;
+  some?: InputMaybe<ComparableByteOperationFilterInput>;
+};
+
 export type ListFilterInputTypeOfDistrictFilterInput = {
   all?: InputMaybe<DistrictFilterInput>;
   any?: InputMaybe<Scalars['Boolean']>;
@@ -168,6 +198,13 @@ export type ListFilterInputTypeOfUserFilterInput = {
   any?: InputMaybe<Scalars['Boolean']>;
   none?: InputMaybe<UserFilterInput>;
   some?: InputMaybe<UserFilterInput>;
+};
+
+export type ListFilterInputTypeOfUserfileFilterInput = {
+  all?: InputMaybe<UserfileFilterInput>;
+  any?: InputMaybe<Scalars['Boolean']>;
+  none?: InputMaybe<UserfileFilterInput>;
+  some?: InputMaybe<UserfileFilterInput>;
 };
 
 export type ListFilterInputTypeOfUsersmovementFilterInput = {
@@ -223,6 +260,11 @@ export type QueryCitiesArgs = {
 
 export type QueryDistrictsArgs = {
   where?: InputMaybe<DistrictFilterInput>;
+};
+
+
+export type QueryUserFilesArgs = {
+  where?: InputMaybe<UserfileFilterInput>;
 };
 
 
@@ -351,6 +393,21 @@ export type Userfile = {
   usersid: Scalars['Long'];
 };
 
+export type UserfileFilterInput = {
+  and?: InputMaybe<Array<UserfileFilterInput>>;
+  changetime?: InputMaybe<ComparableNullableOfDateTimeOperationFilterInput>;
+  changeuser?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  createtime?: InputMaybe<ComparableNullableOfDateTimeOperationFilterInput>;
+  createuser?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  data?: InputMaybe<ListComparableByteOperationFilterInput>;
+  extensitions?: InputMaybe<StringOperationFilterInput>;
+  filetypes?: InputMaybe<FiletypeFilterInput>;
+  filetypesid?: InputMaybe<ComparableInt64OperationFilterInput>;
+  id?: InputMaybe<ComparableInt64OperationFilterInput>;
+  or?: InputMaybe<Array<UserfileFilterInput>>;
+  usersid?: InputMaybe<ComparableInt64OperationFilterInput>;
+};
+
 export type Usersmovement = {
   __typename?: 'Usersmovement';
   createtime?: Maybe<Scalars['DateTime']>;
@@ -461,7 +518,7 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, exittime?: any | null, entrytime?: any | null } | null> | null } | null> | null };
 
 
 export const AddMovementDocument = gql`
@@ -773,6 +830,11 @@ export const GetUserDocument = gql`
     username
     surname
     password
+    usersmovements {
+      transactiondate
+      exittime
+      entrytime
+    }
   }
 }
     `;
