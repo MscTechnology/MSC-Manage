@@ -179,6 +179,12 @@ export type FiletypeFilterInput = {
   userfiles?: InputMaybe<ListFilterInputTypeOfUserfileFilterInput>;
 };
 
+export type FiletypeInput = {
+  id: Scalars['Long'];
+  typename?: InputMaybe<Scalars['String']>;
+  userfiles?: InputMaybe<Array<InputMaybe<UserfileInput>>>;
+};
+
 export type ListComparableByteOperationFilterInput = {
   all?: InputMaybe<ComparableByteOperationFilterInput>;
   any?: InputMaybe<Scalars['Boolean']>;
@@ -218,6 +224,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addMovement?: Maybe<Usersmovement>;
   addUser?: Maybe<ResultModelOfUser>;
+  addUserFile?: Maybe<ResultModelOfUserfile>;
   deleteUser?: Maybe<ResultModelOfUser>;
   updateUser?: Maybe<ResultModelOfUser>;
 };
@@ -230,6 +237,11 @@ export type MutationAddMovementArgs = {
 
 export type MutationAddUserArgs = {
   prmUser?: InputMaybe<UserInput>;
+};
+
+
+export type MutationAddUserFileArgs = {
+  prmUserFile?: InputMaybe<UserfileInput>;
 };
 
 
@@ -289,6 +301,13 @@ export type ResultModelOfUser = {
   resultType: ResultEnum;
 };
 
+export type ResultModelOfUserfile = {
+  __typename?: 'ResultModelOfUserfile';
+  data?: Maybe<Userfile>;
+  messageText?: Maybe<Scalars['String']>;
+  resultType: ResultEnum;
+};
+
 export type StringOperationFilterInput = {
   and?: InputMaybe<Array<StringOperationFilterInput>>;
   contains?: InputMaybe<Scalars['String']>;
@@ -323,6 +342,7 @@ export type User = {
   schoolname?: Maybe<Scalars['String']>;
   status: Scalars['Int'];
   surname?: Maybe<Scalars['String']>;
+  userfiles?: Maybe<Array<Maybe<Userfile>>>;
   username?: Maybe<Scalars['String']>;
   usersmovements?: Maybe<Array<Maybe<Usersmovement>>>;
   usertypes?: Maybe<Usertype>;
@@ -349,6 +369,7 @@ export type UserFilterInput = {
   schoolname?: InputMaybe<StringOperationFilterInput>;
   status?: InputMaybe<ComparableInt32OperationFilterInput>;
   surname?: InputMaybe<StringOperationFilterInput>;
+  userfiles?: InputMaybe<ListFilterInputTypeOfUserfileFilterInput>;
   username?: InputMaybe<StringOperationFilterInput>;
   usersmovements?: InputMaybe<ListFilterInputTypeOfUsersmovementFilterInput>;
   usertypes?: InputMaybe<UsertypeFilterInput>;
@@ -373,6 +394,7 @@ export type UserInput = {
   schoolname?: InputMaybe<Scalars['String']>;
   status: Scalars['Int'];
   surname?: InputMaybe<Scalars['String']>;
+  userfiles?: InputMaybe<Array<InputMaybe<UserfileInput>>>;
   username?: InputMaybe<Scalars['String']>;
   usersmovements?: InputMaybe<Array<InputMaybe<UsersmovementInput>>>;
   usertypes?: InputMaybe<UsertypeInput>;
@@ -390,6 +412,7 @@ export type Userfile = {
   filetypes?: Maybe<Filetype>;
   filetypesid: Scalars['Long'];
   id: Scalars['Long'];
+  users?: Maybe<User>;
   usersid: Scalars['Long'];
 };
 
@@ -405,7 +428,22 @@ export type UserfileFilterInput = {
   filetypesid?: InputMaybe<ComparableInt64OperationFilterInput>;
   id?: InputMaybe<ComparableInt64OperationFilterInput>;
   or?: InputMaybe<Array<UserfileFilterInput>>;
+  users?: InputMaybe<UserFilterInput>;
   usersid?: InputMaybe<ComparableInt64OperationFilterInput>;
+};
+
+export type UserfileInput = {
+  changetime?: InputMaybe<Scalars['DateTime']>;
+  changeuser?: InputMaybe<Scalars['Long']>;
+  createtime?: InputMaybe<Scalars['DateTime']>;
+  createuser?: InputMaybe<Scalars['Long']>;
+  data?: InputMaybe<Array<Scalars['Byte']>>;
+  extensitions?: InputMaybe<Scalars['String']>;
+  filetypes?: InputMaybe<FiletypeInput>;
+  filetypesid: Scalars['Long'];
+  id: Scalars['Long'];
+  users?: InputMaybe<UserInput>;
+  usersid: Scalars['Long'];
 };
 
 export type Usersmovement = {
@@ -479,6 +517,13 @@ export type AddUserMutationVariables = Exact<{
 
 export type AddUserMutation = { __typename?: 'Mutation', addUser?: { __typename?: 'ResultModelOfUser', resultType: ResultEnum, messageText?: string | null } | null };
 
+export type AddUserFileMutationVariables = Exact<{
+  prmUserFile?: InputMaybe<UserfileInput>;
+}>;
+
+
+export type AddUserFileMutation = { __typename?: 'Mutation', addUserFile?: { __typename?: 'ResultModelOfUserfile', resultType: ResultEnum, messageText?: string | null } | null };
+
 export type UpdateUserMutationVariables = Exact<{
   prmUser?: InputMaybe<UserInput>;
 }>;
@@ -518,7 +563,7 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, exittime?: any | null, entrytime?: any | null } | null> | null } | null> | null };
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null, userfiles?: Array<{ __typename?: 'Userfile', id: any, filetypesid: any, extensitions?: string | null, filetypes?: { __typename?: 'Filetype', typename?: string | null } | null } | null> | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, exittime?: any | null, entrytime?: any | null } | null> | null } | null> | null };
 
 
 export const AddMovementDocument = gql`
@@ -589,6 +634,40 @@ export function useAddUserMutation(baseOptions?: Apollo.MutationHookOptions<AddU
 export type AddUserMutationHookResult = ReturnType<typeof useAddUserMutation>;
 export type AddUserMutationResult = Apollo.MutationResult<AddUserMutation>;
 export type AddUserMutationOptions = Apollo.BaseMutationOptions<AddUserMutation, AddUserMutationVariables>;
+export const AddUserFileDocument = gql`
+    mutation AddUserFile($prmUserFile: UserfileInput) {
+  addUserFile(prmUserFile: $prmUserFile) {
+    resultType
+    messageText
+  }
+}
+    `;
+export type AddUserFileMutationFn = Apollo.MutationFunction<AddUserFileMutation, AddUserFileMutationVariables>;
+
+/**
+ * __useAddUserFileMutation__
+ *
+ * To run a mutation, you first call `useAddUserFileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddUserFileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addUserFileMutation, { data, loading, error }] = useAddUserFileMutation({
+ *   variables: {
+ *      prmUserFile: // value for 'prmUserFile'
+ *   },
+ * });
+ */
+export function useAddUserFileMutation(baseOptions?: Apollo.MutationHookOptions<AddUserFileMutation, AddUserFileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddUserFileMutation, AddUserFileMutationVariables>(AddUserFileDocument, options);
+      }
+export type AddUserFileMutationHookResult = ReturnType<typeof useAddUserFileMutation>;
+export type AddUserFileMutationResult = Apollo.MutationResult<AddUserFileMutation>;
+export type AddUserFileMutationOptions = Apollo.BaseMutationOptions<AddUserFileMutation, AddUserFileMutationVariables>;
 export const UpdateUserDocument = gql`
     mutation UpdateUser($prmUser: UserInput) {
   updateUser(prmUser: $prmUser) {
@@ -830,6 +909,14 @@ export const GetUserDocument = gql`
     username
     surname
     password
+    userfiles {
+      id
+      filetypesid
+      extensitions
+      filetypes {
+        typename
+      }
+    }
     usersmovements {
       transactiondate
       exittime

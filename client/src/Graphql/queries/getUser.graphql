@@ -20,7 +20,7 @@ query GetUser {
     surname
     password
 
-userfiles {
+    userfiles {
       id
       filetypesid
       extensitions
@@ -32,6 +32,6 @@ userfiles {
       transactiondate
       exittime
       entrytime
-    
+    }
   }
 }
