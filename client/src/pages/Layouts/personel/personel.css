@@ -20,6 +20,12 @@
   color: #3954ee;
 }
 
+.btns-2{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .users {
   margin-top: 12px;
   color: white;
@@ -43,6 +49,10 @@
 
 .btn3{
   margin-bottom:40px
+}
+
+.input{
+  margin-left:30px;
 }
 
 .bilgileriguncelle{
@@ -72,12 +82,13 @@ body {
   justify-content: le
 }
 
+
 .btns-1 {
+  display:flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-.btns-1 {
-  margin-left:0px;
+  justify-content: space-around;
+  margin-bottom:10px
+
 }
 
 .containerdcs{

@@ -3,13 +3,35 @@ import "../../../../../styles.css";
 import { IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { NavLink } from 'react-router-dom';
-import { useGetUserQuery,useGetFilesQuery } from 'generated/graphql';
+import { useGetUserQuery, useGetFilesQuery } from 'generated/graphql';
+import { DataGrid } from '@mui/x-data-grid';
 
 function PersonelFiles() {
   const { data, loading, error } = useGetUserQuery({});
 
-  const { data:filedata} = useGetFilesQuery({});
-  console.log(filedata);
+  const { data: filedata } = useGetFilesQuery({});
+
+  //console.log(filedata.userFiles);
+
+  const rows = data?.users?.map((user) => {
+
+    return (
+      { id: user.id, lastName: user.surname, firstName: user.name , files: user.userfiles.map((f)=>f.extensitions) }
+    )
+  })
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70},
+    { field: 'firstName', headerName: 'First name', width: 130 },
+    { field: 'lastName', headerName: 'Last name', width: 130 },
+    {
+      field: 'files',
+      headerName: 'Files',
+      sortable: false,
+      width: 160,
+    },
+  ];
+
 
   return (
     <div className="dcsPage">
@@ -19,13 +41,17 @@ function PersonelFiles() {
         <ArrowBackIcon />
       </IconButton>All Personels Files</div>
 
-      {
-        data?.users?.map((user)=>{
-          return (
-            <div className="personels">{`${user.id} \n${user.name}`}</div>
-          )
-        })
-      }
+      <div style={{ height: 550, width: '70%', background: "white", marginTop: 15 }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          checkboxSelection
+        />
+
+      </div>
+
 
     </div>
   )

@@ -1,0 +1,7 @@
+mutation AddUserFile($prmUserFile:UserfileInput){
+  addUserFile(prmUserFile: $prmUserFile){
+    resultType
+    messageText
+    
+  }
+}

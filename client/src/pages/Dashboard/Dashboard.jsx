@@ -12,7 +12,7 @@ import DosyaEkle from "../Layouts/personel/DosyaEkle"
 import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";
 import NoMatch from "pages/404/NoMatch";
 import {useSelector} from "react-redux";
-import Documents from "pages/Layouts/personel/Documents";
+import Documents from "pages/Layouts/personel/documents/Documents";
 import PersonelFiles from "pages/Layouts/admin/manage/files/PersonelFiles";
 
 
