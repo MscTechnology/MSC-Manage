@@ -20,10 +20,18 @@ query GetUser {
     surname
     password
 
+userfiles {
+      id
+      filetypesid
+      extensitions
+      filetypes {
+        typename
+      }
+    }
     usersmovements {
       transactiondate
       exittime
       entrytime
-    }
+    
   }
 }
