@@ -232,3 +232,14 @@
 .personel-ekle-bck-btn {
   margin-left: -12px;
 }
+
+
+
+.UserMovements{
+  margin-top: 2em;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

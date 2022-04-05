@@ -258,6 +258,7 @@ export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
   districts?: Maybe<Array<Maybe<District>>>;
+  filetypes?: Maybe<Array<Maybe<Filetype>>>;
   userFiles?: Maybe<Array<Maybe<Userfile>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
@@ -544,6 +545,11 @@ export type GetDistrictsByCityidQueryVariables = Exact<{
 
 export type GetDistrictsByCityidQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, districtname?: string | null } | null> | null };
 
+export type GetFileTypesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFileTypesQuery = { __typename?: 'Query', filetypes?: Array<{ __typename?: 'Filetype', id: any, typename?: string | null } | null> | null };
+
 export type GetFilesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -784,6 +790,41 @@ export function useGetDistrictsByCityidLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type GetDistrictsByCityidQueryHookResult = ReturnType<typeof useGetDistrictsByCityidQuery>;
 export type GetDistrictsByCityidLazyQueryHookResult = ReturnType<typeof useGetDistrictsByCityidLazyQuery>;
 export type GetDistrictsByCityidQueryResult = Apollo.QueryResult<GetDistrictsByCityidQuery, GetDistrictsByCityidQueryVariables>;
+export const GetFileTypesDocument = gql`
+    query GetFileTypes {
+  filetypes {
+    id
+    typename
+  }
+}
+    `;
+
+/**
+ * __useGetFileTypesQuery__
+ *
+ * To run a query within a React component, call `useGetFileTypesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFileTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFileTypesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFileTypesQuery(baseOptions?: Apollo.QueryHookOptions<GetFileTypesQuery, GetFileTypesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFileTypesQuery, GetFileTypesQueryVariables>(GetFileTypesDocument, options);
+      }
+export function useGetFileTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFileTypesQuery, GetFileTypesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFileTypesQuery, GetFileTypesQueryVariables>(GetFileTypesDocument, options);
+        }
+export type GetFileTypesQueryHookResult = ReturnType<typeof useGetFileTypesQuery>;
+export type GetFileTypesLazyQueryHookResult = ReturnType<typeof useGetFileTypesLazyQuery>;
+export type GetFileTypesQueryResult = Apollo.QueryResult<GetFileTypesQuery, GetFileTypesQueryVariables>;
 export const GetFilesDocument = gql`
     query GetFiles {
   userFiles {

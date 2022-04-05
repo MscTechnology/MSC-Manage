@@ -24,14 +24,14 @@ const UserMovements = () => {
   console.log(data?.usersmovements);
 
   const columns = [
-    {
-      field: "usersid",
-      headerName: "User id",
-      width: 130,
-      valueFormatter: (params) => {
-        return params.row?.users?.userid;
-      },
-    },
+    // {
+    //   field: "usersid",
+    //   headerName: "User id",
+    //   width: 130,
+    //   valueFormatter: (params) => {
+    //     return params.row?.users?.userid;
+    //   },
+    // },
     {
       field: "users.name",
       headerName: "Name",
@@ -65,9 +65,7 @@ const UserMovements = () => {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].entrytime.split(
-          "T"
-        )[1];
+        return (params.api.state.rows.idRowsLookup[params.id].entrytime).toString().replace(/([0-9]\d{1,2})([0-9]\d{1,2})/g);
       },
     },
     { field: "exittime", headerName: "Exit Time", width: 130 },
@@ -107,32 +105,24 @@ const UserMovements = () => {
       },
     },
   ];
+
+
+
   return (
-    <div className="">
+    <div className="UserMovements">
       Personel Giriş Çıkışları
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 400, width: "75%" }}>
         <DataGrid
           rows={data?.usersmovements}
           columns={columns}
           pageSize={5}
-          rowsPerPageOptions={[5]}
+          rowsPerPageOptions={[5, 10 , 20, 30, 40, 50]}
           checkboxSelection
+          autoPageSize
+          pagination        
         />
       </div>
-      <div
-        className="ag-theme-alpine"
-        style={{ height: 400, width: 800, marginLeft: 200 }}
-      >
-        <AgGridReact rowData={data?.usersmovements} columnDefs={columnDefs}>
-          <AgGridColumn
-            field="transactiondate"
-            headerName="Transaction Date"   
-            sortable={true}
-            filter={true}
-            checkboxSelection={true}
-          ></AgGridColumn>
-        </AgGridReact>
-      </div>
+     
     </div>
   );
 };

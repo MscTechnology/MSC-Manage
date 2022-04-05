@@ -5,6 +5,7 @@ import {
   HiddenField,
   AutoField,
   SubmitField,
+  SelectField,
 } from "uniforms-material";
 import { PhotoCamera, DeleteForeverIcon } from "@mui/icons-material";
 import {
@@ -26,46 +27,69 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { NavLink } from "react-router-dom";
 import {
   useAddUserFileMutation,
+  useGetFileTypesQuery,
   useUpdateUserMutation,
 } from "generated/graphql";
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { bridge as schema } from "./DocumentsSchema";
+import {  connectField } from 'uniforms';
+import { Upload } from '@progress/kendo-react-upload';
 
-const ImageField = ({ onChange, value }) => {
+const UploadFile = () => {
+  return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
+};
+
+const Image= ({ onChange, value }) => {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">
         <div>Choose your photo</div>
         <img
-         
-          style={{ cursor: "pointer", width: "150px", height: "150px" }}
+          alt=""
+          src={value || 'https://picsum.photos/150?grayscale'}
+          style={{ cursor: 'pointer', width: '150px', height: '150px' }}
         />
       </label>
       <input
         accept="image/*"
         id="file-input"
-        onChange={() => {}}
-        style={{ display: "none" }}
+        onChange={({ target: { files } }) => {
+          if (files && files[0]) {
+            onChange(URL.createObjectURL(files[0]));
+          }
+        }}
+        style={{ display: 'none' }}
         type="file"
       />
     </div>
   );
 };
 
+const ImageField = connectField(Image);
+const UploadField = connectField(UploadFile);
+
 function Documents() {
   const [addUserFileMutation, { data, loading, error }] =
     useAddUserFileMutation({});
 
+    const { data:dataFileTypes, } = useGetFileTypesQuery({
+    });
+
+    const filetypes = dataFileTypes?.filetypes?.map((filetype) => {
+      return {
+        label: filetype.typename,
+        value: filetype.id,
+      };
+    })
+
+
   const user = useSelector((state) => state.users.user);
   console.log(user);
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+ 
 
-  const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
-    setIsFilePicked(true);
-  };
+
+  
 
   const handleSave = (model) => {
     addUserFileMutation({
@@ -80,28 +104,32 @@ function Documents() {
     });
   };
 
-  console.log(selectedFile);
+  
 
   return (
     <div className="containerdcs">
       <AutoForm
         schema={schema}
+        onChangeModel={(model) => {
+          console.log(model)
+        }  }
         onSubmit={(model) => {
           console.log(model, "asdasdsa");
           handleSave(model);
         }}
       >
+        
+
         <HiddenField name="id" value={0} />
         <HiddenField name="usersid" value={user.id} />
-        <HiddenField name="filetypesid" value={2} />
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="changeuser" value={user.changeuser} />
         <HiddenField name="extensitions" value={"png"} />
+        
+        <SelectField name="filetypesid" label="File Type" options={filetypes} />
+        <UploadField name="data" field="data" onChange={(model)=>console.log(model)} />
         <div style={{ textAlign: "center" }}>
           <SubmitField onSubmit={handleSave} />
-          <Button variant="outlined" onClick={handleSave}>
-            Save
-          </Button>
         </div>
       </AutoForm>
 
