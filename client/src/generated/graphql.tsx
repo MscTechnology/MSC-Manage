@@ -261,6 +261,7 @@ export type Query = {
   userFiles?: Maybe<Array<Maybe<Userfile>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
+  usersmovements?: Maybe<Array<Maybe<Usersmovement>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
 };
 
@@ -546,14 +547,19 @@ export type GetDistrictsByCityidQuery = { __typename?: 'Query', districts?: Arra
 export type GetFilesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFilesQuery = { __typename?: 'Query', userFiles?: Array<{ __typename?: 'Userfile', id: any, usersid: any, data?: Array<any> | null } | null> | null };
+export type GetFilesQuery = { __typename?: 'Query', userFiles?: Array<{ __typename?: 'Userfile', id: any, usersid: any, data?: Array<any> | null, filetypesid: any, extensitions?: string | null, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null } | null> | null };
 
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
 }>;
 
 
-export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number } | null> | null };
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number, cityid?: any | null, districtsid?: any | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, entrytime?: any | null, exittime?: any | null } | null> | null } | null> | null };
+
+export type GetUserMovementsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserMovementsQuery = { __typename?: 'Query', usersmovements?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: any | null, exittime?: any | null, transactiondate?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null, username?: string | null } | null } | null> | null };
 
 export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -784,6 +790,12 @@ export const GetFilesDocument = gql`
     id
     usersid
     data
+    filetypesid
+    extensitions
+    createuser
+    createtime
+    changeuser
+    changetime
   }
 }
     `;
@@ -823,6 +835,13 @@ export const GetUserDetailDocument = gql`
     password
     id
     status
+    cityid
+    districtsid
+    usersmovements {
+      transactiondate
+      entrytime
+      exittime
+    }
   }
 }
     `;
@@ -854,6 +873,50 @@ export function useGetUserDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetUserDetailQueryHookResult = ReturnType<typeof useGetUserDetailQuery>;
 export type GetUserDetailLazyQueryHookResult = ReturnType<typeof useGetUserDetailLazyQuery>;
 export type GetUserDetailQueryResult = Apollo.QueryResult<GetUserDetailQuery, GetUserDetailQueryVariables>;
+export const GetUserMovementsDocument = gql`
+    query GetUserMovements {
+  usersmovements {
+    id
+    usersid
+    entrytime
+    exittime
+    transactiondate
+    users {
+      id
+      name
+      surname
+      username
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetUserMovementsQuery__
+ *
+ * To run a query within a React component, call `useGetUserMovementsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserMovementsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserMovementsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserMovementsQuery(baseOptions?: Apollo.QueryHookOptions<GetUserMovementsQuery, GetUserMovementsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserMovementsQuery, GetUserMovementsQueryVariables>(GetUserMovementsDocument, options);
+      }
+export function useGetUserMovementsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserMovementsQuery, GetUserMovementsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserMovementsQuery, GetUserMovementsQueryVariables>(GetUserMovementsDocument, options);
+        }
+export type GetUserMovementsQueryHookResult = ReturnType<typeof useGetUserMovementsQuery>;
+export type GetUserMovementsLazyQueryHookResult = ReturnType<typeof useGetUserMovementsLazyQuery>;
+export type GetUserMovementsQueryResult = Apollo.QueryResult<GetUserMovementsQuery, GetUserMovementsQueryVariables>;
 export const GetUserTypesDocument = gql`
     query GetUserTypes {
   usertypes {

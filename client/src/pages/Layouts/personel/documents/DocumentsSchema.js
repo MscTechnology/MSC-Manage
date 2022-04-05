@@ -4,29 +4,6 @@ import { buildASTSchema, parse } from 'graphql';
 
 const schema = `
    
-input UserInput {
-  id: Int!
-  name: String
-  surname: String
-  username: String
-  password: String
-  email: String
-  phonenumber: Float
-  identificationnumber: Float
-  adress: String
-  cityid: Int
-  districtsid: Int
-  gender: String
-  schoolname: String
-  usertypesid: Int
-  createuser: Int
-  createtime: String
-  changeuser: Int
-  changetime: String
-  status: Int!
-  userfiles: [UserfileInput]
-}
-
 input UserfileInput {
     id: Int!
     usersid: Int!
@@ -38,7 +15,7 @@ input UserfileInput {
     changeuser: Int
     changetime: String
     filetypes: FiletypeInput
-    users: UserInput
+    
   }
 
   input FiletypeInput {
@@ -48,7 +25,7 @@ input UserfileInput {
   }
   
 `
-const schemaType = buildASTSchema(parse(schema)).getType('UserInput');
+const schemaType = buildASTSchema(parse(schema)).getType('UserfileInput');
 const schemaExtras = {
 
 };

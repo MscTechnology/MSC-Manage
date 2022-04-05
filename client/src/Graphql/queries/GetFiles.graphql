@@ -3,5 +3,11 @@ query GetFiles{
         id
         usersid
         data
+        filetypesid
+        extensitions
+        createuser
+        createtime
+        changeuser
+        changetime
     }
 }

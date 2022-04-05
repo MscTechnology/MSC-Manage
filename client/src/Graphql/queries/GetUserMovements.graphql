@@ -1,0 +1,15 @@
+query GetUserMovements{
+  usersmovements {
+    id
+    usersid
+    entrytime
+    exittime
+    transactiondate
+    users {
+      id
+      name
+      surname
+      username
+    }
+  }
+}

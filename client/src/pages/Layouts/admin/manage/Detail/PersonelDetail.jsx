@@ -23,7 +23,6 @@ function PersonelDetail() {
 
   const { data: allData } = useGetUserQuery({});
 
-
   const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
 
   const { data, loading, error } = useGetUserDetailQuery({
@@ -45,11 +44,8 @@ function PersonelDetail() {
     }
 
   }, [data,status])
-  console.log()
-
   console.log(data)
-  console.log(rowData)
-  console.log(data?.usersById)
+
 
   if (loading) {
     return <Loading />
@@ -179,6 +175,28 @@ function PersonelDetail() {
             <Typography gutterBottom variant="h5" component="div">
               {
                 `Username : ${rowData.username}`
+              }
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+              {
+                `Password : ${rowData.password}`
+              }
+            </Typography>
+            {
+              rowData?.usersmovements?.map((movement) => {
+                return (
+                  <ul>
+                    <li>
+                      {`Movement : ${movement.entrytime}`}
+                    </li>
+                  </ul>
+
+                )
+              })
+            }
+            <Typography gutterBottom variant="h5" component="div">
+              {
+                `Password : ${rowData?.usersmovements?.map((user) => user.entrytime)}`
               }
             </Typography>
 

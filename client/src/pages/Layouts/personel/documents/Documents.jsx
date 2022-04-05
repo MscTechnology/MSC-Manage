@@ -7,99 +7,104 @@ import {
   SubmitField,
 } from "uniforms-material";
 import { PhotoCamera, DeleteForeverIcon } from "@mui/icons-material";
-import { IconButton, styled, Paper, TableRow, TableHead, TableContainer, TableCell, TableBody, Table } from "@mui/material";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {
+  IconButton,
+  styled,
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Table,
+} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { NavLink } from "react-router-dom";
-import { useAddUserFileMutation, useUpdateUserMutation } from "generated/graphql";
-import { useSelector } from 'react-redux';
+import {
+  useAddUserFileMutation,
+  useUpdateUserMutation,
+} from "generated/graphql";
+import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { bridge as schema } from "./DocumentsSchema";
 
-
-const ImageField =({ onChange, value })=>{
+const ImageField = ({ onChange, value }) => {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">
         <div>Choose your photo</div>
         <img
-          
-          src={value || 'https://picsum.photos/150?grayscale'}
-          style={{ cursor: 'pointer', width: '150px', height: '150px' }}
+          src={value || "https://picsum.photos/150?grayscale"}
+          style={{ cursor: "pointer", width: "150px", height: "150px" }}
         />
       </label>
-      <input 
+      <input
         accept="image/*"
         id="file-input"
-        onChange={()=>{}}
-        style={{ display: 'none' }}
+        onChange={() => {}}
+        style={{ display: "none" }}
         type="file"
       />
     </div>
   );
-}
-
+};
 
 function Documents() {
-
-  const [addUserFileMutation, { data, loading, error }] = useAddUserFileMutation({});
+  const [addUserFileMutation, { data, loading, error }] =
+    useAddUserFileMutation({});
 
   const user = useSelector((state) => state.users.user);
-
+  console.log(user);
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
 
-
   const handleSave = (model) => {
     addUserFileMutation({
       variables: {
-        prmUserFile: {
-          //extensitions: selectedFile?.name?.split('.').pop(),
-          extensitions:"jpg",
-          id: 0,
-          filetypesid: 1,
-          usersid: user.id,
-          data: model.data,
-        }
-      }
-    })
+        prmUserFile: model
+      },
+    });
     console.log({
       variables: {
-        prmUserFile: model
-      }
-    })
-  }
+        prmUserFile: model,
+      },
+    });
+  };
 
-  console.log(selectedFile)
+  console.log(selectedFile);
 
   return (
     <div className="containerdcs">
-
       <AutoForm
         schema={schema}
-        onSubmit={(model)=>{
-          console.log(model)
-          
-          handleSave(model)}}
+        onSubmit={(model) => {
+          console.log(model, "asdasdsa");
+          handleSave(model);
+        }}
       >
-        <div style={{ textAlign: 'center' }}>
-          <ImageField name="pictureUrl" />
-          <SubmitField onSubmit={handleSave}/>
-          <Button variant="outlined" onClick={handleSave}>Save</Button>
+        <HiddenField name="id" value={1} />
+        <HiddenField name="usersid" value={user.id} />
+        <HiddenField name="filetypesid" value={1} />
+        <HiddenField name="createuser" value={user.createuser} />
+        <HiddenField name="changeuser" value={user.changeuser} />
+        <HiddenField name="extensitions" value={"gggg"} />
+        <div style={{ textAlign: "center" }}>
+          <ImageField name="data" value={user.data} />
+          <SubmitField onSubmit={handleSave} />
+          <Button variant="outlined" onClick={handleSave}>
+            Save
+          </Button>
         </div>
       </AutoForm>
-
-
-
 
       {/* 
       <div className="docs-title"><IconButton size="large" color="primary" component="span" as={NavLink}
@@ -181,9 +186,8 @@ function Documents() {
 
         <Button variant="outlined" onClick={handleSave}>Save</Button>
       </div> */}
-
     </div>
-  )
+  );
 }
 
 export default Documents;
