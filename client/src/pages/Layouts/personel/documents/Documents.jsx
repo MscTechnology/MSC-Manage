@@ -38,7 +38,7 @@ const ImageField = ({ onChange, value }) => {
       <label htmlFor="file-input">
         <div>Choose your photo</div>
         <img
-          src={value || "https://picsum.photos/150?grayscale"}
+         
           style={{ cursor: "pointer", width: "150px", height: "150px" }}
         />
       </label>
@@ -91,14 +91,13 @@ function Documents() {
           handleSave(model);
         }}
       >
-        <HiddenField name="id" value={1} />
+        <HiddenField name="id" value={0} />
         <HiddenField name="usersid" value={user.id} />
-        <HiddenField name="filetypesid" value={1} />
+        <HiddenField name="filetypesid" value={2} />
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="changeuser" value={user.changeuser} />
-        <HiddenField name="extensitions" value={"gggg"} />
+        <HiddenField name="extensitions" value={"png"} />
         <div style={{ textAlign: "center" }}>
-          <ImageField name="data" value={user.data} />
           <SubmitField onSubmit={handleSave} />
           <Button variant="outlined" onClick={handleSave}>
             Save

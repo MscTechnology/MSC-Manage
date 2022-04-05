@@ -21,7 +21,7 @@ const UserMovements = () => {
       createuser: user.createuser,
     };
   });
-  console.log(userData);
+  console.log(data?.usersmovements);
 
   const columns = [
     {
@@ -126,7 +126,7 @@ const UserMovements = () => {
         <AgGridReact rowData={data?.usersmovements} columnDefs={columnDefs}>
           <AgGridColumn
             field="transactiondate"
-            headerName="Transaction Date"
+            headerName="Transaction Date"   
             sortable={true}
             filter={true}
             checkboxSelection={true}
