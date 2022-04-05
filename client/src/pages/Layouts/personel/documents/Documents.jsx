@@ -124,10 +124,10 @@ function Documents() {
         <HiddenField name="usersid" value={user.id} />
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="changeuser" value={user.changeuser} />
-        <HiddenField name="extensitions" value={"png"} />
+        <HiddenField name="extensitions" value={"ggg"} />
         
         <SelectField name="filetypesid" label="File Type" options={filetypes} />
-        <UploadField name="data" field="data" onChange={(model)=>console.log(model)} />
+        <ImageField name="data" value={data} field="data" onChange={(model)=>console.log(model)} />
         <div style={{ textAlign: "center" }}>
           <SubmitField onSubmit={handleSave} />
         </div>

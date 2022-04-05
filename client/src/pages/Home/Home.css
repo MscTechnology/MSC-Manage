@@ -1,12 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:wght@100&display=swap");
 
-.home {
 
+img {
+  width: 30%;
+  height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  img {
+    width: 90%;
+  }
+  
+  .button1{
+    background-color: #275087;
+    border: 1px solid #f7f7f7;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 80% !important;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+  
+  }
+
+  .home{
+    margin-top: 20%;
+  }
+  
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+  }
+}
+
+
+.home{
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../assets/images/bg1.jpg");
   background-position: center;
   height: 100vh;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custombutton{
+  background-color: #275087;
+  border: 1px solid #f7f7f7;
+  border-radius: 30px;
+  padding: 10px;
+  margin-top: 10px;
+  max-width: 40%;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-decoration: none;
+}
+
+.button1{
+  background-color: #275087;
+  border: 1px solid #f7f7f7;
+  border-radius: 30px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 40%;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-decoration: none;
+
 }
 
 .msc-title {
@@ -54,10 +128,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .msc-title {
-    font-size: 3em;
-
-  }
+ 
 
   .home {
     justify-content: center;

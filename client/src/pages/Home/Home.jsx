@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CustomButton from "../../components/Button/CustomButton.jsx";
 import "./Home.css";
 import { gql, useQuery } from "@apollo/client";
@@ -7,45 +7,65 @@ import Error from "components/Error/Error.js";
 import { useGetUserQuery } from "generated/graphql.tsx";
 
 const Home = () => {
-
-  const { data, loading, error } = useGetUserQuery({}); 
+  const { data, loading, error } = useGetUserQuery({});
 
   if (loading) {
-    <Loading/>
+    <Loading />;
   }
 
   if (error) {
-    <Error/>
+    <Error />;
   }
+  const imagePATH = "./logo.jpg";
 
   return (
     <>
       <div className="home">
         <div>
-          <div className="msc-title">MSC Teknoloji</div>
-
-          <div className="login-button">
-            <div className="personal-button">
-              <CustomButton
-                mt={1}
-                color={"primary"}
-                components={Link}
-                to="personelLogin"
-                onClick={()=>{}}
-                title={"Personel Log In"}
-              />
-            </div>
-            <div className="admin-button">
-              <CustomButton
-                color={"success"}
-                components={Link}
-                to="adminLogin"
-                onClick={()=>{}}
-                title={"Admin Log In"}
-              />
-            </div>
-          </div>
+          <img src={require("./logo.jpg")} alt="" />
         </div>
+
+        <div className="buttons">
+          <Link
+            className="button1"
+            role="button"
+            to="personelLogin"
+            
+          >
+            Personel
+          </Link>
+          <Link
+            className="button1"
+            role="button"
+            to="adminLogin"
+            
+          >
+            Admin
+          </Link>
+
+        </div>
+
+        {/* <div className="login-button">
+          <div className="personal-button">
+            <CustomButton
+              mt={1}
+              color={"primary"}
+              components={Link}
+              to="personelLogin"
+              onClick={() => {}}
+              title={"Personel"}
+            />
+          </div>
+          <div className="admin-button">
+            <CustomButton
+              color={"success"}
+              components={Link}
+              to="adminLogin"
+              onClick={() => {}}
+              title={"Admin"}
+            />
+          </div>
+        </div> */}
       </div>
     </>
   );

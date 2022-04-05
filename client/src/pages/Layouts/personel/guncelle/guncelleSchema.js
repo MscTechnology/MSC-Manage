@@ -44,7 +44,14 @@ const schemaValidator = (model) => {
  
     const details = [];
 
-
+    if (!model.name) {
+        details.push({
+            message: 'name is required',
+            path: ['name'],
+            type: 'required',
+            validator: 'required'
+        });
+    }
 
     return details.length ? { details } : null;
 };

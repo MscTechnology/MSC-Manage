@@ -1,13 +1,8 @@
 import "../../../styles.css";
 import { Button, IconButton } from "@mui/material";
-import {
-  UserDeleteOutlined,
-  UserAddOutlined,
-  UserSwitchOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import { UserAddOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
@@ -17,12 +12,12 @@ const buttonState = {
   variant: {
     contained: "contained",
     outlined: "outlined",
-  }
+  },
 };
 
 const Admin = () => {
   const user = useSelector((state) => state.users.user);
-  console.log(user)
+  console.log(user);
 
   return (
     <div className="adminPage">
@@ -30,15 +25,22 @@ const Admin = () => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid item xs={8}>
             <h1 className="admin-title">
-              <IconButton size="large" color="primary" component="span" as={NavLink}
-                to="/adminLogin">
+              <IconButton
+                size="large"
+                color="primary"
+                component="span"
+                as={NavLink}
+                to="/adminLogin"
+              >
                 <ArrowBackIcon />
-              </IconButton>Management Panel</h1>
+              </IconButton>
+              Management Panel
+            </h1>
             <h2 className="admin-subtitle">{user.name}</h2>
             <div className="admin-button-group">
               <div className="btn1">
                 <Button
-                  onClick={() => { }}
+                  onClick={() => {}}
                   startIcon={<UserAddOutlined />}
                   size={buttonState.size}
                   icon={<UserAddOutlined />}
@@ -70,6 +72,17 @@ const Admin = () => {
                   to="personelfiles"
                 >
                   LIst All personels Files
+                </Button>
+              </div>
+              <div className="btn1">
+                <Button
+                  size={buttonState.size}
+                  variant="outlined"
+                  startIcon={<UnorderedListOutlined />}
+                  as={NavLink}
+                  to="usermovement"
+                >
+                  See User Movements
                 </Button>
               </div>
             </div>
