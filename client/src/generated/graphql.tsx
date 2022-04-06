@@ -263,6 +263,7 @@ export type Query = {
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
   usersmovements?: Maybe<Array<Maybe<Usersmovement>>>;
+  usersmovementsById?: Maybe<Array<Maybe<Usersmovement>>>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
 };
 
@@ -289,6 +290,11 @@ export type QueryUsersArgs = {
 
 export type QueryUsersByIdArgs = {
   where?: InputMaybe<UserFilterInput>;
+};
+
+
+export type QueryUsersmovementsByIdArgs = {
+  where?: InputMaybe<UsersmovementFilterInput>;
 };
 
 export enum ResultEnum {
@@ -566,6 +572,13 @@ export type GetUserMovementsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserMovementsQuery = { __typename?: 'Query', usersmovements?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: any | null, exittime?: any | null, transactiondate?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null, username?: string | null } | null } | null> | null };
+
+export type GetUserMovementByIdQueryVariables = Exact<{
+  prmId: Scalars['Long'];
+}>;
+
+
+export type GetUserMovementByIdQuery = { __typename?: 'Query', usersmovementsById?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, transactiondate?: any | null, entrytime?: any | null, exittime?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null } | null } | null> | null };
 
 export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -953,6 +966,50 @@ export function useGetUserMovementsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetUserMovementsQueryHookResult = ReturnType<typeof useGetUserMovementsQuery>;
 export type GetUserMovementsLazyQueryHookResult = ReturnType<typeof useGetUserMovementsLazyQuery>;
 export type GetUserMovementsQueryResult = Apollo.QueryResult<GetUserMovementsQuery, GetUserMovementsQueryVariables>;
+export const GetUserMovementByIdDocument = gql`
+    query GetUserMovementById($prmId: Long!) {
+  usersmovementsById(where: {usersid: {eq: $prmId}}) {
+    id
+    usersid
+    transactiondate
+    entrytime
+    exittime
+    users {
+      id
+      name
+      surname
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetUserMovementByIdQuery__
+ *
+ * To run a query within a React component, call `useGetUserMovementByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserMovementByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserMovementByIdQuery({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *   },
+ * });
+ */
+export function useGetUserMovementByIdQuery(baseOptions: Apollo.QueryHookOptions<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>(GetUserMovementByIdDocument, options);
+      }
+export function useGetUserMovementByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>(GetUserMovementByIdDocument, options);
+        }
+export type GetUserMovementByIdQueryHookResult = ReturnType<typeof useGetUserMovementByIdQuery>;
+export type GetUserMovementByIdLazyQueryHookResult = ReturnType<typeof useGetUserMovementByIdLazyQuery>;
+export type GetUserMovementByIdQueryResult = Apollo.QueryResult<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>;
 export const GetUserTypesDocument = gql`
     query GetUserTypes {
   usertypes {

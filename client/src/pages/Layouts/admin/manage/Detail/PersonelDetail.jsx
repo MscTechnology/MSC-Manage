@@ -1,5 +1,5 @@
 import "../../../../../styles.css";
-import { Button, Typography, CardMedia, CardContent, CardActions, Card, Switch, FormControlLabel } from "@mui/material";
+import { Button, Typography, CardContent, Card } from "@mui/material";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
@@ -10,7 +10,6 @@ import { setActive } from "../../../../../../src/store/User/UserSlice"
 import { styled } from '@mui/material/styles';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } }
 
 function PersonelDetail() {
   const [checked, setChecked] = useState(true);
@@ -21,6 +20,7 @@ function PersonelDetail() {
 
   const [updateUserMutation, { data: updateData, loading: updateLoading, error: UpdateError }] = useUpdateUserMutation({});
 
+
   const { data: allData } = useGetUserQuery({});
 
   const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
@@ -30,6 +30,7 @@ function PersonelDetail() {
       prmId: parseInt(id)
     },
   })
+  console.log(data)
 
   const status = data?.usersById[0].status
 
@@ -44,7 +45,6 @@ function PersonelDetail() {
     }
 
   }, [data, status])
-  console.log(data)
 
 
   if (loading) {
@@ -69,6 +69,7 @@ function PersonelDetail() {
       dispatch(setActive(!checked));
     }
   }
+
   const blue = {
     500: '#007FFF',
   };
@@ -78,6 +79,8 @@ function PersonelDetail() {
     500: '#AAB4BE',
     600: '#6F7E8C',
   };
+
+
   const Root = styled('span')(
     ({ theme }) => `
     font-size: 0;
@@ -212,12 +215,11 @@ function PersonelDetail() {
             </div>
           </div>
 
-         
+        
           <Link
           className="detail-page-button"
           role="button"
-          to="admin"
-
+          to={`/admin/tumpersonel/movement/${data?.usersById[0].id}`}        
         >
           View Personels Movements Table
         </Link>

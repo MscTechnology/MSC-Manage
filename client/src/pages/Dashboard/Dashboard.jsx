@@ -15,18 +15,20 @@ import {useSelector} from "react-redux";
 import Documents from "pages/Layouts/personel/documents/Documents";
 import PersonelFiles from "pages/Layouts/admin/manage/files/PersonelFiles";
 import UserMovements from "pages/Layouts/admin/manage/Movements/UserMovements";
+import Movements from "pages/Layouts/admin/manage/MovementsTable/Movements";
 
 
 const Dashboard = () => {
   const isAdmin = useSelector(state => state.users.isAdmin)
   const isPersonel = useSelector(state => state.users.isPersonel)
-  console.log(isPersonel);
+
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="personelLogin" element={<PersonelLogin />} />
         <Route path="adminLogin" element={<AdminLogin />} />
+        <Route path="/admin/tumpersonel/movement/:id" element={<Movements/>}/>
         
         {
           isPersonel ? <Route path="personel" element={<Personel />} /> : <Route path="*" element={<NoMatch />} />
@@ -38,8 +40,6 @@ const Dashboard = () => {
           isPersonel ?  <Route path="personel/dosyaekle" element={<DosyaEkle />} /> : <Route path="*" element={<NoMatch />} />
         }
     
-       
-        
         {
           isAdmin ? <Route  path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
         }
@@ -54,12 +54,14 @@ const Dashboard = () => {
         {
           isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
         }
+        
         <Route path="/personel/documents" element={<Documents/>}/>
         <Route path="*"element={<NoMatch />} />
         <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />
         <Route path="admin/personelfiles" element={<PersonelFiles />} />
         <Route path="admin/usermovement" element={<UserMovements />} />
       </Routes>
+
     </div>
   );
 };

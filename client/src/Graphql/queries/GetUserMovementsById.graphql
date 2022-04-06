@@ -1,0 +1,16 @@
+query GetUserMovementById($prmId: Long!){
+  usersmovementsById(where: {usersid:{eq:$prmId}}) {
+    id
+    usersid
+    transactiondate
+    entrytime
+    exittime
+   users {
+      id
+      name
+      surname
+      
+      }
+   } 
+   
+}
