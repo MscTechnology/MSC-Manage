@@ -560,7 +560,7 @@ export type GetUserDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number, cityid?: any | null, districtsid?: any | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, entrytime?: any | null, exittime?: any | null } | null> | null } | null> | null };
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number, cityid?: any | null, districtsid?: any | null } | null> | null };
 
 export type GetUserMovementsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -575,7 +575,11 @@ export type GetUserTypesQuery = { __typename?: 'Query', usertypes?: Array<{ __ty
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
+<<<<<<< HEAD
 export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, email?: string | null, adress?: string | null, identificationnumber?: any | null, phonenumber?: any | null, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null, userfiles?: Array<{ __typename?: 'Userfile', id: any, filetypesid: any, extensitions?: string | null, filetypes?: { __typename?: 'Filetype', typename?: string | null } | null } | null> | null, usersmovements?: Array<{ __typename?: 'Usersmovement', transactiondate?: any | null, exittime?: any | null, entrytime?: any | null } | null> | null } | null> | null };
+=======
+export type GetUserQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: any, schoolname?: string | null, usertypesid?: any | null, cityid?: any | null, districtsid?: any | null, status: number, email?: string | null, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null, phonenumber?: any | null, identificationnumber?: any | null, name?: string | null, username?: string | null, surname?: string | null, password?: string | null, usertypes?: { __typename?: 'Usertype', typename?: string | null } | null, userfiles?: Array<{ __typename?: 'Userfile', id: any, filetypesid: any, extensitions?: string | null, filetypes?: { __typename?: 'Filetype', typename?: string | null } | null } | null> | null } | null> | null };
+>>>>>>> ae5683e548edb6c21cd8aac716fe39cf1652603a
 
 
 export const AddMovementDocument = gql`
@@ -878,11 +882,6 @@ export const GetUserDetailDocument = gql`
     status
     cityid
     districtsid
-    usersmovements {
-      transactiondate
-      entrytime
-      exittime
-    }
   }
 }
     `;
@@ -1003,13 +1002,24 @@ export const GetUserDocument = gql`
     districtsid
     status
     email
+<<<<<<< HEAD
     adress
     identificationnumber
     phonenumber
+=======
+>>>>>>> ae5683e548edb6c21cd8aac716fe39cf1652603a
     createuser
     createtime
     changeuser
     changetime
+<<<<<<< HEAD
+=======
+    phonenumber
+    identificationnumber
+    usertypes {
+      typename
+    }
+>>>>>>> ae5683e548edb6c21cd8aac716fe39cf1652603a
     name
     username
     surname
@@ -1024,11 +1034,6 @@ export const GetUserDocument = gql`
       filetypes {
         typename
       }
-    }
-    usersmovements {
-      transactiondate
-      exittime
-      entrytime
     }
   }
 }

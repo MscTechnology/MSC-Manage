@@ -1,6 +1,6 @@
 import "../../../../../styles.css";
-import { Button, Typography, CardMedia, CardContent, CardActions, Card, Switch,FormControlLabel  } from "@mui/material";
-import { NavLink, useParams } from "react-router-dom";
+import { Button, Typography, CardMedia, CardContent, CardActions, Card, Switch, FormControlLabel } from "@mui/material";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
@@ -43,7 +43,7 @@ function PersonelDetail() {
 
     }
 
-  }, [data,status])
+  }, [data, status])
   console.log(data)
 
 
@@ -56,23 +56,23 @@ function PersonelDetail() {
   }
 
   const handleChange = (e) => {
-    if(data){
+    if (data) {
       updateUserMutation({
-      variables: {
-        prmUser: {
-          ...data?.usersById[0],
-          status: checked ? 0 : 1
-        }
-      },
-    })
-    setChecked(e.target.checked);
-    dispatch(setActive(!checked));
-    } 
+        variables: {
+          prmUser: {
+            ...data?.usersById[0],
+            status: checked ? 0 : 1
+          }
+        },
+      })
+      setChecked(e.target.checked);
+      dispatch(setActive(!checked));
+    }
   }
   const blue = {
     500: '#007FFF',
   };
-  
+
   const grey = {
     400: '#BFC7CF',
     500: '#AAB4BE',
@@ -144,7 +144,7 @@ function PersonelDetail() {
     }
     `,
   );
-  
+
 
   return (
     <div className="detailPage">
@@ -152,66 +152,75 @@ function PersonelDetail() {
         Informations
 
       </div>
-      
-      
       <div className="name">
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia className="cardMedia"
-            component="img"
-            height="100%"
-            image="https://semantic-ui.com/images/avatar2/large/kristy.png"
-            alt="green iguana"
-          />
-          <CardContent >
-            <Typography gutterBottom variant="h5" component="div">
-              {`ID : ${id}`}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {`Name : ${rowData.name}`}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {`Surname : ${rowData.surname}`}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {
-                `Username : ${rowData.username}`
-              }
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {
-                `Password : ${rowData.password}`
-              }
-            </Typography>
-            {
-              rowData?.usersmovements?.map((movement) => {
-                return (
-                  <ul>
-                    <li>
-                      {`Movement : ${movement.entrytime}`}
-                    </li>
-                  </ul>
 
-                )
-              })
-            }
-            <Typography gutterBottom variant="h5" component="div">
-              {
-                `Password : ${rowData?.usersmovements?.map((user) => user.entrytime)}`
-              }
-            </Typography>
+        <Card sx={{ maxWidth: 700,maxHeight: 600,paddingLeft:10,paddingRight:10 }}>
+          <div className="card1">
+            
+            <div>
+              <CardContent >
+                <Typography gutterBottom variant="h5" component="div">
+                  {`ID : ${id}`}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                  {`Name : ${rowData.name}`}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                  {`Surname : ${rowData.surname}`}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                  {
+                    `Username : ${rowData.username}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                  {
+                    `Password : ${rowData.password}`
+                  }
+                </Typography>
+                {
+                  rowData?.usersmovements?.map((movement) => {
+                    return (
+                      <ul>
+                        <li>
+                          {`Movement : ${movement.entrytime}`}
+                        </li>
+                      </ul>
 
-          </CardContent>
-          <CardActions className="buttons1">
+                    )
+                  })
+                }
+                <Typography gutterBottom variant="h5" component="div">
+                  {
+                    `Entry Time : ${rowData?.usersmovements?.map((user) => user.entrytime)}`
+                  }
+                </Typography>
+
+              </CardContent>
+            </div>
+          </div>
+
+          </Card>
+          <div className="buttons1">
             <div>
               <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
             </div>
             <div className="active-deactive">
               <div>deactive</div>
-              <SwitchUnstyled component={Root} onChange={handleChange} checked={checked}/>
+              <SwitchUnstyled component={Root} onChange={handleChange} checked={checked} />
               <div>Active</div>
             </div>
-          </CardActions>
-        </Card>
+          </div>
+
+         
+          <Link
+          className="detail-page-button"
+          role="button"
+          to="admin"
+
+        >
+          View Personels Movements Table
+        </Link>
       </div>
     </div>
   )

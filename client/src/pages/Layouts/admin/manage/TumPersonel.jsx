@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Error from "../../../../components/Error/Error";
 import { useGetUserQuery } from "generated/graphql";
+import { Link } from "react-router-dom";
+import Grid from '@mui/material/Grid';
 
 const TumPersonel = () => {
   const { data, loading, error } = useGetUserQuery({});
@@ -33,26 +35,43 @@ const TumPersonel = () => {
         All Personels
       </div>
 
-      {userFilter?.map((p) => (
-        <div key={p?.id} className="allpersonel">
-          <div className={p.status ? "btn" : "btn-deactive"}>
-            <Button
-              disableElevation
-              size="large"
-              color={p?.status ? "primary" : "error"}
-              variant="outlined"
-              as={NavLink}
-              to={`${p?.id}`}
-            >
-              {p?.id}-{p?.name} {p?.surname}
-            </Button>
+
+      {
+        userFilter?.map((p) => (
+          <div key={p?.id} className="allpersonel">
+            <Grid container  >
+              <Grid item md={10} className={p.status ? "btn" : "btn-deactive"}>
+                <Button
+                  disableElevation
+                  size="large"
+                  color={p?.status ? "primary" : "error"}
+                  variant="outlined"
+                  as={NavLink}
+                  to={`${p?.id}`}
+                >
+                  {p?.id}-{p?.name} {p?.surname}
+                </Button>
+              </Grid>
+              <Grid item xs={2} className={p?.status ? "status" : "status-deactive"}>
+                  {p?.status ? "Active " : "Deactive"}
+              </Grid>
+            </Grid>
           </div>
-          <div className={p?.status ? "status" : "status-deactive"}>
-            {p?.status ? "Active " : "Deactive"}
-          </div>
-        </div>
-      ))}
-    </div>
+        ))
+      }
+
+
+      <Link
+        className="button11"
+        role="button"
+        to="/admin/personelekle"
+
+      >
+        Add new Personel
+      </Link>
+
+
+    </div >
   );
 };
 
