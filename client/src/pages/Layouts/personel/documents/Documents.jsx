@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../personel.css";
 import {
   AutoForm,
@@ -7,40 +7,22 @@ import {
   SubmitField,
   SelectField,
 } from "uniforms-material";
-import { PhotoCamera, DeleteForeverIcon } from "@mui/icons-material";
-import {
-  IconButton,
-  styled,
-  Paper,
-  TableRow,
-  TableHead,
-  TableContainer,
-  TableCell,
-  TableBody,
-  Table,
-} from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { NavLink } from "react-router-dom";
 import {
   useAddUserFileMutation,
   useGetFileTypesQuery,
-  useUpdateUserMutation,
 } from "generated/graphql";
 import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
 import { bridge as schema } from "./DocumentsSchema";
-import {  connectField } from 'uniforms';
+import { connectField } from 'uniforms';
 import { Upload } from '@progress/kendo-react-upload';
+import Grid from "@mui/material/Grid";
+
 
 const UploadFile = () => {
   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
 };
 
-const Image= ({ onChange, value }) => {
+const Image = ({ onChange, value }) => {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">
@@ -72,27 +54,23 @@ const UploadField = connectField(UploadFile);
 function Documents() {
   const [addUserFileMutation, { data, loading, error }] =
     useAddUserFileMutation({});
-  
 
-    const { data:FileTypesData } = useGetFileTypesQuery({
-    });
 
-    console.log(FileTypesData)
+  const { data: FileTypesData } = useGetFileTypesQuery({
+  });
 
-    const filetypes = FileTypesData?.filetypes?.map((filetype) => {
-      return {
-        label: filetype.typename,
-        value: filetype.id,
-      };
-    })
+  console.log(FileTypesData)
+
+  const filetypes = FileTypesData?.filetypes?.map((filetype) => {
+    return {
+      label: filetype.typename,
+      value: filetype.id,
+    };
+  })
 
 
   const user = useSelector((state) => state.users.user);
-  console.log(user);
- 
 
-
-  
 
   const handleSave = (model) => {
     addUserFileMutation({
@@ -100,39 +78,52 @@ function Documents() {
         prmUserFile: model
       },
     });
-    console.log({
-      variables: {
-        prmUserFile: model,
-      },
-    });
   };
 
-  
+
 
   return (
     <div className="containerdcs">
       <AutoForm
         schema={schema}
-        onChangeModel={(model) => {
-          console.log(model)
-        }  }
         onSubmit={(model) => {
-          console.log(model, "asdasdsa");
           handleSave(model);
         }}
       >
-        
+        <Grid
+          direction="column"
+          justifyContent="start"
+          alignItems="center"
+          spacing={2}
+          className="dcs-grid-head"
+        >
+          
+            <div className="dcs-grid">
+              <Grid item xs={6} md={6} className="dcs-grid">
+                <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
+              </Grid>
+            </div>
+            <div className="dcs-grid">
+              <Grid item xs={6} md={6} className="dcs-grid">
+                <ImageField name="data" field="data" />
+              </Grid>
+
+            </div>
+            <div className="dcs-grid">
+              <Grid item xs={6} md={6} style={{ textAlign: "center" }} className="dcs-grid">
+                <SubmitField onSubmit={handleSave} />
+              </Grid>
+            </div>
+
+        </Grid>
+
 
         <HiddenField name="id" value={0} />
         <HiddenField name="usersid" value={user.id} />
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="changeuser" value={user.changeuser} />
         <HiddenField name="extensitions" value={"png"} />
-        <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
-        <UploadField name="data" field="data" onChange={(model)=>console.log(model)} />
-        <div style={{ textAlign: "center" }}>
-          <SubmitField onSubmit={handleSave} />
-        </div>
+
       </AutoForm>
 
       {/* 
