@@ -46,6 +46,7 @@
 
 .btn1 {
   margin-top: 3em;
+  text-align: center;
 }
 .btn2 {
   margin-bottom: 3em;
@@ -95,7 +96,12 @@ body {
 
 }
 
+.dcs-grid{
+  margin-top:20px;
+}
+
 .containerdcs{
+  padding-top:20px;
   background-repeat: no-repeat;
   background-size: cover;
   background: #92AED4;
@@ -104,6 +110,8 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  
 }
 .docs-title{
   color: white;
