@@ -1,7 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import CustomButton from "../../components/Button/CustomButton.jsx";
 import "./Home.css";
-import { gql, useQuery } from "@apollo/client";
 import Loading from "components/Loading/Loading.js";
 import Error from "components/Error/Error.js";
 import { useGetUserQuery } from "generated/graphql.tsx";
@@ -16,12 +14,11 @@ const Home = () => {
   if (error) {
     <Error />;
   }
-  const imagePATH = "./logo.jpg";
 
   return (
     <>
       <div className="home">
-        <div>
+        <div >
           <img src={require("./logo.jpg")} alt="" />
         </div>
 

@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+.bilgileriguncelle-title{
+  margin-top:20px;
+}
+
 .users {
   margin-top: 12px;
   color: white;
@@ -121,4 +125,3 @@ body {
   margin-right :0px;
   padding: 0;
 }
-

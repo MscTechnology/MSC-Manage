@@ -8,11 +8,11 @@ query GetUserDetail($prmId: Long!){
     status
     cityid
     districtsid
-    usersmovements {
-      transactiondate
-      entrytime
-      exittime
-    }
+    # usersmovements {
+    #   transactiondate
+    #   entrytime
+    #   exittime
+    # }
     
   }
 }

@@ -1,4 +1,4 @@
-import { Button, IconButton, styled } from "@mui/material";
+import {IconButton, styled } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -7,21 +7,19 @@ import {
   HiddenField,
   AutoField,
   SubmitField,
-  SelectField,
-  ListItemField,
-  ListField,
+  SelectField
 } from "uniforms-material";
 import { bridge as schema } from "./guncelleSchema";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
-  useGetDistrictsQuery,
   useUpdateUserMutation,
   useGetCitiesQuery,
   useGetDistrictsByCityidLazyQuery,
 } from "generated/graphql";
 import { toast, ToastContainer } from "react-toastify";
 import Grid from "@mui/material/Grid";
-import {setUser} from '../../../../store/User/UserSlice'
+import "../personel.css"
+
 function BilgileriGuncelle() {
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
@@ -80,12 +78,10 @@ function BilgileriGuncelle() {
     };
   });
 
-  const Input = styled("input")({
-    display: "none",
-  });
+ 
   return (
     <div className="bilgileriguncelle">
-      <div className="title">
+      <div className="bilgileriguncelle-title">
         <IconButton
           size="large"
           color="primary"
@@ -105,7 +101,7 @@ function BilgileriGuncelle() {
           handleSubmit(model)}}
         model={user}
         onChangeModel={(model) => {
-          
+          console.log(model)
           setModelState(model);
           // dispatch(setUser(modelState));
         }}
@@ -130,9 +126,9 @@ function BilgileriGuncelle() {
           <Grid item xs={12} md={6}>
             <AutoField name={"password"} label="Password: " />
           </Grid>
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <AutoField name={"email"} label="Email: " />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={6}>
             <AutoField name={"phonenumber"} label="Phone Number: " />
           </Grid>
@@ -165,13 +161,14 @@ function BilgileriGuncelle() {
            
           </Grid>
         </Grid>
-
+        <HiddenField name="usertypesid" value={user.usertypesid} />
+        <HiddenField name="email" value={"kubra"} />
         <HiddenField name="id" value={user.id} />
-        <HiddenField name="status"  value={1}/>
+        <HiddenField name="status"  value={user.status}/>
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="createtime" value={user.createtime} />
       <HiddenField name="changeuser"  value={user.createuser}/>
-        <HiddenField name="changetime" value={changeDate} />
+        {/* <HiddenField name="changetime" value={changeDate} /> */}
 
 
         {/* <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
