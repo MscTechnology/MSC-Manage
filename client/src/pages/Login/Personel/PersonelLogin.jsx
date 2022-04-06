@@ -1,18 +1,27 @@
 import React, { useState } from "react";
-import "../login.css";
-import { Button, IconButton } from "@mui/material";
-import CustomButton from "../../../components/Button/CustomButton";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-
-import { AutoForm, HiddenField, AutoField, SubmitField, ErrorsField } from "uniforms-material";
-import { bridge as schema } from "./PersonelSchema";
-import { useAddMovementMutation, useGetPersonelsQuery, useGetUserQuery } from "generated/graphql";
-import { useDispatch, useSelector } from 'react-redux'
-import { setUser, setLoginDate, setOutDate } from 'store/User/UserSlice'
-import Loading from "../../../components/Loading/Loading";
+//! Components
 import Error from "../../../components/Error/Error";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Loading from "../../../components/Loading/Loading";
+//! Design
+import "../login.css";
+import { IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+//! Redux
+import { useGetUserQuery } from "generated/graphql";
+import { setUser } from "store/User/UserSlice";
+import { useDispatch } from "react-redux";
 
+//! Router
+import { NavLink, useNavigate } from "react-router-dom";
+
+//! Uniforms
+import {
+  AutoForm,
+  AutoField,
+  SubmitField,
+  ErrorsField,
+} from "uniforms-material";
+import { bridge as schema } from "./PersonelSchema";
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
@@ -22,15 +31,13 @@ const PersonelLogin = () => {
 
   console.log(data);
 
-
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (error) {
-    return <Error />
+    return <Error />;
   }
-
 
   const loginedPersonel = (users) => {
     setTitle("Signed In");
@@ -38,16 +45,14 @@ const PersonelLogin = () => {
     setTimeout(() => {
       navigate("/personel/");
     }, 1000);
-  }
+  };
 
   const unloginedPersonel = () => {
     setTitle("Wrong username or password");
     setTimeout(() => {
       setTitle("Personel Log In");
     }, 1000);
-  }
-
-
+  };
 
   const handleLogin = (model) => {
     const users = data?.users?.filter(
@@ -57,25 +62,27 @@ const PersonelLogin = () => {
         user.usertypesid === 2
     );
     if (users?.length > 0) {
-      loginedPersonel(users)
-
-
-
+      loginedPersonel(users);
     } else if (users?.length === 0) {
-      unloginedPersonel()
+      unloginedPersonel();
     }
   };
 
   return (
     <div className="container">
-      <div className="title"><IconButton size="large" color="primary" component="span" as={NavLink}
-        to="/">
-        <ArrowBackIcon />
-      </IconButton>{title}</div>
-      <AutoForm
-        schema={schema}
-        onSubmit={handleLogin}
-      >
+      <div className="title">
+        <IconButton
+          size="large"
+          color="primary"
+          component="span"
+          as={NavLink}
+          to="/"
+        >
+          <ArrowBackIcon />
+        </IconButton>
+        {title}
+      </div>
+      <AutoForm schema={schema} onSubmit={handleLogin}>
         <ErrorsField />
         <AutoField name={"username"} />
         <AutoField name={"password"} />
@@ -83,7 +90,6 @@ const PersonelLogin = () => {
         <div className="btn-2">
           <SubmitField className="hidden" value="Log In" />
         </div>
-
       </AutoForm>
     </div>
   );

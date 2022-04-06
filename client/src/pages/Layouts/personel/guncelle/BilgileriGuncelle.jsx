@@ -22,7 +22,6 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import Grid from "@mui/material/Grid";
 import {setUser} from '../../../../store/User/UserSlice'
-
 function BilgileriGuncelle() {
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
@@ -64,7 +63,6 @@ function BilgileriGuncelle() {
         toast.error(err);
       });
   };
-  
   useEffect(() => {
     if (modelState.cityid) {
       GetDistrictById({
@@ -158,13 +156,13 @@ function BilgileriGuncelle() {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-           {
-              modelState.cityid &&  <SelectField
+           
+             <SelectField
               name={"districtsid"}
               label={"Districts"}
               options={districtData ? districtData : []}
             />
-           }  
+           
           </Grid>
         </Grid>
 

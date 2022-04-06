@@ -6,7 +6,6 @@ import {
   AutoField,
   HiddenField,
   SubmitField,
-  DateField,
   ErrorsField,
 } from "uniforms-material";
 import { bridge as schema } from "./Schema";
@@ -14,15 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../../../styles.css"
 import { NavLink } from "react-router-dom";
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useSelector,useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
   const [addUserMutation, {data:dataMutation,loading:loadingMutation}] = useAddUserMutation();
   const user = useSelector((state) => state.users.user);
   console.log(user);
-  if (loading) {
+  if (loading) { 
     return <div>Loading...</div>;
   }
   if (error) {

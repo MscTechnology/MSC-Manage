@@ -1,6 +1,5 @@
-
-import { GraphQLBridge } from 'uniforms-bridge-graphql';
-import { buildASTSchema, parse } from 'graphql';
+import { GraphQLBridge } from "uniforms-bridge-graphql";
+import { buildASTSchema, parse } from "graphql";
 
 const schema = `
    
@@ -93,49 +92,40 @@ input FiletypeInput {
   userfiles: [UserfileInput]
 }
 
-`
+`;
 
-
-const schemaType = buildASTSchema(parse(schema)).getType('UserInput');
-const schemaExtras = {
-    
-};
-
-
+const schemaType = buildASTSchema(parse(schema)).getType("UserInput");
+const schemaExtras = {};
 
 const schemaValidator = (model) => {
-    const details = [
-        
-    ];
+  const details = [];
 
-    if (!model.username) {
-        details.push({
-          name:"username",
-            message: 'Name is required',
-            path: ['username'],
-            type: 'required',
-            value: model.username,
-        });
-    }
-    if (!model.password) {
-        details.push({
-          name:"password",
-            message: 'Password is required',
-            path: ['password'],
-            type: 'required',
-            value: model.password,
-        });
-    }
-      
-  
-    
-    return details.length ? { details } : null;
+  if (!model.username) {
+    details.push({
+      name: "username",
+      message: "Name is required",
+      path: ["username"],
+      type: "required",
+      value: model.username,
+    });
+  }
+  if (!model.password) {
+    details.push({
+      name: "password",
+      message: "Password is required",
+      path: ["password"],
+      type: "required",
+      value: model.password,
+    });
+  }
 
+  return details.length ? { details } : null;
 };
 
 // console.table("GraphQLBridge", new GraphQLBridge(schemaType, schemaValidator, schemaExtras.fields))
 
-
-
-
-export const bridge = new GraphQLBridge(schemaType, schemaValidator, schemaExtras);
+export const bridge = new GraphQLBridge(
+  schemaType,
+  schemaValidator,
+  schemaExtras
+);

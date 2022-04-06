@@ -8,17 +8,24 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Admin = () => {
   const user = useSelector((state) => state.users.user);
-  console.log(user)
+  console.log(user);
 
   return (
     <div className="adminPage">
       <div>
           
             <h1 className="admin-title">
-              <IconButton size="large" color="primary" component="span" as={NavLink}
-                to="/adminLogin">
+              <IconButton
+                size="large"
+                color="primary"
+                component="span"
+                as={NavLink}
+                to="/adminLogin"
+              >
                 <ArrowBackIcon />
-              </IconButton>Management Panel</h1>
+              </IconButton>
+              Management Panel
+            </h1>
             <h2 className="admin-subtitle">{user.name}</h2>
 
             <a href="admin/tumpersonel" className="admin-card">

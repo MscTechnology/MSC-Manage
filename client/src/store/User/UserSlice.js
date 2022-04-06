@@ -1,4 +1,4 @@
-import { createSlice, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 
