@@ -1,24 +1,10 @@
 import "../../../styles.css";
-import { Button, IconButton } from "@mui/material";
-import {
-  UserDeleteOutlined,
-  UserAddOutlined,
-  UserSwitchOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import {Typography, CardContent,Card,IconButton} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
-
-const buttonState = {
-  size: "large",
-  variant: {
-    contained: "contained",
-    outlined: "outlined",
-  }
-};
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Admin = () => {
   const user = useSelector((state) => state.users.user);
@@ -27,54 +13,90 @@ const Admin = () => {
   return (
     <div className="adminPage">
       <div>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid item xs={8}>
+          
             <h1 className="admin-title">
               <IconButton size="large" color="primary" component="span" as={NavLink}
                 to="/adminLogin">
                 <ArrowBackIcon />
               </IconButton>Management Panel</h1>
             <h2 className="admin-subtitle">{user.name}</h2>
-            <div className="admin-button-group">
-              <div className="btn1">
-                <Button
-                  onClick={() => { }}
-                  startIcon={<UserAddOutlined />}
-                  size={buttonState.size}
-                  icon={<UserAddOutlined />}
-                  variant={buttonState.variant.outlined}
-                  as={NavLink}
-                  to="personelekle"
-                >
-                  Add personel
-                </Button>
-              </div>
 
-              <div className="btn1">
-                <Button
-                  size={buttonState.size}
-                  variant="outlined"
-                  startIcon={<UnorderedListOutlined />}
-                  as={NavLink}
-                  to="tumpersonel"
-                >
-                  LIst All personels
-                </Button>
-              </div>
-              <div className="btn1">
-                <Button
-                  size={buttonState.size}
-                  variant="outlined"
-                  startIcon={<UnorderedListOutlined />}
-                  as={NavLink}
-                  to="personelfiles"
-                >
-                  LIst All personels Files
-                </Button>
-              </div>
-            </div>
-          </Grid>
-        </Box>
+            <a href="admin/tumpersonel" className="admin-card">
+
+              <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                  <div className="card-group">
+                    <div className="admin-icon">
+                      <PersonOutlineIcon fontSize="large" className="icon" />
+                    </div>
+                    <div className="admin-tp">
+                      <Typography variant="h5" component="div" className="topography">
+                        Personel
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Kayıtlı olan Personeller
+                      </Typography>
+                    </div>
+                  </div>
+
+
+                </CardContent>
+              </Card>
+            </a>
+
+
+            <a href="admin/usermovement" className="admin-card">
+              <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                  <div className="card-group">
+                    <div className="admin-icon">
+                      <SearchIcon fontSize="large" className="icon" />
+                    </div>
+                    <div className="admin-tp">
+                      <Typography variant="h5" component="div" className="topography">
+                        Giriş Çıkış
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Personel Giriş Çıkışları
+                      </Typography>
+                    </div>
+                  </div>
+
+
+                </CardContent>
+              </Card>
+            </a>
+
+
+
+            <a href="#" className="admin-card">
+
+              <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                  <div className="card-group">
+                    <div className="admin-icon">
+                      <SearchIcon fontSize="large" className="icon" />
+                    </div>
+                    <div className="admin-tp">
+                      <Typography variant="h5" component="div" className="topography">
+                        Personel Ekle
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Özet
+                      </Typography>
+                    </div>
+                  </div>
+
+                </CardContent>
+              </Card>
+            </a>
+
+
+
+
+
+            
+       
       </div>
     </div>
   );

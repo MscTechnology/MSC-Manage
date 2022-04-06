@@ -72,11 +72,14 @@ const UploadField = connectField(UploadFile);
 function Documents() {
   const [addUserFileMutation, { data, loading, error }] =
     useAddUserFileMutation({});
+  
 
-    const { data:dataFileTypes, } = useGetFileTypesQuery({
+    const { data:FileTypesData } = useGetFileTypesQuery({
     });
 
-    const filetypes = dataFileTypes?.filetypes?.map((filetype) => {
+    console.log(FileTypesData)
+
+    const filetypes = FileTypesData?.filetypes?.map((filetype) => {
       return {
         label: filetype.typename,
         value: filetype.id,
@@ -125,8 +128,7 @@ function Documents() {
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="changeuser" value={user.changeuser} />
         <HiddenField name="extensitions" value={"png"} />
-        
-        <SelectField name="filetypesid" label="File Type" options={filetypes} />
+        <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
         <UploadField name="data" field="data" onChange={(model)=>console.log(model)} />
         <div style={{ textAlign: "center" }}>
           <SubmitField onSubmit={handleSave} />
