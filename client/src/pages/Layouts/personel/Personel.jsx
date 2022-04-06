@@ -4,11 +4,12 @@ import { NavLink } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import Loading from "../../../components/Loading/Loading";
 import Error from "../../../components/Error/Error";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useGetUserQuery, useAddMovementMutation } from "generated/graphql";
 import moment from "moment";
-
+import { toast ,ToastContainer} from "react-toastify";
+import {setTap} from "../../../store/MovementsToast/MovementsToast";
 function Personel() {
   const { loading, error } = useGetUserQuery({});
 
@@ -17,6 +18,9 @@ function Personel() {
 
 
   const user = useSelector((state) => state.users.user);
+  const isTap = useSelector((state) => state.movements.isTap);
+  const dispatch = useDispatch();  
+  console.log(isTap)
 
   if (loading) {
     return <Loading />;
@@ -27,19 +31,16 @@ function Personel() {
   }
 
   console.log(user);
+
   const handleInWork = () => {
-    console.log({
-      variables: {
-        prmUserMovement: {
-          id: 0,
-          usersid: user.id,
-          entrytime: null,
-          exittime: null,
-          transactiondate: moment(),
-          createuser: user.createuser,
-        }
-      }
-    })
+    if (isTap) {
+      dispatch(setTap(false));
+      toast.success("You are in work!");
+    }
+    else{
+      dispatch(setTap(true));
+      toast.error("You are out of work!") 
+    }
     addMovementMutation({
       variables: {
         prmUserMovement: {
@@ -52,11 +53,13 @@ function Personel() {
         }
       }
     })
+
   };
  
 
   return (
     <div className="container1">
+      <ToastContainer />
       <div className="title1">
         <IconButton
           size="large"

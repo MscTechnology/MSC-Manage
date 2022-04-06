@@ -128,9 +128,9 @@ function BilgileriGuncelle() {
           <Grid item xs={6} md={6}>
             <AutoField name={"password"} label="Password: " />
           </Grid>
-          {/* <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <AutoField name={"email"} label="Email: " />
-          </Grid> */}
+          </Grid>
           <Grid item xs={12} md={6}>
             <AutoField name={"phonenumber"} label="Phone Number: " />
           </Grid>
@@ -166,7 +166,6 @@ function BilgileriGuncelle() {
           </Grid>
         </Grid>
         <HiddenField name="usertypesid" value={user.usertypesid} />
-        <HiddenField name="email" value={"kubra"} />
         <HiddenField name="id" value={user.id} />
         <HiddenField name="status"  value={user.status}/>
         <HiddenField name="createuser" value={user.createuser} />
