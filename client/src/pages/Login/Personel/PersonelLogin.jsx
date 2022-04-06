@@ -87,8 +87,8 @@ const PersonelLogin = () => {
         <AutoField name={"username"} />
         <AutoField name={"password"} />
 
-        <div className="btn-2">
-          <SubmitField className="hidden" value="Log In" />
+        <div className="personel-login-btn">
+          <SubmitField className="hidden" label="Log In" />
         </div>
       </AutoForm>
     </div>

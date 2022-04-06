@@ -1,20 +1,17 @@
 import '../../styles.css'
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import LottieView from "lottie-react"
 
 
 const SplashScreen = () => {
   return (
     <div className='splash'>
-        
-        <h1 className='splash-title'>MSC Teknoloji</h1>
+         <div className='splash-img'>
+          <img src={require("./logo.jpg")} alt="" />
+        </div>
         <Box sx={{ width: '100%'  }}>
-        <LottieView
-      source={require('../../assets/animations/loading.json')}
-      autoPlay
-    />
-      <LinearProgress  />
+        
+      <LinearProgress color='error' />
     </Box>
     </div>
   )

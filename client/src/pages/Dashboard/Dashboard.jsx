@@ -39,7 +39,6 @@ const Dashboard = () => {
         }
     
        
-          <Route path="/admin/personelekle" element={<PersonelEkle />} />
         
         {
           isAdmin ? <Route  path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />

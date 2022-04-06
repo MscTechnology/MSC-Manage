@@ -6,20 +6,23 @@ query GetUser {
     cityid
     districtsid
     status
-
+    email
+    adress
+    identificationnumber
+    phonenumber
     createuser
     createtime
     changeuser
     changetime
 
-    usertypes {
-      typename
-    }
     name
     username
     surname
     password
 
+    usertypes {
+      typename
+    }
     userfiles {
       id
       filetypesid

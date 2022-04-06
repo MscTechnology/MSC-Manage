@@ -102,6 +102,8 @@ function BilgileriGuncelle() {
         onSubmit={(model)=>{
           console.log(model)
           delete model.usertypes
+          delete model.userfiles
+          delete model.usersmovements
           handleSubmit(model)}}
         model={user}
         onChangeModel={(model) => {
@@ -112,22 +114,22 @@ function BilgileriGuncelle() {
       >
 
         <Grid
-          container
+          
           direction="column"
-          justifyContent="space-between"
-          alignItems="stretch"
+          justifyContent="start"
+          alignItems="center"
           spacing={2}
         >
-          <Grid item xs={12} md={12}>
+          <Grid item xs={6} md={6}>
             <AutoField name={"name"} label="Name: " />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6}>
             <AutoField name={"surname"} label="Surname: " />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6}>
             <AutoField name={"username"} label="Username: " />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6}>
             <AutoField name={"password"} label="Password: " />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -156,12 +158,14 @@ function BilgileriGuncelle() {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-           
-             <SelectField
-              name={"districtsid"}
-              label={"Districts"}
-              options={districtData ? districtData : []}
-            />
+            {
+              modelState.cityid && ( <SelectField
+                name={"districtsid"}
+                label={"Districts"}
+                options={districtData ? districtData : []}
+              />)
+            }
+            
            
           </Grid>
         </Grid>
@@ -186,7 +190,7 @@ function BilgileriGuncelle() {
           </MSCTableField> */}
 
         <div className="btn-2">
-          <SubmitField value="Update Informations" />
+          <SubmitField value="Update Informations" label="Save" />
         </div>
       </AutoForm>
       <ToastContainer />

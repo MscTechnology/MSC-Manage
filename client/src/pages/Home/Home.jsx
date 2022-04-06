@@ -16,10 +16,9 @@ const Home = () => {
   if (error) {
     <Error />;
   }
-  const imagePATH = "./logo.jpg";
 
   return (
-    <>
+    
       <div className="home">
         <div>
           <img src={require("./logo.jpg")} alt="" />
@@ -67,7 +66,7 @@ const Home = () => {
           </div>
         </div> */}
       </div>
-    </>
+  
   );
 };
 

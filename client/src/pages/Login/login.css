@@ -45,9 +45,11 @@ body {
 
 .personel-login-btn{
   margin-top: 15px;
+  text-align: center;
+  
 }
 
 .admin-login-submit{
   margin-top: 15px;
+  text-align: center;
 }
-

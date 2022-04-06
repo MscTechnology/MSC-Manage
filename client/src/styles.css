@@ -13,6 +13,7 @@
   flex-direction: row
 }
 
+
 .admin-card{
   text-decoration: none;
   display: flex;
@@ -90,12 +91,16 @@
 
 
 .splash {
-  background-color: #142d4c;
+  background-color: #b0bec1;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  justify-content: space-around;
+}
+.splash-img{
+  width: 80%;
+  text-align: center;
 }
 
 
@@ -147,12 +152,16 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
 }
 
 .title-404 {
   color: white;
+}
+.NoMatchTexts{
+  font-size: 3em;
 }
 
 .detailPage {
@@ -211,9 +220,9 @@
     margin: 10px;
   }
 
-
-}
-.btn{
+  .NoMatchTexts{
+    font-size:1em;
+  }
 
 }
 .btn-deactive{
