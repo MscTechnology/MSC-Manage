@@ -65,13 +65,13 @@ const PersonelEkle = () => {
         <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
           <ErrorsField />
           <HiddenField name="id" value={0} />
-          <AutoField name="name" label="* Name" />
-          <AutoField name={"surname"} />
-          <AutoField name={"username"} />
-          <AutoField name={"password"} />
+          <AutoField name="name" label="Name*" />
+          <AutoField name={"surname"} label="Surname*"/>
+          <AutoField name={"username"} label="Username*"/>
+          <AutoField name={"password"} label="Password*"/>
           <SelectField
             name={"usertypesid"}
-            label="Select User Type"
+            label="Select User Type*"
             options={userTypeData}
           />
           <HiddenField name="createuser" value={user.id} />
@@ -82,7 +82,7 @@ const PersonelEkle = () => {
 
           <div className="personel-ekle-buttons">
            
-              <SubmitField value="Submit" />
+              <SubmitField value="Submit"label="Add"/>
            
           </div>
         </AutoForm>

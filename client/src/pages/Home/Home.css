@@ -9,7 +9,7 @@ img {
 
 @media screen and (max-width: 1368px) {
   img {
-    width: 90%;
+    width: 50%;
   }
   .button1{
     background-color: #275087;

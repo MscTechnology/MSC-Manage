@@ -1,4 +1,3 @@
-import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../../../../styles.css";
@@ -8,7 +7,8 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import { useGetUserQuery, useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid } from "@mui/x-data-grid";
-import { moment } from "moment";
+import * as React from "react";
+
 const UserMovements = () => {
   const { data, loading, error } = useGetUserMovementsQuery({});
 
@@ -26,7 +26,7 @@ const UserMovements = () => {
     {
       field: "users.name",
       headerName: "Name",
-      width: 130,
+      width: 100,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].users.name;
       },
@@ -34,7 +34,7 @@ const UserMovements = () => {
     {
       field: "users.surname",
       headerName: "Surname",
-      width: 130,
+      width: 100,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].users.surname;
       },
@@ -42,7 +42,7 @@ const UserMovements = () => {
     {
       field: "transactiondate",
       headerName: "Transaction Date",
-      width: 200,
+      width: 130,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].transactiondate
           .split("T")[0]
@@ -61,23 +61,32 @@ const UserMovements = () => {
           .replace(/([0-9]\d{1,2})([0-9]\d{1,2})/g);
       },
     },
-    { field: "exittime", headerName: "Exit Time", width: 130 },
+    { field: "exittime", headerName: "Exit Time", width: 130,
+      valueFormatter: (params) => {
+        const exittime = (params.api.state.rows.idRowsLookup[params.id].exittime);
+        return exittime === null ? "Daha Çıkmadı" : exittime
+      }
+  },
   ];
+
+  
 
   return (
     <div className="UserMovements">
       Personel Giriş Çıkışları
-      <div style={{ height: 400, width: "75%" }}>
+      <div style={{ height: 800, width: "75%" }}>
         <DataGrid
           rows={data?.usersmovements}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
+          pageSize={10}
+          rowsPerPageOptions={[6, 12, 18, 40, 50]}
           checkboxSelection
           autoPageSize
           pagination
         />
       </div>
+     
+      
     </div>
   );
 };
