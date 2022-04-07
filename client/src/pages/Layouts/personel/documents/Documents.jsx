@@ -16,7 +16,9 @@ import { bridge as schema } from "./DocumentsSchema";
 import { connectField } from 'uniforms';
 import { Upload } from '@progress/kendo-react-upload';
 import Grid from "@mui/material/Grid";
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { IconButton } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const UploadFile = () => {
   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
@@ -26,7 +28,7 @@ const Image = ({ onChange, value }) => {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">
-        <div>Choose your photo</div>
+        <div style={{ marginBottom: "10%" }}>Choose your photo</div>
         <img
           alt=""
           src={value || 'https://picsum.photos/150?grayscale'}
@@ -84,6 +86,23 @@ function Documents() {
 
   return (
     <div className="containerdcs">
+      <div className="documents-title">
+        <div>
+          <IconButton
+            size="large"
+            color="primary"
+            component="span"
+            as={NavLink}
+            to="/personel"
+          >
+            <ArrowBackIcon />
+          </IconButton>
+        </div>
+        <div className="documents-content">
+
+        Upload Document
+        </div>
+      </div>
       <AutoForm
         schema={schema}
         onSubmit={(model) => {
@@ -97,23 +116,23 @@ function Documents() {
           spacing={2}
           className="dcs-grid-head"
         >
-          
-            <div className="dcs-grid">
-              <Grid item xs={6} md={6} className="dcs-grid">
-                <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
-              </Grid>
-            </div>
-            <div className="dcs-grid">
-              <Grid item xs={6} md={6} className="dcs-grid">
-                <ImageField name="data" field="data" />
-              </Grid>
 
-            </div>
-            <div className="dcs-grid">
-              <Grid item xs={6} md={6} style={{ textAlign: "center" }} className="dcs-grid">
-                <SubmitField onSubmit={handleSave} />
-              </Grid>
-            </div>
+          <div className="dcs-grid">
+            <Grid item xs={6} md={6} className="dcs-grid">
+              <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
+            </Grid>
+          </div>
+          <div className="dcs-grid">
+            <Grid item xs={6} md={6} className="dcs-grid">
+              <ImageField name="data" field="data" />
+            </Grid>
+
+          </div>
+          <div className="dcs-grid">
+            <Grid item xs={6} md={6} style={{ textAlign: "center" }} className="dcs-grid">
+              <SubmitField onSubmit={handleSave} />
+            </Grid>
+          </div>
 
         </Grid>
 

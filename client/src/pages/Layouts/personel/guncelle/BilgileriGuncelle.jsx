@@ -1,6 +1,6 @@
-import {IconButton, styled } from "@mui/material";
+import { IconButton, styled } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
   AutoForm,
@@ -69,7 +69,7 @@ function BilgileriGuncelle() {
         },
       });
     }
-    
+
   }, [modelState.cityid]);
   const districtData = districtsByData?.districts?.map((district) => {
     return {
@@ -78,7 +78,7 @@ function BilgileriGuncelle() {
     };
   });
 
- 
+
   return (
     <div className="bilgileriguncelle">
       <div className="bilgileriguncelle-title">
@@ -95,12 +95,13 @@ function BilgileriGuncelle() {
       </div>
       <AutoForm
         schema={schema}
-        onSubmit={(model)=>{
+        onSubmit={(model) => {
           console.log(model)
           delete model.usertypes
           delete model.userfiles
           delete model.usersmovements
-          handleSubmit(model)}}
+          handleSubmit(model)
+        }}
         model={user}
         onChangeModel={(model) => {
           console.log(model)
@@ -110,7 +111,7 @@ function BilgileriGuncelle() {
       >
 
         <Grid
-          
+
           direction="column"
           justifyContent="start"
           alignItems="center"
@@ -143,9 +144,7 @@ function BilgileriGuncelle() {
               label="Identification Number: "
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <AutoField name={"adress"} label="Adress: " />
-          </Grid>
+
           <Grid item xs={12} md={6}>
             <SelectField
               name={"cityid"}
@@ -155,22 +154,25 @@ function BilgileriGuncelle() {
           </Grid>
           <Grid item xs={12} md={6}>
             {
-              modelState.cityid && ( <SelectField
+              modelState.cityid && (<SelectField
                 name={"districtsid"}
                 label={"Districts"}
                 options={districtData ? districtData : []}
               />)
             }
-            
-           
           </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"adress"} label="Adress: " />
+          </Grid>
+
         </Grid>
+        
         <HiddenField name="usertypesid" value={user.usertypesid} />
         <HiddenField name="id" value={user.id} />
-        <HiddenField name="status"  value={user.status}/>
+        <HiddenField name="status" value={user.status} />
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="createtime" value={user.createtime} />
-      <HiddenField name="changeuser"  value={user.createuser}/>
+        <HiddenField name="changeuser" value={user.createuser} />
         {/* <HiddenField name="changetime" value={changeDate} /> */}
 
 
