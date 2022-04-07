@@ -27,7 +27,18 @@
 }
 
 .bilgileriguncelle-title{
-  margin-top:20px;
+  margin-top:1%;
+  margin-bottom: 1%;
+}
+.documents-title{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+  padding-right: 50px;
+}
+.documents-content{
+  font-size: 25px;
 }
 
 .users {
@@ -82,6 +93,7 @@ body {
 }
 .btn-2 {
   margin-top: 20px;
+  text-align: center;
 }
 .info{
   justify-content: le
@@ -117,7 +129,8 @@ body {
   color: white;
   font-size: 2.5em;
   margin-top: 2em;
-  margin-bottom: 0.5em
+  margin-bottom: 0.5em;
+
 }
 
 .upload-btns{

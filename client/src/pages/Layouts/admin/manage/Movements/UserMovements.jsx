@@ -16,14 +16,14 @@ const UserMovements = () => {
   console.log(data?.usersmovements);
 
   const columns = [
-    // {
-    //   field: "usersid",
-    //   headerName: "User id",
-    //   width: 130,
-    //   valueFormatter: (params) => {
-    //     return params.row?.users?.userid;
-    //   },
-    // },
+    {
+      field: "usersid",
+      headerName: "User id",
+      width: 130,
+      valueFormatter: (params) => {
+        return params.row?.users?.userid;
+      },
+    },
     {
       field: "users.name",
       headerName: "Name",
@@ -59,7 +59,7 @@ const UserMovements = () => {
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].entrytime
           .toString()
-          .replace(/([0-9]\d{1,2})([0-9]\d{1,2})/g);
+          .replace(/^(\d+\.?\d*)(h|m|s|ms|f|t)$/gm);
       },
     },
     {
