@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Error from "../../../../components/Error/Error";
 import { useGetUserQuery } from "generated/graphql";
 import { Link } from "react-router-dom";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
 const TumPersonel = () => {
   const { data, loading, error } = useGetUserQuery({});
@@ -34,44 +34,49 @@ const TumPersonel = () => {
         </IconButton>{" "}
         All Personels
       </div>
-
-
-      {
-        userFilter?.map((p) => (
-          <div key={p?.id} className="allpersonel">
-            <Grid container  >
-              <Grid item md={10} className={p.status ? "btn" : "btn-deactive"}>
-                <Button
-                  disableElevation
-                  size="large"
-                  color={p?.status ? "primary" : "error"}
-                  variant="outlined"
-                  as={NavLink}
-                  to={`${p?.id}`}
-                >
-                  {p?.id}-{p?.name} {p?.surname}
-                </Button>
-              </Grid>
-              <Grid item xs={2} className={p?.status ? "status" : "status-deactive"}>
-                  {p?.status ? "Active " : "Deactive"}
-              </Grid>
-            </Grid>
-          </div>
-        ))
-      }
-
-
-      <Link
-        className="button11"
-        role="button"
-        to="/admin/personelekle"
-
+      <Grid
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
       >
+        <Grid item xs={6} md={6}>
+          {userFilter?.map((p) => (
+            <div key={p?.id} className="allpersonel">
+              <Grid container>
+                <Grid
+                  item
+                  md={10}
+                  className={p.status ? "btn" : "btn-deactive"}
+                >
+                  <Button
+                    disableElevation
+                    size="large"
+                    color={p?.status ? "primary" : "error"}
+                    variant="outlined"
+                    as={NavLink}
+                    to={`${p?.id}`}
+                  >
+                  {p?.name} {p?.surname}
+                  </Button>
+                </Grid>
+                <Grid
+                  item
+                  xs={2}
+                  className={p?.status ? "status" : "status-deactive"}
+                >
+                  {p?.status ? "Active " : "Deactive"}
+                </Grid>
+              </Grid>
+            </div>
+          ))}
+        </Grid>
+      </Grid>
+
+      <Link className="button11" role="button" to="/admin/personelekle">
         Add new Personel
       </Link>
-
-
-    </div >
+    </div>
   );
 };
 
