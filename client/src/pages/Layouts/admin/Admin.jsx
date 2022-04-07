@@ -102,7 +102,7 @@ const Admin = () => {
                     Personel Ekle
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Özet
+                    Yeni Personel Girişi
                   </Typography>
                 </div>
               </div>

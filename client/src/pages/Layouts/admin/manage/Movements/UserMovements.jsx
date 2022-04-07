@@ -4,7 +4,8 @@ import "../../../../../styles.css";
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Button, IconButton } from "@mui/material";
 import { useGetUserQuery, useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
@@ -61,19 +62,37 @@ const UserMovements = () => {
           .replace(/([0-9]\d{1,2})([0-9]\d{1,2})/g);
       },
     },
-    { field: "exittime", headerName: "Exit Time", width: 130,
+    {
+      field: "exittime", headerName: "Exit Time", width: 130,
       valueFormatter: (params) => {
         const exittime = (params.api.state.rows.idRowsLookup[params.id].exittime);
         return exittime === null ? "Daha Çıkmadı" : exittime
       }
-  },
+    },
   ];
 
-  
+
 
   return (
     <div className="UserMovements">
-      Personel Giriş Çıkışları
+      <div className="UserMovements_inner">
+        <div>
+          <IconButton
+            size="large"
+            color="primary"
+            component="span"
+            as={NavLink}
+            to="/admin"
+          >
+            <ArrowBackIcon />
+          </IconButton>{" "}
+        </div>
+        <div>
+          Personel Giriş Çıkışları
+        </div>
+
+      </div>
+
       <div style={{ height: 800, width: "75%" }}>
         <DataGrid
           rows={data?.usersmovements}
@@ -85,8 +104,8 @@ const UserMovements = () => {
           pagination
         />
       </div>
-     
-      
+
+
     </div>
   );
 };
