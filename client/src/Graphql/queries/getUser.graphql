@@ -15,7 +15,6 @@ query GetUser {
     changeuser
     changetime
     phonenumber
-    identificationnumber
 
     name
     username

@@ -1,0 +1,6 @@
+query GetDistrictById($prmId:Long!){
+ districts (where: {id:{eq:$prmId}}) {
+   id
+   districtname
+ }
+}

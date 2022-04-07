@@ -539,10 +539,24 @@ export type UpdateUserMutationVariables = Exact<{
 
 export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typename?: 'ResultModelOfUser', resultType: ResultEnum, messageText?: string | null } | null };
 
+export type GetCityByIdQueryVariables = Exact<{
+  prmId: Scalars['Long'];
+}>;
+
+
+export type GetCityByIdQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null, plateno: number } | null> | null };
+
 export type GetCitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCitiesQuery = { __typename?: 'Query', cities?: Array<{ __typename?: 'City', id: any, cityname?: string | null, districts?: Array<{ __typename?: 'District', id: any, citysid: any, districtname?: string | null } | null> | null } | null> | null };
+
+export type GetDistrictByIdQueryVariables = Exact<{
+  prmId: Scalars['Long'];
+}>;
+
+
+export type GetDistrictByIdQuery = { __typename?: 'Query', districts?: Array<{ __typename?: 'District', id: any, districtname?: string | null } | null> | null };
 
 export type GetDistrictsByCityidQueryVariables = Exact<{
   prmCityid: Scalars['Long'];
@@ -566,7 +580,7 @@ export type GetUserDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number, cityid?: any | null, districtsid?: any | null } | null> | null };
+export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __typename?: 'User', name?: string | null, surname?: string | null, username?: string | null, password?: string | null, id: any, status: number, cityid?: any | null, districtsid?: any | null, schoolname?: string | null, usertypesid?: any | null, email?: string | null, adress?: string | null, identificationnumber?: any | null, phonenumber?: any | null } | null> | null };
 
 export type GetUserMovementsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -727,6 +741,43 @@ export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
 export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
+export const GetCityByIdDocument = gql`
+    query GetCityById($prmId: Long!) {
+  cities(where: {id: {eq: $prmId}}) {
+    id
+    cityname
+    plateno
+  }
+}
+    `;
+
+/**
+ * __useGetCityByIdQuery__
+ *
+ * To run a query within a React component, call `useGetCityByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCityByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCityByIdQuery({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *   },
+ * });
+ */
+export function useGetCityByIdQuery(baseOptions: Apollo.QueryHookOptions<GetCityByIdQuery, GetCityByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCityByIdQuery, GetCityByIdQueryVariables>(GetCityByIdDocument, options);
+      }
+export function useGetCityByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCityByIdQuery, GetCityByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCityByIdQuery, GetCityByIdQueryVariables>(GetCityByIdDocument, options);
+        }
+export type GetCityByIdQueryHookResult = ReturnType<typeof useGetCityByIdQuery>;
+export type GetCityByIdLazyQueryHookResult = ReturnType<typeof useGetCityByIdLazyQuery>;
+export type GetCityByIdQueryResult = Apollo.QueryResult<GetCityByIdQuery, GetCityByIdQueryVariables>;
 export const GetCitiesDocument = gql`
     query GetCities {
   cities {
@@ -767,6 +818,42 @@ export function useGetCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>;
 export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>;
 export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
+export const GetDistrictByIdDocument = gql`
+    query GetDistrictById($prmId: Long!) {
+  districts(where: {id: {eq: $prmId}}) {
+    id
+    districtname
+  }
+}
+    `;
+
+/**
+ * __useGetDistrictByIdQuery__
+ *
+ * To run a query within a React component, call `useGetDistrictByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDistrictByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDistrictByIdQuery({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *   },
+ * });
+ */
+export function useGetDistrictByIdQuery(baseOptions: Apollo.QueryHookOptions<GetDistrictByIdQuery, GetDistrictByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetDistrictByIdQuery, GetDistrictByIdQueryVariables>(GetDistrictByIdDocument, options);
+      }
+export function useGetDistrictByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDistrictByIdQuery, GetDistrictByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetDistrictByIdQuery, GetDistrictByIdQueryVariables>(GetDistrictByIdDocument, options);
+        }
+export type GetDistrictByIdQueryHookResult = ReturnType<typeof useGetDistrictByIdQuery>;
+export type GetDistrictByIdLazyQueryHookResult = ReturnType<typeof useGetDistrictByIdLazyQuery>;
+export type GetDistrictByIdQueryResult = Apollo.QueryResult<GetDistrictByIdQuery, GetDistrictByIdQueryVariables>;
 export const GetDistrictsByCityidDocument = gql`
     query GetDistrictsByCityid($prmCityid: Long!) {
   districts(where: {citysid: {eq: $prmCityid}}) {
@@ -891,6 +978,13 @@ export const GetUserDetailDocument = gql`
     status
     cityid
     districtsid
+    schoolname
+    usertypesid
+    status
+    email
+    adress
+    identificationnumber
+    phonenumber
   }
 }
     `;
@@ -1063,7 +1157,6 @@ export const GetUserDocument = gql`
     changeuser
     changetime
     phonenumber
-    identificationnumber
     name
     username
     surname

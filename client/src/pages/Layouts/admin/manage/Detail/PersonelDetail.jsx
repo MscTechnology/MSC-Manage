@@ -1,7 +1,7 @@
 import "../../../../../styles.css";
 import { Button, Typography, CardContent, Card } from "@mui/material";
 import { Link, NavLink, useParams } from "react-router-dom";
-import { useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
+import { useGetCityByIdLazyQuery, useGetCityByIdQuery, useGetDistrictByIdQuery, useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import Error from "../../../../../components/Error/Error";
@@ -21,18 +21,38 @@ function PersonelDetail() {
   const [updateUserMutation, { data: updateData, loading: updateLoading, error: UpdateError }] = useUpdateUserMutation({});
 
 
+  
+
+  useGetCityByIdLazyQuery()
   const { data: allData } = useGetUserQuery({});
 
-  const userFilter = allData?.users.filter((user) => user.usertypesid !== 1);
+
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id)
     },
   })
-  console.log(data)
+  console.log(rowData)
 
   const status = data?.usersById[0].status
+
+
+  //! BURASI POST HATASI VERİYOR SOR! ama datayı getiriyor
+  const { data:CityByIdData } = useGetCityByIdQuery({
+    variables: {
+       prmId: parseInt(rowData?.cityid)
+    },
+  });
+
+
+
+  //! BURASI POST HATASI VERİYOR SOR! ama datayı getiriyor
+  const { data:DistrictByIdData } = useGetDistrictByIdQuery({
+    variables: {
+       prmId: parseInt(rowData?.districtsid)
+    },
+  });
 
 
   useEffect(() => {
@@ -157,47 +177,73 @@ function PersonelDetail() {
       </div>
       <div className="name">
 
-        <Card sx={{ maxWidth: 700,maxHeight: 600,paddingLeft:10,paddingRight:10 }}>
+        <Card >
           <div className="card1">
             
             <div>
               <CardContent >
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {`ID : ${id}`}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {`Name : ${rowData.name}`}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {`Surname : ${rowData.surname}`}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {
                     `Username : ${rowData.username}`
                   }
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {
                     `Password : ${rowData.password}`
                   }
                 </Typography>
-                {
-                  rowData?.usersmovements?.map((movement) => {
-                    return (
-                      <ul>
-                        <li>
-                          {`Movement : ${movement.entrytime}`}
-                        </li>
-                      </ul>
-
-                    )
-                  })
-                }
-                <Typography gutterBottom variant="h5" component="div">
+                <hr/>
+                <Typography gutterBottom variant="h6" component="div">
                   {
-                    `Entry Time : ${rowData?.usersmovements?.map((user) => user.entrytime)}`
+                    `Email : ${rowData.email === null ? "Girilmemiş" : rowData.email}`
                   }
                 </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `Phone : ${rowData.phonenumber === null ? "Girilmemiş" : rowData.phonenumber}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `TC : ${rowData.identificationnumber === null ? "Girilmemiş" : rowData.identificationnumber}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `School : ${rowData.schoolname === null ? "Girilmemiş" : rowData.schoolname}`
+                  }
+                </Typography>
+                <hr/>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `Adress : ${rowData.adress === null ? "Girilmemiş" : rowData.adress}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `City : ${CityByIdData?.cities[0].cityname === undefined ? "Girilmemiş" : CityByIdData?.cities[0].cityname}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `Districts : ${DistrictByIdData?.districts[0].districtname === undefined ? "Girilmemiş" : DistrictByIdData?.districts[0].districtname}`
+                  }
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {
+                    `Status : ${rowData.status === 1 ? "Active" : "Deactive"}`
+                  }
+                </Typography>
+               
 
               </CardContent>
             </div>

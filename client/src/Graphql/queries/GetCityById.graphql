@@ -1,0 +1,7 @@
+query GetCityById($prmId:Long!){
+ cities(where: {id:{eq:$prmId}}) {
+   id
+   cityname
+   plateno
+ }
+}
