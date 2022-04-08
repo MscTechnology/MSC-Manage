@@ -144,6 +144,9 @@ function BilgileriGuncelle() {
               label="Identification Number: "
             />
           </Grid>
+          <Grid item xs={12} md={6}>
+            <AutoField name={"adress"} label="Adress: " />
+          </Grid>
 
           <Grid item xs={12} md={6}>
             <SelectField
@@ -153,17 +156,15 @@ function BilgileriGuncelle() {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            {
-              modelState.cityid && (<SelectField
+            
+              <SelectField
                 name={"districtsid"}
                 label={"Districts"}
                 options={districtData ? districtData : []}
-              />)
-            }
+              />
+            
           </Grid>
-          <Grid item xs={12} md={6}>
-            <AutoField name={"adress"} label="Adress: " />
-          </Grid>
+         
 
         </Grid>
         
@@ -173,6 +174,7 @@ function BilgileriGuncelle() {
         <HiddenField name="createuser" value={user.createuser} />
         <HiddenField name="createtime" value={user.createtime} />
         <HiddenField name="changeuser" value={user.createuser} />
+        <HiddenField name="changetime" value={changeDate} />
         {/* <HiddenField name="changetime" value={changeDate} /> */}
 
 
