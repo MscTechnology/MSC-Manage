@@ -3,7 +3,6 @@ import "../personel.css";
 import {
   AutoForm,
   HiddenField,
-  AutoField,
   SubmitField,
   SelectField,
 } from "uniforms-material";
@@ -14,15 +13,15 @@ import {
 import { useSelector } from "react-redux";
 import { bridge as schema } from "./DocumentsSchema";
 import { connectField } from 'uniforms';
-import { Upload } from '@progress/kendo-react-upload';
+//import { Upload } from '@progress/kendo-react-upload';
 import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-const UploadFile = () => {
-  return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
-};
+// const UploadFile = () => {
+//   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
+// };
 
 const Image = ({ onChange, value }) => {
   return (
@@ -51,7 +50,7 @@ const Image = ({ onChange, value }) => {
 };
 
 const ImageField = connectField(Image);
-const UploadField = connectField(UploadFile);
+//const UploadField = connectField(UploadFile);
 
 function Documents() {
   const [addUserFileMutation, { data, loading, error }] =

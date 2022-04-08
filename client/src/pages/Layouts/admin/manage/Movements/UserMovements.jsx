@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../../../../styles.css";
-import { AgGridReact, AgGridColumn } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, IconButton } from "@mui/material";
-import { useGetUserQuery, useGetUserMovementsQuery } from "generated/graphql";
+import { IconButton } from "@mui/material";
+import {  useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
 

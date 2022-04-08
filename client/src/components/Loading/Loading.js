@@ -1,11 +1,11 @@
 import React from 'react'
-import AnimatedLottieViewProps from 'lottie-react';
+import Lottie from 'lottie-react';
+import LoadingAnimation from "../../assets/animations/loading.json"
 
 function Loading() {
   return (
-    <AnimatedLottieViewProps
-      source={require('../../assets/animations/loading.json')}
-      autoPlay
+    <Lottie
+    animationData={LoadingAnimation} loop={true} autoPlay={true}
     />
   )
 }

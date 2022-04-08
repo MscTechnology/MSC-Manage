@@ -6,11 +6,22 @@ import { useSelector } from "react-redux";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
-
+import { useGetUserQuery } from "generated/graphql";
+import Loading from "../../../components/Loading/Loading";
+import NoMatch from "pages/404/NoMatch";
 
 const Admin = () => {
   const user = useSelector((state) => state.users.user);
-  console.log(user);
+
+  const { data, loading, error } = useGetUserQuery({});
+
+  if(loading){
+    return <Loading />
+  }
+
+  if(error){
+    return <NoMatch/>
+  }
 
   return (
     <div className="adminPage">

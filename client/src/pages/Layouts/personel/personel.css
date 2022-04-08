@@ -1,5 +1,5 @@
 .container1 {
-  background-color: #142d4c;
+  background-color: #96b9e4;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,7 +17,7 @@
   border: 2px solid black;
   padding: 3px 8px 3px 8px;
   font-weight: bold;
-  color: #3954ee;
+  color: #196ae4;
 }
 
 .btns-2{
@@ -73,7 +73,7 @@
 
 .bilgileriguncelle{
 
-  background: #92AED4;
+  background: #96b9e4;
   background-position: center;
   height: 120vh;
   align-items: center;
@@ -116,7 +116,7 @@ body {
   padding-top:20px;
   background-repeat: no-repeat;
   background-size: cover;
-  background: #92AED4;
+  background: #96b9e4;
   background-position: center;
   background-attachment: fixed;
   height: 100vh;

@@ -1,6 +1,6 @@
-import { IconButton, styled } from "@mui/material";
+import { IconButton} from "@mui/material";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
   AutoForm,
@@ -40,8 +40,8 @@ function BilgileriGuncelle() {
     };
   });
 
-  const createDate = new Date().toUTCString();
-  const changeDate = new Date().toUTCString();
+  //const createDate = new Date().toUTCString();
+  //const changeDate = new Date().toUTCString();
 
   const handleSubmit = (model) => {
     updateUserMutation({

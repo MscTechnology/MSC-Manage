@@ -1,11 +1,11 @@
 import "../../../../../styles.css";
 import { Button, Typography, CardContent, Card } from "@mui/material";
 import { Link, NavLink, useParams } from "react-router-dom";
-import { useGetCityByIdLazyQuery, useGetCityByIdQuery, useGetDistrictByIdQuery, useGetUserDetailQuery, useGetUserQuery, useUpdateUserMutation } from "generated/graphql";
+import { useGetCityByIdQuery, useGetDistrictByIdQuery, useGetUserDetailQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
-import Error from "../../../../../components/Error/Error";
-import { useSelector, useDispatch } from "react-redux";
+import NoMatch from "../../../../../pages/404/NoMatch";
+import {useDispatch } from "react-redux";
 import { setActive } from "../../../../../../src/store/User/UserSlice"
 import { styled } from '@mui/material/styles';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
@@ -15,25 +15,15 @@ function PersonelDetail() {
   const [checked, setChecked] = useState(true);
   const [rowData, setRowData] = useState({});
   const { id } = useParams()
-  const isActive = useSelector((state) => state.users.isActive);
   const dispatch = useDispatch();
 
   const [updateUserMutation, { data: updateData, loading: updateLoading, error: UpdateError }] = useUpdateUserMutation({});
-
-
-  
-
-  useGetCityByIdLazyQuery()
-  const { data: allData } = useGetUserQuery({});
-
-
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id)
     },
   })
-  console.log(rowData)
 
   const status = data?.usersById[0].status
 
@@ -67,12 +57,10 @@ function PersonelDetail() {
   }, [data, status])
 
 
-  if (loading) {
-    return <Loading />
-  }
+ 
 
   if (error) {
-    return <Error />
+    return <NoMatch />
   }
 
   const handleChange = (e) => {
@@ -171,7 +159,7 @@ function PersonelDetail() {
 
   return (
     <div className="detailPage">
-      <div className={isActive ? "detail-title" : "detail-title-active"}>
+      <div className="detail-title">
         Informations
 
       </div>

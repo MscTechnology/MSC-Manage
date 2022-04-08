@@ -1,13 +1,11 @@
 import React from 'react'
-import AnimatedLottieViewProps from 'lottie-react';
+import Lottie from 'lottie-react';
+import ErrorAnimation from "../../assets/animations/error.json"
 
 function Error() {
   return (
-    <AnimatedLottieViewProps
-      source={require('../../assets/animations/error.json')}
-      autoPlay
-      resizeMode="cover"
-      style={{width: '100%'}}
+    <Lottie
+      animationData={ErrorAnimation} loop={true} autoPlay={true}
     />
   )
 }
