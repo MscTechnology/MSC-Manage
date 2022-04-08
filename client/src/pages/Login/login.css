@@ -5,16 +5,12 @@
   padding: 20px;
 }
 .container {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background: #96b9e4;
-  background-position: center;
-  background-attachment: fixed;
+  background: #d7f0f4;
   height: 100vh;
-  justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding-top: 5%;
 }
 body {
   font-size: 20px;
@@ -22,6 +18,7 @@ body {
 
 .title {
   font-size: 30x;
+  padding-top: 2em;
 }
 #outlined-basic {
   border-bottom: 2px solid black;
@@ -41,6 +38,24 @@ body {
   .title {
     margin: 100px 0px 0px 0px;
   }
+  .login-img{
+    width: 60%;
+  }
+  
+}
+
+@media screen and (max-width: 420px) {
+  .box {
+    margin: 5px 0px 15px 0px;
+  }
+  .title {
+    margin: 100px 0px 0px 0px;
+  }
+  .login-img{
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 .personel-login-btn{
@@ -52,4 +67,48 @@ body {
 .admin-login-submit{
   margin-top: 15px;
   text-align: center;
+}
+
+
+.personel-login-form-bg{
+  background-color:white;
+}
+
+.personel-login-submit-button{
+  text-align: center;
+width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-login-button{
+  text-align: center;
+  width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.MuiButton-contained {
+  background-color: black !important;
+  color: white !important;
+}
+
+
+.login-page-img{
+  text-align: center;
+
+}
+
+.login-img{
+  min-width: 50%;
 }

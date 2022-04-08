@@ -52,10 +52,11 @@ const TumPersonel = () => {
                   className={p.status ? "btn" : "btn-deactive"}
                 >
                   <Button
+                  className="AllPersonel-page-buttons"
                     disableElevation
                     size="large"
                     color={p?.status ? "primary" : "error"}
-                    variant="outlined"
+                    variant="text"
                     as={NavLink}
                     to={`${p?.id}`}
                   >
@@ -65,6 +66,7 @@ const TumPersonel = () => {
                 <Grid
                   item
                   xs={2}
+                  
                   className={p?.status ? "status" : "status-deactive"}
                 >
                   {p?.status ? "Active " : "Deactive"}
@@ -75,7 +77,7 @@ const TumPersonel = () => {
         </Grid>
       </Grid>
 
-      <Link className="button11" role="button" to="/admin/personelekle">
+      <Link className="AllPersonel-add-button" role="button" to="/admin/personelekle">
         Add new Personel
       </Link>
     </div>

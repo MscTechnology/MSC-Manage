@@ -38,8 +38,8 @@ const Admin = () => {
             <ArrowBackIcon />
           </IconButton>
           Management Panel
+        <h1 className="admin-subtitle">{user.name}</h1>
         </h1>
-
         <Link
           className="admin-card"
           role="button"

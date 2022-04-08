@@ -6,25 +6,16 @@ import Loading from "../../../components/Loading/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useGetUserQuery, useAddMovementMutation, useGetUserDetailQuery } from "generated/graphql";
-import moment from "moment";
 import { toast, ToastContainer } from "react-toastify";
-import { setTap } from "../../../store/MovementsToast/MovementsToast";
 import NoMatch from "pages/404/NoMatch";
 
 function Personel() {
   const {data:data1, loading, error } = useGetUserQuery({});
   
 
-  const { data, loading:load1, error:err1 } = useGetUserDetailQuery({
-    variables: {
-      prmId: parseInt(data1?.users[2].id)
-    },
-  })
 
 
   const user = useSelector((state) => state.users.user);
-  const isTap = useSelector((state) => state.movements.isTap);
-  const dispatch = useDispatch();
 
 
   if (loading) {
@@ -60,10 +51,11 @@ function Personel() {
 
         <div className="btn2">
           <Button
+          className="Personel-page-buttons"
             disableElevation
             size="large"
             color={"primary"}
-            variant="outlined"
+            variant="text"
             as={NavLink}
             to={`/personel/movement/${user.id}`}
           >
@@ -73,10 +65,11 @@ function Personel() {
 
         <div className="btn2">
           <Button
+          className="Personel-page-buttons"
             disableElevation
             size="large"
             color={"primary"}
-            variant="outlined"
+            variant="text"
             as={NavLink}
             to="bilgileriguncelle"
           >
@@ -86,10 +79,11 @@ function Personel() {
 
         <div className="btn2">
           <Button
+           className="Personel-page-buttons"
             disableElevation
             size="large"
             color={"primary"}
-            variant="outlined"
+            variant="text"
             as={NavLink}
             to="documents"
           >

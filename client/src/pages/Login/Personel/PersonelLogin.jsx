@@ -20,7 +20,8 @@ import {
   AutoField,
   SubmitField,
   ErrorsField,
-} from "uniforms-material";
+} from 'uniforms-material';
+
 import { bridge as schema } from "./PersonelSchema";
 import NoMatch from "pages/404/NoMatch";
 
@@ -69,6 +70,9 @@ const PersonelLogin = () => {
 
   return (
     <div className="container">
+       <div className="login-page-img">
+            <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
+          </div>
       <div className="title">
         <IconButton
           size="large"
@@ -81,15 +85,17 @@ const PersonelLogin = () => {
         </IconButton>
         {title}
       </div>
-      <AutoForm schema={schema} onSubmit={handleLogin}>
-        <ErrorsField />
-        <AutoField name={"username"} />
-        <AutoField name={"password"} />
+      <div>
+        <AutoForm schema={schema} onSubmit={handleLogin}>
+          <ErrorsField />
+            <AutoField name={"username"} />
+          <AutoField name={"password"} />
 
-        <div className="personel-login-btn">
-          <SubmitField className="hidden" label="Log In" />
-        </div>
-      </AutoForm>
+          <div className="personel-login-btn">
+            <SubmitField className="personel-login-submit-button" label="Log In" />
+          </div>
+        </AutoForm>
+      </div>
     </div>
   );
 };

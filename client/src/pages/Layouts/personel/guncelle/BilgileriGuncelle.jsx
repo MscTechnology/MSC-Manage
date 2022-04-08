@@ -81,7 +81,8 @@ function BilgileriGuncelle() {
   return (
     <div className="bilgileriguncelle">
       <div className="bilgileriguncelle-title">
-        <IconButton
+        <div>
+          <IconButton
           size="large"
           color="primary"
           component="span"
@@ -90,7 +91,11 @@ function BilgileriGuncelle() {
         >
           <ArrowBackIcon />
         </IconButton>
+        </div>
+        <div className="update-title">
         Update Your Informations
+
+        </div>
       </div>
       <AutoForm
         schema={schema}

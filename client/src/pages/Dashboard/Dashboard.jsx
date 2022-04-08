@@ -15,7 +15,7 @@ import Documents from "pages/Layouts/personel/documents/Documents";
 import PersonelFiles from "pages/Layouts/admin/manage/files/PersonelFiles";
 import UserMovements from "pages/Layouts/admin/manage/Movements/UserMovements";
 import Movements from "pages/Layouts/admin/manage/MovementsTable/Movements";
-import PersonelMovements from "pages/Layouts/admin/manage/MovementsTable/PersonelMovements";
+import PersonelMovements from "pages/Layouts/personel/Movements/PersonelMovements";
 
 
 const Dashboard = () => {
@@ -52,7 +52,7 @@ const Dashboard = () => {
         {
           isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
         }
-        
+        <Route path="/admin/tumpersonel" element={<TumPersonel />} />
         <Route path="/personel/documents" element={<Documents/>}/>
         <Route path="*"element={<NoMatch />} />
         <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />

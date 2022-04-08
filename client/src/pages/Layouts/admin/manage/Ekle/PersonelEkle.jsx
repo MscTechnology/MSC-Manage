@@ -62,7 +62,7 @@ const PersonelEkle = () => {
   const changeDate = new Date().toUTCString();
 
   return (
-    <div className="container">
+    <div className="Addpersonel-page">
       <h1 className="personel-ekle-title"><IconButton size="large" color="primary" component="span" as={NavLink}
         to="/admin">
         <ArrowBackIcon />

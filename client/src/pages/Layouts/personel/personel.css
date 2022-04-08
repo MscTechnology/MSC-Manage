@@ -1,5 +1,5 @@
 .container1 {
-  background-color: #96b9e4;
+  background-color: #142d4c;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -14,10 +14,9 @@
   font-size: 40px;
   margin-top: -1em;
   margin-bottom: 1em;
-  border: 2px solid black;
   padding: 3px 8px 3px 8px;
   font-weight: bold;
-  color: #196ae4;
+  color: white;
 }
 
 .btns-2{
@@ -29,6 +28,15 @@
 .bilgileriguncelle-title{
   margin-top:1%;
   margin-bottom: 1%;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.update-title{
+  color:white;
+  margin-bottom:2%;
 }
 .documents-title{
   display: flex;
@@ -61,6 +69,20 @@
 }
 .btn2 {
   margin-bottom: 3em;
+
+}
+
+.Personel-page-buttons{
+  padding: 3px 8px 3px 8px;
+  font-weight: bold;
+  color: #196ae4;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  text-decoration: none;
+  width: 100px;
+  font-size: 1.5rem;
 }
 
 .btn3{
@@ -72,8 +94,7 @@
 }
 
 .bilgileriguncelle{
-
-  background: #96b9e4;
+  background: #142D4C;
   background-position: center;
   height: 120vh;
   align-items: center;
@@ -146,3 +167,6 @@ body {
   margin-right :0px;
   padding: 0;
 }
+
+
+

@@ -6,10 +6,10 @@ import React from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { DataGrid } from '@mui/x-data-grid';
-import "../../../../../styles.css"
+import '../../../../styles.css'
 import moment from "moment";
 import { toast, ToastContainer } from "react-toastify";
-import { setTap } from "../../../../../store/MovementsToast/MovementsToast";
+import { setTap } from "../../../../store/MovementsToast/MovementsToast";
 import { useDispatch, useSelector } from 'react-redux';
 
 const PersonelMovements = () => {
@@ -122,7 +122,7 @@ const PersonelMovements = () => {
                         <ArrowBackIcon />
                     </IconButton>{" "}
                 </div>
-                <div>
+                <div style={{color:"white"}}>
                     Personel Giriş Çıkışları
                 </div>
 

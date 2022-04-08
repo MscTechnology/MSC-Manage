@@ -22,15 +22,13 @@
   flex-direction: column;
 }
 
-.button11 {
-  border: 1px solid ;
-  border-radius: 20px;
-  padding: 15px;
-  margin-top: 30px;
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  color: rgb(79, 53, 150);
+.AllPersonel-add-button {
+  border: 1px solid orange;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
   text-decoration: none;
 }
 
@@ -74,7 +72,7 @@
   display: flex;
   flex-direction: column;
   height: 140vh;
-  background: #96b9e4;
+  background: #142D4C;
   align-items: center;
 }
 
@@ -107,15 +105,16 @@
 
 .admin-title {
   color: white;
-  font-size: 3.5em;
+  font-size: 2em;
   margin-top: 0.5em;
+  text-align: center;
 
 }
 
 .admin-subtitle {
-  color: white;
-  font-size: 1.5em;
-
+  margin-top: 0.5em;
+  font-size: 0.5em;
+  color:orange;
 }
 
 
@@ -235,7 +234,7 @@
 }
 
 .status-deactive {
-  color: red;
+  color: grey;
 }
 
 
@@ -303,7 +302,7 @@
 }
 
 .personel-ekle-title {
-  color: white;
+  color: black;
   font-size: 2.5em;
 }
 
@@ -327,7 +326,7 @@
 }
 
 .UserMovements_1{
-  background: #96b9e4;
+  background: #142d4c;
   background-attachment: fixed;
   height:100vh;
   align-items: center;
@@ -343,3 +342,46 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
+.css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+  color: white !important;
+}
+.css-3ihp42-MuiDataGrid-root .MuiDataGrid-cellContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white !important;
+}
+
+
+.css-1m9pwf3 {
+ color: white !important;
+}
+
+
+
+
+.AllPersonel-page-buttons{
+ color:orange;
+ text-decoration: none;
+  
+}
+
+.css-m63z74-MuiButton-root {
+
+  color:orange !important;
+}
+
+.css-gpgaox-MuiButton-root {
+  color:grey !important;
+}
+
+
+.Addpersonel-page{
+  background-color: #96b9e4;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+

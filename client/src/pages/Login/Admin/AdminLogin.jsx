@@ -75,7 +75,11 @@ const AdminLogin = () => {
 
   return (
     <div className="container">
+        <div className="login-page-img">
+            <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
+          </div>
       <div className="title">
+        
         <IconButton
           size="large"
           color="primary"
@@ -97,7 +101,7 @@ const AdminLogin = () => {
 
         <AutoField name={"password"} />
         <div className="admin-login-submit">
-          <SubmitField className="hidden" value="Log In" />
+          <SubmitField className="admin-login-button" value="Log In" />
         </div>
       </AutoForm>
     </div>
