@@ -111,7 +111,7 @@ const PersonelMovements = () => {
         <div className="UserMovements_1">
              <ToastContainer />
             <div className="UserMovements_inner_1">
-                <div>
+                <div style={{marginTop:'5px'}}>
                     <IconButton
                         size="large"
                         color="primary"
@@ -122,7 +122,7 @@ const PersonelMovements = () => {
                         <ArrowBackIcon />
                     </IconButton>{" "}
                 </div>
-                <div style={{color:"white"}}>
+                <div>
                     Personel Giriş Çıkışları
                 </div>
 

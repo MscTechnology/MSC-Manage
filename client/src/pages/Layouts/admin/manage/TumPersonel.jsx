@@ -24,7 +24,7 @@ const TumPersonel = () => {
   
   return (
     <div className="adminPage">
-      <div className="admin-title">
+      <div className="tum-personel-title">
         <IconButton
           size="large"
           color="primary"
@@ -34,7 +34,7 @@ const TumPersonel = () => {
         >
           <ArrowBackIcon />
         </IconButton>{" "}
-        All Personels
+        All Personels ({data?.users?.length})
       </div>
       <Grid
         direction="column"

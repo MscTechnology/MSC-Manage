@@ -12,9 +12,6 @@ import NoMatch from "pages/404/NoMatch";
 function Personel() {
   const {data:data1, loading, error } = useGetUserQuery({});
   
-
-
-
   const user = useSelector((state) => state.users.user);
 
 
@@ -25,10 +22,6 @@ function Personel() {
   if (error) {
     return <NoMatch />
   }
-
-
-  
-
 
   return (
     <div className="container1">

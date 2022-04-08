@@ -1,5 +1,5 @@
 .container1 {
-  background-color: #142d4c;
+  background-color: #d7f0f4;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -14,9 +14,9 @@
   font-size: 40px;
   margin-top: -1em;
   margin-bottom: 1em;
-  padding: 3px 8px 3px 8px;
+  padding: 3px 30px 3px 0px;
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 .btns-2{
@@ -35,7 +35,7 @@
 }
 
 .update-title{
-  color:white;
+  color:black;
   margin-bottom:2%;
 }
 .documents-title{
@@ -94,7 +94,7 @@
 }
 
 .bilgileriguncelle{
-  background: #142D4C;
+  background: #d7f0f4;
   background-position: center;
   height: 120vh;
   align-items: center;
@@ -137,7 +137,7 @@ body {
   padding-top:20px;
   background-repeat: no-repeat;
   background-size: cover;
-  background: #96b9e4;
+  background: #d7f0f4;
   background-position: center;
   background-attachment: fixed;
   height: 100vh;
