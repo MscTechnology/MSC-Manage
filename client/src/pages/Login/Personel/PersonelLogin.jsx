@@ -30,8 +30,6 @@ const PersonelLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(data);
-
   if (loading) {
     return <Loading />;
   }
