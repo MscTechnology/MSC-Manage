@@ -1,60 +1,43 @@
 import React from "react";
 import "./personel.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import Loading from "../../../components/Loading/Loading";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useGetUserQuery, useAddMovementMutation } from "generated/graphql";
+import { useGetUserQuery, useAddMovementMutation, useGetUserDetailQuery } from "generated/graphql";
 import moment from "moment";
-import { toast ,ToastContainer} from "react-toastify";
-import {setTap} from "../../../store/MovementsToast/MovementsToast";
+import { toast, ToastContainer } from "react-toastify";
+import { setTap } from "../../../store/MovementsToast/MovementsToast";
 import NoMatch from "pages/404/NoMatch";
+
 function Personel() {
-  const { loading, error } = useGetUserQuery({});
+  const {data:data1, loading, error } = useGetUserQuery({});
+  
 
-
-  const [addMovementMutation, { data: dataMovement, loading: loadingMovement, error: errorMovement }] = useAddMovementMutation({});
+  const { data, loading:load1, error:err1 } = useGetUserDetailQuery({
+    variables: {
+      prmId: parseInt(data1?.users[2].id)
+    },
+  })
 
 
   const user = useSelector((state) => state.users.user);
   const isTap = useSelector((state) => state.movements.isTap);
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
 
-  if(loading){
+  if (loading) {
     return <Loading />
   }
 
-  if(error){
-    return <NoMatch/>
+  if (error) {
+    return <NoMatch />
   }
 
 
-  const handleInWork = () => {
-    if (isTap) {
-      dispatch(setTap(false));
-      toast.success("You are in work!");
-    }
-    else{
-      dispatch(setTap(true));
-      toast.error("You are out of work!") 
-    }
-    addMovementMutation({
-      variables: {
-        prmUserMovement: {
-          id: 0,
-          usersid: user.id,
-          entrytime: null,
-          exittime: null,
-          transactiondate: moment(),
-          createuser: user.createuser,
-        }
-      }
-    })
+  
 
-  };
- 
 
   return (
     <div className="container1">
@@ -73,16 +56,21 @@ function Personel() {
       </div>
 
       <div className="btn1">
+       
+
         <div className="btn2">
           <Button
-            onClick={handleInWork}
+            disableElevation
             size="large"
             color={"primary"}
-            variant="text"
+            variant="outlined"
+            as={NavLink}
+            to={`/personel/movement/${user.id}`}
           >
-            log In / Log Out 
+            Movement Table
           </Button>
         </div>
+
         <div className="btn2">
           <Button
             disableElevation
@@ -95,6 +83,7 @@ function Personel() {
             Update Informations
           </Button>
         </div>
+
         <div className="btn2">
           <Button
             disableElevation
