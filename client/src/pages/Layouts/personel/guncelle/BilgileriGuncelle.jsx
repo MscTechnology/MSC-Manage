@@ -41,7 +41,7 @@ function BilgileriGuncelle() {
   });
 
   //const createDate = new Date().toUTCString();
-  //const changeDate = new Date().toUTCString();
+  const changeDate = new Date().toUTCString();
 
   const handleSubmit = (model) => {
     updateUserMutation({
