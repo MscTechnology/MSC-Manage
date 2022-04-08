@@ -16,16 +16,22 @@ import { NavLink } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useSelector} from "react-redux";
+import Loading from "components/Loading/Loading";
+import NoMatch from "pages/404/NoMatch";
+
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
+
   const [addUserMutation, {data:dataMutation,loading:loadingMutation}] = useAddUserMutation();
+  
   const user = useSelector((state) => state.users.user);
-  console.log(user);
-  if (loading) { 
-    return <div>Loading...</div>;
+
+  if(loading){
+    return <Loading />
   }
-  if (error) {
-    return <div>Error...</div>;
+
+  if(error){
+    return <NoMatch/>
   }
 
   const userTypeData = data?.usertypes?.map((usertype) => {

@@ -6,20 +6,22 @@ import Error from "../../../../components/Error/Error";
 import { useGetUserQuery } from "generated/graphql";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import Loading from "components/Loading/Loading";
+import NoMatch from "pages/404/NoMatch";
 
 const TumPersonel = () => {
   const { data, loading, error } = useGetUserQuery({});
 
-  if (loading) {
-    return <div>Loading...</div>;
+  if(loading){
+    return <Loading />
   }
 
-  if (error) {
-    return <Error />;
+  if(error){
+    return <NoMatch/>
   }
 
   const userFilter = data?.users.filter((user) => user.usertypesid !== 1);
-  console.log(userFilter);
+  
   return (
     <div className="adminPage">
       <div className="admin-title">

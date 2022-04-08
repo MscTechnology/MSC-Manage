@@ -22,6 +22,7 @@ import {
   ErrorsField,
 } from "uniforms-material";
 import { bridge as schema } from "./PersonelSchema";
+import NoMatch from "pages/404/NoMatch";
 
 const PersonelLogin = () => {
   const [title, setTitle] = useState("Personel Log In");
@@ -36,7 +37,7 @@ const PersonelLogin = () => {
   }
 
   if (error) {
-    return <Error />;
+    return <NoMatch />;
   }
 
   const loginedPersonel = (users) => {

@@ -18,6 +18,8 @@ import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Loading from "components/Loading/Loading";
+import NoMatch from "pages/404/NoMatch";
 
 // const UploadFile = () => {
 //   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
@@ -53,14 +55,20 @@ const ImageField = connectField(Image);
 //const UploadField = connectField(UploadFile);
 
 function Documents() {
-  const [addUserFileMutation, { data, loading, error }] =
-    useAddUserFileMutation({});
+  const [addUserFileMutation, { data,loading:load,error:err }] = useAddUserFileMutation({});
 
+  const user = useSelector((state) => state.users.user);
 
-  const { data: FileTypesData } = useGetFileTypesQuery({
+  const { data: FileTypesData , loading, error} = useGetFileTypesQuery({
   });
 
-  console.log(FileTypesData)
+  if(loading){
+    return <Loading />
+  }
+
+  if(error){
+    return <NoMatch/>
+  }
 
   const filetypes = FileTypesData?.filetypes?.map((filetype) => {
     return {
@@ -68,10 +76,6 @@ function Documents() {
       value: filetype.id,
     };
   })
-
-
-  const user = useSelector((state) => state.users.user);
-
 
   const handleSave = (model) => {
     addUserFileMutation({

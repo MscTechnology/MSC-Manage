@@ -21,6 +21,7 @@ import {
 import { bridge as schema } from "./AdminSchema";
 //! Router
 import { NavLink, useNavigate } from "react-router-dom";
+import NoMatch from "pages/404/NoMatch";
 
 const AdminLogin = () => {
   const { data, loading, error } = useGetUserQuery();
@@ -35,7 +36,7 @@ const AdminLogin = () => {
   }
 
   if (error) {
-    return <Error />;
+    return <NoMatch />;
   }
 
   const navigateAdmin = () => {

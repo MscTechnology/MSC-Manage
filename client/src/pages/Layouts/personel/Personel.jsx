@@ -3,13 +3,13 @@ import "./personel.css";
 import { NavLink } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import Loading from "../../../components/Loading/Loading";
-import Error from "../../../components/Error/Error";
 import { useSelector,useDispatch } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useGetUserQuery, useAddMovementMutation } from "generated/graphql";
 import moment from "moment";
 import { toast ,ToastContainer} from "react-toastify";
 import {setTap} from "../../../store/MovementsToast/MovementsToast";
+import NoMatch from "pages/404/NoMatch";
 function Personel() {
   const { loading, error } = useGetUserQuery({});
 
@@ -20,17 +20,16 @@ function Personel() {
   const user = useSelector((state) => state.users.user);
   const isTap = useSelector((state) => state.movements.isTap);
   const dispatch = useDispatch();  
-  console.log(isTap)
 
-  if (loading) {
-    return <Loading />;
+
+  if(loading){
+    return <Loading />
   }
 
-  if (error) {
-    return <Error />;
+  if(error){
+    return <NoMatch/>
   }
 
-  console.log(user);
 
   const handleInWork = () => {
     if (isTap) {

@@ -56,13 +56,13 @@ function PersonelDetail() {
 
   }, [data, status])
 
-
- 
-
-  if (error) {
-    return <NoMatch />
+  if(loading){
+    return <Loading />
   }
 
+  if(error){
+    return <NoMatch/>
+  }
   const handleChange = (e) => {
     if (data) {
       updateUserMutation({

@@ -5,13 +5,21 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { NavLink } from 'react-router-dom';
 import { useGetUserQuery, useGetFilesQuery } from 'generated/graphql';
 import { DataGrid } from '@mui/x-data-grid';
+import Loading from 'components/Loading/Loading';
+import NoMatch from 'pages/404/NoMatch';
 
 function PersonelFiles() {
   const { data, loading, error } = useGetUserQuery({});
 
   const { data: filedata } = useGetFilesQuery({});
 
-  //console.log(filedata.userFiles);
+  if(loading){
+    return <Loading />
+  }
+
+  if(error){
+    return <NoMatch/>
+  }
 
   const rows = data?.users?.map((user) => {
 

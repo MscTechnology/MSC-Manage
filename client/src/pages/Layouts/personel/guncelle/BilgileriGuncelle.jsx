@@ -23,7 +23,7 @@ import "../personel.css"
 function BilgileriGuncelle() {
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
-  console.log(user)
+  
   const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation(
     {}
   );
@@ -50,7 +50,6 @@ function BilgileriGuncelle() {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.updateUser.resultType === "SUC") {
           toast.success("Bilgiler Güncellendi");
         } else {
@@ -96,7 +95,6 @@ function BilgileriGuncelle() {
       <AutoForm
         schema={schema}
         onSubmit={(model) => {
-          console.log(model)
           delete model.usertypes
           delete model.userfiles
           delete model.usersmovements
@@ -104,7 +102,6 @@ function BilgileriGuncelle() {
         }}
         model={user}
         onChangeModel={(model) => {
-          console.log(model)
           setModelState(model);
           // dispatch(setUser(modelState));
         }}

@@ -8,7 +8,6 @@ import PersonelEkle from "../Layouts/admin/manage/Ekle/PersonelEkle";
 import TumPersonel from "../Layouts/admin/manage/TumPersonel";
 import Personel from "../Layouts/personel/Personel"
 import BilgileriGuncelle from "../Layouts/personel/guncelle/BilgileriGuncelle"
-import DosyaEkle from "../Layouts/personel/DosyaEkle"
 import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";
 import NoMatch from "pages/404/NoMatch";
 import {useSelector} from "react-redux";
@@ -35,9 +34,6 @@ const Dashboard = () => {
         }
         {
           isPersonel ? <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isPersonel ?  <Route path="personel/dosyaekle" element={<DosyaEkle />} /> : <Route path="*" element={<NoMatch />} />
         }
     
         {

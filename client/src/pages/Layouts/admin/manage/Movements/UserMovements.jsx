@@ -7,11 +7,19 @@ import { IconButton } from "@mui/material";
 import {  useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
+import Loading from "components/Loading/Loading";
+import NoMatch from "pages/404/NoMatch";
 
 const UserMovements = () => {
   const { data, loading, error } = useGetUserMovementsQuery({});
 
-  console.log(data?.usersmovements);
+  if(loading){
+    return <Loading />
+  }
+
+  if(error){
+    return <NoMatch />
+  }
 
   const columns = [
     {

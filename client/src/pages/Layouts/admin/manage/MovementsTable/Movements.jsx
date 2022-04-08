@@ -7,6 +7,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useParams,NavLink } from 'react-router-dom';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
+import Loading from 'components/Loading/Loading';
+import NoMatch from 'pages/404/NoMatch';
 
 function Movements() {
     const { id } = useParams()
@@ -15,8 +17,14 @@ function Movements() {
             prmId: parseInt(id)
         },
     });
-    console.log(data?.usersmovementsById)
-    console.log(id)
+
+    if(loading){
+        return <Loading />
+      }
+    
+      if(error){
+        return <NoMatch/>
+      }
 
     const columns = [
         {
