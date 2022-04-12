@@ -1,35 +1,37 @@
-import { IconButton} from "@mui/material";
 import { useState, useEffect } from "react";
-import { useSelector} from "react-redux";
-import { NavLink } from "react-router-dom";
+
+//? Uniforms
 import {
   AutoForm,
   HiddenField,
   AutoField,
   SubmitField,
-  SelectField
+  SelectField,
 } from "uniforms-material";
-import { bridge as schema } from "./guncelleSchema";
+
+//? Design
+import "../personel.css";
+import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { IconButton } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
+
+//? Redux Graphql Router
+import { bridge as schema } from "./guncelleSchema";
 import {
   useUpdateUserMutation,
   useGetCitiesQuery,
   useGetDistrictsByCityidLazyQuery,
 } from "generated/graphql";
-import { toast, ToastContainer } from "react-toastify";
-import Grid from "@mui/material/Grid";
-import "../personel.css"
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 function BilgileriGuncelle() {
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
-  
-  const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation(
-    {}
-  );
 
+  const [updateUserMutation] = useUpdateUserMutation({});
   const { data: CitiesData } = useGetCitiesQuery({});
-
   const [GetDistrictById, { data: districtsByData }] =
     useGetDistrictsByCityidLazyQuery();
 
@@ -68,7 +70,6 @@ function BilgileriGuncelle() {
         },
       });
     }
-
   }, [modelState.cityid]);
   const districtData = districtsByData?.districts?.map((district) => {
     return {
@@ -77,33 +78,29 @@ function BilgileriGuncelle() {
     };
   });
 
-
   return (
     <div className="bilgileriguncelle">
       <div className="bilgileriguncelle-title">
         <div>
           <IconButton
-          size="large"
-          color="primary"
-          component="span"
-          as={NavLink}
-          to="/personel"
-        >
-          <ArrowBackIcon />
-        </IconButton>
+            size="large"
+            color="primary"
+            component="span"
+            as={NavLink}
+            to="/personel"
+          >
+            <ArrowBackIcon />
+          </IconButton>
         </div>
-        <div className="update-title">
-        Update Your Informations
-
-        </div>
+        <div className="update-title">Update Your Informations</div>
       </div>
       <AutoForm
         schema={schema}
         onSubmit={(model) => {
-          delete model.usertypes
-          delete model.userfiles
-          delete model.usersmovements
-          handleSubmit(model)
+          delete model.usertypes;
+          delete model.userfiles;
+          delete model.usersmovements;
+          handleSubmit(model);
         }}
         model={user}
         onChangeModel={(model) => {
@@ -111,9 +108,7 @@ function BilgileriGuncelle() {
           // dispatch(setUser(modelState));
         }}
       >
-
         <Grid
-
           direction="column"
           justifyContent="start"
           alignItems="center"
@@ -158,18 +153,14 @@ function BilgileriGuncelle() {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            
-              <SelectField
-                name={"districtsid"}
-                label={"Districts"}
-                options={districtData ? districtData : []}
-              />
-            
+            <SelectField
+              name={"districtsid"}
+              label={"Districts"}
+              options={districtData ? districtData : []}
+            />
           </Grid>
-         
-
         </Grid>
-        
+
         <HiddenField name="usertypesid" value={user.usertypesid} />
         <HiddenField name="id" value={user.id} />
         <HiddenField name="status" value={user.status} />
@@ -178,7 +169,6 @@ function BilgileriGuncelle() {
         <HiddenField name="changeuser" value={user.createuser} />
         <HiddenField name="changetime" value={changeDate} />
         {/* <HiddenField name="changetime" value={changeDate} /> */}
-
 
         {/* <MSCTableField name="userinfos" columns={["phonenumber","identificationnumber","adress","email","gender","schoolname"]}> 
             <MSCTableRowField name="$">

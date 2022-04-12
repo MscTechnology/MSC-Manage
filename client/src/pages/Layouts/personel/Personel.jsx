@@ -1,16 +1,20 @@
 import React from "react";
+//? CSS
 import "./personel.css";
-import { NavLink, useParams } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
-import Loading from "../../../components/Loading/Loading";
-import { useSelector, useDispatch } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useGetUserQuery, useAddMovementMutation, useGetUserDetailQuery } from "generated/graphql";
-import { toast, ToastContainer } from "react-toastify";
+
+//? Redux Graphql Router
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useGetUserQuery } from "generated/graphql";
+
+//? Components
+import Loading from "../../../components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 
 function Personel() {
-  const {data:data1, loading, error } = useGetUserQuery({});
+  const {data, loading, error } = useGetUserQuery({});
   
   const user = useSelector((state) => state.users.user);
 
@@ -25,7 +29,6 @@ function Personel() {
 
   return (
     <div className="container1">
-      <ToastContainer />
       <div className="title1">
         <IconButton
           size="large"
@@ -42,7 +45,7 @@ function Personel() {
       <div className="btn1">
        
 
-        <div className="btn2">
+        <div className="PersonelPage-Btn-Margin">
           <Button
           className="Personel-page-buttons"
             disableElevation
@@ -56,7 +59,7 @@ function Personel() {
           </Button>
         </div>
 
-        <div className="btn2">
+        <div className="PersonelPage-Btn-Margin">
           <Button
           className="Personel-page-buttons"
             disableElevation
@@ -70,7 +73,7 @@ function Personel() {
           </Button>
         </div>
 
-        <div className="btn2">
+        <div className="PersonelPage-Btn-Margin">
           <Button
            className="Personel-page-buttons"
             disableElevation
