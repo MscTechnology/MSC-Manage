@@ -50,8 +50,7 @@ function Personel() {
           className="Personel-page-buttons"
             disableElevation
             size="large"
-            color={"primary"}
-            variant="text"
+            variant="contained"
             as={NavLink}
             to={`/personel/movement/${user.id}`}
           >
@@ -64,8 +63,7 @@ function Personel() {
           className="Personel-page-buttons"
             disableElevation
             size="large"
-            color={"primary"}
-            variant="text"
+            variant="contained"
             as={NavLink}
             to="bilgileriguncelle"
           >
@@ -78,8 +76,7 @@ function Personel() {
            className="Personel-page-buttons"
             disableElevation
             size="large"
-            color={"primary"}
-            variant="text"
+            variant="contained"
             as={NavLink}
             to="documents"
           >

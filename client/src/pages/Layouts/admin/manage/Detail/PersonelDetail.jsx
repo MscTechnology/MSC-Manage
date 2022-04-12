@@ -184,8 +184,9 @@ function PersonelDetail() {
           <div className="card1">
             <div>
               <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  {`ID : ${id}`}
+                <Typography gutterBottom variant="h6" component="div"
+                className="span-container">
+                  <span className="span1">ID </span><span className="span1">{id}</span>
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
                   {`Name : ${rowData.name}`}
@@ -250,6 +251,7 @@ function PersonelDetail() {
                   {`Status : ${rowData.status === 1 ? "Active" : "Deactive"}`}
                 </Typography>
               </CardContent>
+              
             </div>
           </div>
         </Card>

@@ -85,7 +85,7 @@ const PersonelLogin = () => {
         </IconButton>
         {title}
       </div>
-      <div>
+      <div className="login-form">
         <AutoForm schema={schema} onSubmit={handleLogin}>
           <ErrorsField />
             <AutoField name={"username"} />

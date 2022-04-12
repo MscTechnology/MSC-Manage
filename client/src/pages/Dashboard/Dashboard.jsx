@@ -5,7 +5,7 @@ import PersonelLogin from "../Login/Personel/PersonelLogin";
 import { Routes, Route } from "react-router-dom";
 import Admin from "../Layouts/admin/Admin";
 import PersonelEkle from "../Layouts/admin/manage/Ekle/PersonelEkle";
-import TumPersonel from "../Layouts/admin/manage/TumPersonel";
+import TumPersonel from "../Layouts/admin/manage/AllPersonel/TumPersonel";
 import Personel from "../Layouts/personel/Personel"
 import BilgileriGuncelle from "../Layouts/personel/guncelle/BilgileriGuncelle"
 import PersonelDetail from "../Layouts/admin/manage/Detail/PersonelDetail";

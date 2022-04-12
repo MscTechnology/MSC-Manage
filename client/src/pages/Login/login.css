@@ -101,6 +101,7 @@ width: 100%;
 .MuiButton-contained {
   background-color: black !important;
   color: white !important;
+  border-radius: 30px !important;
 }
 
 
@@ -111,4 +112,9 @@ width: 100%;
 
 .login-img{
   min-width: 50%;
+}
+
+.login-form{
+  text-align: center;
+  padding: 20px;
 }

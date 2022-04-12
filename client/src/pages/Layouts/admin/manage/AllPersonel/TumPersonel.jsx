@@ -1,5 +1,5 @@
 //! Css
-import "../../../../styles.css";
+import "../../../../../styles.css";
 //! Material UI
 import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -62,7 +62,7 @@ const TumPersonel = () => {
                     disableElevation
                     size="large"
                     color={p?.status ? "primary" : "error"}
-                    variant="text"
+                    variant="contained"
                     as={NavLink}
                     to={`${p?.id}`}
                   >

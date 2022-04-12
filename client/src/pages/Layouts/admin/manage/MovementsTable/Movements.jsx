@@ -39,14 +39,7 @@ function Movements() {
   }
 
   const columns = [
-    {
-      field: "usersid",
-      headerName: "User id",
-      width: 130,
-      valueFormatter: (params) => {
-        return params.row?.users?.userid;
-      },
-    },
+    
     {
       field: "users.name",
       headerName: "Name",
@@ -103,7 +96,7 @@ function Movements() {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
-          checkboxSelection
+          
           autoPageSize
           pagination
         />

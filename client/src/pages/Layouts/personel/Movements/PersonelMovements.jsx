@@ -10,6 +10,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, IconButton } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 //? Redux Graphql Router
 import {
@@ -20,29 +23,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { setTap } from "../../../../store/MovementsToast/MovementsToast";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 250,
+  bgcolor: "background.paper",
+  border: "3px solid #000",
+  boxShadow: 24,
+  p: 3,
+  
+};
+
 const PersonelMovements = () => {
-  const { id } = useParams();
-  const user = useSelector((state) => state.users.user);
-
-  const { data, loading, error } = useGetUserMovementByIdQuery({
-    variables: {
-      prmId: parseInt(id),
-    },
-  });
-  const [addMovementMutation] = useAddMovementMutation({});
-
-  const isTap = useSelector((state) => state.movements.isTap);
-  const dispatch = useDispatch();
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <NoMatch />;
-  }
-
-  const handleInWork = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleSave = () => {
     if (isTap) {
       dispatch(setTap(false));
       toast.success("You are in work!");
@@ -61,44 +63,46 @@ const PersonelMovements = () => {
           createuser: user.createuser,
         },
       },
+    }).then(() => {
+      refetch();
+      setOpen(false);
     });
-  };
-  const paramsFunctions = (params) => {
-    return params.api.state.rows.idRowsLookup[params.id];
   }
 
+  const { id } = useParams();
+  const user = useSelector((state) => state.users.user);
+
+  const { data, loading, error, refetch } = useGetUserMovementByIdQuery({
+    variables: {
+      prmId: parseInt(id),
+    },
+  });
+  const [addMovementMutation] = useAddMovementMutation({});
+
+  const isTap = useSelector((state) => state.movements.isTap);
+  const dispatch = useDispatch();
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <NoMatch />;
+  }
+
+  
+  const paramsFunctions = (params) => {
+    return params.api.state.rows.idRowsLookup[params.id];
+  };
+
   const columns = [
-    {
-      field: "usersid",
-      headerName: "User id",
-      width: 130,
-      valueFormatter: (params) => {
-        return params.row?.users?.userid;
-      },
-    },
-    {
-      field: "users.name",
-      headerName: "Name",
-      width: 130,
-      valueFormatter: (params) => {
-        return paramsFunctions(params).users.name;
-      },
-    },
-    {
-      field: "users.surname",
-      headerName: "Surname",
-      width: 130,
-      valueFormatter: (params) => {
-        return paramsFunctions(params).users.surname;
-      },
-    },
     {
       field: "transactiondate",
       headerName: "Transaction Date",
       width: 200,
       valueFormatter: (params) => {
-        return paramsFunctions(params).transactiondate
-          .split("T")[0]
+        return paramsFunctions(params)
+          .transactiondate.split("T")[0]
           .split("-")
           .reverse()
           .join("-");
@@ -109,7 +113,7 @@ const PersonelMovements = () => {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return paramsFunctions(params).entrytime
+        return paramsFunctions(params).entrytime;
       },
     },
     { field: "exittime", headerName: "Exit Time", width: 130 },
@@ -138,20 +142,31 @@ const PersonelMovements = () => {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
-          checkboxSelection
           autoPageSize
           pagination
         />
       </div>
       <div className="PersonelPage-Btn-Margin">
-        <Button
-          onClick={handleInWork}
-          size="large"
-          color={"primary"}
-          variant="text"
+      <Button onClick={handleOpen}>log In / Log Out</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-          log In / Log Out
-        </Button>
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Emin misiniz?
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Bu yapacağınız işlemin geri dönüşü olmayabilir.
+            </Typography>
+            <Box sx={{ mt: 2 }} className="login-logout-buttons">
+              <Button className="loginmovements-button"  onClick={handleSave}>Giriş/Çıkış Yap</Button>
+              <Button   onClick={handleClose}>Kapat</Button>
+            </Box>
+          </Box>
+        </Modal>
       </div>
     </div>
   );

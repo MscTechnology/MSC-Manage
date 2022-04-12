@@ -217,13 +217,20 @@
   align-items: center;
   text-align: left;
 }
-
 .detail-title {
   color: black;
-  font-size: 3em;
+  font-size: 2em;
   margin-top: 0.2em;
-  margin-bottom: 0.2em
+  margin-bottom: 0.2em;
+  margin-right:15px
 }
+.detail-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
 
 .detail-title-active {
   color: red;
@@ -293,7 +300,7 @@
 .buttons1 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -437,5 +444,22 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+
+.MuiButton-textPrimary{
+  color:red !important;
+}
+
+.MuiButton-outlinedPrimary {
+  color: green !important;
+}
+.loginmovements-button{
+  color:green !important;
+}
+
+.login-logout-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 

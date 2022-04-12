@@ -9,6 +9,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
 import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
+import moment from "moment";
 
 const UserMovements = () => {
   const { data, loading, error } = useGetUserMovementsQuery({});
@@ -22,14 +23,6 @@ const UserMovements = () => {
   }
 
   const columns = [
-    {
-      field: "usersid",
-      headerName: "User id",
-      width: 130,
-      valueFormatter: (params) => {
-        return params.row?.users?.userid;
-      },
-    },
     {
       field: "users.name",
       headerName: "Name",
@@ -63,7 +56,7 @@ const UserMovements = () => {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return ((params.api.state.rows.idRowsLookup[params.id].entrytime))
+        return ((params.api.state.rows.idRowsLookup[params.id].entrytime));
           
       },
     },
@@ -104,7 +97,7 @@ const UserMovements = () => {
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[6, 12, 18, 40, 50]}
-          checkboxSelection
+          checkboxSelection={false}
           autoPageSize
           pagination
         />
