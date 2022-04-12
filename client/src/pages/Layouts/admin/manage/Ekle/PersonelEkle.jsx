@@ -55,7 +55,6 @@ const PersonelEkle = () => {
     }).catch((err)=>{
       toast.error(err);
     });
-    console.log(model);
   };
 
   const createDate = new Date().toUTCString();
@@ -68,7 +67,7 @@ const PersonelEkle = () => {
         <ArrowBackIcon />
       </IconButton>Add Personel </h1>
       <div>
-        <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
+        <AutoForm schema={schema} onSubmit={handleSubmit} >
           <ErrorsField />
           <HiddenField name="id" value={0} />
           <AutoField name="name" label="Name*" />

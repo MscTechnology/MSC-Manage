@@ -2,10 +2,9 @@ import { useState } from "react";
 
 //! Components
 import Loading from "../../../components/Loading/Loading";
-import Error from "../../../components/Error/Error";
 //! Redux
 import { useGetUserQuery } from "generated/graphql";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { setAdmin } from "store/User/UserSlice";
 //! Design
 import { IconButton } from "@mui/material";
@@ -26,8 +25,6 @@ import NoMatch from "pages/404/NoMatch";
 const AdminLogin = () => {
   const { data, loading, error } = useGetUserQuery();
   const [title, setTitle] = useState("Admin Log In");
-  const user = useSelector((state) => state.users.user);
-  const isAdmin = useSelector((state) => state.users.isAdmin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -94,7 +91,7 @@ const AdminLogin = () => {
       <AutoForm
         schema={schema}
         onSubmit={handleLogin}
-        onChangeModel={(model) => console.log(model)}
+        
       >
         <ErrorsField />
         <AutoField name={"username"} />
