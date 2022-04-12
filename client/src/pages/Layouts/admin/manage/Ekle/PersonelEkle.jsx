@@ -22,7 +22,7 @@ import NoMatch from "pages/404/NoMatch";
 const PersonelEkle = () => {
   const { data, loading, error } = useGetUserTypesQuery();
 
-  const [addUserMutation, {data:dataMutation,loading:loadingMutation}] = useAddUserMutation();
+  const [addUserMutation] = useAddUserMutation();
   
   const user = useSelector((state) => state.users.user);
 
@@ -55,11 +55,9 @@ const PersonelEkle = () => {
     }).catch((err)=>{
       toast.error(err);
     });
-    console.log(model);
   };
 
   const createDate = new Date().toUTCString();
-  const changeDate = new Date().toUTCString();
 
   return (
     <div className="Addpersonel-page">
@@ -68,7 +66,7 @@ const PersonelEkle = () => {
         <ArrowBackIcon />
       </IconButton>Add Personel </h1>
       <div>
-        <AutoForm schema={schema} onSubmit={handleSubmit} onChangeModel={(model)=> console.log(model)}>
+        <AutoForm schema={schema} onSubmit={handleSubmit} >
           <ErrorsField />
           <HiddenField name="id" value={0} />
           <AutoField name="name" label="Name*" />

@@ -27,8 +27,6 @@ const schemaExtras = {
 
 
 const schemaValidator = (model) => {
-  console.log("---- model")
-  console.log(model)
     const details = [];
     if (!model.username) {
       details.push({

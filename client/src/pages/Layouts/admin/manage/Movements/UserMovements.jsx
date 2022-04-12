@@ -63,9 +63,8 @@ const UserMovements = () => {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].entrytime
-          .toString()
-          .replace(/^(\d+\.?\d*)(h|m|s|ms|f|t)$/gm);
+        return ((params.api.state.rows.idRowsLookup[params.id].entrytime))
+          
       },
     },
     {

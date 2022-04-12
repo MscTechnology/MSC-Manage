@@ -1,49 +1,58 @@
-import "../../../../../styles.css";
-import { Button, Typography, CardContent, Card } from "@mui/material";
-import { Link, NavLink, useParams } from "react-router-dom";
-import { useGetCityByIdQuery, useGetDistrictByIdQuery, useGetUserDetailQuery, useUpdateUserMutation } from "generated/graphql";
 import { useEffect, useState } from "react";
+//? Components
 import Loading from "../../../../../components/Loading/Loading";
 import NoMatch from "../../../../../pages/404/NoMatch";
-import {useDispatch } from "react-redux";
-import { setActive } from "../../../../../../src/store/User/UserSlice"
-import { styled } from '@mui/material/styles';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
+//? Css
+import "../../../../../styles.css";
+
+//? Material UI
+import { styled } from "@mui/material/styles";
+import SwitchUnstyled, {
+  switchUnstyledClasses,
+} from "@mui/base/SwitchUnstyled";
+import { Button, Typography, CardContent, Card } from "@mui/material";
+
+//? Graphql And Router
+import { useDispatch } from "react-redux";
+import { setActive } from "../../../../../../src/store/User/UserSlice";
+import {
+  useGetCityByIdQuery,
+  useGetDistrictByIdQuery,
+  useGetUserDetailQuery,
+  useUpdateUserMutation,
+} from "generated/graphql";
+import { Link, NavLink, useParams } from "react-router-dom";
 
 function PersonelDetail() {
   const [checked, setChecked] = useState(true);
   const [rowData, setRowData] = useState({});
-  const { id } = useParams()
+  const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [updateUserMutation, { data: updateData, loading: updateLoading, error: UpdateError }] = useUpdateUserMutation({});
+  const [updateUserMutation] = useUpdateUserMutation({});
 
   const { data, loading, error } = useGetUserDetailQuery({
     variables: {
-      prmId: parseInt(id)
-    },
-  })
-
-  const status = data?.usersById[0].status
-
-
-  //! BURASI POST HATASI VERİYOR SOR! ama datayı getiriyor
-  const { data:CityByIdData } = useGetCityByIdQuery({
-    variables: {
-       prmId: parseInt(rowData?.cityid)
+      prmId: parseInt(id),
     },
   });
 
-
+  const status = data?.usersById[0].status;
 
   //! BURASI POST HATASI VERİYOR SOR! ama datayı getiriyor
-  const { data:DistrictByIdData } = useGetDistrictByIdQuery({
+  const { data: CityByIdData } = useGetCityByIdQuery({
     variables: {
-       prmId: parseInt(rowData?.districtsid)
+      prmId: parseInt(rowData?.cityid),
     },
   });
 
+  //! BURASI POST HATASI VERİYOR SOR! ama datayı getiriyor
+  const { data: DistrictByIdData } = useGetDistrictByIdQuery({
+    variables: {
+      prmId: parseInt(rowData?.districtsid),
+    },
+  });
 
   useEffect(() => {
     if (data) {
@@ -51,17 +60,15 @@ function PersonelDetail() {
         setRowData(data?.usersById[0]);
         setChecked(data?.usersById[0].status);
       }
-
     }
+  }, [data, status]);
 
-  }, [data, status])
-
-  if(loading){
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   }
 
-  if(error){
-    return <NoMatch/>
+  if (error) {
+    return <NoMatch />;
   }
   const handleChange = (e) => {
     if (data) {
@@ -69,27 +76,26 @@ function PersonelDetail() {
         variables: {
           prmUser: {
             ...data?.usersById[0],
-            status: checked ? 0 : 1
-          }
+            status: checked ? 0 : 1,
+          },
         },
-      })
+      });
       setChecked(e.target.checked);
       dispatch(setActive(!checked));
     }
-  }
+  };
 
   const blue = {
-    500: '#007FFF',
+    500: "#007FFF",
   };
 
   const grey = {
-    400: '#BFC7CF',
-    500: '#AAB4BE',
-    600: '#6F7E8C',
+    400: "#BFC7CF",
+    500: "#AAB4BE",
+    600: "#6F7E8C",
   };
 
-
-  const Root = styled('span')(
+  const Root = styled("span")(
     ({ theme }) => `
     font-size: 0;
     position: relative;
@@ -105,7 +111,7 @@ function PersonelDetail() {
     }
   
     & .${switchUnstyledClasses.track} {
-      background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
+      background: ${theme.palette.mode === "dark" ? grey[600] : grey[400]};
       border-radius: 10px;
       display: block;
       height: 100%;
@@ -153,23 +159,17 @@ function PersonelDetail() {
       z-index: 1;
       margin: 0;
     }
-    `,
+    `
   );
-
 
   return (
     <div className="detailPage">
-      <div className="detail-title">
-        Informations
-
-      </div>
+      <div className="detail-title">Informations</div>
       <div className="name">
-
-        <Card >
+        <Card>
           <div className="card1">
-            
             <div>
-              <CardContent >
+              <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                   {`ID : ${id}`}
                 </Typography>
@@ -180,86 +180,92 @@ function PersonelDetail() {
                   {`Surname : ${rowData.surname}`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Username : ${rowData.username}`
-                  }
+                  {`Username : ${rowData.username}`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Password : ${rowData.password}`
-                  }
+                  {`Password : ${rowData.password}`}
                 </Typography>
-                <hr/>
+                <hr />
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Email : ${rowData.email === null ? "Girilmemiş" : rowData.email}`
-                  }
+                  {`Email : ${
+                    rowData.email === null ? "Girilmemiş" : rowData.email
+                  }`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Phone : ${rowData.phonenumber === null ? "Girilmemiş" : rowData.phonenumber}`
-                  }
+                  {`Phone : ${
+                    rowData.phonenumber === null
+                      ? "Girilmemiş"
+                      : rowData.phonenumber
+                  }`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `TC : ${rowData.identificationnumber === null ? "Girilmemiş" : rowData.identificationnumber}`
-                  }
+                  {`TC : ${
+                    rowData.identificationnumber === null
+                      ? "Girilmemiş"
+                      : rowData.identificationnumber
+                  }`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `School : ${rowData.schoolname === null ? "Girilmemiş" : rowData.schoolname}`
-                  }
+                  {`School : ${
+                    rowData.schoolname === null
+                      ? "Girilmemiş"
+                      : rowData.schoolname
+                  }`}
                 </Typography>
-                <hr/>
+                <hr />
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Adress : ${rowData.adress === null ? "Girilmemiş" : rowData.adress}`
-                  }
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `City : ${CityByIdData?.cities[0].cityname === undefined ? "Girilmemiş" : CityByIdData?.cities[0].cityname}`
-                  }
+                  {`Adress : ${
+                    rowData.adress === null ? "Girilmemiş" : rowData.adress
+                  }`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Districts : ${DistrictByIdData?.districts[0].districtname === undefined ? "Girilmemiş" : DistrictByIdData?.districts[0].districtname}`
-                  }
+                  {`City : ${
+                    CityByIdData?.cities[0].cityname === undefined
+                      ? "Girilmemiş"
+                      : CityByIdData?.cities[0].cityname
+                  }`}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {
-                    `Status : ${rowData.status === 1 ? "Active" : "Deactive"}`
-                  }
+                  {`Districts : ${
+                    DistrictByIdData?.districts[0].districtname === undefined
+                      ? "Girilmemiş"
+                      : DistrictByIdData?.districts[0].districtname
+                  }`}
                 </Typography>
-               
-
+                <Typography gutterBottom variant="h6" component="div">
+                  {`Status : ${rowData.status === 1 ? "Active" : "Deactive"}`}
+                </Typography>
               </CardContent>
             </div>
           </div>
-
-          </Card>
-          <div className="buttons1">
-            <div>
-              <Button as={NavLink} to="/admin/tumpersonel" size="small">Go Back</Button>
-            </div>
-            <div className="active-deactive">
-              <div>deactive</div>
-              <SwitchUnstyled component={Root} onChange={handleChange} checked={checked} />
-              <div>Active</div>
-            </div>
+        </Card>
+        <div className="buttons1">
+          <div>
+            <Button as={NavLink} to="/admin/tumpersonel" size="small">
+              Go Back
+            </Button>
           </div>
+          <div className="active-deactive">
+            <div>deactive</div>
+            <SwitchUnstyled
+              component={Root}
+              onChange={handleChange}
+              checked={checked}
+            />
+            <div>Active</div>
+          </div>
+        </div>
 
-        
-          <Link
+        <Link
           className="detail-page-button"
           role="button"
-          to={`/admin/tumpersonel/movement/${data?.usersById[0].id}`}        
+          to={`/admin/tumpersonel/movement/${data?.usersById[0].id}`}
         >
           View Personels Movements Table
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default PersonelDetail
+export default PersonelDetail;

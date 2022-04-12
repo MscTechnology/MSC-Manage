@@ -28,14 +28,20 @@ const Dashboard = () => {
         <Route path="/" element={<Home />} />
         <Route path="personelLogin" element={<PersonelLogin />} />
         <Route path="adminLogin" element={<AdminLogin />} />
-        <Route path="/admin/tumpersonel/movement/:id" element={<Movements/>}/>
-        <Route path="/personel/movement/:id" element={<PersonelMovements/>}/>
-        
         {
           isPersonel ? <Route path="personel" element={<Personel />} /> : <Route path="*" element={<NoMatch />} />
         }
         {
+          isPersonel ? <Route path="/personel/movement/:id" element={<PersonelMovements/>}/> : <Route path="*" element={<NoMatch />} />
+        }
+        {
           isPersonel ? <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isPersonel ?  <Route path="/personel/documents" element={<Documents/>}/> : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isPersonel ?  <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
         }
     
         {
@@ -52,12 +58,20 @@ const Dashboard = () => {
         {
           isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
         }
-        <Route path="/admin/tumpersonel" element={<TumPersonel />} />
-        <Route path="/personel/documents" element={<Documents/>}/>
+        {
+          isAdmin ?   <Route path="/admin/tumpersonel/movement/:id" element={<Movements/>}/>  : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ?   <Route path="admin/usermovement" element={<UserMovements />} />  : <Route path="*" element={<NoMatch />} />
+        }
+        {
+          isAdmin ?   <Route path="admin/personelfiles" element={<PersonelFiles />} />  : <Route path="*" element={<NoMatch />} />
+        }
+       
         <Route path="*"element={<NoMatch />} />
-        <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} />
-        <Route path="admin/personelfiles" element={<PersonelFiles />} />
-        <Route path="admin/usermovement" element={<UserMovements />} />
+        
+        
+        
       </Routes>
 
     </div>

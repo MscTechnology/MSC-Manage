@@ -11,7 +11,6 @@ import NoMatch from 'pages/404/NoMatch';
 function PersonelFiles() {
   const { data, loading, error } = useGetUserQuery({});
 
-  const { data: filedata } = useGetFilesQuery({});
 
   if(loading){
     return <Loading />
