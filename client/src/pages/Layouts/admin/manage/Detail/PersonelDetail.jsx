@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-//? Components
+//! Components
 import Loading from "../../../../../components/Loading/Loading";
 import NoMatch from "../../../../../pages/404/NoMatch";
 
-//? Css
+//! Css
 import "../../../../../styles.css";
 
-//? Material UI
+//! Material UI
 import { styled } from "@mui/material/styles";
 import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
-import { Button, Typography, CardContent, Card } from "@mui/material";
+import { Button, Typography, CardContent, Card, IconButton } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-//? Graphql And Router
+//! Graphql And Router
 import { useDispatch } from "react-redux";
 import { setActive } from "../../../../../../src/store/User/UserSlice";
 import {
@@ -164,7 +165,20 @@ function PersonelDetail() {
 
   return (
     <div className="detailPage">
+      <div className="detail-header">
+        <div className="detail-page-back-button">
+        <IconButton
+            size="large"
+            color="primary"
+            component="span"
+            as={NavLink}
+            to="/admin/tumpersonel"
+          >
+            <ArrowBackIcon />
+          </IconButton>
+        </div>
       <div className="detail-title">Informations</div>
+      </div>
       <div className="name">
         <Card>
           <div className="card1">
@@ -240,11 +254,6 @@ function PersonelDetail() {
           </div>
         </Card>
         <div className="buttons1">
-          <div>
-            <Button as={NavLink} to="/admin/tumpersonel" size="small">
-              Go Back
-            </Button>
-          </div>
           <div className="active-deactive">
             <div>deactive</div>
             <SwitchUnstyled
