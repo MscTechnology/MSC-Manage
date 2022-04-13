@@ -4,7 +4,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
-import {  useGetUserMovementsQuery } from "generated/graphql";
+import { useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid } from "@mui/x-data-grid";
 import * as React from "react";
 import Loading from "components/Loading/Loading";
@@ -12,14 +12,14 @@ import NoMatch from "pages/404/NoMatch";
 import moment from "moment";
 
 const UserMovements = () => {
-  const { data, loading, error } = useGetUserMovementsQuery({});
+  const { data, loading, error, refetch } = useGetUserMovementsQuery({});
 
-  if(loading){
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   }
 
-  if(error){
-    return <NoMatch />
+  if (error) {
+    return <NoMatch />;
   }
 
   const columns = [
@@ -56,20 +56,19 @@ const UserMovements = () => {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return ((params.api.state.rows.idRowsLookup[params.id].entrytime));
-          
+        return params.api.state.rows.idRowsLookup[params.id].entrytime;
       },
     },
     {
-      field: "exittime", headerName: "Exit Time", width: 130,
+      field: "exittime",
+      headerName: "Exit Time",
+      width: 130,
       valueFormatter: (params) => {
-        const exittime = (params.api.state.rows.idRowsLookup[params.id].exittime);
-        return exittime === null ? "Daha Çıkmadı" : exittime
-      }
+        const exittime = params.api.state.rows.idRowsLookup[params.id].exittime;
+        return exittime === null ? "Daha Çıkmadı" : exittime;
+      },
     },
   ];
-
-
 
   return (
     <div className="UserMovements">
@@ -85,25 +84,22 @@ const UserMovements = () => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>
-          Personel Giriş Çıkışları
-        </div>
-
+        <div>Personel Giriş Çıkışları</div>
       </div>
 
       <div style={{ height: 800, width: "75%" }}>
-        <DataGrid
-          rows={data?.usersmovements}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[6, 12, 18, 40, 50]}
-          checkboxSelection={false}
-          autoPageSize
-          pagination
-        />
+        {refetch && (
+          <DataGrid
+            rows={data?.usersmovements}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[6, 12, 18, 40, 50]}
+            checkboxSelection={false}
+            autoPageSize
+            pagination
+          />
+        )}
       </div>
-
-
     </div>
   );
 };

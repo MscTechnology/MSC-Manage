@@ -9,12 +9,12 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding-top: 100px;
 }
 .title1 {
   font-size: 40px;
   margin-top: -10em;
   margin-bottom: 0.5em;
-  padding: 3px 30px 3px 0px;
   font-weight: bold;
   color: black;
 }
