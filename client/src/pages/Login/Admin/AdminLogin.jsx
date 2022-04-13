@@ -77,6 +77,7 @@ const AdminLogin = () => {
           </div>
       <div className="title">
         
+        <div>
         <IconButton
           size="large"
           color="primary"
@@ -86,7 +87,11 @@ const AdminLogin = () => {
         >
           <ArrowBackIcon />
         </IconButton>
+          </div>
+          <div>
         {title}
+
+          </div>
       </div>
       <AutoForm
         schema={schema}
@@ -98,7 +103,7 @@ const AdminLogin = () => {
 
         <AutoField name={"password"} />
         <div className="admin-login-submit">
-          <SubmitField className="admin-login-button" value="Log In" />
+          <SubmitField className="admin-login-button" label="Log In" />
         </div>
       </AutoForm>
     </div>

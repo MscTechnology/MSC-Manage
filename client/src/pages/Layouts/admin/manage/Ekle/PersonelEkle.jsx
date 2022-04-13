@@ -61,10 +61,11 @@ const PersonelEkle = () => {
 
   return (
     <div className="Addpersonel-page">
-      <h1 className="personel-ekle-title"><IconButton size="large" color="primary" component="span" as={NavLink}
+      <div className="personel-ekle-title"><IconButton size="large" color="primary" component="span" as={NavLink}
         to="/admin">
         <ArrowBackIcon />
-      </IconButton>Add Personel </h1>
+      </IconButton>Add Personel 
+      </div>
       <div>
         <AutoForm schema={schema} onSubmit={handleSubmit} >
           <ErrorsField />

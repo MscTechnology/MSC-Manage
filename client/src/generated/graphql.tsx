@@ -25,6 +25,11 @@ export type Scalars = {
   TimeSpan: any;
 };
 
+export type BooleanOperationFilterInput = {
+  eq?: InputMaybe<Scalars['Boolean']>;
+  neq?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type City = {
   __typename?: 'City';
   cityname?: Maybe<Scalars['String']>;
@@ -254,6 +259,21 @@ export type MutationUpdateUserArgs = {
   prmUser?: InputMaybe<UserInput>;
 };
 
+export type PesronelCustomlist = {
+  __typename?: 'PesronelCustomlist';
+  btntext?: Maybe<Scalars['String']>;
+  btnvisible: Scalars['Boolean'];
+  data?: Maybe<Array<Maybe<Usersmovement>>>;
+};
+
+export type PesronelCustomlistFilterInput = {
+  and?: InputMaybe<Array<PesronelCustomlistFilterInput>>;
+  btntext?: InputMaybe<StringOperationFilterInput>;
+  btnvisible?: InputMaybe<BooleanOperationFilterInput>;
+  data?: InputMaybe<ListFilterInputTypeOfUsersmovementFilterInput>;
+  or?: InputMaybe<Array<PesronelCustomlistFilterInput>>;
+};
+
 export type Query = {
   __typename?: 'Query';
   cities?: Maybe<Array<Maybe<City>>>;
@@ -264,6 +284,8 @@ export type Query = {
   usersById?: Maybe<Array<Maybe<User>>>;
   usersmovements?: Maybe<Array<Maybe<Usersmovement>>>;
   usersmovementsById?: Maybe<Array<Maybe<Usersmovement>>>;
+  usersmovementsByIdForLogin?: Maybe<PesronelCustomlist>;
+  usersmovementsWithList?: Maybe<PesronelCustomlist>;
   usertypes?: Maybe<Array<Maybe<Usertype>>>;
 };
 
@@ -293,8 +315,19 @@ export type QueryUsersByIdArgs = {
 };
 
 
+export type QueryUsersmovementsArgs = {
+  where?: InputMaybe<UsersmovementFilterInput>;
+};
+
+
 export type QueryUsersmovementsByIdArgs = {
   where?: InputMaybe<UsersmovementFilterInput>;
+};
+
+
+export type QueryUsersmovementsByIdForLoginArgs = {
+  prmId: Scalars['Long'];
+  where?: InputMaybe<PesronelCustomlistFilterInput>;
 };
 
 export enum ResultEnum {
@@ -593,6 +626,13 @@ export type GetUserMovementByIdQueryVariables = Exact<{
 
 
 export type GetUserMovementByIdQuery = { __typename?: 'Query', usersmovementsById?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, transactiondate?: any | null, entrytime?: any | null, exittime?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null } | null } | null> | null };
+
+export type GetUserMovementsByIdForLoginQueryVariables = Exact<{
+  prmId: Scalars['Long'];
+}>;
+
+
+export type GetUserMovementsByIdForLoginQuery = { __typename?: 'Query', usersmovementsByIdForLogin?: { __typename?: 'PesronelCustomlist', btntext?: string | null, btnvisible: boolean, data?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: any | null, exittime?: any | null, transactiondate?: any | null } | null> | null } | null };
 
 export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1104,6 +1144,49 @@ export function useGetUserMovementByIdLazyQuery(baseOptions?: Apollo.LazyQueryHo
 export type GetUserMovementByIdQueryHookResult = ReturnType<typeof useGetUserMovementByIdQuery>;
 export type GetUserMovementByIdLazyQueryHookResult = ReturnType<typeof useGetUserMovementByIdLazyQuery>;
 export type GetUserMovementByIdQueryResult = Apollo.QueryResult<GetUserMovementByIdQuery, GetUserMovementByIdQueryVariables>;
+export const GetUserMovementsByIdForLoginDocument = gql`
+    query GetUserMovementsByIdForLogin($prmId: Long!) {
+  usersmovementsByIdForLogin(prmId: $prmId) {
+    btntext
+    btnvisible
+    data {
+      id
+      usersid
+      entrytime
+      exittime
+      transactiondate
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetUserMovementsByIdForLoginQuery__
+ *
+ * To run a query within a React component, call `useGetUserMovementsByIdForLoginQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserMovementsByIdForLoginQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserMovementsByIdForLoginQuery({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *   },
+ * });
+ */
+export function useGetUserMovementsByIdForLoginQuery(baseOptions: Apollo.QueryHookOptions<GetUserMovementsByIdForLoginQuery, GetUserMovementsByIdForLoginQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserMovementsByIdForLoginQuery, GetUserMovementsByIdForLoginQueryVariables>(GetUserMovementsByIdForLoginDocument, options);
+      }
+export function useGetUserMovementsByIdForLoginLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserMovementsByIdForLoginQuery, GetUserMovementsByIdForLoginQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserMovementsByIdForLoginQuery, GetUserMovementsByIdForLoginQueryVariables>(GetUserMovementsByIdForLoginDocument, options);
+        }
+export type GetUserMovementsByIdForLoginQueryHookResult = ReturnType<typeof useGetUserMovementsByIdForLoginQuery>;
+export type GetUserMovementsByIdForLoginLazyQueryHookResult = ReturnType<typeof useGetUserMovementsByIdForLoginLazyQuery>;
+export type GetUserMovementsByIdForLoginQueryResult = Apollo.QueryResult<GetUserMovementsByIdForLoginQuery, GetUserMovementsByIdForLoginQueryVariables>;
 export const GetUserTypesDocument = gql`
     query GetUserTypes {
   usertypes {

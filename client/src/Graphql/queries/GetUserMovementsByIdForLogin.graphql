@@ -1,0 +1,13 @@
+query GetUserMovementsByIdForLogin($prmId: Long!) {
+  usersmovementsByIdForLogin(prmId: $prmId) {
+    btntext
+    btnvisible
+    data {
+      id
+      usersid
+      entrytime
+      exittime
+      transactiondate
+    }
+  }
+}

@@ -74,6 +74,7 @@ const PersonelLogin = () => {
             <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
           </div>
       <div className="title">
+        <div> 
         <IconButton
           size="large"
           color="primary"
@@ -83,7 +84,11 @@ const PersonelLogin = () => {
         >
           <ArrowBackIcon />
         </IconButton>
+        </div>
+        <div>
+
         {title}
+        </div>
       </div>
       <div className="login-form">
         <AutoForm schema={schema} onSubmit={handleLogin}>

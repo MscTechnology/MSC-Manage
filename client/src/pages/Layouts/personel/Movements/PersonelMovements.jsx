@@ -18,6 +18,7 @@ import Modal from "@mui/material/Modal";
 import {
   useAddMovementMutation,
   useGetUserMovementByIdQuery,
+  useGetUserMovementsByIdForLoginQuery,
 } from "generated/graphql";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
@@ -72,11 +73,26 @@ const PersonelMovements = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.users.user);
 
-  const { data, loading, error, refetch } = useGetUserMovementByIdQuery({
+  const { data, loading, error } = useGetUserMovementByIdQuery({
     variables: {
       prmId: parseInt(id),
     },
   });
+
+  const { data:GetMovementsData,refetch } = useGetUserMovementsByIdForLoginQuery({
+    variables: {
+       prmId: parseInt(id),
+    },
+  });
+  const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
+  const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
+console.log(btnVisible)
+
+
+
+
+
+
   const [addMovementMutation] = useAddMovementMutation({});
 
   const isTap = useSelector((state) => state.movements.isTap);
@@ -134,11 +150,11 @@ const PersonelMovements = () => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Personel Giriş Çıkışları</div>
+        <div>Giriş Çıkış Bilgileri</div>
       </div>
       <div style={{ height: 400, width: "75%", marginBottom: "2%" }}>
         <DataGrid
-          rows={data?.usersmovementsById}
+          rows={GetMovementsData?.usersmovementsByIdForLogin?.data}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
@@ -146,8 +162,8 @@ const PersonelMovements = () => {
           pagination
         />
       </div>
-      <div className="PersonelPage-Btn-Margin">
-      <Button onClick={handleOpen}>log In / Log Out</Button>
+      <div className={btnVisible ? "PersonelPage-Btn-Margin" : "disable"}>
+      <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -162,7 +178,7 @@ const PersonelMovements = () => {
               Bu yapacağınız işlemin geri dönüşü olmayabilir.
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
-              <Button className="loginmovements-button"  onClick={handleSave}>Giriş/Çıkış Yap</Button>
+              <Button   className="loginmovements-button"  onClick={handleSave}>{btnText}</Button>
               <Button   onClick={handleClose}>Kapat</Button>
             </Box>
           </Box>

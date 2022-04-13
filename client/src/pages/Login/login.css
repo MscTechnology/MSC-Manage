@@ -17,8 +17,12 @@ body {
 }
 
 .title {
-  font-size: 30x;
   padding-top: 2em;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30px;
+  padding-right:15px
 }
 #outlined-basic {
   border-bottom: 2px solid black;

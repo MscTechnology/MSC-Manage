@@ -12,8 +12,8 @@
 }
 .title1 {
   font-size: 40px;
-  margin-top: -1em;
-  margin-bottom: 1em;
+  margin-top: -10em;
+  margin-bottom: 0.5em;
   padding: 3px 30px 3px 0px;
   font-weight: bold;
   color: black;
@@ -37,6 +37,7 @@
 .update-title{
   color:black;
   margin-bottom:2%;
+  padding-right:25px;
 }
 .documents-title{
   display: flex;
