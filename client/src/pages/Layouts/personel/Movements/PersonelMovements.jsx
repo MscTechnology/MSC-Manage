@@ -86,15 +86,15 @@ const PersonelMovements = () => {
   });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
   const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
-console.log(btnVisible)
 
 
 
+  const loginLogoutDate =moment().format("DD-MM-YYYY  HH:mm:ss");
+console.log(loginLogoutDate)
 
 
 
   const [addMovementMutation] = useAddMovementMutation({});
-
   const isTap = useSelector((state) => state.movements.isTap);
   const dispatch = useDispatch();
 
@@ -175,7 +175,9 @@ console.log(btnVisible)
               Emin misiniz?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Bu yapacağınız işlemin geri dönüşü olmayabilir.
+             {
+               btnText==="GİRİŞ YAP" ? `${loginLogoutDate} tarihinde giriş yapacaksınız` : `${loginLogoutDate} tarihinde çıkış yapacaksınız`
+             }
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
               <Button   className="loginmovements-button"  onClick={handleSave}>{btnText}</Button>

@@ -7,6 +7,8 @@ import {
   AutoField,
   SubmitField,
   SelectField,
+  ErrorsField,
+  NumField,
 } from "uniforms-material";
 
 //? Design
@@ -108,6 +110,7 @@ function BilgileriGuncelle() {
           // dispatch(setUser(modelState));
         }}
       >
+        <ErrorsField/>
         <Grid
           direction="column"
           justifyContent="start"
@@ -127,10 +130,10 @@ function BilgileriGuncelle() {
             <AutoField name={"password"} label="Password: " />
           </Grid>
           <Grid item xs={12} md={6}>
-            <AutoField name={"email"} label="Email: " />
+            <AutoField name={"email"}  label="Email: " />
           </Grid>
           <Grid item xs={12} md={6}>
-            <AutoField name={"phonenumber"} label="Phone Number: " />
+            <NumField max={11} min={0} name={"phonenumber"}  label="Phone Number (5xx): " />
           </Grid>
           <Grid item xs={12} md={6}>
             <AutoField name={"schoolname"} label="School: " />

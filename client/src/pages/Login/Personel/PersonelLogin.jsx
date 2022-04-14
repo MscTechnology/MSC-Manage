@@ -94,7 +94,7 @@ const PersonelLogin = () => {
         <AutoForm schema={schema} onSubmit={handleLogin}>
           <ErrorsField />
             <AutoField name={"username"} />
-          <AutoField name={"password"} />
+          <AutoField name={"password"} type={"password"} />
 
           <div className="personel-login-btn">
             <SubmitField className="personel-login-submit-button" label="Log In" />

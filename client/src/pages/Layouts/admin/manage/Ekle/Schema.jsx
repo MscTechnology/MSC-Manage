@@ -31,35 +31,35 @@ const schemaExtras = {};
 const schemaValidator = (model) => {
   const details = [];
 
-  if (!model.name) {
+  if (!model.name || model.name.length > 30) {
     details.push({
-      message: "Name is required",
+      message: "Name is required and must be less than 30 characters",
       name: "name",
       type: "required",
       value: model.name,
     });
   }
 
-  if (!model.surname) {
+  if (!model.surname || model.surname.length > 30) {
     details.push({
-      message: "Surname is required",
+      message: "Surname is required and must be less than 30 characters",
       name: "surname",
       type: "required",
       value: model.surname,
     });
   }
 
-  if (!model.username) {
+  if (!model.username || model.username.length > 10) {
     details.push({
-      message: "Username is required",
+      message: "Username is required and must be less than 10 characters",
       name: "username",
       type: "required",
       value: model.username,
     });
   }
-  if (!model.password) {
+  if (!model.password || model.password.length > 50) {
     details.push({
-      message: "password is required",
+      message: "password is required and must be less than 50 characters",
       name: "password",
       type: "required",
       value: model.password,

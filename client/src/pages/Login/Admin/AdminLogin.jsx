@@ -101,7 +101,7 @@ const AdminLogin = () => {
         <ErrorsField />
         <AutoField name={"username"} />
 
-        <AutoField name={"password"} />
+        <AutoField name={"password"} type={"password"} />
         <div className="admin-login-submit">
           <SubmitField className="admin-login-button" label="Log In" />
         </div>
