@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 //? Components
 import Loading from "components/Loading/Loading";
@@ -38,6 +38,8 @@ const style = {
 };
 
 const PersonelMovements = () => {
+  const [data2, setData2] = React.useState([]);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -89,12 +91,27 @@ const PersonelMovements = () => {
 
 
 
-  const loginLogoutDate =moment().format("DD-MM-YYYY  HH:mm:ss");
-console.log(loginLogoutDate)
+  const loginLogoutDate =moment().format("LLLL");
+console.log(GetMovementsData)
 
+useEffect(() => {
+  if (GetMovementsData?.usersmovementsByIdForLogin) {
+    setData2(GetMovementsData?.usersmovementsByIdForLogin.data);
+  }
+} ,[GetMovementsData])
 
+useEffect(() => {
+  if(data2){
+    let bisey = data2;
+    bisey.map((item) => {
+      item.a = item.transactiondate;
+    })
+  }
+} ,[data2])
 
-  const [addMovementMutation] = useAddMovementMutation({});
+  console.log(data2)
+
+  const [addMovementMutation,{data:AddUserMovement}] = useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
   const dispatch = useDispatch();
 
@@ -125,6 +142,14 @@ console.log(loginLogoutDate)
       },
     },
     {
+      field: "transactiondate",
+      headerName: "Transaction Date",
+      width: 200,
+      valueFormatter: (params) => {
+        return moment(paramsFunctions(params).transactiondate).format("dddd")
+      },
+    },
+    {
       field: "entrytime",
       headerName: "Entry Time",
       width: 130,
@@ -132,6 +157,7 @@ console.log(loginLogoutDate)
         return paramsFunctions(params).entrytime;
       },
     },
+  
     { field: "exittime", headerName: "Exit Time", width: 130 },
   ];
 
@@ -154,7 +180,7 @@ console.log(loginLogoutDate)
       </div>
       <div style={{ height: 400, width: "75%", marginBottom: "2%" }}>
         <DataGrid
-          rows={GetMovementsData?.usersmovementsByIdForLogin?.data}
+          rows={data2}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
@@ -162,7 +188,7 @@ console.log(loginLogoutDate)
           pagination
         />
       </div>
-      <div className={btnVisible ? "PersonelPage-Btn-Margin" : "disable"}>
+      <div >
       <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
         <Modal
           open={open}

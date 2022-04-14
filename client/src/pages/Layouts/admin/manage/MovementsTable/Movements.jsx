@@ -20,11 +20,13 @@ import { useParams, NavLink } from "react-router-dom";
 
 function Movements() {
   const { id } = useParams();
-  const { data, loading, error } = useGetUserMovementByIdQuery({
+  const { data, loading, error,refetch } = useGetUserMovementByIdQuery({
     variables: {
       prmId: parseInt(id),
     },
   });
+
+  const userName = data?.usersmovementsById[0]?.users?.name;
 
   if (loading) {
     return <Loading />;
@@ -40,22 +42,8 @@ function Movements() {
 
   const columns = [
     
-    {
-      field: "users.name",
-      headerName: "Name",
-      width: 130,
-      valueFormatter: (params) => {
-        return paramsFunctions(params).users.name;
-      },
-    },
-    {
-      field: "users.surname",
-      headerName: "Surname",
-      width: 130,
-      valueFormatter: (params) => {
-        return paramsFunctions(params).users.surname;
-      },
-    },
+   
+    
     {
       field: "transactiondate",
       headerName: "Transaction Date",
@@ -88,18 +76,18 @@ function Movements() {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Personel Giriş Çıkışları</div>
+        <div>{userName} Giriş Çıkışları</div>
       </div>
       <div style={{ height: 400, width: "75%" }}>
-        <DataGrid
+        {refetch() &&  <DataGrid
           rows={data?.usersmovementsById}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
-          
           autoPageSize
           pagination
-        />
+        />}
+       
       </div>
     </div>
   );

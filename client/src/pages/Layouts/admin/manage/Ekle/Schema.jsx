@@ -67,7 +67,7 @@ const schemaValidator = (model) => {
   }
   if (!model.usertypesid) {
     details.push({
-      message: "usertypesid is required",
+      message: "User Types is required",
       name: "usertypesid",
       type: "required",
       value: model.usertypesid,

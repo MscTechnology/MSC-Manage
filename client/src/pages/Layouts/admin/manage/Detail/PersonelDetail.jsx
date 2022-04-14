@@ -33,7 +33,7 @@ function PersonelDetail() {
 
   const [updateUserMutation] = useUpdateUserMutation({});
 
-  const { data, loading, error } = useGetUserDetailQuery({
+  const { data, loading, error , refetch} = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id),
     },
@@ -165,6 +165,7 @@ function PersonelDetail() {
 
   return (
     <div className="detailPage">
+      
       <div className="detail-header">
         <div className="detail-page-back-button">
           <IconButton
@@ -323,11 +324,12 @@ function PersonelDetail() {
         <div className="buttons1">
           <div className="active-deactive">
             <div>deactive</div>
-            <SwitchUnstyled
+            {refetch() && <SwitchUnstyled
               component={Root}
               onChange={handleChange}
               checked={checked}
-            />
+            />}
+            
             <div>Active</div>
           </div>
         </div>
