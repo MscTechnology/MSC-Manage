@@ -1,7 +1,7 @@
 import React from "react";
 //? CSS
 import "./personel.css";
-import { Button, IconButton } from "@mui/material";
+import { Button, ButtonGroup, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 //? Redux Graphql Router
@@ -41,20 +41,20 @@ function Personel() {
         </IconButton>
         {`Welcome ${user.name}`}
       </div>
+      <ButtonGroup orientation="vertical" >
+        <div className="btn1">
 
-      <div className="btn1">
 
+          <div className="Personel-Btn-Margin">
+            {/* <Link
+              className="Personel-page-buttons"
+              role="button"
+              to={`/personel/movement/${user.id}`}
 
-        <div className="PersonelPage-Btn-Margin">
-          <Link
-            className="Personel-page-buttons"
-            role="button"
-            to={`/personel/movement/${user.id}`}
-
-          >
-            MOVEMENT TABLE
-          </Link>
-          {/* <Button
+            >
+              MOVEMENT TABLE
+            </Link> */}
+            <Button
           className="Personel-page-buttons"
             disableElevation
             size="large"
@@ -63,19 +63,19 @@ function Personel() {
             to={`/personel/movement/${user.id}`}
           >
             Movement Table
-          </Button> */}
-        </div>
+          </Button>
+          </div>
 
-        <div className="PersonelPage-Btn-Margin">
-        <Link
-            className="Personel-page-buttons"
-            role="button"
-            to="bilgileriguncelle"
+          <div className="Personel-Btn-Margin">
+            {/* <Link
+              className="Personel-page-buttons"
+              role="button"
+              to="bilgileriguncelle"
 
-          >
-            UPDATE INFORMATIONS
-          </Link>
-          {/* <Button
+            >
+              UPDATE INFORMATIONS
+            </Link> */}
+            <Button
             className="Personel-page-buttons"
             disableElevation
             size="large"
@@ -84,19 +84,19 @@ function Personel() {
             to="bilgileriguncelle"
           >
             Update Informations
-          </Button> */}
-        </div>
+          </Button>
+          </div>
 
-        <div className="PersonelPage-Btn-Margin">
-        <Link
-            className="Personel-page-buttons"
-            role="button"
-            to="documents"
+          <div className="Personel-Btn-Margin">
+            {/* <Link
+              className="Personel-page-buttons"
+              role="button"
+              to="documents"
 
-          >
-            DOCUMENTS
-          </Link>
-          {/* <Button
+            >
+              DOCUMENTS
+            </Link> */}
+            <Button
             className="Personel-page-buttons"
             disableElevation
             size="large"
@@ -105,9 +105,11 @@ function Personel() {
             to="documents"
           >
             Documents
-          </Button> */}
+          </Button>
+          </div>
         </div>
-      </div>
+      </ButtonGroup>
+
     </div>
   );
 }
