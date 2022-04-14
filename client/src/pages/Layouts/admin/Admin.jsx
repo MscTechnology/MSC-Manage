@@ -61,8 +61,6 @@ const Admin = () => {
                   </Typography>
                 </div>
               </div>
-
-
             </CardContent>
           </Card>
         </Link>

@@ -3,7 +3,7 @@ import "../../../../../styles.css";
 //! Material UI
 import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, IconButton, Stack } from "@mui/material";
+import { Button, Card, CardContent, Divider, IconButton, Stack, Typography } from "@mui/material";
 
 //! Components
 import Loading from "components/Loading/Loading";
@@ -43,13 +43,49 @@ const TumPersonel = () => {
         All Personels ({data?.users?.length})
       </div>
 
-      <div className="allpersonel-content">
+      {userFilter?.map((p) => (
 
-        {userFilter?.map((p) => (
-          <Stack direction="column" spacing={5}>
-            <div key={p?.id} className="allpersonel">
-              <Stack>
-                <Button
+        <Link
+          className="admin-card"
+          role="button"
+          to={`${p?.id}`}
+          key={p?.id}
+        >
+          <div >
+            <Card sx={{ minWidth: 275 }}>
+              <CardContent>
+
+                <div className="card-wrapper">
+                  <div >
+                    <Typography variant="h5" component="div">
+                      {p?.name} {p?.surname}
+                    </Typography>
+
+                  </div>
+
+                  <div className="divider-group">
+                    <Divider orientation="vertical" flexItem variant="fullWidth" />
+                    <div className={p?.status ? "status" : "status-deactive"}>
+                      <Typography color="text.secondary" >
+                        {p?.status ? "Active " : "Deactive"}
+                      </Typography>
+                    </div>
+
+                  </div>
+                </div>
+
+              </CardContent>
+            </Card>
+          </div>
+        </Link>
+
+
+
+
+
+      ))
+      }
+      {/* <Button
                   className="AllPersonel-page-buttons"
                   disableElevation
                   size="large"
@@ -59,18 +95,26 @@ const TumPersonel = () => {
                   to={`${p?.id}`}
                 >
                   {p?.name} {p?.surname}
-                </Button>
-              </Stack>
-              <Stack>
+                </Button> */}
+
+
+
+
+
+
+      {/* <Stack>
                 <div className={p?.status ? "status" : "status-deactive"}>
-                {p?.status ? "Active " : "Deactive"}
+                  {p?.status ? "Active " : "Deactive"}
 
                 </div>
-              </Stack>
-            </div>
-          </Stack>
-        ))}
-      </div>
+              </Stack> */}
+
+
+
+
+
+
+
 
       <Link
         className="AllPersonel-add-button"
@@ -79,7 +123,8 @@ const TumPersonel = () => {
       >
         Add new Personel
       </Link>
-    </div>
+
+    </div >
   );
 };
 

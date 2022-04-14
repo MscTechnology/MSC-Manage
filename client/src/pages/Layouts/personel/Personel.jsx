@@ -5,7 +5,7 @@ import { Button, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 //? Redux Graphql Router
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "generated/graphql";
 
@@ -14,8 +14,8 @@ import Loading from "../../../components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 
 function Personel() {
-  const {data, loading, error } = useGetUserQuery({});
-  
+  const { data, loading, error } = useGetUserQuery({});
+
   const user = useSelector((state) => state.users.user);
 
 
@@ -43,10 +43,18 @@ function Personel() {
       </div>
 
       <div className="btn1">
-       
+
 
         <div className="PersonelPage-Btn-Margin">
-          <Button
+          <Link
+            className="Personel-page-buttons"
+            role="button"
+            to={`/personel/movement/${user.id}`}
+
+          >
+            MOVEMENT TABLE
+          </Link>
+          {/* <Button
           className="Personel-page-buttons"
             disableElevation
             size="large"
@@ -55,12 +63,20 @@ function Personel() {
             to={`/personel/movement/${user.id}`}
           >
             Movement Table
-          </Button>
+          </Button> */}
         </div>
 
         <div className="PersonelPage-Btn-Margin">
-          <Button
-          className="Personel-page-buttons"
+        <Link
+            className="Personel-page-buttons"
+            role="button"
+            to="bilgileriguncelle"
+
+          >
+            UPDATE INFORMATIONS
+          </Link>
+          {/* <Button
+            className="Personel-page-buttons"
             disableElevation
             size="large"
             variant="contained"
@@ -68,12 +84,20 @@ function Personel() {
             to="bilgileriguncelle"
           >
             Update Informations
-          </Button>
+          </Button> */}
         </div>
 
         <div className="PersonelPage-Btn-Margin">
-          <Button
-           className="Personel-page-buttons"
+        <Link
+            className="Personel-page-buttons"
+            role="button"
+            to="documents"
+
+          >
+            DOCUMENTS
+          </Link>
+          {/* <Button
+            className="Personel-page-buttons"
             disableElevation
             size="large"
             variant="contained"
@@ -81,7 +105,7 @@ function Personel() {
             to="documents"
           >
             Documents
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
