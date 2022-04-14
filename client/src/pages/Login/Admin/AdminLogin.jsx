@@ -4,7 +4,7 @@ import { useState } from "react";
 import Loading from "../../../components/Loading/Loading";
 //! Redux
 import { useGetUserQuery } from "generated/graphql";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAdmin } from "store/User/UserSlice";
 //! Design
 import { IconButton } from "@mui/material";
@@ -72,31 +72,31 @@ const AdminLogin = () => {
 
   return (
     <div className="container">
-        <div className="login-page-img">
-            <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
-          </div>
+      <div className="login-page-img">
+        <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
+      </div>
       <div className="title">
-        
-        <div>
-        <IconButton
-          size="large"
-          color="primary"
-          component="span"
-          as={NavLink}
-          to="/"
-        >
-          <ArrowBackIcon />
-        </IconButton>
-          </div>
-          <div>
-        {title}
 
-          </div>
+        <div>
+          <IconButton
+            size="large"
+            color="primary"
+            component="span"
+            as={NavLink}
+            to="/"
+          >
+            <ArrowBackIcon />
+          </IconButton>
+        </div>
+        <div>
+          {title}
+
+        </div>
       </div>
       <AutoForm
         schema={schema}
         onSubmit={handleLogin}
-        
+
       >
         <ErrorsField />
         <AutoField name={"username"} />

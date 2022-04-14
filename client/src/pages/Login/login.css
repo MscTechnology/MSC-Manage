@@ -10,7 +10,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-top: 5%;
+  padding:20px
 }
 body {
   font-size: 20px;
@@ -40,7 +40,7 @@ body {
     margin: 5px 0px 15px 0px;
   }
   .title {
-    margin: 100px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
   }
   .login-img{
     width: 60%;
@@ -48,17 +48,26 @@ body {
   
 }
 
+
 @media screen and (max-width: 420px) {
   .box {
     margin: 5px 0px 15px 0px;
   }
   .title {
-    margin: 100px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
   }
   .login-img{
     width: 60%;
     text-align: center;
     justify-content: center;
+  }
+  .MuiInputLabel-animated {
+    transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+
+  }
+  .MuiFormControl-fullWidth {
+    width: 100%;
+   
   }
 }
 

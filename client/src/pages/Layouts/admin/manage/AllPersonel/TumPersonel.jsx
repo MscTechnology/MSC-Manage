@@ -3,7 +3,7 @@ import "../../../../../styles.css";
 //! Material UI
 import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Stack } from "@mui/material";
 
 //! Components
 import Loading from "components/Loading/Loading";
@@ -42,45 +42,35 @@ const TumPersonel = () => {
         </IconButton>{" "}
         All Personels ({data?.users?.length})
       </div>
-      <Grid
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item xs={6} md={6}>
-          {userFilter?.map((p) => (
+
+      <div className="allpersonel-content">
+
+        {userFilter?.map((p) => (
+          <Stack direction="column" spacing={5}>
             <div key={p?.id} className="allpersonel">
-              <Grid container>
-                <Grid
-                  item
-                  md={10}
-                  className={p.status ? "btn" : "btn-deactive"}
+              <Stack>
+                <Button
+                  className="AllPersonel-page-buttons"
+                  disableElevation
+                  size="large"
+                  color={p?.status ? "primary" : "error"}
+                  variant="contained"
+                  as={NavLink}
+                  to={`${p?.id}`}
                 >
-                  <Button
-                    className="AllPersonel-page-buttons"
-                    disableElevation
-                    size="large"
-                    color={p?.status ? "primary" : "error"}
-                    variant="contained"
-                    as={NavLink}
-                    to={`${p?.id}`}
-                  >
-                    {p?.name} {p?.surname}
-                  </Button>
-                </Grid>
-                <Grid
-                  item
-                  xs={2}
-                  className={p?.status ? "status" : "status-deactive"}
-                >
-                  {p?.status ? "Active " : "Deactive"}
-                </Grid>
-              </Grid>
+                  {p?.name} {p?.surname}
+                </Button>
+              </Stack>
+              <Stack>
+                <div className={p?.status ? "status" : "status-deactive"}>
+                {p?.status ? "Active " : "Deactive"}
+
+                </div>
+              </Stack>
             </div>
-          ))}
-        </Grid>
-      </Grid>
+          </Stack>
+        ))}
+      </div>
 
       <Link
         className="AllPersonel-add-button"
