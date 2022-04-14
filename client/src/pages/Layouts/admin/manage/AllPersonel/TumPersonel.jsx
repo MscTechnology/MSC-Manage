@@ -3,7 +3,15 @@ import "../../../../../styles.css";
 //! Material UI
 import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Card, CardContent, Divider, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Divider,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 //! Components
 import Loading from "components/Loading/Loading";
@@ -13,10 +21,8 @@ import NoMatch from "pages/404/NoMatch";
 import { NavLink, Link } from "react-router-dom";
 import { useGetUserQuery } from "generated/graphql";
 
-
-
 const TumPersonel = () => {
-  const { data, loading, error } = useGetUserQuery({});
+  const { data, loading, error, refetch } = useGetUserQuery({});
 
   if (loading) {
     return <Loading />;
@@ -40,81 +46,40 @@ const TumPersonel = () => {
         >
           <ArrowBackIcon />
         </IconButton>{" "}
-        All Personels ({data?.users?.length})
+        All Personels ({userFilter.length})
       </div>
 
-      {userFilter?.map((p) => (
-
-        <Link
-          className="admin-card"
-          role="button"
-          to={`${p?.id}`}
-          key={p?.id}
-        >
+      {refetch() && userFilter?.map((p) => (
+        <Link className="admin-card" role="button" to={`${p?.id}`} key={p?.id}>
           <div >
             <Card sx={{ minWidth: 275 }}>
-              <CardContent>
-
+              <CardContent className={p?.status ? "status" : "status-deactive"}>
                 <div className="card-wrapper">
-                  <div >
+                  <div>
                     <Typography variant="h5" component="div">
                       {p?.name} {p?.surname}
                     </Typography>
-
                   </div>
 
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    variant="fullWidth"
+                  />
                   <div className="divider-group">
-                    <Divider orientation="vertical" flexItem variant="fullWidth" />
-                    <div className={p?.status ? "status" : "status-deactive"}>
-                      <Typography color="text.secondary" >
+                    <div >
+                      <Typography  color="text.secondary">
                         {p?.status ? "Active " : "Deactive"}
                       </Typography>
                     </div>
-
                   </div>
                 </div>
-
               </CardContent>
             </Card>
           </div>
         </Link>
-
-
-
-
-
-      ))
-      }
-      {/* <Button
-                  className="AllPersonel-page-buttons"
-                  disableElevation
-                  size="large"
-                  color={p?.status ? "primary" : "error"}
-                  variant="contained"
-                  as={NavLink}
-                  to={`${p?.id}`}
-                >
-                  {p?.name} {p?.surname}
-                </Button> */}
-
-
-
-
-
-
-      {/* <Stack>
-                <div className={p?.status ? "status" : "status-deactive"}>
-                  {p?.status ? "Active " : "Deactive"}
-
-                </div>
-              </Stack> */}
-
-
-
-
-
-
-
+      ))}
+     
 
       <Link
         className="AllPersonel-add-button"
@@ -123,8 +88,7 @@ const TumPersonel = () => {
       >
         Add new Personel
       </Link>
-
-    </div >
+    </div>
   );
 };
 

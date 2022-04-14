@@ -313,14 +313,14 @@
   margin-bottom: 0.2em}
 
 .status {
-  color: black;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+
+
 }
 
 .status-deactive {
-  color: green !important;
+background-color: #a09898;
+text-decoration: line-through;
+
 }
 .css-1pnmrwp-MuiTypography-root {
   margin: 0;
