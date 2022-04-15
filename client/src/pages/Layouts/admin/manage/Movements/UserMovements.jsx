@@ -22,6 +22,12 @@ const UserMovements = () => {
     return <NoMatch />;
   }
 
+  const paramsFunctions = (params) => {
+    return params.api.state.rows.idRowsLookup[params.id];
+  }
+  
+  let transictiondate2 = data?.usersmovements[0]?.transactiondate;
+
   const columns = [
     {
       field: "users.name",
@@ -49,6 +55,14 @@ const UserMovements = () => {
           .split("-")
           .reverse()
           .join("-");
+      },
+    },
+    {
+      field: "transictiondate2",
+      headerName: "Day",
+      width: 130,
+      valueFormatter: (params) => {
+        return moment(paramsFunctions(params).transactiondate).format("dddd")
       },
     },
     {
@@ -87,7 +101,7 @@ const UserMovements = () => {
         <div>Users Movements</div>
       </div>
 
-      <div style={{ height: 600, width: "75%" }}>
+      <div style={{ height: 550, width: "75%" }}>
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}

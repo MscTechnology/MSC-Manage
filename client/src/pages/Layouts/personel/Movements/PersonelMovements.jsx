@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import moment from "moment";
 //? Components
 import Loading from "components/Loading/Loading";
@@ -34,13 +34,13 @@ const style = {
   border: "3px solid #000",
   boxShadow: 24,
   p: 3,
-  
+
 };
 
 const PersonelMovements = () => {
-  const [data2, setData2] = React.useState([]);
+  const [data2, setData2] =useState([]);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] =useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -81,9 +81,9 @@ const PersonelMovements = () => {
     },
   });
 
-  const { data:GetMovementsData,refetch } = useGetUserMovementsByIdForLoginQuery({
+  const { data: GetMovementsData, refetch } = useGetUserMovementsByIdForLoginQuery({
     variables: {
-       prmId: parseInt(id),
+      prmId: parseInt(id),
     },
   });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
@@ -91,20 +91,20 @@ const PersonelMovements = () => {
 
 
 
-  const loginLogoutDate =moment().format("LLLL");
-console.log(GetMovementsData)
+  const loginLogoutDate = moment().format("LLLL");
+  console.log(GetMovementsData)
 
-useEffect(() => {
-  if (GetMovementsData?.usersmovementsByIdForLogin) {
-    setData2(GetMovementsData?.usersmovementsByIdForLogin.data);
-  }
-} ,[GetMovementsData])
+  useEffect(() => {
+    if (GetMovementsData?.usersmovementsByIdForLogin) {
+      setData2(GetMovementsData?.usersmovementsByIdForLogin.data);
+    }
+  }, [GetMovementsData])
 
- let transictiondate2 = data?.usersmovementsById[0]?.transactiondate;
+  let transictiondate2 = data?.usersmovementsById[0]?.transactiondate;
 
 
 
-  const [addMovementMutation,{data:AddUserMovement}] = useAddMovementMutation({});
+  const [addMovementMutation, { data: AddUserMovement }] = useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
   const dispatch = useDispatch();
 
@@ -116,7 +116,7 @@ useEffect(() => {
     return <NoMatch />;
   }
 
-  
+
   const paramsFunctions = (params) => {
     return params.api.state.rows.idRowsLookup[params.id];
   };
@@ -150,7 +150,7 @@ useEffect(() => {
         return paramsFunctions(params).entrytime;
       },
     },
-  
+
     { field: "exittime", headerName: "Exit Time", width: 130 },
   ];
 
@@ -169,9 +169,9 @@ useEffect(() => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Giriş Çıkış Bilgileri</div>
+        <div>Movements Infotmations</div>
       </div>
-      <div style={{ height: 400, width: "75%", marginBottom: "2%" }}>
+      <div style={{ height: 550, width: "75%" }}>
         <DataGrid
           rows={data2}
           columns={columns}
@@ -182,7 +182,7 @@ useEffect(() => {
         />
       </div>
       <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
-      <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
+        <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -194,13 +194,13 @@ useEffect(() => {
               Emin misiniz?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-             {
-               btnText==="GİRİŞ YAP" ? `${loginLogoutDate} tarihinde giriş yapacaksınız` : `${loginLogoutDate} tarihinde çıkış yapacaksınız`
-             }
+              {
+                btnText === "GİRİŞ YAP" ? `${loginLogoutDate} tarihinde giriş yapacaksınız` : `${loginLogoutDate} tarihinde çıkış yapacaksınız`
+              }
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
-              <Button   className="loginmovements-button"  onClick={handleSave}>{btnText}</Button>
-              <Button   onClick={handleClose}>Kapat</Button>
+              <Button className="loginmovements-button" onClick={handleSave}>{btnText}</Button>
+              <Button onClick={handleClose}>Kapat</Button>
             </Box>
           </Box>
         </Modal>
