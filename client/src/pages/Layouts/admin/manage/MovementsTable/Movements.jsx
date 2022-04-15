@@ -17,7 +17,7 @@ import NoMatch from "pages/404/NoMatch";
 //! Graphql And Router
 import { useGetUserMovementByIdQuery } from "generated/graphql";
 import { useParams, NavLink } from "react-router-dom";
-
+import moment from "moment";
 function Movements() {
   const { id } = useParams();
   const { data, loading, error,refetch } = useGetUserMovementByIdQuery({
@@ -41,6 +41,8 @@ function Movements() {
     return params.api.state.rows.idRowsLookup[params.id]
   }
 
+  const MovementsDay = data?.usersmovementsById[0]?.transactiondate;
+  console.log(MovementsDay)
   const columns = [
     
    
@@ -51,6 +53,14 @@ function Movements() {
       width: 200,
       valueFormatter: (params) => {
         return paramsFunctions(params).transactiondate.split("T")[0].split("-").reverse().join("-");
+      },
+    },
+    {
+      field: "MovementsDay",
+      headerName: "Day",
+      width: 200,
+      valueFormatter: (params) => {
+        return moment(paramsFunctions(params).transactiondate).format("dddd");
       },
     },
     {
@@ -77,7 +87,7 @@ function Movements() {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>{userName} Giriş Çıkışları</div>
+        <div>{userName} 's Movements</div>
       </div>
       <div style={{ height: 400, width: "75%" }}>
         {

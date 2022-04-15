@@ -54,10 +54,10 @@ const Admin = () => {
                 </div>
                 <div className="admin-tp">
                   <Typography variant="h5" component="div" className="topography">
-                    Personel
+                    Personels
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Kayıtlı olan Personeller
+                    Registered Personels
                   </Typography>
                 </div>
               </div>
@@ -80,10 +80,10 @@ const Admin = () => {
                 </div>
                 <div className="admin-tp">
                   <Typography variant="h5" component="div" className="topography">
-                    Giriş Çıkış
+                    Movements
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Personel Giriş Çıkışları
+                    Personel Movements
                   </Typography>
                 </div>
               </div>
@@ -108,10 +108,10 @@ const Admin = () => {
                 </div>
                 <div className="admin-tp">
                   <Typography variant="h5" component="div" className="topography">
-                    Personel Ekle
+                    Add Personel
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Yeni Personel Girişi
+                    Register New Personel
                   </Typography>
                 </div>
               </div>

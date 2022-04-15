@@ -265,34 +265,34 @@ function PersonelDetail() {
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${rowData.phonenumber === null ? "Girilmemiş" : rowData.phonenumber}`}</span>
+                    <span className="span2">{`:${rowData.phonenumber === null ? "Empty" : rowData.phonenumber}`}</span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
                     <span className="span2">{` :${rowData.identificationnumber === null
-                      ? "Girilmemiş"
+                      ? "Empty"
                       : rowData.identificationnumber
                       }`} </span>
 
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`: ${rowData.schoolname === null
-                      ? "Girilmemiş"
+                    <span className="span2">{`:${rowData.schoolname === null
+                      ? "Empty"
                       : rowData.schoolname
                       }`} </span>
 
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${rowData.adress === null ? "Girilmemiş" : rowData.adress
+                    <span className="span2">{`:${rowData.adress === null ? "Empty" : rowData.adress
                       }`} </span>
 
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
                     <span className="span2">{`:${CityByIdData?.cities[0].cityname === undefined
-                      ? "Girilmemiş"
+                      ? "Empty"
                       : CityByIdData?.cities[0].cityname
                       }`} </span>
 
@@ -300,7 +300,7 @@ function PersonelDetail() {
 
                   <Typography variant="h6" component="div" className="span-container">
                     <span className="span2">{`:${DistrictByIdData?.districts[0].districtname === undefined
-                      ? "Girilmemiş"
+                      ? "Empty"
                       : DistrictByIdData?.districts[0].districtname
                       }`} </span>
 
@@ -312,7 +312,7 @@ function PersonelDetail() {
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${rowData.email === null ? "Girilmemiş" : rowData.email}`}</span>
+                    <span className="span2">{`:${rowData.email === null ? "Empty" : rowData.email}`}</span>
                   </Typography>
                 </Stack>
               </Stack>

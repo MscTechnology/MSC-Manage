@@ -191,11 +191,11 @@ const PersonelMovements = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Emin misiniz?
+              Are you sure?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {
-                btnText === "GİRİŞ YAP" ? `${loginLogoutDate} tarihinde giriş yapacaksınız` : `${loginLogoutDate} tarihinde çıkış yapacaksınız`
+                btnText === "GİRİŞ YAP" ? `You will log in on ${loginLogoutDate}` : `You will log out on  ${loginLogoutDate} `
               }
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
