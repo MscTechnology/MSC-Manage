@@ -33,7 +33,7 @@ function PersonelDetail() {
 
   const [updateUserMutation] = useUpdateUserMutation({});
 
-  const { data, loading, error , refetch} = useGetUserDetailQuery({
+  const { data, loading, error, refetch } = useGetUserDetailQuery({
     variables: {
       prmId: parseInt(id),
     },
@@ -165,7 +165,7 @@ function PersonelDetail() {
 
   return (
     <div className="detailPage">
-      
+
       <div className="detail-header">
         <div className="detail-page-back-button">
           <IconButton
@@ -183,142 +183,142 @@ function PersonelDetail() {
       <div className="name">
         <Card>
           <div className="card1">
-            <div>
 
-              <CardContent>
-                <Stack direction="row" spacing={3}>
-                  <Stack>
-                    <Typography variant="h6" component="div"
-                      className="span-container">
-                      <span className="span1">ID </span>
-                    </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Name </span>
-                    </Typography>
+            <CardContent>
+              <Stack direction="row" spacing={3}>
+                <Stack>
+                  <Typography variant="h6" component="div"
+                    className="span-container">
+                    <span className="span1">ID </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Surname </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Name </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Username </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Surname </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Password </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Username </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Phone </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Password </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">TC </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Phone </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">School </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">TC </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Address </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">School </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">City </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Address </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">District </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">City </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Status </span>
-                    </Typography>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">District </span>
+                  </Typography>
 
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span1">Email </span>
-                    </Typography>
-                  </Stack>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Status </span>
+                  </Typography>
 
-                  <Stack>
-                    <Typography variant="h6" component="div"
-                      className="span-container">
-                      <span className="span2">{`:${id}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.name}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.surname}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.username}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.password}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.phonenumber === null ? "Girilmemiş" : rowData.phonenumber}`}</span>
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{` :${rowData.identificationnumber === null
-                        ? "Girilmemiş"
-                        : rowData.identificationnumber
-                        }`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`: ${rowData.schoolname === null
-                        ? "Girilmemiş"
-                        : rowData.schoolname
-                        }`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${rowData.adress === null ? "Girilmemiş" : rowData.adress
-                        }`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${CityByIdData?.cities[0].cityname === undefined
-                        ? "Girilmemiş"
-                        : CityByIdData?.cities[0].cityname
-                        }`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${DistrictByIdData?.districts[0].districtname === undefined
-                        ? "Girilmemiş"
-                        : DistrictByIdData?.districts[0].districtname
-                        }`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                    <span className="span2">{`:${rowData.status === 1 ? "Active" : "Deactive"}`} </span>
-                      
-                    </Typography>
-
-                    <Typography variant="h6" component="div" className="span-container">
-                      <span className="span2">{`:${rowData.email === null ? "Girilmemiş" : rowData.email}`}</span>
-                    </Typography>
-                  </Stack>
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span1">Email </span>
+                  </Typography>
                 </Stack>
-              </CardContent>
 
-            </div>
+                <Stack>
+                  <Typography variant="h6" component="div"
+                    className="span-container">
+                    <span className="span2">{`:${id}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.name}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.surname}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.username}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.password}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.phonenumber === null ? "Girilmemiş" : rowData.phonenumber}`}</span>
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{` :${rowData.identificationnumber === null
+                      ? "Girilmemiş"
+                      : rowData.identificationnumber
+                      }`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`: ${rowData.schoolname === null
+                      ? "Girilmemiş"
+                      : rowData.schoolname
+                      }`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.adress === null ? "Girilmemiş" : rowData.adress
+                      }`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${CityByIdData?.cities[0].cityname === undefined
+                      ? "Girilmemiş"
+                      : CityByIdData?.cities[0].cityname
+                      }`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${DistrictByIdData?.districts[0].districtname === undefined
+                      ? "Girilmemiş"
+                      : DistrictByIdData?.districts[0].districtname
+                      }`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.status === 1 ? "Active" : "Deactive"}`} </span>
+
+                  </Typography>
+
+                  <Typography variant="h6" component="div" className="span-container">
+                    <span className="span2">{`:${rowData.email === null ? "Girilmemiş" : rowData.email}`}</span>
+                  </Typography>
+                </Stack>
+              </Stack>
+            </CardContent>
+
+
           </div>
         </Card>
         <div className="buttons1">
@@ -329,7 +329,7 @@ function PersonelDetail() {
               onChange={handleChange}
               checked={checked}
             />}
-            
+
             <div>Active</div>
           </div>
         </div>

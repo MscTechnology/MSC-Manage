@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 100px;
+  flex-wrap: wrap;
 }
 
 .title1 {
@@ -18,7 +19,11 @@
   margin-bottom: 0.5em;
   font-weight: bold;
   color: black;
+  padding-right:20px;
 }
+
+
+
 
 .btns-2 {
   display: flex;
@@ -81,21 +86,72 @@
   margin-bottom: 3em;
   padding: 5px;
 }
+@media screen and (max-width: 842px) {
+  .Personel-page-buttons {
+    background-color: #242422;
+    border: 1px solid #f7f7f7;
+    border-radius: 10px;
+    padding: 12px ;
+    margin-top: 10px;
+    min-width: 70% !important;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background: rgb(0, 0, 0);
+    text-align: center;
+  }
+}
 
+@media screen and (max-width: 600px ) {
+  .Personel-page-buttons {
+    background-color: #242422;
+    border: 1px solid #f7f7f7;
+    border-radius: 10px;
+    padding: 12px ;
+    margin-top: 10px;
+    min-width: 70% !important;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+}
+@media screen and (max-width: 2080px) {
+  .Personel-page-buttons {
+    background-color: #242422;
+    border: 1px solid #f7f7f7;
+    border-radius: 10px;
+    padding: 12px ;
+    margin-top: 10px;
+    width: 20%;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background: rgb(0, 0, 0);
+    text-align: center;
+  }
+}
+/* 
 .Personel-page-buttons {
   background-color: #242422;
   border: 1px solid #f7f7f7;
   border-radius: 10px;
   padding: 12px ;
   margin-top: 10px;
-  min-width: 70% !important;
+  min-width: 60%;
+  max-width: 100%;
   font-size: 15px;
   font-weight: bold;
   color: white;
   text-decoration: none;
   background: rgb(0, 0, 0);
   text-align: center;
-}
+} */
 .css-s7d5x3-MuiButtonGroup-root .MuiButtonGroup-grouped {
   min-width: 500px;
    box-shadow: none;

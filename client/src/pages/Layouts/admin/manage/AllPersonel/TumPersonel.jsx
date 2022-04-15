@@ -34,8 +34,10 @@ const TumPersonel = () => {
 
   const userFilter = data?.users.filter((user) => user.usertypesid !== 1);
 
+  const userBackground = userFilter.length;
+
   return (
-    <div className="adminPage">
+    <div style={{height:`${ userBackground === (0,1,2,3,4,5) ? 100 :userBackground*10+70}vh`}} className="adminPage">
       <div className="tum-personel-title">
         <IconButton
           size="large"

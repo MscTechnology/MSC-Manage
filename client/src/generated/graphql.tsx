@@ -21,8 +21,6 @@ export type Scalars = {
   Decimal: any;
   /** The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
   Long: any;
-  /** The `TimeSpan` scalar represents an ISO-8601 compliant duration type. */
-  TimeSpan: any;
 };
 
 export type BooleanOperationFilterInput = {
@@ -138,18 +136,18 @@ export type ComparableNullableOfInt64OperationFilterInput = {
 };
 
 export type ComparableNullableOfTimeSpanOperationFilterInput = {
-  eq?: InputMaybe<Scalars['TimeSpan']>;
-  gt?: InputMaybe<Scalars['TimeSpan']>;
-  gte?: InputMaybe<Scalars['TimeSpan']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['TimeSpan']>>>;
-  lt?: InputMaybe<Scalars['TimeSpan']>;
-  lte?: InputMaybe<Scalars['TimeSpan']>;
-  neq?: InputMaybe<Scalars['TimeSpan']>;
-  ngt?: InputMaybe<Scalars['TimeSpan']>;
-  ngte?: InputMaybe<Scalars['TimeSpan']>;
-  nin?: InputMaybe<Array<InputMaybe<Scalars['TimeSpan']>>>;
-  nlt?: InputMaybe<Scalars['TimeSpan']>;
-  nlte?: InputMaybe<Scalars['TimeSpan']>;
+  eq?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  neq?: InputMaybe<Scalars['String']>;
+  ngt?: InputMaybe<Scalars['String']>;
+  ngte?: InputMaybe<Scalars['String']>;
+  nin?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  nlt?: InputMaybe<Scalars['String']>;
+  nlte?: InputMaybe<Scalars['String']>;
 };
 
 export type District = {
@@ -491,8 +489,8 @@ export type Usersmovement = {
   __typename?: 'Usersmovement';
   createtime?: Maybe<Scalars['DateTime']>;
   createuser?: Maybe<Scalars['Long']>;
-  entrytime?: Maybe<Scalars['TimeSpan']>;
-  exittime?: Maybe<Scalars['TimeSpan']>;
+  entrytime?: Maybe<Scalars['String']>;
+  exittime?: Maybe<Scalars['String']>;
   id: Scalars['Long'];
   transactiondate?: Maybe<Scalars['DateTime']>;
   users?: Maybe<User>;
@@ -515,8 +513,8 @@ export type UsersmovementFilterInput = {
 export type UsersmovementInput = {
   createtime?: InputMaybe<Scalars['DateTime']>;
   createuser?: InputMaybe<Scalars['Long']>;
-  entrytime?: InputMaybe<Scalars['TimeSpan']>;
-  exittime?: InputMaybe<Scalars['TimeSpan']>;
+  entrytime?: InputMaybe<Scalars['String']>;
+  exittime?: InputMaybe<Scalars['String']>;
   id: Scalars['Long'];
   transactiondate?: InputMaybe<Scalars['DateTime']>;
   users?: InputMaybe<UserInput>;
@@ -618,21 +616,21 @@ export type GetUserDetailQuery = { __typename?: 'Query', usersById?: Array<{ __t
 export type GetUserMovementsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserMovementsQuery = { __typename?: 'Query', usersmovements?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: any | null, exittime?: any | null, transactiondate?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null, username?: string | null } | null } | null> | null };
+export type GetUserMovementsQuery = { __typename?: 'Query', usersmovements?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: string | null, exittime?: string | null, transactiondate?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null, username?: string | null } | null } | null> | null };
 
 export type GetUserMovementByIdQueryVariables = Exact<{
   prmId: Scalars['Long'];
 }>;
 
 
-export type GetUserMovementByIdQuery = { __typename?: 'Query', usersmovementsById?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, transactiondate?: any | null, entrytime?: any | null, exittime?: any | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null } | null } | null> | null };
+export type GetUserMovementByIdQuery = { __typename?: 'Query', usersmovementsById?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, transactiondate?: any | null, entrytime?: string | null, exittime?: string | null, users?: { __typename?: 'User', id: any, name?: string | null, surname?: string | null } | null } | null> | null };
 
 export type GetUserMovementsByIdForLoginQueryVariables = Exact<{
   prmId: Scalars['Long'];
 }>;
 
 
-export type GetUserMovementsByIdForLoginQuery = { __typename?: 'Query', usersmovementsByIdForLogin?: { __typename?: 'PesronelCustomlist', btntext?: string | null, btnvisible: boolean, data?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: any | null, exittime?: any | null, transactiondate?: any | null } | null> | null } | null };
+export type GetUserMovementsByIdForLoginQuery = { __typename?: 'Query', usersmovementsByIdForLogin?: { __typename?: 'PesronelCustomlist', btntext?: string | null, btnvisible: boolean, data?: Array<{ __typename?: 'Usersmovement', id: any, usersid: any, entrytime?: string | null, exittime?: string | null, transactiondate?: any | null } | null> | null } | null };
 
 export type GetUserTypesQueryVariables = Exact<{ [key: string]: never; }>;
 

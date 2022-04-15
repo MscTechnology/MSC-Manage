@@ -84,10 +84,10 @@ const UserMovements = () => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Personel Giriş Çıkışları</div>
+        <div>Users Movements</div>
       </div>
 
-      <div style={{ height: 800, width: "75%" }}>
+      <div style={{ height: 600, width: "75%" }}>
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}

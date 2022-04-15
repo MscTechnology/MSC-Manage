@@ -102,7 +102,7 @@
   background-size: contain;
   display: flex;
   flex-direction: column;
-  height: 200vh;
+  height: 100vh;
   background: #d7f0f4;
   align-items: center;
 }
@@ -288,6 +288,7 @@
   height: 120vh;
   align-items: center;
   text-align: left;
+  margin-right: -100px;
 }
 .detail-title {
   color: black;
