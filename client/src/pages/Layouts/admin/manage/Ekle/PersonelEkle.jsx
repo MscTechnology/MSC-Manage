@@ -48,7 +48,7 @@ const PersonelEkle = () => {
     })
       .then((res) => {
         if (res.data.addUser.resultType === "SUC") {
-          toast.success("Personel Eklendi");
+          toast.success("Personel Added");
         } else {
           toast.error(res.data.addUser.messageText);
         }

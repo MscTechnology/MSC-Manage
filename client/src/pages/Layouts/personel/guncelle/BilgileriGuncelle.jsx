@@ -55,7 +55,7 @@ function BilgileriGuncelle() {
     })
       .then((res) => {
         if (res.data.updateUser.resultType === "SUC") {
-          toast.success("Bilgiler Güncellendi");
+          toast.success("Informations Updated");
         } else {
           toast.error(res.data.updateUser.messageText);
         }
