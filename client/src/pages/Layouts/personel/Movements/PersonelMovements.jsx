@@ -100,16 +100,9 @@ useEffect(() => {
   }
 } ,[GetMovementsData])
 
-useEffect(() => {
-  if(data2){
-    let bisey = data2;
-    bisey.map((item) => {
-      item.a = item.transactiondate;
-    })
-  }
-} ,[data2])
+ let transictiondate2 = data?.usersmovementsById[0]?.transactiondate;
 
-  console.log(data2)
+
 
   const [addMovementMutation,{data:AddUserMovement}] = useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
@@ -142,8 +135,8 @@ useEffect(() => {
       },
     },
     {
-      field: "transactiondate",
-      headerName: "Transaction Date",
+      field: "transictiondate2",
+      headerName: "Day",
       width: 200,
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).format("dddd")
@@ -188,7 +181,7 @@ useEffect(() => {
           pagination
         />
       </div>
-      <div >
+      <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
       <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
         <Modal
           open={open}

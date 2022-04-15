@@ -88,20 +88,19 @@
   border-radius: 10px;
   padding: 12px ;
   margin-top: 10px;
-  width: 60%;
+  min-width: 70% !important;
   font-size: 15px;
-  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: white;
   text-decoration: none;
   background: rgb(0, 0, 0);
+  text-align: center;
 }
 .css-s7d5x3-MuiButtonGroup-root .MuiButtonGroup-grouped {
   min-width: 500px;
    box-shadow: none;
 }
 .css-ez33fw-MuiButtonGroup-root .MuiButtonGroup-grouped {
-  min-width: 70px !important;
   background-color: #37646b !important;
 }
 

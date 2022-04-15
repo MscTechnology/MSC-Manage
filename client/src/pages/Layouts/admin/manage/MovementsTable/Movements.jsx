@@ -25,6 +25,7 @@ function Movements() {
       prmId: parseInt(id),
     },
   });
+  console.log(data)
 
   const userName = data?.usersmovementsById[0]?.users?.name;
 
@@ -57,7 +58,7 @@ function Movements() {
       headerName: "Entry Time",
       width: 130,
       valueFormatter: (params) => {
-        return paramsFunctions(params).entrytime.split("T")[1].split(".")[0];      },
+        return paramsFunctions(params).entrytime   },
     },
     { field: "exittime", headerName: "Exit Time", width: 130 },
   ];
@@ -79,14 +80,17 @@ function Movements() {
         <div>{userName} Giriş Çıkışları</div>
       </div>
       <div style={{ height: 400, width: "75%" }}>
-        {refetch() &&  <DataGrid
+        {
+          refetch() &&  <DataGrid
           rows={data?.usersmovementsById}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
           pagination
-        />}
+        />
+        }
+      
        
       </div>
     </div>

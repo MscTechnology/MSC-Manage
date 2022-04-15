@@ -18,13 +18,12 @@ function Personel() {
 
   const user = useSelector((state) => state.users.user);
 
-
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (error) {
-    return <NoMatch />
+    return <NoMatch />;
   }
 
   return (
@@ -41,75 +40,25 @@ function Personel() {
         </IconButton>
         {`Welcome ${user.name}`}
       </div>
-      <ButtonGroup orientation="vertical" >
-        <div className="btn1">
-
-
-          <div className="Personel-Btn-Margin">
-            {/* <Link
-              className="Personel-page-buttons"
-              role="button"
-              to={`/personel/movement/${user.id}`}
-
-            >
-              MOVEMENT TABLE
-            </Link> */}
-            <Button
-          className="Personel-page-buttons"
-            disableElevation
-            size="large"
-            variant="contained"
-            as={NavLink}
-            to={`/personel/movement/${user.id}`}
-          >
-            Movement Table
-          </Button>
-          </div>
-
-          <div className="Personel-Btn-Margin">
-            {/* <Link
-              className="Personel-page-buttons"
-              role="button"
-              to="bilgileriguncelle"
-
-            >
-              UPDATE INFORMATIONS
-            </Link> */}
-            <Button
-            className="Personel-page-buttons"
-            disableElevation
-            size="large"
-            variant="contained"
-            as={NavLink}
-            to="bilgileriguncelle"
-          >
-            Update Informations
-          </Button>
-          </div>
-
-          <div className="Personel-Btn-Margin">
-            {/* <Link
-              className="Personel-page-buttons"
-              role="button"
-              to="documents"
-
-            >
-              DOCUMENTS
-            </Link> */}
-            <Button
-            className="Personel-page-buttons"
-            disableElevation
-            size="large"
-            variant="contained"
-            as={NavLink}
-            to="documents"
-          >
-            Documents
-          </Button>
-          </div>
-        </div>
-      </ButtonGroup>
-
+    
+    <Link
+        className="Personel-page-buttons"
+        role="button"
+        to={`/personel/movement/${user.id}`}
+      >
+        MOVEMENT TABLE
+      </Link>
+      <Link
+        className="Personel-page-buttons"
+        role="button"
+        to="bilgileriguncelle"
+      >
+        UPDATE INFORMATIONS
+      </Link>
+      <Link className="Personel-page-buttons" role="button" to="documents">
+        DOCUMENTS
+      </Link>
+    
     </div>
   );
 }
