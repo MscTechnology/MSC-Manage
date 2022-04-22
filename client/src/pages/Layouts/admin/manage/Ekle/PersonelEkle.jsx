@@ -18,8 +18,11 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useSelector } from "react-redux";
 import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
+import { useTranslation } from "react-i18next";
 
 const PersonelEkle = () => {
+  const { t } = useTranslation();
+
   const { data, loading, error } = useGetUserTypesQuery();
 
   const [addUserMutation] = useAddUserMutation();
@@ -72,7 +75,7 @@ const PersonelEkle = () => {
         >
           <ArrowBackIcon />
         </IconButton>
-        Add Personel
+        {t("addpersonelpage.title")}
       </div>
       <div>
         <AutoForm schema={schema} onSubmit={handleSubmit}>
@@ -85,29 +88,37 @@ const PersonelEkle = () => {
           <HiddenField name="status" value={1} />
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-          <AutoField name="name" label="Name*" />
+              <AutoField name="name" label={t("addpersonelpage.name")} />
             </Grid>
             <Grid item xs={12} sm={6}>
-          <AutoField name={"surname"} label="Surname*" />
+              <AutoField
+                name={"surname"}
+                label={t("addpersonelpage.surname")}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-          <AutoField name={"username"} label="Username*" />
+              <AutoField
+                name={"username"}
+                label={t("addpersonelpage.username")}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-          <AutoField name={"password"} label="Password*" />
+              <AutoField
+                name={"password"}
+                label={t("addpersonelpage.password")}
+              />
             </Grid>
             <Grid item xs={12} sm={12}>
-          <SelectField
-              
-            name={"usertypesid"}
-            label="Select User Type*"
-            options={userTypeData}
-          />
+              <SelectField
+                name={"usertypesid"}
+                label={t("addpersonelpage.usertype")}
+                options={userTypeData}
+              />
             </Grid>
-            </Grid>
+          </Grid>
 
           <div className="personel-ekle-buttons">
-            <SubmitField value="Submit" label="Add" />
+            <SubmitField value="Submit" label={t('addpersonelpage.submitbutton')} />
           </div>
         </AutoForm>
 

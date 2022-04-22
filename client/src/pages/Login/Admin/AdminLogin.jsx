@@ -45,16 +45,16 @@ const AdminLogin = () => {
   };
 
   const changeTitle = () => {
-    setTitle("wrong username or password");
+    setTitle(t('login.adminlogin.wrong'));
     setTimeout(() => {
-      setTitle("Admin Log In");
+      setTitle(t('login.adminlogin.title'));
     }, 1000);
   };
 
   const checkAdmin = (users) => {
     if (users?.length > 0) {
       dispatch(setAdmin(users[0]));
-      setTitle("Signed In");
+      setTitle(t('login.adminlogin.signedin'));
 
       navigateAdmin();
     } else if (users?.length === 0) {
@@ -101,11 +101,11 @@ const AdminLogin = () => {
 
       >
         <ErrorsField />
-        <AutoField name={"username"} />
+        <AutoField name={"username"} label={t('login.adminlogin.username')} />
 
-        <AutoField name={"password"} type={"password"} />
+        <AutoField name={"password"} type={"password"}  label={t('login.adminlogin.password')}/>
         <div className="admin-login-submit">
-          <SubmitField className="admin-login-button" label="Log In" />
+          <SubmitField className="admin-login-button" label={t('login.adminlogin.login')} />
         </div>
       </AutoForm>
     </div>

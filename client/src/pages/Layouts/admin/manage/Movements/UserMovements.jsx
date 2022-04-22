@@ -10,8 +10,11 @@ import * as React from "react";
 import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 import moment from "moment";
+import { useTranslation } from 'react-i18next';
 
 const UserMovements = () => {
+  const { t } = useTranslation();
+
   const { data, loading, error, refetch } = useGetUserMovementsQuery({});
 
   if (loading) {
@@ -31,7 +34,7 @@ const UserMovements = () => {
   const columns = [
     {
       field: "users.name",
-      headerName: "Name",
+      headerName: t('movements.table.name'),
       width: 100,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].users.name;
@@ -39,7 +42,7 @@ const UserMovements = () => {
     },
     {
       field: "users.surname",
-      headerName: "Surname",
+      headerName: t('movements.table.surname'),
       width: 100,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].users.surname;
@@ -47,7 +50,7 @@ const UserMovements = () => {
     },
     {
       field: "transactiondate",
-      headerName: "Transaction Date",
+      headerName: t('movements.table.transactiondate'),
       width: 130,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].transactiondate
@@ -59,7 +62,7 @@ const UserMovements = () => {
     },
     {
       field: "transictiondate2",
-      headerName: "Day",
+      headerName: t('movements.table.day'),
       width: 130,
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).format("dddd")
@@ -67,7 +70,7 @@ const UserMovements = () => {
     },
     {
       field: "entrytime",
-      headerName: "Entry Time",
+      headerName: t('movements.table.entrytime'),
       width: 130,
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].entrytime;
@@ -75,11 +78,11 @@ const UserMovements = () => {
     },
     {
       field: "exittime",
-      headerName: "Exit Time",
+      headerName: t('movements.table.exittime'),
       width: 130,
       valueFormatter: (params) => {
         const exittime = params.api.state.rows.idRowsLookup[params.id].exittime;
-        return exittime === null ? "Daha Çıkmadı" : exittime;
+        return exittime === null ? t('movements.notyet') : exittime;
       },
     },
   ];
@@ -98,7 +101,7 @@ const UserMovements = () => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Users Movements</div>
+        <div>{t('movements.title')}</div>
       </div>
 
       <div style={{ height: 550, width: "75%" }}>

@@ -24,8 +24,11 @@ import {
   useUpdateUserMutation,
 } from "generated/graphql";
 import { Link, NavLink, useParams } from "react-router-dom";
+import { useTranslation, Trans } from 'react-i18next';
 
 function PersonelDetail() {
+  const { t, i18n } = useTranslation();
+
   const [checked, setChecked] = useState(true);
   const [rowData, setRowData] = useState({});
   const { id } = useParams();
@@ -178,7 +181,7 @@ function PersonelDetail() {
             <ArrowBackIcon />
           </IconButton>
         </div>
-        <div className="detail-title">Informations</div>
+        <div className="detail-title">{t('personeldetail.title')}</div>
       </div>
       <div className="name">
         <Card>
@@ -190,55 +193,55 @@ function PersonelDetail() {
                 <Stack>
                   <Typography variant="h6" component="div"
                     className="span-container">
-                    <span className="span1">ID </span>
+                    <span className="span1">{t('personeldetail.informations.id')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Name </span>
+                    <span className="span1">{t('personeldetail.informations.name')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Surname </span>
+                    <span className="span1">{t('personeldetail.informations.surname')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Username </span>
+                    <span className="span1">{t('personeldetail.informations.username')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Password </span>
+                    <span className="span1">{t('personeldetail.informations.password')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Phone </span>
+                    <span className="span1">{t('personeldetail.informations.phone')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">TC </span>
+                    <span className="span1">{t('personeldetail.informations.tc')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">School </span>
+                    <span className="span1">{t('personeldetail.informations.school')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Address </span>
+                    <span className="span1">{t('personeldetail.informations.adress')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">City </span>
+                    <span className="span1">{t('personeldetail.informations.city')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">District </span>
+                    <span className="span1">{t('personeldetail.informations.district')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Status </span>
+                    <span className="span1">{t('personeldetail.informations.status')} </span>
                   </Typography>
 
                   <Typography variant="h6" component="div" className="span-container">
-                    <span className="span1">Email </span>
+                    <span className="span1">{t('personeldetail.informations.email')} </span>
                   </Typography>
                 </Stack>
 
@@ -323,14 +326,14 @@ function PersonelDetail() {
         </Card>
         <div className="buttons1">
           <div className="active-deactive">
-            <div>deactive</div>
+            <div>{t('personeldetail.deactive')}</div>
             {refetch() && <SwitchUnstyled
               component={Root}
               onChange={handleChange}
               checked={checked}
             />}
 
-            <div>Active</div>
+            <div>{t('personeldetail.active')}</div>
           </div>
         </div>
 
@@ -339,7 +342,7 @@ function PersonelDetail() {
           role="button"
           to={`/admin/tumpersonel/movement/${data?.usersById[0].id}`}
         >
-          View Personels Movements Table
+          {t('personeldetail.viewbutton')}
         </Link>
       </div>
     </div>

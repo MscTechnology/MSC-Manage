@@ -21,12 +21,15 @@ import {
   SubmitField,
   ErrorsField,
 } from 'uniforms-material';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { bridge as schema } from "./PersonelSchema";
 import NoMatch from "pages/404/NoMatch";
 
 const PersonelLogin = () => {
-  const [title, setTitle] = useState("Personel Log In");
+  const { t, i18n } = useTranslation();
+
+  const [title, setTitle] = useState(t('login.personellogin.title'));
   const { data, loading, error } = useGetUserQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,7 +43,7 @@ const PersonelLogin = () => {
   }
 
   const loginedPersonel = (users) => {
-    setTitle("Signed In");
+    setTitle(t('login.personellogin.signedin'));
     dispatch(setUser(users[0]));
     setTimeout(() => {
       navigate("/personel/");
@@ -48,9 +51,9 @@ const PersonelLogin = () => {
   };
 
   const unloginedPersonel = () => {
-    setTitle("Wrong username or password");
+    setTitle(t('login.personellogin.wrong'));
     setTimeout(() => {
-      setTitle("Personel Log In");
+      setTitle(t('login.personellogin.title'));
     }, 1000);
   };
 
@@ -93,11 +96,11 @@ const PersonelLogin = () => {
       <div className="login-form">
         <AutoForm schema={schema} onSubmit={handleLogin}>
           <ErrorsField />
-            <AutoField name={"username"} />
-          <AutoField name={"password"} type={"password"} />
+            <AutoField name={"username"} label={t('login.personellogin.username')} />
+          <AutoField name={"password"} type={"password"} label={t('login.personellogin.password')} />
 
           <div className="personel-login-btn">
-            <SubmitField className="personel-login-submit-button" label="Log In" />
+            <SubmitField className="personel-login-submit-button" label={t('login.personellogin.login')} />
           </div>
         </AutoForm>
       </div>

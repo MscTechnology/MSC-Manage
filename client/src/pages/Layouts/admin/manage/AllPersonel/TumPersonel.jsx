@@ -20,8 +20,11 @@ import NoMatch from "pages/404/NoMatch";
 //! Graphql And Router
 import { NavLink, Link } from "react-router-dom";
 import { useGetUserQuery } from "generated/graphql";
+import { useTranslation, Trans } from 'react-i18next';
 
 const TumPersonel = () => {
+  const { t, i18n } = useTranslation();
+
   const { data, loading, error, refetch } = useGetUserQuery({});
 
   if (loading) {
@@ -48,7 +51,7 @@ const TumPersonel = () => {
         >
           <ArrowBackIcon />
         </IconButton>{" "}
-        All Personels ({userFilter.length})
+        {t('allpersonelpage.title')} ({userFilter.length})
       </div>
 
       {refetch() && userFilter?.map((p) => (
@@ -71,7 +74,7 @@ const TumPersonel = () => {
                   <div className="divider-group">
                     <div >
                       <Typography  color="text.secondary">
-                        {p?.status ? "Active " : "Deactive"}
+                        {p?.status ? t('allpersonelpage.active') : t('allpersonelpage.active')}
                       </Typography>
                     </div>
                   </div>
@@ -88,7 +91,7 @@ const TumPersonel = () => {
         role="button"
         to="/admin/personelekle"
       >
-        Add new Personel
+        {t('allpersonelpage.addnewbutton')}
       </Link>
     </div>
   );
