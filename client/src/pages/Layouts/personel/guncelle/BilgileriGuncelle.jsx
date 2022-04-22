@@ -27,8 +27,11 @@ import {
 } from "generated/graphql";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 
 function BilgileriGuncelle() {
+  const { t, i18n } = useTranslation();
+
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
 
@@ -94,7 +97,7 @@ function BilgileriGuncelle() {
             <ArrowBackIcon />
           </IconButton>
         </div>
-        <div className="update-title">Update Your Informations</div>
+        <div className="update-title">{t("updateInformations.title")}</div>
       </div>
       <AutoForm
         schema={schema}
@@ -118,47 +121,47 @@ function BilgileriGuncelle() {
           spacing={2}
         >
           <Grid item xs={6} md={6}>
-            <AutoField name={"name"} label="Name: " />
+            <AutoField name={"name"} label={t("updateInformations.label.name")} />
           </Grid>
           <Grid item xs={6} md={6}>
-            <AutoField name={"surname"} label="Surname: " />
+            <AutoField name={"surname"} label={t("updateInformations.label.surname")} />
           </Grid>
           <Grid item xs={6} md={6}>
-            <AutoField name={"username"} label="Username: " />
+            <AutoField name={"username"} label={t("updateInformations.label.username")}/>
           </Grid>
           <Grid item xs={6} md={6}>
-            <AutoField name={"password"} label="Password: " />
+            <AutoField name={"password"} label={t("updateInformations.label.password")} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <AutoField name={"email"}  label="Email: " />
+            <AutoField name={"email"}  label={t("updateInformations.label.email")}/>
           </Grid>
           <Grid item xs={12} md={6}>
-            <NumField max={11} min={0} name={"phonenumber"}  label="Phone Number (5xx): " />
+            <NumField max={11} min={0} name={"phonenumber"}  label={`${t("updateInformations.label.phone")} (5xx)`} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <AutoField name={"schoolname"} label="School: " />
+            <AutoField name={"schoolname"} label={t("updateInformations.label.school")}/>
           </Grid>
           <Grid item xs={12} md={6}>
             <AutoField
               name={"identificationnumber"}
-              label="Identification Number: "
+              label={t("updateInformations.label.tc")}
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <AutoField name={"adress"} label="Adress: " />
+            <AutoField name={"adress"} label={t("updateInformations.label.address")} />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <SelectField
               name={"cityid"}
-              label={"City"}
+              label={t("updateInformations.label.city")}
               options={cities ? cities : []}
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <SelectField
               name={"districtsid"}
-              label={"Districts"}
+              label={t("updateInformations.label.district")}
               options={districtData ? districtData : []}
             />
           </Grid>
@@ -185,7 +188,7 @@ function BilgileriGuncelle() {
           </MSCTableField> */}
 
         <div className="btn-2">
-          <SubmitField value="Update Informations" label="Save" />
+          <SubmitField value="Update Informations" label={t("updateInformations.button")} />
         </div>
       </AutoForm>
       <ToastContainer />

@@ -3,12 +3,27 @@
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
+.bg-size{
+  background-color:#d7f0f4 !important;
+  background-size: 100% 100% !important;
+}
 
 .css-46bh2p-MuiCardContent-root:last-child {
   padding-bottom: 10px !important;
 }
 .css-46bh2p-MuiCardContent-root {
   padding: 12px !important;
+}
+.css-19qjufr-MuiStack-root>:not(style)+:not(style) {
+  margin: 0 ;
+  margin-top: 0px;
+  margin-right: -20px !important;
+  margin-bottom: 12px;
+  margin-left: 8px !important;
+}
+
+element.style {
+  background-color: #d7f0f4 !important;
 }
 
 .personels {
@@ -55,6 +70,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #d7f0f4;
 }
 
 .AllPersonel-add-button {
@@ -285,9 +301,10 @@
   display: flex;
   flex-direction: column;
   background-color: #d7f0f4;
-  height: 120vh;
   align-items: center;
   text-align: left;
+  background-size: 10% 10%;
+  height:100vh
 }
 .detail-title {
   color: black;
@@ -349,7 +366,7 @@ text-decoration: line-through;
     font-size: 4em;
   }
   .Addpersonel-page{
-    background-color: #d7f0f4;
+    background-color: #1976d2;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -369,7 +386,7 @@ text-decoration: line-through;
     font-size:1em;
   }
   .Addpersonel-page{
-    background-color: #d7f0f4;
+    background-color: #1976d2;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -558,7 +575,7 @@ text-decoration: line-through;
 }
 
 .MuiButton-outlinedPrimary {
-  color: green !important;
+  color: green;
 }
 .loginmovements-button{
   color:green !important;

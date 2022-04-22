@@ -23,6 +23,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { setTap } from "../../../../store/MovementsToast/MovementsToast";
+import { useTranslation, Trans } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -38,6 +39,8 @@ const style = {
 };
 
 const PersonelMovements = () => {
+  const { t, i18n } = useTranslation();
+
   const [data2, setData2] =useState([]);
 
   const [open, setOpen] =useState(false);
@@ -124,7 +127,7 @@ const PersonelMovements = () => {
   const columns = [
     {
       field: "transactiondate",
-      headerName: "Transaction Date",
+      headerName: t("personelMovements.table.date"),
       width: 200,
       valueFormatter: (params) => {
         return paramsFunctions(params)
@@ -136,7 +139,7 @@ const PersonelMovements = () => {
     },
     {
       field: "transictiondate2",
-      headerName: "Day",
+      headerName: t("personelMovements.table.day"),
       width: 200,
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).format("dddd")
@@ -144,14 +147,14 @@ const PersonelMovements = () => {
     },
     {
       field: "entrytime",
-      headerName: "Entry Time",
+      headerName: t("personelMovements.table.entrytime"),
       width: 130,
       valueFormatter: (params) => {
         return paramsFunctions(params).entrytime;
       },
     },
 
-    { field: "exittime", headerName: "Exit Time", width: 130 },
+    { field: "exittime", headerName: t("personelMovements.table.exittime"), width: 130 },
   ];
 
   return (
@@ -169,7 +172,7 @@ const PersonelMovements = () => {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>Movements Infotmations</div>
+        <div>{t("personelMovements.title")}</div>
       </div>
       <div style={{ height: 550, width: "75%" }}>
         <DataGrid

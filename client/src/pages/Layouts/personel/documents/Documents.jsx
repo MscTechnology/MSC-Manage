@@ -20,41 +20,15 @@ import { IconButton } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
+import { useTranslation, Trans } from "react-i18next";
 
 // const UploadFile = () => {
 //   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
 // };
 
-const Image = ({ onChange, value }) => {
-  return (
-    <div className="ImageField">
-      <label htmlFor="file-input">
-        <div style={{ marginBottom: "10%" }}>Choose your photo</div>
-        <img
-          alt=""
-          src={value || 'https://picsum.photos/150?grayscale'}
-          style={{ cursor: 'pointer', width: '150px', height: '150px' }}
-        />
-      </label>
-      <input
-        accept="image/*"
-        id="file-input"
-        onChange={({ target: { files } }) => {
-          if (files && files[0]) {
-            onChange(URL.createObjectURL(files[0]));
-          }
-        }}
-        style={{ display: 'none' }}
-        type="file"
-      />
-    </div>
-  );
-};
-
-const ImageField = connectField(Image);
-//const UploadField = connectField(UploadFile);
-
 function Documents() {
+  const { t, i18n } = useTranslation();
+
   const [addUserFileMutation, { data,loading:load,error:err }] = useAddUserFileMutation({});
 
   const user = useSelector((state) => state.users.user);
@@ -86,6 +60,38 @@ function Documents() {
   };
 
 
+  const Image = ({ onChange, value }) => {
+    return (
+      <div className="ImageField">
+        <label htmlFor="file-input">
+          <div style={{ marginBottom: "10%" }}>{t("uploadDocument.label.choose")}</div>
+          <img
+            alt=""
+            src={value || 'https://picsum.photos/150?grayscale'}
+            style={{ cursor: 'pointer', width: '150px', height: '150px' }}
+          />
+        </label>
+        <input
+          accept="image/*"
+          id="file-input"
+          onChange={({ target: { files } }) => {
+            if (files && files[0]) {
+              onChange(URL.createObjectURL(files[0]));
+            }
+          }}
+          style={{ display: 'none' }}
+          type="file"
+        />
+      </div>
+    );
+  };
+  
+  const ImageField = connectField(Image);
+  //const UploadField = connectField(UploadFile);
+
+  
+
+
 
   return (
     <div className="containerdcs">
@@ -102,8 +108,7 @@ function Documents() {
           </IconButton>
         </div>
         <div className="documents-content">
-
-        Upload Document
+        {t("uploadDocument.title")}
         </div>
       </div>
       <AutoForm
@@ -122,7 +127,7 @@ function Documents() {
 
           <div className="dcs-grid">
             <Grid item xs={6} md={6} className="dcs-grid">
-              <SelectField name="filetypesid" label="File Type" options={filetypes ? filetypes : []} />
+              <SelectField name="filetypesid" label={t("uploadDocument.label.documentType")} options={filetypes ? filetypes : []} />
             </Grid>
           </div>
           <div className="dcs-grid">
@@ -133,7 +138,7 @@ function Documents() {
           </div>
           <div className="dcs-grid">
             <Grid item xs={6} md={6} style={{ textAlign: "center" }} className="dcs-grid">
-              <SubmitField onSubmit={handleSave} />
+              <SubmitField onSubmit={handleSave} label={t("uploadDocument.button")}/>
             </Grid>
           </div>
 

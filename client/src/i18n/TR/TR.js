@@ -80,6 +80,48 @@ const tr = {
             active: 'Aktif',
             deactive: 'Pasif',
             viewbutton: 'Personel Giriş-Çıkışlarını Görüntüle',
+        },
+        personelPage:{
+            title:'Hoşgeldin',
+            buttons:{
+                movementsTable:'Giriş-Çıkış Tablosu',
+                update:'Bilgilerini Güncelle',
+                documents:'Belgeler'
+            }
+        },
+        personelMovements:{
+            title:'Giriş-Çıkış Bilgileri',
+            table:{
+                date:'İşlem Tarihi',
+                day:'Gün',
+                entrytime:'Giriş Saati',
+                exittime:'Çıkış Saati',
+            }
+        },
+        updateInformations:{
+            title:'Bilgilerini Güncelle',
+            button:"Kaydet",
+            label:{
+                name:'İsim',
+                surname:'Soyisim',
+                username:'Kullanıcı Adı',
+                phone:'Telefon Numarası',
+                email:'Email',
+                password:'Şifre',
+                school:'Okul',
+                address:'Adres',
+                city:'Şehir',
+                district:'İlçe',
+                tc:"TC Kimlik No",
+            }
+        },
+        uploadDocument:{
+            title:'Belge Yükle',
+            button:"Yükle",
+            label:{
+                documentType:'Belge Türü',
+                choose:'Belgeni seç',
+            }
         }
     }
 }

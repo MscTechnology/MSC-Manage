@@ -3,7 +3,8 @@ import "./Home.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "store/SplashSlice/SplashSlice";
 import SplashScreen from "components/SplashScreen/SplashScreen";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { Button } from "@mui/material";
 
 const lngs = {
   en: { nativeName: 'English' },
@@ -18,7 +19,7 @@ const Home = () => {
     dispatch(setLoading(true));
   }, 2000);
 
- 
+
 
   return (
     <>
@@ -27,22 +28,25 @@ const Home = () => {
           <div>
             <img src={require("./logo.jpg")} alt="" />
           </div>
-
+          <div className="localization">
+              {Object.keys(lngs).map((lng) => (
+                <Button variant="outlined" key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() => i18n.changeLanguage(lng)}>
+                  {lngs[lng].nativeName}
+                </Button>
+              ))}
+            </div>
           <div className="buttons">
             <Link className="button1" role="button" to="personelLogin">
-            {t('homepage.personelbutton')}
+              {t('homepage.personelbutton')}
             </Link>
             <Link className="button1" role="button" to="adminLogin">
-            {t('homepage.adminbutton')}
+              {t('homepage.adminbutton')}
             </Link>
           </div>
           <div>
-          {Object.keys(lngs).map((lng) => (
-            <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() => i18n.changeLanguage(lng)}>
-              {lngs[lng].nativeName}
-            </button>
-          ))}
-        </div>
+            
+
+          </div>
         </div>
       ) : (
         <SplashScreen />

@@ -13,7 +13,16 @@ import { useGetUserQuery } from "generated/graphql";
 import Loading from "../../../components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 
+import { useTranslation } from 'react-i18next';
+
+const lngs = {
+  en: { nativeName: 'English' },
+  tr: { nativeName: 'Türkçe' }
+};
+
 function Personel() {
+  const { t, i18n } = useTranslation();
+
   const { data, loading, error } = useGetUserQuery({});
 
   const user = useSelector((state) => state.users.user);
@@ -38,7 +47,7 @@ function Personel() {
         >
           <ArrowBackIcon />
         </IconButton>
-        {`Welcome ${user.name}`}
+        {`${t("personelPage.title")} ${user.name}`}
       </div>
     
     <Link
@@ -46,17 +55,17 @@ function Personel() {
         role="button"
         to={`/personel/movement/${user.id}`}
       >
-        MOVEMENT TABLE
+       {t("personelPage.buttons.movementsTable").toUpperCase()}
       </Link>
       <Link
         className="Personel-page-buttons"
         role="button"
         to="bilgileriguncelle"
       >
-        UPDATE INFORMATIONS
+        {t("personelPage.buttons.update").toUpperCase()}
       </Link>
       <Link className="Personel-page-buttons" role="button" to="documents">
-        DOCUMENTS
+      {t("personelPage.buttons.documents").toUpperCase()}
       </Link>
     
     </div>

@@ -5,6 +5,10 @@ img {
   height: auto;
 }
 
+.MuiButton-outlinedPrimary {
+  color: #1976d2 !important;
+}
+
 @media screen and (max-width: 1368px) {
   img {
     width: 50%;
@@ -68,7 +72,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 5%;
   }
 }
 
@@ -76,6 +80,10 @@ img {
   text-align: center;
   background-color: #d7f0f4;
   height: 100vh;
+}
+.localization{
+  padding-top:2%;
+  padding-bottom: 2%;
 }
 
 .buttons {
