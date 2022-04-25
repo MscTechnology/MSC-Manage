@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 //? Components
 import Loading from "components/Loading/Loading";
@@ -39,25 +39,33 @@ const style = {
 };
 
 const PersonelMovements = () => {
+  const [addMovementMutation, { data: AddUserMovement }] = useAddMovementMutation({});
+  const isTap = useSelector((state) => state.movements.isTap);
+  const dispatch = useDispatch();
+
   const { t, i18n } = useTranslation();
 
-  const [data2, setData2] =useState([]);
+  const [data2, setData2] = useState([]);
 
-  const [open, setOpen] =useState(false);
+  const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
+  
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleSave = () => {
     if (isTap) {
       dispatch(setTap(false));
-      toast.success("You are in work!");
+      toast.success(t("personelMovements.toast.login"));
     } else {
       dispatch(setTap(true));
-      toast.error("You are out of work!");
+      toast.error(t("personelMovements.toast.logout"));
     }
+
     addMovementMutation({
       variables: {
         prmUserMovement: {
@@ -91,7 +99,7 @@ const PersonelMovements = () => {
   });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
   const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
-
+  console.log(btnText)
 
 
   const loginLogoutDate = moment().format("LLLL");
@@ -107,9 +115,7 @@ const PersonelMovements = () => {
 
 
 
-  const [addMovementMutation, { data: AddUserMovement }] = useAddMovementMutation({});
-  const isTap = useSelector((state) => state.movements.isTap);
-  const dispatch = useDispatch();
+  
 
   if (loading) {
     return <Loading />;
@@ -174,18 +180,18 @@ const PersonelMovements = () => {
         </div>
         <div>{t("personelMovements.title")}</div>
       </div>
-      <div style={{ height: 550, width: "75%" }}>
+      <div style={{ height: 530, width: "75%" }}>
         <DataGrid
           rows={data2}
           columns={columns}
-          pageSize={5}
+          pageSize={8}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
           pagination
         />
       </div>
       <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
-        <Button className="disable" onClick={handleOpen}>log In / Log Out</Button>
+        <Button className="disable" onClick={handleOpen}>{t("personelMovements.loginlogout").toLocaleUpperCase()}</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -194,16 +200,20 @@ const PersonelMovements = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Are you sure?
+              {t("personelMovements.modal.title")}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {
-                btnText === "GİRİŞ YAP" ? `You will log in on ${loginLogoutDate}` : `You will log out on  ${loginLogoutDate} `
+                btnText === "GİRİŞ YAP" ? `${t("personelMovements.modal.description1")} ${loginLogoutDate}` : `${t("personelMovements.modal.description2")}  ${loginLogoutDate} `
               }
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
-              <Button className="loginmovements-button" onClick={handleSave}>{btnText}</Button>
-              <Button onClick={handleClose}>Kapat</Button>
+              <Button className="loginmovements-button" onClick={handleSave}>
+                {
+                  btnText === "GİRİŞ YAP" ? t("personelMovements.modal.loginbtn") : t("personelMovements.modal.logoutbtn")
+                }
+              </Button>
+              <Button onClick={handleClose}>{t("personelMovements.modal.closebtn")}</Button>
             </Box>
           </Box>
         </Modal>

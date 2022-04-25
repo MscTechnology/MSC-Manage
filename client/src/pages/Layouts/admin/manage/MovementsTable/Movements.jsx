@@ -89,12 +89,12 @@ function Movements() {
         </div>
         <div>{userName} 's Movements</div>
       </div>
-      <div style={{ height: 400, width: "75%" }}>
+      <div style={{ height: 530, width: "75%" }}>
         {
           refetch() &&  <DataGrid
           rows={data?.usersmovementsById}
           columns={columns}
-          pageSize={5}
+          pageSize={8}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
           pagination

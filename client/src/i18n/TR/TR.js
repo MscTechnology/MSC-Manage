@@ -96,6 +96,19 @@ const tr = {
                 day:'Gün',
                 entrytime:'Giriş Saati',
                 exittime:'Çıkış Saati',
+            },
+            loginlogout:'Giriş / Çıkış yap',
+            modal:{
+                title:'Emin Misiniz?',
+                description1:'Giriş yapacağınız tarih :',
+                description2:'Çıkış yapacağınız tarih :',
+                loginbtn:'Giriş Yap',
+                logoutbtn:'Çıkış Yap',
+                closebtn:'Kapat',
+            },
+            toast:{
+                login:'Giriş Yapıldı',
+                logout:'Çıkış Yapıldı',
             }
         },
         updateInformations:{

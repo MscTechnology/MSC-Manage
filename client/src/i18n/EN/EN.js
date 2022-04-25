@@ -97,6 +97,19 @@ const en = {
         entrytime: "Entry Time",
         exittime: "Exit Time",
       },
+      loginlogout: "Log In / Log Out",
+      modal: {
+        title: "Are You Sure?",
+        description1: "You will be log in ",
+        description2: "You will be log out ",
+        loginbtn: "Log In",
+        logoutbtn: "Log Out",
+        closebtn: "Close",
+      },
+      toast:{
+        login:'Logged In',
+        logout:'Logged Out',
+    }
     },
     updateInformations: {
       title: "Update Informations",
@@ -115,14 +128,14 @@ const en = {
         tc: "ID Number",
       },
     },
-    uploadDocument:{
-      title:'Upload Document',
-      button:"Upload",
-      label:{
-          documentType:'File Type',
-          choose:'Choose a file',
-      }
-  }
+    uploadDocument: {
+      title: "Upload Document",
+      button: "Upload",
+      label: {
+        documentType: "File Type",
+        choose: "Choose a file",
+      },
+    },
   },
 };
 
