@@ -30,7 +30,7 @@ const tr = {
                 movements: 'Giriş-Çıkışlar',
                 movementsub: 'Personel Giriş-Çıkışları',
                 addpersonel: 'Personel Ekle',
-                addpersonelsub: 'Yeni Personel Ekleyebilirsiniz',
+                addpersonelsub: 'Yeni Personel Ekle',
             }
         },
         allpersonelpage:{
