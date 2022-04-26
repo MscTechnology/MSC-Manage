@@ -35,20 +35,20 @@ const style = {
   border: "3px solid #000",
   boxShadow: 24,
   p: 3,
-
 };
 
 const PersonelMovements = () => {
-
   const [sortModel, setSortModel] = React.useState([
     {
-      field: 'transactiondate',
-      sort: 'desc',
-    }
-  ]
-  );
-  const [addMovementMutation, { data: AddUserMovement }] = useAddMovementMutation({});
+      field: "transactiondate",
+      sort: "desc",
+    },
+  ]);
+  const [addMovementMutation, { data: AddUserMovement }] =
+    useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
+  const selectLang = useSelector((state) => state.language.lang);
+
   const dispatch = useDispatch();
 
   const { t, i18n } = useTranslation();
@@ -60,7 +60,7 @@ const PersonelMovements = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -89,7 +89,7 @@ const PersonelMovements = () => {
       refetch();
       setOpen(false);
     });
-  }
+  };
 
   const { id } = useParams();
   const user = useSelector((state) => state.users.user);
@@ -100,27 +100,26 @@ const PersonelMovements = () => {
     },
   });
 
-  const { data: GetMovementsData, refetch } = useGetUserMovementsByIdForLoginQuery({
-    variables: {
-      prmId: parseInt(id),
-    },
-  });
+  const { data: GetMovementsData, refetch } =
+    useGetUserMovementsByIdForLoginQuery({
+      variables: {
+        prmId: parseInt(id),
+      },
+    });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
   const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
-  console.log(btnText)
+  console.log(btnText);
 
-
-  const loginLogoutDate = moment().format("LLLL");
-  console.log(GetMovementsData)
+  const loginLogoutDate = moment().locale(selectLang).format("LLLL");
+  console.log(GetMovementsData);
 
   useEffect(() => {
     if (GetMovementsData?.usersmovementsByIdForLogin) {
       setData2(GetMovementsData?.usersmovementsByIdForLogin.data);
     }
-  }, [GetMovementsData])
+  }, [GetMovementsData]);
 
   let transictiondate2 = data?.usersmovementsById[0]?.transactiondate;
-  
 
   if (loading) {
     return <Loading />;
@@ -129,7 +128,6 @@ const PersonelMovements = () => {
   if (error) {
     return <NoMatch />;
   }
-
 
   const paramsFunctions = (params) => {
     return params.api.state.rows.idRowsLookup[params.id];
@@ -153,7 +151,7 @@ const PersonelMovements = () => {
       headerName: t("personelMovements.table.day"),
       width: 200,
       valueFormatter: (params) => {
-        return moment(paramsFunctions(params).transactiondate).format("dddd")
+        return moment(paramsFunctions(params).transactiondate).locale(selectLang).format("dddd");
       },
     },
     {
@@ -165,7 +163,15 @@ const PersonelMovements = () => {
       },
     },
 
-    { field: "exittime", headerName: t("personelMovements.table.exittime"), width: 130 },
+    {
+      field: "exittime",
+      headerName: t("personelMovements.table.exittime"),
+      width: 130,
+      valueFormatter: (params) => {
+        const exittime = params.api.state.rows.idRowsLookup[params.id].exittime;
+        return exittime === null ? t("movements.notyet") : exittime;
+      },
+    },
   ];
 
   return (
@@ -197,7 +203,9 @@ const PersonelMovements = () => {
         />
       </div>
       <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
-        <Button className="disable" onClick={handleOpen}>{t("personelMovements.loginlogout").toLocaleUpperCase()}</Button>
+        <Button className="disable" onClick={handleOpen}>
+          {t("personelMovements.loginlogout").toLocaleUpperCase()}
+        </Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -209,17 +217,23 @@ const PersonelMovements = () => {
               {t("personelMovements.modal.title")}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {
-                btnText === "GİRİŞ YAP" ? `${t("personelMovements.modal.description1")} ${loginLogoutDate}` : `${t("personelMovements.modal.description2")}  ${loginLogoutDate} `
-              }
+              {btnText === "GİRİŞ YAP"
+                ? `${t(
+                    "personelMovements.modal.description1"
+                  )} ${loginLogoutDate}`
+                : `${t(
+                    "personelMovements.modal.description2"
+                  )}  ${loginLogoutDate} `}
             </Typography>
             <Box sx={{ mt: 2 }} className="login-logout-buttons">
               <Button className="loginmovements-button" onClick={handleSave}>
-                {
-                  btnText === "GİRİŞ YAP" ? t("personelMovements.modal.loginbtn") : t("personelMovements.modal.logoutbtn")
-                }
+                {btnText === "GİRİŞ YAP"
+                  ? t("personelMovements.modal.loginbtn")
+                  : t("personelMovements.modal.logoutbtn")}
               </Button>
-              <Button onClick={handleClose}>{t("personelMovements.modal.closebtn")}</Button>
+              <Button onClick={handleClose}>
+                {t("personelMovements.modal.closebtn")}
+              </Button>
             </Box>
           </Box>
         </Modal>
