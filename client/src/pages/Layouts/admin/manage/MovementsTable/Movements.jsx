@@ -19,7 +19,7 @@ import { useGetUserMovementByIdQuery } from "generated/graphql";
 import { useParams, NavLink } from "react-router-dom";
 import moment from "moment";
 import { useTranslation } from 'react-i18next';
-
+import 'moment/locale/tr';
 
 function Movements() {
   const [sortModel, setSortModel] = React.useState([
@@ -48,13 +48,24 @@ function Movements() {
   if (error) {
     return <NoMatch />;
   }
+  
 
   const paramsFunctions = (params) => {
     return params.api.state.rows.idRowsLookup[params.id]
   }
+  
+  
+  moment.locale('tr',{
+    days:'pazar_pazartesi_salı_çarşamba_perşembe_cuma_cumartesi'.split('_'),
+  });
+  var tr = moment().locale('tr')
+  var tr1=tr.localeData().weekdays(moment([1]))
+  console.log(tr1)
+  
 
   const MovementsDay = data?.usersmovementsById[0]?.transactiondate;
-  console.log(MovementsDay)
+  //console.log(MovementsDay)
+
   const columns = [
     {
       field: "transactiondate",
@@ -69,7 +80,7 @@ function Movements() {
       headerName: t('movements.table.day'),
       width: 200,
       valueFormatter: (params) => {
-        return moment(paramsFunctions(params).transactiondate).format("dddd");
+        return moment(paramsFunctions(params).transactiondate).locale('tr').format('dddd');
       },
     },
     {
