@@ -20,8 +20,15 @@ import { useParams, NavLink } from "react-router-dom";
 import moment from "moment";
 import { useTranslation } from 'react-i18next';
 import 'moment/locale/tr';
+import { useSelector } from "react-redux";
 
 function Movements() {
+
+  const selectLang = useSelector((state) => state.language.lang);
+  
+
+
+
   const [sortModel, setSortModel] = React.useState([
     {
       field: 'transactiondate',
@@ -58,9 +65,10 @@ function Movements() {
   moment.locale('tr',{
     days:'pazar_pazartesi_salı_çarşamba_perşembe_cuma_cumartesi'.split('_'),
   });
-  var tr = moment().locale('tr')
-  var tr1=tr.localeData().weekdays(moment([1]))
-  console.log(tr1)
+  moment.locale('en',{
+    days:'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+  });
+  
   
 
   const MovementsDay = data?.usersmovementsById[0]?.transactiondate;
@@ -80,7 +88,7 @@ function Movements() {
       headerName: t('movements.table.day'),
       width: 200,
       valueFormatter: (params) => {
-        return moment(paramsFunctions(params).transactiondate).locale('tr').format('dddd');
+        return moment(paramsFunctions(params).transactiondate).locale(selectLang).format('dddd');
       },
     },
     {
@@ -107,7 +115,7 @@ function Movements() {
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>{userName} 's Movements</div>
+        <div>{userName} {t("PersonalMovementsByName.title")}</div>
       </div>
       <div style={{ height: 530, width: "75%" }}>
         {

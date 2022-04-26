@@ -136,6 +136,12 @@ const en = {
         choose: "Choose a file",
       },
     },
+    PersonalMovementsByName:{
+      title:"'s Movements",
+  },
+
+
+
   },
 };
 

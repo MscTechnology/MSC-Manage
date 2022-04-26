@@ -135,7 +135,10 @@ const tr = {
                 documentType:'Belge Türü',
                 choose:'Belgeni seç',
             }
-        }
+        },
+        PersonalMovementsByName:{
+            title:'Giriş-Çıkış Bilgileri',
+        },
     }
 }
 
