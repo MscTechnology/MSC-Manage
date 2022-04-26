@@ -18,14 +18,26 @@ import NoMatch from "pages/404/NoMatch";
 import { useGetUserMovementByIdQuery } from "generated/graphql";
 import { useParams, NavLink } from "react-router-dom";
 import moment from "moment";
+import { useTranslation } from 'react-i18next';
+
+
 function Movements() {
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: 'transactiondate',
+      sort: 'desc',
+    }
+  ]
+  );
+  const { t } = useTranslation();
+
   const { id } = useParams();
   const { data, loading, error,refetch } = useGetUserMovementByIdQuery({
     variables: {
       prmId: parseInt(id),
     },
   });
-  console.log(data)
+  
 
   const userName = data?.usersmovementsById[0]?.users?.name;
 
@@ -44,12 +56,9 @@ function Movements() {
   const MovementsDay = data?.usersmovementsById[0]?.transactiondate;
   console.log(MovementsDay)
   const columns = [
-    
-   
-    
     {
       field: "transactiondate",
-      headerName: "Transaction Date",
+      headerName: t('movements.table.transactiondate'),
       width: 200,
       valueFormatter: (params) => {
         return paramsFunctions(params).transactiondate.split("T")[0].split("-").reverse().join("-");
@@ -57,7 +66,7 @@ function Movements() {
     },
     {
       field: "MovementsDay",
-      headerName: "Day",
+      headerName: t('movements.table.day'),
       width: 200,
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).format("dddd");
@@ -65,12 +74,12 @@ function Movements() {
     },
     {
       field: "entrytime",
-      headerName: "Entry Time",
+      headerName:t('movements.table.entrytime'),
       width: 130,
       valueFormatter: (params) => {
         return paramsFunctions(params).entrytime   },
     },
-    { field: "exittime", headerName: "Exit Time", width: 130 },
+    { field: "exittime", headerName:  t('movements.table.exittime'), width: 130 },
   ];
 
   return (
@@ -98,6 +107,7 @@ function Movements() {
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
           pagination
+          sortModel={sortModel}
         />
         }
       

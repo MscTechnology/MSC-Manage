@@ -39,6 +39,14 @@ const style = {
 };
 
 const PersonelMovements = () => {
+
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: 'transactiondate',
+      sort: 'desc',
+    }
+  ]
+  );
   const [addMovementMutation, { data: AddUserMovement }] = useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
   const dispatch = useDispatch();
@@ -112,9 +120,6 @@ const PersonelMovements = () => {
   }, [GetMovementsData])
 
   let transictiondate2 = data?.usersmovementsById[0]?.transactiondate;
-
-
-
   
 
   if (loading) {
@@ -188,6 +193,7 @@ const PersonelMovements = () => {
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
           pagination
+          sortModel={sortModel}
         />
       </div>
       <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>

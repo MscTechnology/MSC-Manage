@@ -40,7 +40,7 @@ const Admin = () => {
             <ArrowBackIcon />
           </IconButton>
           {t("adminpage.title")}
-          <h1 className="admin-subtitle">{user.name}</h1>
+          <h1 className="admin-subtitle">{user.name} {user.surname}</h1>
         </h1>
         <Link className="admin-card" role="button" to="tumpersonel">
           <Card sx={{ minWidth: 275 }}>

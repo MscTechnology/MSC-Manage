@@ -13,6 +13,15 @@ import moment from "moment";
 import { useTranslation } from 'react-i18next';
 
 const UserMovements = () => {
+
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: 'transactiondate',
+      sort: 'desc',
+    }
+  ]
+  );
+
   const { t } = useTranslation();
 
   const { data, loading, error, refetch } = useGetUserMovementsQuery({});
@@ -28,8 +37,10 @@ const UserMovements = () => {
   const paramsFunctions = (params) => {
     return params.api.state.rows.idRowsLookup[params.id];
   }
-  
+
   let transictiondate2 = data?.usersmovements[0]?.transactiondate;
+
+
 
   const columns = [
     {
@@ -39,6 +50,7 @@ const UserMovements = () => {
       valueFormatter: (params) => {
         return params.api.state.rows.idRowsLookup[params.id].users.name;
       },
+
     },
     {
       field: "users.surname",
@@ -67,6 +79,7 @@ const UserMovements = () => {
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).format("dddd")
       },
+
     },
     {
       field: "entrytime",
@@ -104,16 +117,15 @@ const UserMovements = () => {
         <div>{t('movements.title')}</div>
       </div>
 
-      <div style={{ height: 550, width: "75%" }}>
+      <div style={{ height: 580, width: "70%" }}>
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}
             columns={columns}
             pageSize={10}
-            rowsPerPageOptions={[6, 12, 18, 40, 50]}
-            checkboxSelection={false}
             autoPageSize
             pagination
+            sortModel={sortModel}
           />
         )}
       </div>

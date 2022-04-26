@@ -393,9 +393,19 @@ text-decoration: line-through;
     flex-direction: column;
     justify-content: center;
   }
-  
+  .css-de9k3v-MuiDataGrid-selectedRowCount {
+    visibility: hidden;
+    width: auto;
+    height: auto;
 }
 
+}
+.css-de9k3v-MuiDataGrid-selectedRowCount {
+  visibility: hidden;
+  width: auto;
+  height: auto;
+
+}
 
 .btn-deactive {
   text-decoration: line-through;
