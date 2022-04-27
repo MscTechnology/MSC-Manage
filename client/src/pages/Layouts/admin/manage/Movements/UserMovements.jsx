@@ -120,12 +120,12 @@ const UserMovements = () => {
         <div>{t('movements.title')}</div>
       </div>
 
-      <div style={{ height: 580, width: "70%" }}>
+      <div style={{ height: 530, width: "75%" }}>
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}
             columns={columns}
-            pageSize={10}
+            pageSize={8}
             autoPageSize
             pagination
             sortModel={sortModel}

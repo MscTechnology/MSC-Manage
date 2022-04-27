@@ -23,7 +23,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { setTap } from "../../../../store/MovementsToast/MovementsToast";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -44,14 +44,14 @@ const PersonelMovements = () => {
       sort: "desc",
     },
   ]);
-  const [addMovementMutation, { data: AddUserMovement }] =
+  const [addMovementMutation] =
     useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
   const selectLang = useSelector((state) => state.language.lang);
 
   const dispatch = useDispatch();
 
-  const { t, i18n } = useTranslation();
+  const { t, } = useTranslation();
 
   const [data2, setData2] = useState([]);
 
@@ -108,10 +108,10 @@ const PersonelMovements = () => {
     });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
   const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
-  console.log(btnText);
+ 
 
   const loginLogoutDate = moment().locale(selectLang).format("LLLL");
-  console.log(GetMovementsData);
+  
 
   useEffect(() => {
     if (GetMovementsData?.usersmovementsByIdForLogin) {
@@ -137,7 +137,7 @@ const PersonelMovements = () => {
     {
       field: "transactiondate",
       headerName: t("personelMovements.table.date"),
-      width: 200,
+      width: 130,
       valueFormatter: (params) => {
         return paramsFunctions(params)
           .transactiondate.split("T")[0]
@@ -149,7 +149,7 @@ const PersonelMovements = () => {
     {
       field: "transictiondate2",
       headerName: t("personelMovements.table.day"),
-      width: 200,
+      width: 130,
       valueFormatter: (params) => {
         return moment(paramsFunctions(params).transactiondate).locale(selectLang).format("dddd");
       },

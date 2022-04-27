@@ -18,7 +18,7 @@ const tr = {
                 username: 'Kullanıcı Adı',
                 password: 'Şifre',
                 login: 'Giriş Yap',
-                wrong: 'Kullanıcı adı veya şifre yanlış',
+                wrong: 'Kullanıcı adı, şifre yanlış veya hesabınız aktif değil',
                 signedin: 'Giriş Yapıldı',
             },
         },
@@ -126,7 +126,8 @@ const tr = {
                 city:'Şehir',
                 district:'İlçe',
                 tc:"TC Kimlik No",
-            }
+            },
+            success: 'Bilgileriniz Güncellendi',
         },
         uploadDocument:{
             title:'Belge Yükle',
