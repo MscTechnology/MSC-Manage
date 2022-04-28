@@ -103,7 +103,7 @@ const UserMovements = () => {
   return (
     <div className="UserMovements">
       <div className="UserMovements_inner">
-        <div>
+        <div className="movement_by_month_back_button">
           <IconButton
             size="large"
             color="primary"

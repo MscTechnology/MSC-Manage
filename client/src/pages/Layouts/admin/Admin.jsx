@@ -113,6 +113,30 @@ const Admin = () => {
             </CardContent>
           </Card>
         </Link>
+
+        <Link className="admin-card" role="button" to="movementsbymonth">
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <div className="card-group">
+                <div className="admin-icon">
+                  <SearchIcon fontSize="large" className="icon" />
+                </div>
+                <div className="admin-tp">
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    className="topography"
+                  >
+                    {t("adminpage.buttons.mountmovenments")}
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {t("adminpage.buttons.mountmovenmentssub")}
+                  </Typography>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );

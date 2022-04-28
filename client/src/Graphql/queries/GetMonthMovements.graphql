@@ -1,0 +1,12 @@
+query GetMonthMovements{
+  monthmovements {
+      id
+    ay
+    toChar
+    ad
+    soyad
+    eksikgun
+    gun
+
+  } 
+}

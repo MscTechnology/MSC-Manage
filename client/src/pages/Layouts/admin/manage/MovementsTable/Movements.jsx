@@ -25,9 +25,6 @@ import { useSelector } from "react-redux";
 function Movements() {
 
   const selectLang = useSelector((state) => state.language.lang);
-  
-
-
 
   const [sortModel, setSortModel] = React.useState([
     {
@@ -104,7 +101,7 @@ function Movements() {
   return (
     <div className="UserMovements_1">
       <div className="UserMovements_inner_1">
-        <div>
+        <div className="movement_by_month_back_button">
           <IconButton
             size="large"
             color="primary"

@@ -277,6 +277,7 @@ export type Query = {
   cities?: Maybe<Array<Maybe<City>>>;
   districts?: Maybe<Array<Maybe<District>>>;
   filetypes?: Maybe<Array<Maybe<Filetype>>>;
+  monthmovements?: Maybe<Array<Maybe<VwMountmovenment>>>;
   userFiles?: Maybe<Array<Maybe<Userfile>>>;
   users?: Maybe<Array<Maybe<User>>>;
   usersById?: Maybe<Array<Maybe<User>>>;
@@ -295,6 +296,11 @@ export type QueryCitiesArgs = {
 
 export type QueryDistrictsArgs = {
   where?: InputMaybe<DistrictFilterInput>;
+};
+
+
+export type QueryMonthmovementsArgs = {
+  where?: InputMaybe<VwMountmovenmentFilterInput>;
 };
 
 
@@ -542,6 +548,29 @@ export type UsertypeInput = {
   users?: InputMaybe<Array<InputMaybe<UserInput>>>;
 };
 
+export type VwMountmovenment = {
+  __typename?: 'VwMountmovenment';
+  ad?: Maybe<Scalars['String']>;
+  ay?: Maybe<Scalars['String']>;
+  eksikgun?: Maybe<Scalars['Decimal']>;
+  gun?: Maybe<Scalars['Long']>;
+  id?: Maybe<Scalars['Long']>;
+  soyad?: Maybe<Scalars['String']>;
+  toChar?: Maybe<Scalars['String']>;
+};
+
+export type VwMountmovenmentFilterInput = {
+  ad?: InputMaybe<StringOperationFilterInput>;
+  and?: InputMaybe<Array<VwMountmovenmentFilterInput>>;
+  ay?: InputMaybe<StringOperationFilterInput>;
+  eksikgun?: InputMaybe<ComparableNullableOfDecimalOperationFilterInput>;
+  gun?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  id?: InputMaybe<ComparableNullableOfInt64OperationFilterInput>;
+  or?: InputMaybe<Array<VwMountmovenmentFilterInput>>;
+  soyad?: InputMaybe<StringOperationFilterInput>;
+  toChar?: InputMaybe<StringOperationFilterInput>;
+};
+
 export type AddMovementMutationVariables = Exact<{
   prmUserMovement?: InputMaybe<UsersmovementInput>;
 }>;
@@ -605,6 +634,11 @@ export type GetFilesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetFilesQuery = { __typename?: 'Query', userFiles?: Array<{ __typename?: 'Userfile', id: any, usersid: any, data?: Array<any> | null, filetypesid: any, extensitions?: string | null, createuser?: any | null, createtime?: any | null, changeuser?: any | null, changetime?: any | null } | null> | null };
+
+export type GetMonthMovementsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMonthMovementsQuery = { __typename?: 'Query', monthmovements?: Array<{ __typename?: 'VwMountmovenment', id?: any | null, ay?: string | null, toChar?: string | null, ad?: string | null, soyad?: string | null, eksikgun?: any | null, gun?: any | null } | null> | null };
 
 export type GetUserDetailQueryVariables = Exact<{
   prmId: Scalars['Long'];
@@ -1005,6 +1039,46 @@ export function useGetFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetFilesQueryHookResult = ReturnType<typeof useGetFilesQuery>;
 export type GetFilesLazyQueryHookResult = ReturnType<typeof useGetFilesLazyQuery>;
 export type GetFilesQueryResult = Apollo.QueryResult<GetFilesQuery, GetFilesQueryVariables>;
+export const GetMonthMovementsDocument = gql`
+    query GetMonthMovements {
+  monthmovements {
+    id
+    ay
+    toChar
+    ad
+    soyad
+    eksikgun
+    gun
+  }
+}
+    `;
+
+/**
+ * __useGetMonthMovementsQuery__
+ *
+ * To run a query within a React component, call `useGetMonthMovementsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMonthMovementsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMonthMovementsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMonthMovementsQuery(baseOptions?: Apollo.QueryHookOptions<GetMonthMovementsQuery, GetMonthMovementsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMonthMovementsQuery, GetMonthMovementsQueryVariables>(GetMonthMovementsDocument, options);
+      }
+export function useGetMonthMovementsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMonthMovementsQuery, GetMonthMovementsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMonthMovementsQuery, GetMonthMovementsQueryVariables>(GetMonthMovementsDocument, options);
+        }
+export type GetMonthMovementsQueryHookResult = ReturnType<typeof useGetMonthMovementsQuery>;
+export type GetMonthMovementsLazyQueryHookResult = ReturnType<typeof useGetMonthMovementsLazyQuery>;
+export type GetMonthMovementsQueryResult = Apollo.QueryResult<GetMonthMovementsQuery, GetMonthMovementsQueryVariables>;
 export const GetUserDetailDocument = gql`
     query GetUserDetail($prmId: Long!) {
   usersById(where: {id: {eq: $prmId}}) {

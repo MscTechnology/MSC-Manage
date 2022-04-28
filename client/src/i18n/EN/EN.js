@@ -31,6 +31,8 @@ const en = {
         movementsub: "Employees Movements",
         addpersonel: "Add Employee",
         addpersonelsub: "Register New Employee",
+        mountmovenmentssub:"See movements by month",
+        mountmovenments:"Movements by month",
       },
     },
     allpersonelpage: {
@@ -139,7 +141,19 @@ const en = {
     PersonalMovementsByName:{
       title:"'s Movements",
   },
+  PersonalMovementsByMonth:{
+    title:"Movements by Month",
+    label:{
+      date:'Date',
+      month:'Month',
+      name:'Name',
+      surname:'Surname',
+      day:'Day',
+      missingDay:'Missing Day',
 
+    }
+
+  }
 
 
   },
