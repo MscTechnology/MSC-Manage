@@ -31,6 +31,8 @@ const tr = {
                 movementsub: 'Personel Giriş-Çıkışları',
                 addpersonel: 'Personel Ekle',
                 addpersonelsub: 'Yeni Personel Ekle',
+                mountmovenments:'Aylık Giriş-Çıkışlar',
+                mountmovenmentssub:'Aylık Personel Giriş-Çıkışları',
             }
         },
         allpersonelpage:{

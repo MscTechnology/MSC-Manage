@@ -141,8 +141,8 @@ const en = {
     },
     PersonalMovementsByName:{
       title:"'s Movements",
-  },
-  PersonalMovementsByMonth:{
+    },
+     PersonalMovementsByMonth:{
     title:"Movements by Month",
     label:{
       date:'Date',
@@ -152,9 +152,8 @@ const en = {
       day:'Day',
       missingDay:'Missing Day',
 
-    }
-
-  }
+    },
+      }
 
 
   },

@@ -44,9 +44,6 @@ function MovementsByMonth() {
         return <Loading />;
     }
 
-    if (error) {
-        return <NoMatch />;
-    }
 
     const paramsFunctions = (params) => {
         return params.api.state.rows.idRowsLookup[params.id]
