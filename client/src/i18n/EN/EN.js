@@ -18,7 +18,7 @@ const en = {
         username: "Username",
         password: "Password",
         login: "Log in",
-        wrong: "Username or password is wrong",
+        wrong: "Username or password is wrong or your account is not active",
         signedin: "Signed in successfully",
       },
     },
@@ -129,6 +129,7 @@ const en = {
         district: "District",
         tc: "ID Number",
       },
+      success: "Informations Updated",
     },
     uploadDocument: {
       title: "Upload Document",

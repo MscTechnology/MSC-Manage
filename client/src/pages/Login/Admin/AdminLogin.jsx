@@ -21,10 +21,10 @@ import { bridge as schema } from "./AdminSchema";
 //! Router
 import { NavLink, useNavigate } from "react-router-dom";
 import NoMatch from "pages/404/NoMatch";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const AdminLogin = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { data, loading, error } = useGetUserQuery();
   const [title, setTitle] = useState(t('login.adminlogin.title'));
   const dispatch = useDispatch();

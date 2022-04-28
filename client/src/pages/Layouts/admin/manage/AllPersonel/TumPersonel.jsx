@@ -1,15 +1,14 @@
 //! Css
 import "../../../../../styles.css";
 //! Material UI
-import Grid from "@mui/material/Grid";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
-  Button,
+  
   Card,
   CardContent,
   Divider,
   IconButton,
-  Stack,
+  
   Typography,
 } from "@mui/material";
 
@@ -20,10 +19,10 @@ import NoMatch from "pages/404/NoMatch";
 //! Graphql And Router
 import { NavLink, Link } from "react-router-dom";
 import { useGetUserQuery } from "generated/graphql";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const TumPersonel = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { data, loading, error, refetch } = useGetUserQuery({});
 
@@ -40,7 +39,14 @@ const TumPersonel = () => {
   const userBackground = userFilter.length;
 
   return (
-    <div style={{height:`${ userBackground === (0,1,2,3,4,5) ? 100 :userBackground*10+70}vh`}} className="adminPage">
+    <div
+      style={{
+        height: `${
+          userBackground === (0, 1, 2, 3, 4, 5) ? 100 : userBackground * 10 + 70
+        }vh`,
+      }}
+      className="adminPage"
+    >
       <div className="tum-personel-title">
         <IconButton
           size="large"
@@ -51,47 +57,61 @@ const TumPersonel = () => {
         >
           <ArrowBackIcon />
         </IconButton>{" "}
-        {t('allpersonelpage.title')} ({userFilter.length})
+        {t("allpersonelpage.title")} ({userFilter.length})
       </div>
 
-      {refetch() && userFilter?.map((p) => (
-        <Link className="admin-card" role="button" to={`${p?.id}`} key={p?.id}>
-          <div >
-            <Card sx={{ minWidth: 275 }}>
-              <CardContent className={p?.status ? "status" : "status-deactive"}>
-                <div className="card-wrapper">
-                  <div>
-                    <Typography variant="h5" component="div">
-                      {p?.name} {p?.surname}
-                    </Typography>
-                  </div>
-
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    variant="fullWidth"
-                  />
-                  <div className="divider-group">
-                    <div >
-                      <Typography  color="text.secondary">
-                        {p?.status ? t('allpersonelpage.active') : t('allpersonelpage.active')}
+      {refetch() &&
+        userFilter?.map((p) => (
+          <Link
+            className="admin-card"
+            role="button"
+            to={`${p?.id}`}
+            key={p?.id}
+          >
+            <div>
+              <Card sx={{ minWidth: 275 }}>
+                <CardContent
+                  className={
+                    p?.status
+                      ? "status-bg-card-active"
+                      : "status-bg-card-deactive"
+                  }
+                >
+                  <div className="card-wrapper">
+                    <div className={p?.status ? "status" : "status-deactive"}>
+                      <Typography variant="h5" component="div">
+                        {p?.name} {p?.surname}
                       </Typography>
                     </div>
+
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      variant="fullWidth"
+                    />
+                    <div className="divider-group">
+                      <div>
+                     
+                        <Typography color="text.secondary">
+                          {p?.status
+                            ? t("allpersonelpage.active")
+                            : t("allpersonelpage.deactive")}
+                        </Typography>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </Link>
-      ))}
-     
+                </CardContent>
+              </Card>
+            </div>
+          </Link>
+        ))}
 
       <Link
         className="AllPersonel-add-button"
         role="button"
         to="/admin/personelekle"
       >
-        {t('allpersonelpage.addnewbutton')}
+        {t("allpersonelpage.addnewbutton")}
       </Link>
     </div>
   );

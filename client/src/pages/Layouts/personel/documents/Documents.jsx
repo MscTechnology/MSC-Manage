@@ -20,16 +20,16 @@ import { IconButton } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // const UploadFile = () => {
 //   return <Upload batch={false} multiple={true} defaultFiles={[]} withCredentials={false} saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'} removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'} />;
 // };
 
 function Documents() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const [addUserFileMutation, { data,loading:load,error:err }] = useAddUserFileMutation({});
+  const [addUserFileMutation] = useAddUserFileMutation({});
 
   const user = useSelector((state) => state.users.user);
 

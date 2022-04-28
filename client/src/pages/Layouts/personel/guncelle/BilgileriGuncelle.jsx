@@ -27,10 +27,10 @@ import {
 } from "generated/graphql";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function BilgileriGuncelle() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [modelState, setModelState] = useState({});
   const user = useSelector((state) => state.users.user);
@@ -58,7 +58,7 @@ function BilgileriGuncelle() {
     })
       .then((res) => {
         if (res.data.updateUser.resultType === "SUC") {
-          toast.success("Informations Updated");
+          toast.success(t("updateInformations.success"))
         } else {
           toast.error(res.data.updateUser.messageText);
         }

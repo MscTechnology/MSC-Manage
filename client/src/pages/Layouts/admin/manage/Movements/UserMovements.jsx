@@ -11,8 +11,11 @@ import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 import moment from "moment";
 import { useTranslation } from 'react-i18next';
+import 'moment/locale/tr';
+import { useSelector } from "react-redux";
 
 const UserMovements = () => {
+  const selectLang = useSelector((state) => state.language.lang);
 
   const [sortModel, setSortModel] = React.useState([
     {
@@ -77,7 +80,7 @@ const UserMovements = () => {
       headerName: t('movements.table.day'),
       width: 130,
       valueFormatter: (params) => {
-        return moment(paramsFunctions(params).transactiondate).format("dddd")
+        return moment(paramsFunctions(params).transactiondate).locale(selectLang).format('dddd');
       },
 
     },
@@ -117,12 +120,12 @@ const UserMovements = () => {
         <div>{t('movements.title')}</div>
       </div>
 
-      <div style={{ height: 580, width: "70%" }}>
+      <div style={{ height: 530, width: "75%" }}>
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}
             columns={columns}
-            pageSize={10}
+            pageSize={8}
             autoPageSize
             pagination
             sortModel={sortModel}
