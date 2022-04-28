@@ -140,6 +140,17 @@ const tr = {
         PersonalMovementsByName:{
             title:'Giriş-Çıkış Bilgileri',
         },
+        PersonalMovementsByMonth: {
+          title: "Aylık Giriş-Çıkış Bilgileri",
+          label: {
+            date: "Tarih",
+            month: "Ay",
+            name: "İsim",
+            surname: "Soyisim",
+            day: "Gün",
+            missingDay: "Eksik Gün",
+          },
+        },
         
     }
 }
