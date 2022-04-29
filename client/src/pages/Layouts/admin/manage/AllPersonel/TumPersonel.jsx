@@ -1,5 +1,5 @@
 //! Css
-import "../../../../../styles.css";
+import "./allpersonel.css"
 //! Material UI
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {

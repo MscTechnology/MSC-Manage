@@ -9,10 +9,11 @@
 }
 
 .css-46bh2p-MuiCardContent-root:last-child {
-  padding-bottom: 10px !important;
+  padding-bottom: 0px !important;
+  padding-left: 12px !important;
 }
 .css-46bh2p-MuiCardContent-root {
-  padding: 12px !important;
+  padding: 5px !important;
 }
 .css-19qjufr-MuiStack-root>:not(style)+:not(style) {
   margin: 0 ;
@@ -330,10 +331,7 @@ element.style {
   margin-top: 0.2em;
   margin-bottom: 0.2em}
 
-.status {
 
-
-}
 
 .status-deactive {
 text-decoration: line-through;
