@@ -29,7 +29,7 @@ function MovementsByMonth() {
     const [sortModel, setSortModel] = React.useState([
         {
             field: 'ay',
-            sort: 'asc',
+            sort: 'desc',
         }
     ]
     );

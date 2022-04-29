@@ -32,7 +32,7 @@ const tr = {
                 addpersonel: 'Personel Ekle',
                 addpersonelsub: 'Yeni Personel Ekle',
                 mountmovenments:'Aylık Giriş-Çıkışlar',
-                mountmovenmentssub:'Aylık Personel Giriş-Çıkışları',
+                mountmovenmentssub:'Aylık Giriş-Çıkışlar',
             }
         },
         allpersonelpage:{
