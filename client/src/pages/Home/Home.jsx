@@ -53,13 +53,13 @@ const Home = () => {
       dispatch(setUser(personel[0]));
       toast.success("Giriş Başarılı");
       setTimeout(() => {
-        navigate("/personel/");
+        navigate("/managementpanel/");
       }, 1000);
     } else if (admin.length > 0) {
       toast.success("Giriş Başarılı");
       dispatch(setAdmin(admin[0]));
       setTimeout(() => {
-        navigate("/admin/");
+        navigate("/managementpanel/");
       }, 1000);
     } else if (personel.length === 0 || admin.length === 0) {
       toast.error("Giriş Başarısız");
