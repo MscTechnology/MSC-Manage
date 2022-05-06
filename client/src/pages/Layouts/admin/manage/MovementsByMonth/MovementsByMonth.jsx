@@ -36,59 +36,66 @@ function MovementsByMonth() {
     const { t } = useTranslation();
 
     const { data, loading, error, refetch } = useGetMonthMovementsQuery({});
-
-
-    console.log(data?.monthmovements)
+    console.log(data)
 
     if (loading) {
         return <Loading />;
     }
 
+    moment.locale('tr',{
+        months :  'Ocak_subat_mart_nisan_mayıs_haziran_temmuz_ağustos_eylül_ekim_kasım_aralık'.split('_'),
+        days: 'Pazar_Pazartesi_Salı_Çarşamba_Perşembe_Cuma_Cumartesi'.split('_'),
+    });
+    
+    moment.locale('en',{
+        months :  'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+        days: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+    });
 
     const paramsFunctions = (params) => {
         return params.api.state.rows.idRowsLookup[params.id]
       }
-      
+    const gridWitdh = 130;
 
     const columns = [
         {
             field: "ay",
             headerName: t('PersonalMovementsByMonth.label.date'),
-            width: 130,
+            width: gridWitdh,
             valueFormatter: (params) => {
-                return params.api.state.rows.idRowsLookup[params.id].ay
+                return paramsFunctions(params).ay
             }
         },
         {
-            field: "to_char",
+            field: "toChar",
             headerName: t('PersonalMovementsByMonth.label.month'),
-            width: 130,
+            width: gridWitdh,
             valueFormatter: (params) => {
-                return moment(paramsFunctions(params).transactiondate).locale(selectLang).format('MMMM');
+                return paramsFunctions(params).toChar.replace(" ","");
               },
         },
         {
             field: "ad",
             headerName: t('PersonalMovementsByMonth.label.name'),
-            width: 130,
+            width: gridWitdh,
             valueFormatter: (params) => {
-                return params.api.state.rows.idRowsLookup[params.id].ad
+                return paramsFunctions(params).ad
             }
         },
         {
-            field: "soyad", headerName: t('PersonalMovementsByMonth.label.surname'), width: 130,
+            field: "soyad", headerName: t('PersonalMovementsByMonth.label.surname'), width: gridWitdh,
             valueFormatter: (params) => {
-                return params.api.state.rows.idRowsLookup[params.id].soyad
+                return paramsFunctions(params).soyad
             }
         },
         {
-            field: "gun", headerName: t('PersonalMovementsByMonth.label.day'), width: 130, valueFormatter: (params) => {
-                return params.api.state.rows.idRowsLookup[params.id].gun
+            field: "gun", headerName: t('PersonalMovementsByMonth.label.day'), width: gridWitdh, valueFormatter: (params) => {
+                return paramsFunctions(params).gun
             }
         },
         {
-            field: "eksikgun", headerName: t('PersonalMovementsByMonth.label.missingDay'), width: 130, valueFormatter: (params) => {
-                return params.api.state.rows.idRowsLookup[params.id].eksikgun
+            field: "eksikgun", headerName: t('PersonalMovementsByMonth.label.missingDay'), width: gridWitdh, valueFormatter: (params) => {
+                return paramsFunctions(params).eksikgun
             }
         },
     ];

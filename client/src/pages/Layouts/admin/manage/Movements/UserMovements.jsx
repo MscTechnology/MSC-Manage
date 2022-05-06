@@ -41,7 +41,7 @@ const UserMovements = () => {
     return params.api.state.rows.idRowsLookup[params.id];
   }
 
-  let transictiondate2 = data?.usersmovements[0]?.transactiondate;
+  let TransactionDay = data?.usersmovements[0]?.transactiondate;
 
 
 
@@ -51,7 +51,7 @@ const UserMovements = () => {
       headerName: t('movements.table.name'),
       width: 100,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].users.name;
+        return paramsFunctions(params).users.name;
       },
 
     },
@@ -60,7 +60,7 @@ const UserMovements = () => {
       headerName: t('movements.table.surname'),
       width: 100,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].users.surname;
+        return paramsFunctions(params).users.surname;
       },
     },
     {
@@ -68,7 +68,7 @@ const UserMovements = () => {
       headerName: t('movements.table.transactiondate'),
       width: 130,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].transactiondate
+        return paramsFunctions(params).transactiondate
           .split("T")[0]
           .split("-")
           .reverse()
@@ -76,7 +76,7 @@ const UserMovements = () => {
       },
     },
     {
-      field: "transictiondate2",
+      field: "TransactionDay",
       headerName: t('movements.table.day'),
       width: 130,
       valueFormatter: (params) => {
@@ -89,7 +89,7 @@ const UserMovements = () => {
       headerName: t('movements.table.entrytime'),
       width: 130,
       valueFormatter: (params) => {
-        return params.api.state.rows.idRowsLookup[params.id].entrytime;
+        return paramsFunctions(params).entrytime;
       },
     },
     {
@@ -97,7 +97,7 @@ const UserMovements = () => {
       headerName: t('movements.table.exittime'),
       width: 130,
       valueFormatter: (params) => {
-        const exittime = params.api.state.rows.idRowsLookup[params.id].exittime;
+        const exittime = paramsFunctions(params).exittime;
         return exittime === null ? t('movements.notyet') : exittime;
       },
     },

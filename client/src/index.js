@@ -13,7 +13,7 @@ import '../src/i18n/i18n';
 ReactDOM.render(
   <Provider store={store}>
   <ApolloProvider client={apolloClient}>
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <React.StrictMode>
         <App />
       </React.StrictMode>
