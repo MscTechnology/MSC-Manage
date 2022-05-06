@@ -75,7 +75,7 @@ const AdminLogin = () => {
   return (
     <div className="container">
       <div className="login-page-img">
-        <img className="login-img" src={require("../../../assets/images/logo.jpg")} alt="" />
+        <img className="login-img items-center" src={require("../../../assets/images/logo.jpg")} alt="" />
       </div>
       <div className="title">
 

@@ -114,51 +114,48 @@ function BilgileriGuncelle() {
         }}
       >
         <ErrorsField/>
-        <Grid
-          direction="column"
-          justifyContent="start"
-          alignItems="center"
-          spacing={2}
+        <Grid container
+          spacing={3}
         >
-          <Grid item xs={6} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"name"} label={t("updateInformations.label.name")} />
           </Grid>
-          <Grid item xs={6} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"surname"} label={t("updateInformations.label.surname")} />
           </Grid>
-          <Grid item xs={6} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"username"} label={t("updateInformations.label.username")}/>
           </Grid>
-          <Grid item xs={6} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"password"} label={t("updateInformations.label.password")} />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"email"}  label={t("updateInformations.label.email")}/>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <NumField max={11} min={0} name={"phonenumber"}  label={`${t("updateInformations.label.phone")} (5xx)`} />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"schoolname"} label={t("updateInformations.label.school")}/>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField
               name={"identificationnumber"}
               label={t("updateInformations.label.tc")}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <AutoField name={"adress"} label={t("updateInformations.label.address")} />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <SelectField
               name={"cityid"}
               label={t("updateInformations.label.city")}
               options={cities ? cities : []}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={12}>
             <SelectField
               name={"districtsid"}
               label={t("updateInformations.label.district")}
