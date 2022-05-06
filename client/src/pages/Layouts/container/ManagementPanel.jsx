@@ -18,11 +18,16 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink, Route, Router, Routes } from "react-router-dom";
+import { Link, NavLink, Route, Router, Routes, useParams } from "react-router-dom";
 import PersonelMovements from "../personel/Movements/PersonelMovements";
 import TumPersonel from "../admin/manage/AllPersonel/TumPersonel";
-
-
+import UserMovements from "../admin/manage/Movements/UserMovements";
+import BilgileriGuncelle from "../personel/guncelle/BilgileriGuncelle";
+import Documents from "../personel/documents/Documents";
+import PersonelEkle from "../admin/manage/Ekle/PersonelEkle";
+import MovementsByMonth from "../admin/manage/MovementsByMonth/MovementsByMonth";
+import { useSelector } from "react-redux";
+import PersonelDetail from "../admin/manage/Detail/PersonelDetail";
 
 const drawerWidth = 200;
 
@@ -81,38 +86,9 @@ const DrawerHeaderImg = styled("div")(({ theme }) => ({
 }));
 
 function Management() {
+  const { id } = useParams();
+  const user = useSelector((state) => state.users.user);
   const { t } = useTranslation();
-
-const Headers = [
-  {
-    text: t("personelPage.buttons.movementsTable"),
-    path: "/personel/movements",
-  },
-  {
-    text: t("personelPage.buttons.update"),
-    path: "/personel",
-  },
-  {
-    text: t("personelPage.buttons.documents"),
-    path: "/personel",
-  },
-  {
-    text: t("adminpage.buttons.allpersonel"),
-    path: "allpersonel",
-  },
-  {
-    text: t("adminpage.buttons.movements"),
-    path: "/personel",
-  },
-  {
-    text: t("adminpage.buttons.addpersonel"),
-    path: "/personel",
-  },
-  {
-    text: t("adminpage.buttons.mountmovenments"),
-    path: "/personel",
-  }
-]
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -124,6 +100,39 @@ const Headers = [
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const Headers = [
+    {
+      text: t("personelPage.buttons.movementsTable"),
+      path: `personelpagemovements/${user.id}`
+    },
+    {
+      text: t("personelPage.buttons.update"),
+      path: "/managementpanel/updateinformations",
+    },
+    {
+      text: t("personelPage.buttons.documents"),
+      path: "/managementpanel/documents",
+    },
+    {
+      text: t("adminpage.buttons.allpersonel"),
+      path: "/managementpanel/allpersonel",
+    },
+    {
+      text: t("adminpage.buttons.movements"),
+      path: "/managementpanel/adminpagemovements",
+    },
+    {
+      text: t("adminpage.buttons.addpersonel"),
+      path: "/managementpanel/addpersonel",
+    },
+    {
+      text: t("adminpage.buttons.mountmovenments"),
+      path: "/managementpanel/movementsbymonth",
+    }
+  ]
+
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -173,15 +182,16 @@ const Headers = [
         </div>
 
         <Divider />
-       
-          {Headers.map((header, index) => (
-            <li key={index}>
-              <NavLink to={header.path}>
-                {header.text}
-              </NavLink>
-            </li>
-          ))}
-        
+
+        {Headers.map((header, index) => (
+          <li key={index} style={{listStyle:"none", paddingLeft:"10px",paddingBottom:"10px"}}>
+            <NavLink to={header.path}>
+              {header.text}
+            </NavLink>
+            <Divider />
+          </li>
+        ))}
+
         {/* <List >
           {Headers.map((header, index) => (
             <ListItem button key={header.index} >
@@ -192,39 +202,24 @@ const Headers = [
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Routes>
-          {/* <Route path="/managementpanel/movement/15" element={<PersonelMovements />} /> */}
-          <Route path="/managementpanel/admin/allpersonel" element={<TumPersonel />} />
-        </Routes>
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <div>
+
+          <Routes>
+            {/* <Route path="/allpersonel" element={<TumPersonel />} /> */}
+            <Route path="/" element={<UserMovements />} />
+            <Route path="allpersonel" element={<TumPersonel />} />
+            <Route path="personelpagemovements/:id" element={<PersonelMovements />} />
+            <Route path="updateinformations" element={<BilgileriGuncelle />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="adminpagemovements" element={<UserMovements />} />
+            <Route path="addpersonel" element={<PersonelEkle />} />
+            <Route path="movementsbymonth" element={<MovementsByMonth />} />
+
+            <Route path="allpersonel/:id" element={<PersonelDetail/>}/>
+            
+          </Routes>
+        </div>
+
       </Main>
     </Box>
   )

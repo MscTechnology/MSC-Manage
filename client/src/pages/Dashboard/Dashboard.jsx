@@ -27,56 +27,8 @@ const Dashboard = () => {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="personelLogin" element={<PersonelLogin />} />
-        <Route path="adminLogin" element={<AdminLogin />} />
-        {
-          isPersonel ? <Route path="personel" element={<Personel />} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {/* {
-          isPersonel ? <Route path="/personel/movement/:id" element={<PersonelMovements/>}/> : <Route path="*" element={<NoMatch />} />
-        } */}
-        {
-          isPersonel ? <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isPersonel ?  <Route path="/personel/documents" element={<Documents/>}/> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isPersonel ?  <Route path="personel/bilgileriguncelle" element={<BilgileriGuncelle />} /> : <Route path="*" element={<NoMatch />} />
-        }
-    
-        {
-          isAdmin ? <Route  path="/admin" element={<Admin />}  /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ?  <Route path="/admin/personelekle" element={<PersonelEkle />} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ? <Route path="/admin/movementsbymonth" element={<MovementsByMonth/>} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isPersonel || isAdmin ? <Route path="/managementpanel" element={<ManagementPanel/>} /> : <Route path="*" element={<NoMatch />} />
-        }
         
-        {/* {
-          isAdmin ?   <Route path="/admin/tumpersonel" element={<TumPersonel />} /> : <Route path="*" element={<NoMatch />} />
-        } */}
-        {
-          isAdmin ?    <Route path="/admin/tumpersonel/:id" element={< PersonelDetail/>} /> : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ?   <Route path="/admin/tumpersonel/movement/:id" element={<Movements/>}/>  : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ?   <Route path="admin/usermovement" element={<UserMovements />} />  : <Route path="*" element={<NoMatch />} />
-        }
-        {
-          isAdmin ?   <Route path="admin/personelfiles" element={<PersonelFiles />} />  : <Route path="*" element={<NoMatch />} />
-        }
-       
-        <Route path="*"element={<NoMatch />} />
-        
-        
+        <Route path="/managementpanel/*" element={<ManagementPanel />} />
         
       </Routes>
 
