@@ -4,25 +4,25 @@
   align-items: center;
   padding: 20px;
 }
-.container {
+/* .container {
   background: #d7f0f4;
   height: 100vh;
   align-items: center;
   display: flex;
   flex-direction: column;
   padding:20px
-}
+} */
 body {
   font-size: 20px;
 }
 
 .title {
   padding-top: 2em;
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 30px;
-  padding-right:15px
+  padding-right: 15px;
 }
 #outlined-basic {
   border-bottom: 2px solid black;
@@ -42,12 +42,10 @@ body {
   .title {
     margin: 5px 0px 0px 0px;
   }
-  .login-img{
+  .login-img {
     width: 60%;
   }
-  
 }
-
 
 @media screen and (max-width: 420px) {
   .box {
@@ -56,41 +54,38 @@ body {
   .title {
     margin: 0px 0px 0px 0px;
   }
-  .login-img{
+  .login-img {
     width: 60%;
     text-align: center;
     justify-content: center;
   }
   .MuiInputLabel-animated {
-    transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+      transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   }
   .MuiFormControl-fullWidth {
     width: 100%;
-   
   }
 }
 
-.personel-login-btn{
-  margin-top: 15px;
-  text-align: center;
-  
-}
-
-.admin-login-submit{
+.personel-login-btn {
   margin-top: 15px;
   text-align: center;
 }
 
-
-.personel-login-form-bg{
-  background-color:white;
+.admin-login-submit {
+  margin-top: 15px;
+  text-align: center;
 }
 
-.personel-login-submit-button{
+.personel-login-form-bg {
+  background-color: white;
+}
+
+.personel-login-submit-button {
   text-align: center;
-width: 100%;
-  background-color: #4CAF50;
+  width: 100%;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin-top: 10px;
@@ -99,35 +94,49 @@ width: 100%;
   cursor: pointer;
 }
 
-.admin-login-button{
+.admin-login-button {
   text-align: center;
   width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .MuiButton-contained {
-  background-color: black !important;
+  margin-top: 1.25rem !important/* 20px */;
+  margin-bottom: 1.25rem !important/* 20px */;
+  margin-top: 1.25rem !important/* 20px */;
+  margin-bottom: 1.25rem !important/* 20px */;
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+
+    --tw-shadow-color:  rgb(31 41 55 / 0.5) !important;
+    --tw-shadow: var(--tw-shadow-colored) !important;
   color: white !important;
-  border-radius: 30px !important;
+  font-weight: 600 !important;
+  border-radius: 0.5rem !important;
 }
 
-
-.login-page-img{
+.login-page-img {
   text-align: center;
-
 }
 
-.login-img{
+.login-img {
   min-width: 50%;
 }
 
-.login-form{
+.login-form {
   text-align: center;
   padding: 20px;
 }
