@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <>
       {splashLoading ? (
-        <div className="home">
+        <div className="home bg-slate-500">
           <div>
             <img src={require("./logo.jpg")} alt="" />
           </div>

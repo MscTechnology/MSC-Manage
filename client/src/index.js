@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import {store} from './store/store.js'
 import 'react-toastify/dist/ReactToastify.css';
 import '../src/i18n/i18n';
-
+import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>
