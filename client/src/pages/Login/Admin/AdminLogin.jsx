@@ -40,7 +40,7 @@ const AdminLogin = () => {
 
   const navigateAdmin = () => {
     setTimeout(() => {
-      navigate("/admin/");
+      navigate("/managementpanel");
     }, 1000);
   };
 

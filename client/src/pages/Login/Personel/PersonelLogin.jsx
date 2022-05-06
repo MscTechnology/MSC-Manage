@@ -45,7 +45,7 @@ const PersonelLogin = () => {
     setTitle(t("login.personellogin.signedin"));
     dispatch(setUser(users[0]));
     setTimeout(() => {
-      navigate("/personel/");
+      navigate("/managementpanel");
     }, 1000);
   };
 

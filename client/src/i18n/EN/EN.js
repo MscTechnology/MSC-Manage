@@ -153,10 +153,12 @@ const en = {
       missingDay:'Missing Day',
 
     },
+      },
+      Management:{
+        title:'Management Panel',
       }
-
-
   },
+ 
 };
 
 export default en;

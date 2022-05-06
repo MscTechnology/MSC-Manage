@@ -153,8 +153,12 @@ const tr = {
             missingDay: "Eksik Gün",
           },
         },
+        Management:{
+            title:'Yönetim Paneli',
+          }
         
-    }
+    },
+
 }
 
 export default tr;
