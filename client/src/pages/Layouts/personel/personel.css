@@ -32,12 +32,12 @@
 }
 
 .bilgileriguncelle-title {
-  margin-top: 1%;
   margin-bottom: 1%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  align-items: baseline;
 }
 
 .update-title {
@@ -86,6 +86,16 @@
   margin-bottom: 3em;
   padding: 5px;
 }
+.bilgileriguncelle {
+  background: #d7f0f4;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-left:10%;
+  padding-right:10%;
+}
 @media screen and (max-width: 842px) {
   .Personel-page-buttons {
     background-color: #242422;
@@ -118,6 +128,15 @@
     background: rgb(0, 0, 0);
     text-align: center;
   }
+  .bilgileriguncelle {
+    background: #d7f0f4;
+    background-position: center;
+    background-attachment: fixed;
+    height: 120vh;
+    display: block;
+    align-items: center;
+    flex-direction: column;
+  }
   
 }
 @media screen and (max-width: 2080px) {
@@ -135,6 +154,8 @@
     background: rgb(0, 0, 0);
     text-align: center;
   }
+  
+
 }
 /* 
 .Personel-page-buttons {
@@ -168,14 +189,6 @@
   margin-left: 30px;
 }
 
-.bilgileriguncelle {
-  background: #d7f0f4;
-  background-position: center;
-  height: 120vh;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
 
 body {
   font-size: 20px;

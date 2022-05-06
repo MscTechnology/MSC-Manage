@@ -199,9 +199,9 @@ element.style {
 .form {
   justify-content: center;
   align-items: left;
-  flex-direction: row;
-  background: #F2C6A2;
-  padding: 15px
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formArea {
