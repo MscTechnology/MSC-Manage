@@ -28,6 +28,7 @@ import PersonelEkle from "../admin/manage/Ekle/PersonelEkle";
 import MovementsByMonth from "../admin/manage/MovementsByMonth/MovementsByMonth";
 import { useSelector } from "react-redux";
 import PersonelDetail from "../admin/manage/Detail/PersonelDetail";
+import "./managementpanel.css"
 
 const drawerWidth = 200;
 
@@ -216,7 +217,7 @@ function Management() {
             <Route path="movementsbymonth" element={<MovementsByMonth />} />
 
             <Route path="allpersonel/:id" element={<PersonelDetail/>}/>
-            
+
           </Routes>
         </div>
 
