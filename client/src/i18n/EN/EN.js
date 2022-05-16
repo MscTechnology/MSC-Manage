@@ -156,6 +156,9 @@ const en = {
       },
       Management:{
         title:'Management Panel',
+      },
+      Signout:{
+        text:'Sign Out'
       }
   },
  

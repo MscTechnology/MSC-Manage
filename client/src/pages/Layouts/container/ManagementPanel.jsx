@@ -130,7 +130,12 @@ function Management() {
     {
       text: t("adminpage.buttons.mountmovenments"),
       path: "/managementpanel/movementsbymonth",
-    }
+    },
+    {
+      text: t("Signout.text"),
+      path: "/",
+    },
+
   ]
 
 

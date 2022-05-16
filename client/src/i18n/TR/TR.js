@@ -155,6 +155,9 @@ const tr = {
         },
         Management:{
             title:'Yönetim Paneli',
+          },
+          Signout:{
+            text:'Çıkış Yap'
           }
         
     },
