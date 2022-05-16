@@ -84,8 +84,8 @@ function BilgileriGuncelle() {
   });
 
   return (
-    <div className="bilgileriguncelle">
-      <div className="bilgileriguncelle-title">
+    <div className="bg-primary h-screen text-center px-12 pt-5 text-2xl text-black">
+      <div className="mx-auto justify-center">
         
         <div className="update-title">{t("updateInformations.title")}</div>
       </div>

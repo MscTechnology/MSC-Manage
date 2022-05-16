@@ -40,20 +40,15 @@ const TumPersonel = () => {
 
   return (
     <div
-      style={{
-        height: `${
-          userBackground === (0, 1, 2, 3, 4, 5) ? 100 : userBackground * 10 + 70
-        }vh`,
-      }}
-      className="adminPage"
+   
+      className="bg-primary h-screen text-center py-5 text-2xl text-black"
     >
-      <div className="tum-personel-title">
-        
+      <div className="text-3xl">
         {t("allpersonelpage.title")} ({userFilter.length})
       </div>
 
       {refetch() &&
-        userFilter?.map((p) => (
+        data?.users?.map((p) => (
           <Link
             className="admin-card"
             role="button"
@@ -99,7 +94,7 @@ const TumPersonel = () => {
         ))}
 
       <Link
-        className="AllPersonel-add-button"
+        className="text-xl text-black"
         role="button"
         to="/admin/personelekle"
       >
