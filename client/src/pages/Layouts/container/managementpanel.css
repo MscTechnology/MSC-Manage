@@ -8,3 +8,12 @@
     transition: margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
     margin-left: 0;
 }
+
+
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper{
+    background-color: #1f2937 !important;
+    color: #fff !important;
+}
+.css-1rm18ja-MuiPaper-root-MuiAppBar-root{
+    background-color: #1f2937 !important;
+}

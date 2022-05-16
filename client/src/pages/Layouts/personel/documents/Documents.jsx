@@ -96,17 +96,7 @@ function Documents() {
   return (
     <div className="containerdcs">
       <div className="documents-title">
-        <div>
-          <IconButton
-            size="large"
-            color="primary"
-            component="span"
-            as={NavLink}
-            to="/personel"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-        </div>
+        
         <div className="documents-content">
         {t("uploadDocument.title")}
         </div>

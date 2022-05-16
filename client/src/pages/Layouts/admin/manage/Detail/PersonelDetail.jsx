@@ -176,7 +176,7 @@ function PersonelDetail() {
             color="primary"
             component="span"
             as={NavLink}
-            to="/admin/tumpersonel"
+            to="/managementpanel/allpersonel"
           >
             <ArrowBackIcon />
           </IconButton>

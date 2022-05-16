@@ -86,17 +86,7 @@ function BilgileriGuncelle() {
   return (
     <div className="bilgileriguncelle">
       <div className="bilgileriguncelle-title">
-        <div>
-          <IconButton
-            size="large"
-            color="primary"
-            component="span"
-            as={NavLink}
-            to="/personel"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-        </div>
+        
         <div className="update-title">{t("updateInformations.title")}</div>
       </div>
       <AutoForm

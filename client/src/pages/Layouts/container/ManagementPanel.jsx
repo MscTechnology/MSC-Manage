@@ -17,8 +17,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { useTranslation } from 'react-i18next';
-import { Link, NavLink, Route, Router, Routes, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  Link,
+  NavLink,
+  Route,
+  Router,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import PersonelMovements from "../personel/Movements/PersonelMovements";
 import TumPersonel from "../admin/manage/AllPersonel/TumPersonel";
 import UserMovements from "../admin/manage/Movements/UserMovements";
@@ -28,40 +35,41 @@ import PersonelEkle from "../admin/manage/Ekle/PersonelEkle";
 import MovementsByMonth from "../admin/manage/MovementsByMonth/MovementsByMonth";
 import { useSelector } from "react-redux";
 import PersonelDetail from "../admin/manage/Detail/PersonelDetail";
-import "./managementpanel.css"
+import "./managementpanel.css";
+import LanguageSwitcher from "components/LanguageSwitcher/LanguageSwitcher";
 
 const drawerWidth = 200;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
     ...(open && {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
     }),
-  }),
+  })
 );
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -74,28 +82,29 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   paddingRight: "5px",
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end"
+  justifyContent: "flex-end",
 }));
 
 const DrawerHeaderImg = styled("div")(({ theme }) => ({
   display: "flex",
-  paddingLeft: "20px",
+  paddingLeft: "0px",
   alignItems: "center",
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "center"
+  justifyContent: "center",
 }));
 
 function Management() {
   const { id } = useParams();
   const user = useSelector((state) => state.users.user);
+  const isAdmin = useSelector((state) => state.users.isAdmin);
   const { t } = useTranslation();
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
 
   const handleDrawerClose = () => {
@@ -105,130 +114,159 @@ function Management() {
   const Headers = [
     {
       text: t("personelPage.buttons.movementsTable"),
-      path: `personelpagemovements/${user.id}`
+      path: `personelpagemovements/${user.id}`,
+      control: isAdmin ? true : false,
     },
     {
       text: t("personelPage.buttons.update"),
       path: "/managementpanel/updateinformations",
+      control: isAdmin ? true : false,
     },
     {
       text: t("personelPage.buttons.documents"),
       path: "/managementpanel/documents",
+      control: isAdmin ? true : false,
     },
+
     {
       text: t("adminpage.buttons.allpersonel"),
       path: "/managementpanel/allpersonel",
+      control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.movements"),
       path: "/managementpanel/adminpagemovements",
+      control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.addpersonel"),
       path: "/managementpanel/addpersonel",
+      control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.mountmovenments"),
       path: "/managementpanel/movementsbymonth",
+      control: isAdmin ? true : false,
     },
     {
       text: t("Signout.text"),
       path: "/",
     },
-
-  ]
-
-
+  ];
+  
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {t("Management.title")}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box"
-          }
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <div style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
-          <DrawerHeaderImg>
-            <img src={require("../../../assets/images/logo.jpg")}></img>
-          </DrawerHeaderImg>
+    <div>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
 
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2 }}
+              
+            >
+              <MenuIcon />
             </IconButton>
-          </DrawerHeader>
-        </div>
+            <Typography variant="h6" noWrap component="div">
+              {t("Management.title")}
+            </Typography>
 
-        <Divider />
+            <div className="ml-auto flex flex-row justify-center items-center text-sm px-5">
+              <LanguageSwitcher />
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
+          >
+            <DrawerHeaderImg className=" mx-auto">
+              <img
+                className="h-20"
+                src={require("../../../assets/images/logo2.png")}
+              ></img>
+            </DrawerHeaderImg>
 
-        {Headers.map((header, index) => (
-          <li key={index} style={{listStyle:"none", paddingLeft:"10px",paddingBottom:"10px"}}>
-            <NavLink to={header.path}>
-              {header.text}
-            </NavLink>
-            <Divider />
-          </li>
-        ))}
+            {/* <DrawerHeader>
+              <IconButton className="hidden" onClick={handleDrawerClose}>
+                {theme.direction === "ltr" ? (
+                  <ChevronLeftIcon />
+                ) : (
+                  <ChevronRightIcon />
+                )}
+              </IconButton>
+            </DrawerHeader> */}
+          </div>
 
-        {/* <List >
+         
+
+          {Headers.map(({ path, text, control }) => (
+            <li
+              key={path}
+              className="p-3 list-none"
+             
+            >
+              <NavLink to={path}>{text}</NavLink>
+              <Divider />
+            </li>
+          ))}
+
+          {/* <List >
           {Headers.map((header, index) => (
             <ListItem button key={header.index} >
               <Link className="pl-6" to={header.path}>{header.text}</Link>
             </ListItem>
           ))}
         </List> */}
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        <div>
+        </Drawer>
+        <Main open={open}>
+          <DrawerHeader />
+          <div>
+            <Routes>
+              {/* <Route path="/allpersonel" element={<TumPersonel />} /> */}
+              <Route path="/" element={<UserMovements />} />
+              <Route path="allpersonel" element={<TumPersonel />} />
+              <Route
+                path="personelpagemovements/:id"
+                element={<PersonelMovements />}
+              />
+              <Route
+                path="updateinformations"
+                element={<BilgileriGuncelle />}
+              />
+              <Route path="documents" element={<Documents />} />
+              <Route path="adminpagemovements" element={<UserMovements />} />
+              <Route path="addpersonel" element={<PersonelEkle />} />
 
-          <Routes>
-            {/* <Route path="/allpersonel" element={<TumPersonel />} /> */}
-            <Route path="/" element={<UserMovements />} />
-            <Route path="allpersonel" element={<TumPersonel />} />
-            <Route path="personelpagemovements/:id" element={<PersonelMovements />} />
-            <Route path="updateinformations" element={<BilgileriGuncelle />} />
-            <Route path="documents" element={<Documents />} />
-            <Route path="adminpagemovements" element={<UserMovements />} />
-            <Route path="addpersonel" element={<PersonelEkle />} />
-            <Route path="movementsbymonth" element={<MovementsByMonth />} />
+              <Route path="movementsbymonth" element={<MovementsByMonth />} />
 
-            <Route path="allpersonel/:id" element={<PersonelDetail/>}/>
-
-          </Routes>
-        </div>
-
-      </Main>
-    </Box>
-  )
+              <Route path="allpersonel/:id" element={<PersonelDetail />} />
+            </Routes>
+          </div>
+        </Main>
+      </Box>
+    </div>
+  );
 }
 
-export default Management
+export default Management;

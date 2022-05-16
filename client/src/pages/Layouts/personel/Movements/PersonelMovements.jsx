@@ -178,17 +178,7 @@ const PersonelMovements = () => {
     <div className="UserMovements_1">
       <ToastContainer />
       <div className="UserMovements_inner_1">
-        <div style={{ marginTop: "5px" }}>
-          <IconButton
-            size="large"
-            color="primary"
-            component="span"
-            as={NavLink}
-            to="/personel"
-          >
-            <ArrowBackIcon />
-          </IconButton>{" "}
-        </div>
+        
         <div>{t("personelMovements.title")}</div>
       </div>
       <div style={{ height: 530, width: "75%" }}>

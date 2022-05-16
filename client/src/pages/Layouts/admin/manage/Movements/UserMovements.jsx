@@ -106,17 +106,7 @@ const UserMovements = () => {
   return (
     <div className="UserMovements">
       <div className="UserMovements_inner">
-        <div className="movement_by_month_back_button">
-          <IconButton
-            size="large"
-            color="primary"
-            component="span"
-            as={NavLink}
-            to="/admin"
-          >
-            <ArrowBackIcon />
-          </IconButton>{" "}
-        </div>
+        
         <div>{t('movements.title')}</div>
       </div>
 

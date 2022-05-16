@@ -103,17 +103,7 @@ function MovementsByMonth() {
     return (
         <div className="UserMovements_1">
             <div className="UserMovements_inner_1">
-                <div className="movement_by_month_back_button">
-                    <IconButton
-                        size="large"
-                        color="primary"
-                        component="span"
-                        as={NavLink}
-                        to={`/admin/`}
-                    >
-                        <ArrowBackIcon />
-                    </IconButton>{" "}
-                </div>
+                
                 <div>{t("PersonalMovementsByMonth.title")}</div>
             </div>
             <div style={{ height: 530, width: "75%" }}>

@@ -66,15 +66,7 @@ const PersonelEkle = () => {
   return (
     <div className="Addpersonel-page">
       <div className="personel-ekle-title">
-        <IconButton
-          size="large"
-          color="primary"
-          component="span"
-          as={NavLink}
-          to="/admin"
-        >
-          <ArrowBackIcon />
-        </IconButton>
+        
         {t("addpersonelpage.title")}
       </div>
       <div>

@@ -48,15 +48,7 @@ const TumPersonel = () => {
       className="adminPage"
     >
       <div className="tum-personel-title">
-        <IconButton
-          size="large"
-          color="primary"
-          component="span"
-          as={NavLink}
-          to="/admin"
-        >
-          <ArrowBackIcon />
-        </IconButton>{" "}
+        
         {t("allpersonelpage.title")} ({userFilter.length})
       </div>
 
