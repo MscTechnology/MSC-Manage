@@ -175,13 +175,13 @@ const PersonelMovements = () => {
   ];
 
   return (
-    <div className="UserMovements_1">
+    <div className="bg-primary h-screen text-center py-5 text-2xl text-black">
       <ToastContainer />
-      <div className="UserMovements_inner_1">
+      <div className="">
         
         <div>{t("personelMovements.title")}</div>
       </div>
-      <div style={{ height: 530, width: "75%" }}>
+      <div style={{ height: 530, width: "75%" }} className="mx-auto justify-center my-5">
         <DataGrid
           rows={data2}
           columns={columns}

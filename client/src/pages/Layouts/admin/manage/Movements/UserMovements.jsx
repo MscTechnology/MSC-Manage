@@ -13,6 +13,8 @@ import moment from "moment";
 import { useTranslation } from 'react-i18next';
 import 'moment/locale/tr';
 import { useSelector } from "react-redux";
+import MuiAlert from "components/Alert/MuiAlert";
+
 
 const UserMovements = () => {
   const selectLang = useSelector((state) => state.language.lang);
@@ -43,6 +45,8 @@ const UserMovements = () => {
 
   let TransactionDay = data?.usersmovements[0]?.transactiondate;
 
+
+  const infoAlertText = "Bu sayfa da tüm personellerin giriş çıkışlarını görebilirsiniz."
 
 
   const columns = [
@@ -104,13 +108,13 @@ const UserMovements = () => {
   ];
 
   return (
-    <div className="UserMovements">
-      <div className="UserMovements_inner">
+    <div className="bg-primary h-screen text-center py-5 text-2xl text-black">
+      
         
         <div>{t('movements.title')}</div>
-      </div>
+     
 
-      <div style={{ height: 530, width: "75%" }}>
+      <div style={{ height: 530, width: "75%" }} className="mx-auto justify-center my-5">
         {refetch && (
           <DataGrid
             rows={data?.usersmovements}
@@ -121,6 +125,10 @@ const UserMovements = () => {
             sortModel={sortModel}
           />
         )}
+        <div className="my-5">
+          
+        <MuiAlert severity={"info"} text={infoAlertText}  />
+        </div>
       </div>
     </div>
   );
