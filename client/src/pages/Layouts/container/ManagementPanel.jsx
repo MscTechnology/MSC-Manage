@@ -5,18 +5,10 @@ import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { useTranslation } from "react-i18next";
 import {
   Link,
@@ -37,6 +29,17 @@ import { useSelector } from "react-redux";
 import PersonelDetail from "../admin/manage/Detail/PersonelDetail";
 import "./managementpanel.css";
 import LanguageSwitcher from "components/LanguageSwitcher/LanguageSwitcher";
+
+//? icons
+import CompareArrowsRoundedIcon from '@mui/icons-material/CompareArrowsRounded';
+import SystemUpdateAltRoundedIcon from '@mui/icons-material/SystemUpdateAltRounded';
+import PictureAsPdfRoundedIcon from '@mui/icons-material/PictureAsPdfRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+
+import AddReactionRoundedIcon from '@mui/icons-material/AddReactionRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { Icon } from "@mui/material";
 
 const drawerWidth = 200;
 
@@ -115,42 +118,50 @@ function Management() {
     {
       text: t("personelPage.buttons.movementsTable"),
       path: `personelpagemovements/${user.id}`,
+      icon: <CompareArrowsRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("personelPage.buttons.update"),
       path: "/managementpanel/updateinformations",
+      icon: <SystemUpdateAltRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("personelPage.buttons.documents"),
       path: "/managementpanel/documents",
+      icon: <PictureAsPdfRoundedIcon />,
       control: isAdmin ? true : false,
     },
 
     {
       text: t("adminpage.buttons.allpersonel"),
       path: "/managementpanel/allpersonel",
+      icon: <GroupRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.movements"),
       path: "/managementpanel/adminpagemovements",
+      icon: <CompareArrowsRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.addpersonel"),
       path: "/managementpanel/addpersonel",
+      icon: <AddReactionRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.mountmovenments"),
       path: "/managementpanel/movementsbymonth",
+      icon: <CalendarMonthRoundedIcon />,
       control: isAdmin ? true : false,
     },
     {
       text: t("Signout.text"),
       path: "/",
+      icon: <LogoutRoundedIcon />,
     },
   ];
   
@@ -220,14 +231,15 @@ function Management() {
 
          
 
-          {Headers.map(({ path, text, control }) => (
+          {Headers.map(({ path, text, control,icon }) => (
             <li
               key={path}
               className="p-3 list-none"
              
             >
-              <NavLink to={path}>{text}</NavLink>
-              <Divider />
+              
+              <NavLink to={path}>{icon} {text}</NavLink>
+              <Divider color="orange" />
             </li>
           ))}
 
