@@ -27,7 +27,7 @@ const tr = {
             buttons:{
                 allpersonel: 'Personeller',
                 allpersonelsub: 'Kayıtlı Personeller',
-                movements: 'Giriş-Çıkışlar',
+                movements: 'Tüm Giriş-Çıkışlar',
                 movementsub: 'Personel Giriş-Çıkışları',
                 addpersonel: 'Personel Ekle',
                 addpersonelsub: 'Yeni Personel Ekle',

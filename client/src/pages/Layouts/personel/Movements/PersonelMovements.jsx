@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { setTap } from "../../../../store/MovementsToast/MovementsToast";
 import { useTranslation } from "react-i18next";
+import MuiAlert from "components/Alert/MuiAlert";
 
 const style = {
   position: "absolute",
@@ -44,14 +45,13 @@ const PersonelMovements = () => {
       sort: "desc",
     },
   ]);
-  const [addMovementMutation] =
-    useAddMovementMutation({});
+  const [addMovementMutation] = useAddMovementMutation({});
   const isTap = useSelector((state) => state.movements.isTap);
   const selectLang = useSelector((state) => state.language.lang);
 
   const dispatch = useDispatch();
 
-  const { t, } = useTranslation();
+  const { t } = useTranslation();
 
   const [data2, setData2] = useState([]);
 
@@ -108,10 +108,8 @@ const PersonelMovements = () => {
     });
   const btnText = GetMovementsData?.usersmovementsByIdForLogin?.btntext;
   const btnVisible = GetMovementsData?.usersmovementsByIdForLogin?.btnvisible;
- 
 
   const loginLogoutDate = moment().locale(selectLang).format("LLLL");
-  
 
   useEffect(() => {
     if (GetMovementsData?.usersmovementsByIdForLogin) {
@@ -151,7 +149,9 @@ const PersonelMovements = () => {
       headerName: t("personelMovements.table.day"),
       width: 130,
       valueFormatter: (params) => {
-        return moment(paramsFunctions(params).transactiondate).locale(selectLang).format("dddd");
+        return moment(paramsFunctions(params).transactiondate)
+          .locale(selectLang)
+          .format("dddd");
       },
     },
     {
@@ -177,11 +177,14 @@ const PersonelMovements = () => {
   return (
     <div className="bg-primary h-screen text-center py-5 text-2xl text-black">
       <ToastContainer />
-      <div className="">
-        
-        <div>{t("personelMovements.title")}</div>
-      </div>
-      <div style={{ height: 530, width: "75%" }} className="mx-auto justify-center my-5">
+      
+
+      <div>{t("personelMovements.title")}</div>
+
+      <div
+        style={{ height: 530, width: "75%" }}
+        className="mx-auto justify-center my-5"
+      >
         <DataGrid
           rows={data2}
           columns={columns}
@@ -192,6 +195,7 @@ const PersonelMovements = () => {
           sortModel={sortModel}
         />
       </div>
+
       <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
         <Button className="disable" onClick={handleOpen}>
           {t("personelMovements.loginlogout").toLocaleUpperCase()}

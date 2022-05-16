@@ -64,12 +64,12 @@ const PersonelEkle = () => {
   const createDate = new Date().toUTCString();
 
   return (
-    <div className="Addpersonel-page">
-      <div className="personel-ekle-title">
+    <div className="bg-primary h-screen text-center px-12 pt-5 text-2xl text-black">
+      <div>
         
         {t("addpersonelpage.title")}
       </div>
-      <div>
+      <div className="mx-auto  ">
         <AutoForm schema={schema} onSubmit={handleSubmit}>
           <ErrorsField />
           <HiddenField name="id" value={0} />
