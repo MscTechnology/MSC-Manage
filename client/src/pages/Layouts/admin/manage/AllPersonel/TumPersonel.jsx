@@ -93,13 +93,13 @@ const TumPersonel = () => {
           </Link>
         ))}
 
-      <Link
+      {/* <Link
         className="text-xl text-black"
         role="button"
         to="/admin/personelekle"
       >
         {t("allpersonelpage.addnewbutton")}
-      </Link>
+      </Link> */}
     </div>
   );
 };

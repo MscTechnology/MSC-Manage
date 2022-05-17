@@ -81,7 +81,7 @@ const en = {
       },
       active: "Active",
       deactive: "Deactive",
-      viewbutton: "View Employee Movements Table",
+      viewbutton: "View Employee's Movements Table",
     },
     personelPage: {
       title: "Welcome",

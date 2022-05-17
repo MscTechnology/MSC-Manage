@@ -108,32 +108,23 @@ function Documents() {
         }}
       >
         <Grid
+          container
           direction="column"
           justifyContent="start"
           alignItems="center"
-          spacing={2}
-          className="dcs-grid-head"
+          spacing={3}
         >
-
-          <div className="dcs-grid">
-            <Grid item xs={6} md={6} className="dcs-grid">
+            <Grid item xs={12} md={6} className="dcs-grid">
               <SelectField name="filetypesid" label={t("uploadDocument.label.documentType")} options={filetypes ? filetypes : []} />
             </Grid>
-          </div>
-          <div className="">
-            <Grid item xs={6} md={6} className="dcs-grid">
+         
+            <Grid item xs={12} md={6} className="dcs-grid">
               <ImageField name="data" field="data" />
             </Grid>
 
-          </div>
-          <div className="dcs-grid">
-            <Grid item xs={6} md={6} style={{ textAlign: "center" }} className="dcs-grid">
-              <SubmitField onSubmit={handleSave} label={t("uploadDocument.button")}/>
-            </Grid>
-          </div>
-
         </Grid>
 
+        <SubmitField onSubmit={handleSave} label={t("uploadDocument.button")}/>
 
         <HiddenField name="id" value={0} />
         <HiddenField name="usersid" value={user.id} />

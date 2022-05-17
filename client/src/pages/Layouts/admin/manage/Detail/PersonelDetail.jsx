@@ -27,7 +27,7 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import { useTranslation, Trans } from 'react-i18next';
 
 function PersonelDetail() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [checked, setChecked] = useState(true);
   const [rowData, setRowData] = useState({});
@@ -340,7 +340,7 @@ function PersonelDetail() {
         <Link
           className="detail-page-button"
           role="button"
-          to={`/allpersonel/movement/${data?.usersById[0].id}`}
+          to={`/managementpanel/allpersonel/movements/${data?.usersById[0].id}`}
         >
           {t('personeldetail.viewbutton')}
         </Link>

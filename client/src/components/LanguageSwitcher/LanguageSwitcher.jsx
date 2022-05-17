@@ -4,6 +4,7 @@ import { Root } from "pages/Home/SwitchStyles";
 import { useTranslation } from "react-i18next";
 import { setLanguage } from "store/Language/LanguageSlice";
 import { useDispatch } from "react-redux";
+
 const LanguageSwitcher = () => {
   const [checked, setChecked] = useState(true);
   const { t, i18n } = useTranslation();

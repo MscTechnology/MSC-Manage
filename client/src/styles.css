@@ -23,10 +23,6 @@
   margin-left: 8px !important;
 }
 
-element.style {
-  background-color: #d7f0f4 !important;
-}
-
 .personels {
   color: white;
 }
@@ -72,7 +68,7 @@ element.style {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #d7f0f4;
+  background-color: #e5e7eb;
 }
 
 .AllPersonel-add-button {
@@ -121,7 +117,7 @@ element.style {
   display: flex;
   flex-direction: column;
   height: 120vh;
-  background: #d7f0f4;
+  background: #e5e7eb;
   align-items: center;
 }
 
@@ -214,40 +210,13 @@ element.style {
 
 }
 .css-1iu942-MuiButton-root {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  line-height: 1.75;
-  letter-spacing: 0.02857em;
-  text-transform: uppercase;
-  min-width: 0px !important;
-  padding: 8px 22px;
-  border-radius: 4px;
-  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   color: #fff;
-  background-color: #1976d2;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-  box-shadow: none;
+  background-color: orange !important;
   text-align: left;
   justify-content: flex-end;
 }
 .css-ejvgvn-MuiButton-root {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  line-height: 1.75;
-  letter-spacing: 0.02857em;
-  text-transform: uppercase;
   min-width: 0px !important;
-  padding: 8px 22px;
-  border-radius: 4px;
-  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #fff;
-  background-color: #d32f2f;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-  box-shadow: none;
 }
 
 .formik {
@@ -269,7 +238,7 @@ element.style {
 }
 
 .NoMatch {
-  background-color: #d7f0f4;
+  background-color: #e5e7eb;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -298,13 +267,13 @@ element.style {
 .card1{
   display: flex;
   flex-direction: row;
-  background: #d7f0f4;
+  background: #e5e7eb;
 }
 
 .detailPage {
   display: flex;
   flex-direction: column;
-  background-color: #d7f0f4;
+  background-color: #e5e7eb;
   align-items: center;
   text-align: left;
   background-size: 10% 10%;
@@ -312,7 +281,7 @@ element.style {
 }
 .detail-title {
   color: black;
-  font-size: 2em;
+  font-size: 1.6em;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
   margin-right:15px
@@ -341,7 +310,7 @@ text-decoration: line-through;
 }
 
 .status-bg-card-deactive{
-  background-color: #a09898;
+  background-color: #e5e7eb;
 }
 .css-1pnmrwp-MuiTypography-root {
   margin: 0;
@@ -369,7 +338,7 @@ text-decoration: line-through;
     font-size: 4em;
   }
   .Addpersonel-page{
-    background-color: #1976d2;
+    background-color: #e5e7eb;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -389,7 +358,7 @@ text-decoration: line-through;
     font-size:1em;
   }
   .Addpersonel-page{
-    background-color: #1976d2;
+    background-color: #e5e7eb;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -417,16 +386,15 @@ text-decoration: line-through;
 
 .detail-page-button{
   text-decoration: none;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   margin-top: 1em;
   border: 1px solid orange;
   border-radius:20px;
   justify-content:center;
   text-align: center;
-  padding:15px;
+  padding:10px;
   color:black;
-  margin-left:8%;
   
 }
 
@@ -463,7 +431,7 @@ text-decoration: line-through;
 
 
 .UserMovements {
-  background: #d7f0f4;
+  background: #e5e7eb;
   background-attachment: fixed;
   height:100vh;
   align-items: center;
@@ -471,47 +439,16 @@ text-decoration: line-through;
   flex-direction: column;
 }
 .css-3ihp42-MuiDataGrid-root {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  box-sizing: border-box;
-  position: relative;
   border: 2px solid rgb(0, 0, 0) !important;
-  border-radius: 4px;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em;
-  outline: none;
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 .css-3ihp42-MuiDataGrid-root .MuiDataGrid-cell {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
   border-bottom: 1px solid rgb(0, 0, 0) !important;
 }
 .css-3ihp42-MuiDataGrid-root .MuiDataGrid-cell {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
   border-bottom: 1px solid rgb(0, 0, 0) !important;
   border-top: 1px solid black !important;
 }
@@ -519,23 +456,11 @@ text-decoration: line-through;
   color: black !important;
 }
 .css-17jjc08-MuiDataGrid-footerContainer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  min-height: 52px;
   border-top: 2px solid black !important;
 }
 
 .UserMovements_1{
-  background: #d7f0f4;
+  background: #e5e7eb;
   background-attachment: fixed;
   height:100vh;
   align-items: center;
@@ -549,11 +474,13 @@ text-decoration: line-through;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  justify-content:center
 }
 .movement_by_month_back_button{
-  padding-top:5px
+  padding-top:5px;
+  
 }
 
 
@@ -575,7 +502,7 @@ text-decoration: line-through;
 
 
 .Addpersonel-page{
-  background-color: #d7f0f4;
+  background-color: #e5e7eb;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -604,5 +531,8 @@ text-decoration: line-through;
 
 .disable{
   display: none;
+}
+.css-1py8xzf.Mui-checked .MuiSwitch-track {
+  background: #E85923 !important;
 }
 

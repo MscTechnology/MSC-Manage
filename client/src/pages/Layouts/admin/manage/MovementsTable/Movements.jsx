@@ -104,12 +104,12 @@ function Movements() {
             color="primary"
             component="span"
             as={NavLink}
-            to={`/admin/tumpersonel/${id}`}
+            to={`/managementpanel/allpersonel/${id}`}
           >
             <ArrowBackIcon />
           </IconButton>{" "}
         </div>
-        <div>
+        <div className="text-black pt-2 text-lg">
           {userName} {t("PersonalMovementsByName.title")}
         </div>
       </div>

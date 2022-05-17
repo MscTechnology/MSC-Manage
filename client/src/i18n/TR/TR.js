@@ -81,7 +81,7 @@ const tr = {
             },
             active: 'Aktif',
             deactive: 'Pasif',
-            viewbutton: 'Personel Giriş-Çıkışlarını Görüntüle',
+            viewbutton: 'Personelin Giriş-Çıkışlarını Görüntüle',
         },
         personelPage:{
             title:'Hoşgeldin',
