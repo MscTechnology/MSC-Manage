@@ -21,3 +21,13 @@
 .css-ciy9n4-MuiPaper-root-MuiAppBar-root{
     background-color: #1f2937 !important;
 }
+.css-ftbbk1-MuiPaper-root-MuiAppBar-root{
+    background-color: #1f2937 !important;
+    color: #fff !important;
+}
+.css-ktfypw {
+    padding: 0px !important;
+}
+.bg-img{
+    background-image: url("../../../assets/images/bg1.jpg")
+}

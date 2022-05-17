@@ -40,8 +40,9 @@ import AddReactionRoundedIcon from "@mui/icons-material/AddReactionRounded";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Icon } from "@mui/material";
+import WelcomePage from "./WelcomePage";
 
-const drawerWidth = 200;
+const drawerWidth = 220;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -112,18 +113,18 @@ function Management() {
 
 
   const HeadersAdmin = [
-    
+    {
+      text: t("personelPage.buttons.movementsTable"),
+      path: `personelpagemovements/${user.id}`,
+      icon: <CompareArrowsRoundedIcon />,
+    },
     {
       text: t("personelPage.buttons.update"),
       path: "/managementpanel/updateinformations",
       icon: <SystemUpdateAltRoundedIcon />,
       
     },
-    {
-      text: t("personelPage.buttons.movementsTable"),
-      path: `personelpagemovements/${user.id}`,
-      icon: <CompareArrowsRoundedIcon />,
-    },
+    
     {
       text: t("personelPage.buttons.documents"),
       path: "/managementpanel/documents",
@@ -162,18 +163,18 @@ function Management() {
   ];
 
   const HeadersPersonel = [
-    
+    {
+      text: t("personelPage.buttons.movementsTable"),
+      path: `personelpagemovements/${user.id}`,
+      icon: <CompareArrowsRoundedIcon />,
+    },
     {
       text: t("personelPage.buttons.update"),
       path: "/managementpanel/updateinformations",
       icon: <SystemUpdateAltRoundedIcon />,
       
     },
-    {
-      text: t("personelPage.buttons.movementsTable"),
-      path: `personelpagemovements/${user.id}`,
-      icon: <CompareArrowsRoundedIcon />,
-    },
+    
     {
       text: t("personelPage.buttons.documents"),
       path: "/managementpanel/documents",
@@ -264,7 +265,7 @@ function Management() {
           <div>
             <Routes>
               {/* <Route path="/allpersonel" element={<TumPersonel />} /> */}
-              <Route path="/" element={(isAdmin ? <UserMovements/> : <BilgileriGuncelle />)} />
+              <Route path="/" element={<WelcomePage/>} />
               <Route path="allpersonel" element={<TumPersonel />} />
               <Route
                 path="personelpagemovements/:id"

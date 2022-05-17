@@ -27,7 +27,7 @@ const en = {
       buttons: {
         allpersonel: "Employees",
         allpersonelsub: "Registered Employees",
-        movements: "Movements",
+        movements: "All Movements",
         movementsub: "Employees Movements",
         addpersonel: "Add Employee",
         addpersonelsub: "Register New Employee",
