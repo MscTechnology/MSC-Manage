@@ -30,6 +30,7 @@ const Dashboard = () => {
         
         <Route path="/managementpanel/*" element={<ManagementPanel />} />
         
+        <Route path="*" element={<NoMatch />} />
       </Routes>
 
     </div>

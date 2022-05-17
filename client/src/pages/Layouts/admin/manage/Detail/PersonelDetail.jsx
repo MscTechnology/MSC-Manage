@@ -340,7 +340,7 @@ function PersonelDetail() {
         <Link
           className="detail-page-button"
           role="button"
-          to={`/admin/tumpersonel/movement/${data?.usersById[0].id}`}
+          to={`/allpersonel/movement/${data?.usersById[0].id}`}
         >
           {t('personeldetail.viewbutton')}
         </Link>

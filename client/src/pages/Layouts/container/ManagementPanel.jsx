@@ -41,13 +41,14 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Icon } from "@mui/material";
 import WelcomePage from "./WelcomePage";
+import Movements from "../admin/manage/MovementsTable/Movements";
 
 const drawerWidth = 220;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -233,13 +234,14 @@ function Management() {
               flexDirection: "row",
             }}
           >
-            <DrawerHeaderImg className=" mx-auto">
+            <Link to="/managementpanel/" className=" mx-auto">
+            <DrawerHeaderImg>
               <img
                 className="h-12"
                 src={require("../../../assets/images/logo2.png")}
               ></img>
             </DrawerHeaderImg>
-
+            </Link>
             {/* <DrawerHeader>
               <IconButton className="hidden" onClick={handleDrawerClose}>
                 {theme.direction === "ltr" ? (
@@ -282,6 +284,7 @@ function Management() {
               <Route path="movementsbymonth" element={<MovementsByMonth />} />
 
               <Route path="allpersonel/:id" element={<PersonelDetail />} />
+              <Route path="allpersonel/movements/:id" element={<Movements />} />
             </Routes>
           </div>
         </Main>
