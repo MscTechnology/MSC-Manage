@@ -31,14 +31,14 @@ import "./managementpanel.css";
 import LanguageSwitcher from "components/LanguageSwitcher/LanguageSwitcher";
 
 //? icons
-import CompareArrowsRoundedIcon from '@mui/icons-material/CompareArrowsRounded';
-import SystemUpdateAltRoundedIcon from '@mui/icons-material/SystemUpdateAltRounded';
-import PictureAsPdfRoundedIcon from '@mui/icons-material/PictureAsPdfRounded';
-import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
+import SystemUpdateAltRoundedIcon from "@mui/icons-material/SystemUpdateAltRounded";
+import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 
-import AddReactionRoundedIcon from '@mui/icons-material/AddReactionRounded';
-import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import AddReactionRoundedIcon from "@mui/icons-material/AddReactionRounded";
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Icon } from "@mui/material";
 
 const drawerWidth = 200;
@@ -110,53 +110,49 @@ function Management() {
     setOpen(!open);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
-  const Headers = [
-    {
-      text: t("personelPage.buttons.movementsTable"),
-      path: `personelpagemovements/${user.id}`,
-      icon: <CompareArrowsRoundedIcon />,
-      control: isAdmin ? true : false,
-    },
+  const HeadersAdmin = [
+    
     {
       text: t("personelPage.buttons.update"),
       path: "/managementpanel/updateinformations",
       icon: <SystemUpdateAltRoundedIcon />,
-      control: isAdmin ? true : false,
+      
+    },
+    {
+      text: t("personelPage.buttons.movementsTable"),
+      path: `personelpagemovements/${user.id}`,
+      icon: <CompareArrowsRoundedIcon />,
     },
     {
       text: t("personelPage.buttons.documents"),
       path: "/managementpanel/documents",
       icon: <PictureAsPdfRoundedIcon />,
-      control: isAdmin ? true : false,
+      
     },
 
     {
       text: t("adminpage.buttons.allpersonel"),
       path: "/managementpanel/allpersonel",
       icon: <GroupRoundedIcon />,
-      control: isAdmin ? true : false,
+      
     },
     {
       text: t("adminpage.buttons.movements"),
       path: "/managementpanel/adminpagemovements",
       icon: <CompareArrowsRoundedIcon />,
-      control: isAdmin ? true : false,
     },
     {
       text: t("adminpage.buttons.addpersonel"),
       path: "/managementpanel/addpersonel",
       icon: <AddReactionRoundedIcon />,
-      control: isAdmin ? true : false,
+    
     },
     {
       text: t("adminpage.buttons.mountmovenments"),
       path: "/managementpanel/movementsbymonth",
       icon: <CalendarMonthRoundedIcon />,
-      control: isAdmin ? true : false,
+      
     },
     {
       text: t("Signout.text"),
@@ -164,7 +160,33 @@ function Management() {
       icon: <LogoutRoundedIcon />,
     },
   ];
-  
+
+  const HeadersPersonel = [
+    
+    {
+      text: t("personelPage.buttons.update"),
+      path: "/managementpanel/updateinformations",
+      icon: <SystemUpdateAltRoundedIcon />,
+      
+    },
+    {
+      text: t("personelPage.buttons.movementsTable"),
+      path: `personelpagemovements/${user.id}`,
+      icon: <CompareArrowsRoundedIcon />,
+    },
+    {
+      text: t("personelPage.buttons.documents"),
+      path: "/managementpanel/documents",
+      icon: <PictureAsPdfRoundedIcon />,
+      
+    },
+    {
+      text: t("Signout.text"),
+      path: "/",
+      icon: <LogoutRoundedIcon />,
+    },
+  ]
+
   return (
     <div>
       <Box sx={{ display: "flex" }}>
@@ -178,7 +200,6 @@ function Management() {
               onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 2 }}
-              
             >
               <MenuIcon />
             </IconButton>
@@ -213,7 +234,7 @@ function Management() {
           >
             <DrawerHeaderImg className=" mx-auto">
               <img
-                className="h-20"
+                className="h-12"
                 src={require("../../../assets/images/logo2.png")}
               ></img>
             </DrawerHeaderImg>
@@ -229,34 +250,21 @@ function Management() {
             </DrawerHeader> */}
           </div>
 
-         
-
-          {Headers.map(({ path, text, control,icon }) => (
-            <li
-              key={path}
-              className="p-3 list-none"
-             
-            >
-              
-              <NavLink to={path}>{icon} {text}</NavLink>
+          {(isAdmin ? HeadersAdmin : HeadersPersonel).map(({ path, text, control, icon }) => (
+            <li key={path} className="p-3 list-none">
+              <NavLink to={path}>
+                {icon} {text}
+              </NavLink>
               <Divider color="orange" />
             </li>
           ))}
-
-          {/* <List >
-          {Headers.map((header, index) => (
-            <ListItem button key={header.index} >
-              <Link className="pl-6" to={header.path}>{header.text}</Link>
-            </ListItem>
-          ))}
-        </List> */}
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
           <div>
             <Routes>
               {/* <Route path="/allpersonel" element={<TumPersonel />} /> */}
-              <Route path="/" element={<UserMovements />} />
+              <Route path="/" element={(isAdmin ? <UserMovements/> : <BilgileriGuncelle />)} />
               <Route path="allpersonel" element={<TumPersonel />} />
               <Route
                 path="personelpagemovements/:id"
@@ -267,7 +275,7 @@ function Management() {
                 element={<BilgileriGuncelle />}
               />
               <Route path="documents" element={<Documents />} />
-              <Route path="adminpagemovements" element={<UserMovements />} />
+              <Route path="adminpagemovements" element={<UserMovements/>} />
               <Route path="addpersonel" element={<PersonelEkle />} />
 
               <Route path="movementsbymonth" element={<MovementsByMonth />} />

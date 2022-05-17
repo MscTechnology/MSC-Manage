@@ -94,8 +94,8 @@ function Documents() {
 
 
   return (
-    <div className="containerdcs">
-      <div className="documents-title">
+    <div className="bg-primary h-screen text-center py-5 text-2xl text-black">
+      <div className="mx-auto justify-center">
         
         <div className="documents-content">
         {t("uploadDocument.title")}
@@ -120,7 +120,7 @@ function Documents() {
               <SelectField name="filetypesid" label={t("uploadDocument.label.documentType")} options={filetypes ? filetypes : []} />
             </Grid>
           </div>
-          <div className="dcs-grid">
+          <div className="">
             <Grid item xs={6} md={6} className="dcs-grid">
               <ImageField name="data" field="data" />
             </Grid>
