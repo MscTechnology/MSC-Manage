@@ -41,7 +41,7 @@ const TumPersonel = () => {
   return (
     <div
    
-      className="bg-primary text-center py-5 text-2xl text-black"
+      className="bg-primary text-center py-5 text-2xl text-black h-screen"
     >
       <div className="text-3xl">
         {t("allpersonelpage.title")} ({userFilter.length})

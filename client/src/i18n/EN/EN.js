@@ -159,7 +159,11 @@ const en = {
       },
       Signout:{
         text:'Sign Out'
-      }
+      },
+      welcomepage:{
+        title1:'MSC Technology Management Panel',
+        title2:'Welcome',
+    }
   },
  
 };

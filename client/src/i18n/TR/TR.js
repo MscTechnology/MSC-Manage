@@ -158,7 +158,11 @@ const tr = {
           },
           Signout:{
             text:'Çıkış Yap'
-          }
+        },
+        welcomepage:{
+            title1:'MSC Teknoloji Yönetim Paneli',
+            title2:'Hoşgeldin',
+        }
         
     },
 
