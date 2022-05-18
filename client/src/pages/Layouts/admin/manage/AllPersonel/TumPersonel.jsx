@@ -3,12 +3,13 @@ import "./allpersonel.css"
 //! Material UI
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
-  
+
   Card,
   CardContent,
   Divider,
+  Grid,
   IconButton,
-  
+
   Typography,
 } from "@mui/material";
 
@@ -34,72 +35,81 @@ const TumPersonel = () => {
     return <NoMatch />;
   }
 
-  const userFilter = data?.users.filter((user) => user.usertypesid !== 1);
 
-  const userBackground = userFilter.length;
+
+  const userLength = data?.users.length;
 
   return (
     <div
-   
+
       className="bg-primary text-center py-5 text-2xl text-black h-screen"
     >
       <div className="text-3xl">
-        {t("allpersonelpage.title")} ({userFilter.length})
+        {t("allpersonelpage.title")} ({userLength})
       </div>
+      <Grid container spacing={2}>
 
-      {refetch() &&
-        data?.users?.map((p) => (
-          <Link
-            className="admin-card"
-            role="button"
-            to={`${p?.id}`}
-            key={p?.id}
-          >
-            <div>
-              <Card sx={{ minWidth: 275 }}>
-                <CardContent
-                  className={
-                    p?.status
-                      ? "status-bg-card-active"
-                      : "status-bg-card-deactive"
-                  }
-                >
-                  <div className="card-wrapper">
-                    <div className={p?.status ? "status" : "status-deactive"}>
-                      <Typography variant="h5" component="div">
-                        {p?.name} {p?.surname}
-                      </Typography>
-                    </div>
 
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      variant="fullWidth"
-                    />
-                    <div className="divider-group">
-                      <div>
-                     
-                        <Typography color="text.secondary">
-                          {p?.status
-                            ? t("allpersonelpage.active")
-                            : t("allpersonelpage.deactive")}
-                        </Typography>
+        {refetch() &&
+          data?.users?.map((p) => (
+            <Grid item xs={6} sm={12} md={4}>
+              <Link
+                className="admin-card"
+                role="button"
+                to={`${p?.id}`}
+                key={p?.id}
+              >
+                <div>
+
+
+                  <Card sx={{ minWidth: 275 }}>
+                    <CardContent
+                      className={
+                        p?.status
+                          ? "status-bg-card-active"
+                          : "status-bg-card-deactive"
+                      }
+                    >
+                      <div className="card-wrapper">
+                        <div className={p?.status ? "status" : "status-deactive"}>
+                          <Typography variant="h5" component="div">
+                            {p?.name} {p?.surname}
+                          </Typography>
+                        </div>
+
+                        <Divider
+                          orientation="vertical"
+                          flexItem
+                          variant="fullWidth"
+                        />
+                        <div className="divider-group">
+                          <div>
+
+                            <Typography color="text.secondary">
+                              {p?.status
+                                ? t("allpersonelpage.active")
+                                : t("allpersonelpage.deactive")}
+                            </Typography>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </Link>
-        ))}
+                    </CardContent>
+                  </Card>
 
-      {/* <Link
+
+                </div>
+              </Link>
+            </Grid>
+          ))}
+
+        {/* <Link
         className="text-xl text-black"
         role="button"
         to="/admin/personelekle"
       >
         {t("allpersonelpage.addnewbutton")}
       </Link> */}
+      </Grid>
     </div>
   );
 };

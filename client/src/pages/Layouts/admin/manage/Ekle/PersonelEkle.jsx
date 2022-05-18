@@ -78,6 +78,7 @@ const PersonelEkle = () => {
           <HiddenField name="changeuser" value={user.id} />
           <HiddenField name="changetime" value={null} />
           <HiddenField name="status" value={1} />
+          
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <AutoField name="name" label={t("addpersonelpage.name")} />

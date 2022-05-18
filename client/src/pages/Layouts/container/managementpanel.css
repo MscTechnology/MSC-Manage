@@ -29,5 +29,17 @@
     padding: 0px !important;
 }
 .bg-img{
-    background-image: url("../../../assets/images/bg1.jpg")
+    background-image: url("../../../assets/images/bg1.jpg");
+    background-size: cover;
+}
+.css-1l8j5k8 {
+    background-color: #1f2937 !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+   
+}
+.css-1tgyln{
+    background-color: #1f2937 !important;
+}
+.css-1r3fhzn{
+    background-color: #1f2937 !important;
 }
