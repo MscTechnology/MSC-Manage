@@ -47,14 +47,18 @@ const TumPersonel = () => {
       <div className="text-3xl">
         {t("allpersonelpage.title")} ({userLength})
       </div>
-      <Grid container spacing={2}>
+      
+      <div className="my-12">
+
+      
+      <Grid container spacing={2} className="">
 
 
         {refetch() &&
           data?.users?.map((p) => (
-            <Grid item xs={6} sm={12} md={4}>
+            <Grid item xs={12} sm={12} md={4}>
               <Link
-                className="admin-card"
+                className="flex flex-col items-center  "
                 role="button"
                 to={`${p?.id}`}
                 key={p?.id}
@@ -62,15 +66,11 @@ const TumPersonel = () => {
                 <div>
 
 
-                  <Card sx={{ minWidth: 275 }}>
+                  <Card sx={{ minWidth: 275 }} className="">
                     <CardContent
-                      className={
-                        p?.status
-                          ? "status-bg-card-active"
-                          : "status-bg-card-deactive"
-                      }
+                      className=""
                     >
-                      <div className="card-wrapper">
+                      <div className="flex flex-row  justify-between items-center">
                         <div className={p?.status ? "status" : "status-deactive"}>
                           <Typography variant="h5" component="div">
                             {p?.name} {p?.surname}
@@ -110,6 +110,7 @@ const TumPersonel = () => {
         {t("allpersonelpage.addnewbutton")}
       </Link> */}
       </Grid>
+      </div>
     </div>
   );
 };
