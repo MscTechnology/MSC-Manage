@@ -1,7 +1,7 @@
+import React from "react";
 //! Css
 import "./allpersonel.css"
 //! Material UI
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
 
   Card,
@@ -9,8 +9,12 @@ import {
   Divider,
   Grid,
   IconButton,
-
+  List,
   Typography,
+  Avatar,
+  ListItemAvatar,
+  ListItemText,
+  ListItem
 } from "@mui/material";
 
 //! Components
@@ -18,7 +22,7 @@ import Loading from "components/Loading/Loading";
 import NoMatch from "pages/404/NoMatch";
 
 //! Graphql And Router
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGetUserQuery } from "generated/graphql";
 import { useTranslation } from "react-i18next";
 
@@ -35,8 +39,6 @@ const TumPersonel = () => {
     return <NoMatch />;
   }
 
-
-
   const userLength = data?.users.length;
 
   return (
@@ -47,26 +49,41 @@ const TumPersonel = () => {
       <div className="text-3xl">
         {t("allpersonelpage.title")} ({userLength})
       </div>
-      
+
       <div className="my-12">
 
-      
-      <Grid container spacing={2} className="">
+        <Grid container>
 
+          {refetch() &&
 
-        {refetch() &&
-          data?.users?.map((p) => (
-            <Grid item xs={12} sm={12} md={4}>
-              <Link
-                className="flex flex-col items-center  "
-                role="button"
-                to={`${p?.id}`}
-                key={p?.id}
-              >
-                <div>
+            data?.users?.map((p) => (
+              <Grid item xs={12} sm={12} md={12}>
+                <Link
+                  className="flex flex-col max-w-fit mx-auto items-baseline"
+                  role="button"
+                  to={`${p?.id}`}
+                  key={p?.id}
+                >
+                  <div >
+                    <List sx={{ maxWidth: 370, minWidth: 500, bgcolor: 'background.paper', paddingTop: '8px',paddingBottom:'0px' }}>
+                      <ListItem alignItems="flex-start" className="flex flex-row justify-center items-center">
+                        <ListItemAvatar className="mb-3">
+                          <Avatar alt={p.name} src="/static/images/avatar/1.jpg" sx={{ width: 43, height: 43,marginTop:'4px',backgroundColor:'#e85923' }} />
+                        </ListItemAvatar>
+                        <ListItemText secondary={p?.status
+                          ? t("allpersonelpage.active")
+                          : t("allpersonelpage.deactive")}>
+                          <div className='text-3xl'>
+                            {p.name} {p.surname}
+                          </div>
+                        </ListItemText>
+                      </ListItem>
 
+                      <Divider variant="inset" style={{color:'#e85923'}} light={true}/>
+                      
+                    </List>
 
-                  <Card sx={{ minWidth: 275 }} className="">
+                    {/* <Card sx={{ minWidth: 275 }} className="">
                     <CardContent
                       className=""
                     >
@@ -94,24 +111,24 @@ const TumPersonel = () => {
                         </div>
                       </div>
                     </CardContent>
-                  </Card>
+                  </Card> */}
 
 
-                </div>
-              </Link>
-            </Grid>
-          ))}
+                  </div>
+                </Link>
+              </Grid>
+            ))}
 
-        {/* <Link
+          {/* <Link
         className="text-xl text-black"
         role="button"
         to="/admin/personelekle"
       >
         {t("allpersonelpage.addnewbutton")}
       </Link> */}
-      </Grid>
+        </Grid>
       </div>
-    </div>
+    </div >
   );
 };
 

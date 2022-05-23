@@ -45,7 +45,11 @@ const PersonelMovements = () => {
       sort: "desc",
     },
   ]);
+
+  const isAdmin = useSelector(state => state.users.isAdmin)
+
   const [addMovementMutation] = useAddMovementMutation({});
+
   const isTap = useSelector((state) => state.movements.isTap);
   const selectLang = useSelector((state) => state.language.lang);
 
@@ -93,12 +97,15 @@ const PersonelMovements = () => {
 
   const { id } = useParams();
   const user = useSelector((state) => state.users.user);
+  console.log(user)
 
   const { data, loading, error } = useGetUserMovementByIdQuery({
     variables: {
       prmId: parseInt(id),
     },
   });
+
+  const name =data?.usersmovementsById[0]?.users?.name
 
   const { data: GetMovementsData, refetch } =
     useGetUserMovementsByIdForLoginQuery({
@@ -131,6 +138,8 @@ const PersonelMovements = () => {
     return params.api.state.rows.idRowsLookup[params.id];
   };
 
+  const Admin = isAdmin ? true : false
+
   const columns = [
     {
       field: "transactiondate",
@@ -161,6 +170,8 @@ const PersonelMovements = () => {
       valueFormatter: (params) => {
         return paramsFunctions(params).entrytime;
       },
+      editable:Admin
+      
     },
 
     {
@@ -171,6 +182,7 @@ const PersonelMovements = () => {
         const exittime = params.api.state.rows.idRowsLookup[params.id].exittime;
         return exittime === null ? t("movements.notyet") : exittime;
       },
+      editable:Admin
     },
   ];
 
@@ -179,7 +191,7 @@ const PersonelMovements = () => {
       <ToastContainer />
       
 
-      <div>{t("personelMovements.title")}</div>
+      <div>{name} {t("personelMovements.title")}</div>
 
       <div
         style={{ height: 530, width: "75%" }}
@@ -191,12 +203,12 @@ const PersonelMovements = () => {
           pageSize={8}
           rowsPerPageOptions={[5, 10, 20, 30, 40, 50]}
           autoPageSize
-          pagination
+          pagination 
           sortModel={sortModel}
         />
       </div>
 
-      <div className={btnVisible ? "Personel-Btn-Margin" : "disable"}>
+      <div className={btnVisible && !isAdmin ? "Personel-Btn-Margin" : "disable"}>
         <Button className="disable" onClick={handleOpen}>
           {t("personelMovements.loginlogout").toLocaleUpperCase()}
         </Button>
