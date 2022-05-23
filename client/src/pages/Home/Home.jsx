@@ -24,6 +24,8 @@ const Home = () => {
   const { t } = useTranslation();
   const { data, loading, error } = useGetUserQuery();
 
+ 
+
   const splashLoading = useSelector((state) => state.splash.isLoading);
 
   const dispatch = useDispatch();
@@ -66,9 +68,9 @@ const Home = () => {
     }
   };
 
-
   return (
     <>
+    
       <ToastContainer />
       {splashLoading ? (
         <div className="grid  h-screen w-full  bg-gray-800">
@@ -99,7 +101,7 @@ const Home = () => {
                   />
                   <div>
                     <SubmitField
-                      className="w-full  "
+                      className="w-full"
                       label={t("login.personellogin.login")}
                     />
                   </div>

@@ -100,7 +100,6 @@ const DrawerHeaderImg = styled("div")(({ theme }) => ({
 }));
 
 function Management() {
-  const { id } = useParams();
   const user = useSelector((state) => state.users.user);
   const isAdmin = useSelector((state) => state.users.isAdmin);
   const { t } = useTranslation();
@@ -160,6 +159,7 @@ function Management() {
       text: t("Signout.text"),
       path: "/",
       icon: <LogoutRoundedIcon />,
+      onclick: ()=> window.location.reload()
     },
   ];
 
@@ -186,6 +186,7 @@ function Management() {
       text: t("Signout.text"),
       path: "/",
       icon: <LogoutRoundedIcon />,
+      onclick: ()=> window.location.reload()
     },
   ]
 
@@ -253,9 +254,9 @@ function Management() {
             </DrawerHeader> */}
           </div>
 
-          {(isAdmin ? HeadersAdmin : HeadersPersonel).map(({ path, text, control, icon }) => (
+          {(isAdmin ? HeadersAdmin : HeadersPersonel).map(({ path, text, icon }) => (
             <li key={path} className="p-3 list-none">
-              <NavLink to={path}>
+              <NavLink to={path} >
                 {icon} {text}
               </NavLink>
               <Divider color="orange" />

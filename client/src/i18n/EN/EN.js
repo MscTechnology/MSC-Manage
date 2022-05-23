@@ -51,7 +51,7 @@ const en = {
         entrytime: "Entry Time",
         exittime: "Exit Time",
       },
-      notyet: "Not yet",
+      notyet: "Not yet out",
     },
     addpersonelpage: {
       title: "Add Employee",
@@ -163,7 +163,10 @@ const en = {
       welcomepage:{
         title1:'MSC Technology Management Panel',
         title2:'Welcome',
-    }
+    },
+    InfoAlert:{
+      text:'On this page, you can see the entrances and exits of all personnel.'
+  }
   },
  
 };

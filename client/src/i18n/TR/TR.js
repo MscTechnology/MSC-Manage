@@ -162,6 +162,9 @@ const tr = {
         welcomepage:{
             title1:'MSC Teknoloji Yönetim Paneli',
             title2:'Hoşgeldin',
+        },
+        InfoAlert:{
+            text:'Bu sayfa da tüm personellerin giriş çıkışlarını görebilirsiniz.'
         }
         
     },
