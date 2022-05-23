@@ -1,7 +1,7 @@
 import "../../../../../styles.css";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import { useGetUserMovementsQuery } from "generated/graphql";
+import { useChangeTimeMutation, useGetUserMovementsQuery } from "generated/graphql";
 import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import * as React from "react";
 import Loading from "components/Loading/Loading";
@@ -16,10 +16,11 @@ import MuiAlert from "components/Alert/MuiAlert";
 const UserMovements = () => {
   const selectLang = useSelector((state) => state.language.lang);
 
+  const [changeTimeMutation, { data:changetimedata, loading:changetimeloading }] = useChangeTimeMutation();
+
+
   const { data, loading, error, refetch } = useGetUserMovementsQuery({});
   const rows = data?.usersmovements
-
-  const [state,setState]=React.useState(rows)
 
   const [sortModel, setSortModel] = React.useState([
     {
@@ -52,13 +53,20 @@ const UserMovements = () => {
   
   const handleEditing=(e)=>{
     console.log(e);
-    const array = state?.map((r) => {
-      if (r?.id === e?.id) {
-        return {...r,[e?.field]:e?.value};
+    changeTimeMutation({
+      variables:{
+        prmId:e.id,
+        prmTime:e.value,
+        prmStatus:e.field
       }
-      return {...r}
+    }).then(res=>{
+      if(res.data.changeMovements.resultType=="SUC"){
+        console.log("başarılı")
+      }
+      else{
+        console.log("hata")
+      }
     })
-    setState(array)
   }
   
 
@@ -120,6 +128,7 @@ const UserMovements = () => {
         const exittime = paramsFunctions(params).exittime;
         return exittime === null ? t('movements.notyet') : exittime;
       },
+      editable: true
     },
   ];
 

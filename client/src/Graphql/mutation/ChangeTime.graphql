@@ -1,0 +1,6 @@
+mutation ChangeTime($prmId:Long!, $prmStatus: String ,$prmTime:DateTime! ){
+  changeMovements(prmId:$prmId, prmStatus: $prmStatus, prmTime:$prmTime ) {
+     messageText
+     resultType
+  }
+}

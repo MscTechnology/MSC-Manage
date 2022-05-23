@@ -285,7 +285,7 @@ function Management() {
               <Route path="movementsbymonth" element={<MovementsByMonth />} />
 
               <Route path="allpersonel/:id" element={<PersonelDetail />} />
-              <Route path="allpersonel/movements/:id" element={<Movements />} />
+              <Route path="allpersonel/movements/:id" element={<PersonelMovements />} />
             </Routes>
           </div>
         </Main>

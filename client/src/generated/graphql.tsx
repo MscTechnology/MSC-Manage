@@ -228,6 +228,7 @@ export type Mutation = {
   addMovement?: Maybe<Usersmovement>;
   addUser?: Maybe<ResultModelOfUser>;
   addUserFile?: Maybe<ResultModelOfUserfile>;
+  changeMovements?: Maybe<ResultModelOfUsersmovement>;
   deleteUser?: Maybe<ResultModelOfUser>;
   updateUser?: Maybe<ResultModelOfUser>;
 };
@@ -245,6 +246,13 @@ export type MutationAddUserArgs = {
 
 export type MutationAddUserFileArgs = {
   prmUserFile?: InputMaybe<UserfileInput>;
+};
+
+
+export type MutationChangeMovementsArgs = {
+  prmId: Scalars['Long'];
+  prmStatus?: InputMaybe<Scalars['String']>;
+  prmTime: Scalars['DateTime'];
 };
 
 
@@ -349,6 +357,13 @@ export type ResultModelOfUser = {
 export type ResultModelOfUserfile = {
   __typename?: 'ResultModelOfUserfile';
   data?: Maybe<Userfile>;
+  messageText?: Maybe<Scalars['String']>;
+  resultType: ResultEnum;
+};
+
+export type ResultModelOfUsersmovement = {
+  __typename?: 'ResultModelOfUsersmovement';
+  data?: Maybe<Usersmovement>;
   messageText?: Maybe<Scalars['String']>;
   resultType: ResultEnum;
 };
@@ -592,6 +607,15 @@ export type AddUserFileMutationVariables = Exact<{
 
 export type AddUserFileMutation = { __typename?: 'Mutation', addUserFile?: { __typename?: 'ResultModelOfUserfile', resultType: ResultEnum, messageText?: string | null } | null };
 
+export type ChangeTimeMutationVariables = Exact<{
+  prmId: Scalars['Long'];
+  prmStatus?: InputMaybe<Scalars['String']>;
+  prmTime: Scalars['DateTime'];
+}>;
+
+
+export type ChangeTimeMutation = { __typename?: 'Mutation', changeMovements?: { __typename?: 'ResultModelOfUsersmovement', messageText?: string | null, resultType: ResultEnum } | null };
+
 export type UpdateUserMutationVariables = Exact<{
   prmUser?: InputMaybe<UserInput>;
 }>;
@@ -779,6 +803,42 @@ export function useAddUserFileMutation(baseOptions?: Apollo.MutationHookOptions<
 export type AddUserFileMutationHookResult = ReturnType<typeof useAddUserFileMutation>;
 export type AddUserFileMutationResult = Apollo.MutationResult<AddUserFileMutation>;
 export type AddUserFileMutationOptions = Apollo.BaseMutationOptions<AddUserFileMutation, AddUserFileMutationVariables>;
+export const ChangeTimeDocument = gql`
+    mutation ChangeTime($prmId: Long!, $prmStatus: String, $prmTime: DateTime!) {
+  changeMovements(prmId: $prmId, prmStatus: $prmStatus, prmTime: $prmTime) {
+    messageText
+    resultType
+  }
+}
+    `;
+export type ChangeTimeMutationFn = Apollo.MutationFunction<ChangeTimeMutation, ChangeTimeMutationVariables>;
+
+/**
+ * __useChangeTimeMutation__
+ *
+ * To run a mutation, you first call `useChangeTimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangeTimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changeTimeMutation, { data, loading, error }] = useChangeTimeMutation({
+ *   variables: {
+ *      prmId: // value for 'prmId'
+ *      prmStatus: // value for 'prmStatus'
+ *      prmTime: // value for 'prmTime'
+ *   },
+ * });
+ */
+export function useChangeTimeMutation(baseOptions?: Apollo.MutationHookOptions<ChangeTimeMutation, ChangeTimeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ChangeTimeMutation, ChangeTimeMutationVariables>(ChangeTimeDocument, options);
+      }
+export type ChangeTimeMutationHookResult = ReturnType<typeof useChangeTimeMutation>;
+export type ChangeTimeMutationResult = Apollo.MutationResult<ChangeTimeMutation>;
+export type ChangeTimeMutationOptions = Apollo.BaseMutationOptions<ChangeTimeMutation, ChangeTimeMutationVariables>;
 export const UpdateUserDocument = gql`
     mutation UpdateUser($prmUser: UserInput) {
   updateUser(prmUser: $prmUser) {
